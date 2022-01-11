@@ -130,7 +130,7 @@ export const batches = [
     id: 3,
     label: 'No CoW',
     summary: "Even if you trade alone, you are protected",
-    description: "This 6M trade had a big slippage tolerance that could have been MEV extracted. In case of extraction, it is paid by the solvers, same applies for the fees in case the transaction reverts.",    
+    description: "A trader submitted a $6M trade with a high slippage tolerance, which is easy money for MEV extractors. By using CoW Protocol, the MEV protected trade was settled via a DEX Agg. Solvers reduced the slippage tolerance to make it less vulnerable to MEV and leveraged Flashbots API to hide the trade from the dark forest.",    
     link: {
       label: 'View on CoW Explorer',
       url: url.explorer + '/orders/0xa626323afbe1641b9cbff455d8808e5d75961373fa44258621a08220789fba83e30ed74c6633a1b0d34a71c50889f9f0fdb7d68a61859cfb',
