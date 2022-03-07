@@ -17,6 +17,6 @@ export const siteConfig = {
     twitter: { label: 'Twitter', account: '@MEVprotection', url: 'https://twitter.com/mevprotection' },
     discord: { label: 'Discord', url: 'https://chat.cowswap.exchange/' },
     github: { label: 'GitHub', url: 'https://github.com/gnosis/gp-v2-contracts' },
-    forum: { label: 'Forum', url: 'https://forum.gnosis.io/' },
+    forum: { label: 'Forum', url: 'https://forum.cow.fi/' },
   }
 }
