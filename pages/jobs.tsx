@@ -54,9 +54,8 @@ export default function Jobs({ jobsData }) {
           <SVG src="images/icons/arrowRight.svg" />
         </LinkContainer>
       )}
-      {/* {!isLoading && jobs.length < 1 && <p>There are currently no open positions.</p>} */}
 
-      <p>No open positions or can&apos;t find the position you&apos;re looking for? <ExternalLink href={discordURL} target="_blank" rel="noopener nofollow">Get in touch</ExternalLink></p>
+      {!isLoading && <p>{jobs.length < 1 && 'Currently there are no open positions. Convinced you can contribute to Cow Protocol?'}{jobs.length > 0 && "Can't find the position you're looking for?"} <ExternalLink href={discordURL} target="_blank" rel="noopener nofollow">Get in touch</ExternalLink></p>}
 
     </Content>
   )
