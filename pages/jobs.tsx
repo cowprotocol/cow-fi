@@ -51,7 +51,7 @@ export default function Jobs({ jobsData }) {
         <LinkContainer key={internal_job_id} href={absolute_url} target="_blank" rel="noopener nofollow noreferrer">
           <b>{title}</b>
           <i>{location.name}</i>
-          <SVG src="images/icons/arrowRight.svg" />
+          <SVG src="images/icons/arrowRight.svg" cacheRequests={true} />
         </LinkContainer>
       )}
 
