@@ -55,7 +55,7 @@ export default function Home({ metricsData, siteConfigData }) {
         <div>
           <SectionImage margin={'0 auto -18rem'} height={'68rem'}><img loading="lazy" src="/images/cowBelt.jpg" alt="A fast growing protocol" /></SectionImage>
           <h2>A fast-growing trading protocol</h2>
-          <SubTitle align="center">Trade on CoW Protocol for <br /> better prices, gas cost savings and extra secure MEV protection <ExternalLink href="https://dune.xyz/gnosis.protocol/Gnosis-Protocol-V2">View analytics</ExternalLink></SubTitle>
+          <SubTitle align="center">Trade on CoW Protocol for <br /> better prices, gas cost savings and extra secure MEV protection. <ExternalLink href="https://dune.xyz/gnosis.protocol/Gnosis-Protocol-V2">View analytics</ExternalLink></SubTitle>
           <Metrics>
             {metricsData.map(({ label, value }, i) =>
               <div key={i}>
