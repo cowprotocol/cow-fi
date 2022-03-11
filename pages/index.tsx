@@ -141,7 +141,7 @@ export default function Home({ metricsData, siteConfigData }) {
         <ApiWrapper>
           <ApiTool>
             <h4>Get a price quote</h4>
-            <p>Example, how to get a price and fee quote for selling 10 ETH for USDC.</p>
+            <p>Retrieve a price and fee quote for selling 10 WETH to buy USDC.</p>
 
             <ApiParams>
               <span><b>WETH</b><small>sellToken</small></span>
