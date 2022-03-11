@@ -14,7 +14,7 @@ export const Color = {
 }
 
 export const Font = {
-  default: "'Inter', 'Helvetica Neue', Helvetica, sans-serif",
+  default: "'Inter var', 'Helvetica Neue', Helvetica, sans-serif",
   arial: "Arial, Helvetica, sans-serif",
   sizeDefault: '1.6rem',
   weightLight: 300,

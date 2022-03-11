@@ -3,10 +3,11 @@ import styled, { createGlobalStyle } from 'styled-components'
 import { Color, Font, Media } from 'const/styles/variables'
 
 const GlobalStyles = createGlobalStyle`
-  html { font-family: "Inter", "system-ui"; }
+
+  html, body { font-family: "Inter", "system-ui"; }
 
   @supports (font-variation-settings: normal) {
-    html { font-family: "Inter var", "system-ui"; }
+    html, body { font-family: "Inter var", "system-ui"; }
   }
 
   html, body {  
