@@ -39,6 +39,8 @@ export const Title = styled.h1`
   font-size: 6rem;
   line-height: 1.2;
   margin: 0 0 4rem;
+  text-align: center;
+  word-break: break-word;
 
   ${Media.mobile} {
     font-size: 4rem;
@@ -50,6 +52,7 @@ export const SubTitle = styled.h2`
   line-height: 1.5;
   font-weight: ${Font.weightLight};
   opacity: 0.75;
+  text-align: center;
 
   ${Media.mobile} {
     font-size: 2rem;
