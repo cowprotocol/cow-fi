@@ -4,17 +4,16 @@ import { Color, Font, Media } from 'const/styles/variables'
 
 export const Content = styled.main`
   margin: 0 auto;
-  padding: 8rem 0;
+  padding: 8rem 3.2rem;
   box-sizing: border-box;
   width: 100%;
-  max-width: 84rem;
+  max-width: 90rem;
   display: flex;
   flex-flow: column wrap;
   min-height: 80rem;
 
   ${Media.mobile} {
     height: auto;
-    padding: 8rem 3.2rem;
     max-width: 100%;
     min-height: initial;
   }

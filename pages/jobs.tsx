@@ -24,21 +24,6 @@ async function getJobs() {
 
 export default function Jobs({ jobsData }) {
   const discordURL = siteConfig.social.discord.url
-  const [jobs, setJobs] = useState(jobsData)
-  const [isLoading, setLoading] = useState(false)
-
-  // Fetch the latest jobs to possibly override static rendered (getStaticProps) SSR jobs
-  useEffect(() => {
-    setLoading(true)
-    getJobs()
-      .then((data) => {
-        setJobs(data)
-        setLoading(false)
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-  }, [])
 
   return (
     <Content>
@@ -49,8 +34,7 @@ export default function Jobs({ jobsData }) {
 
       <TitleSmall>Who we are looking for:</TitleSmall>
 
-      {isLoading && <LoadingText>Loading jobs...</LoadingText>}
-      {!isLoading && jobs.length > 0 && jobs.map(({ title, absolute_url, location, internal_job_id }) =>
+      {jobsData.length > 0 && jobsData.map(({ title, absolute_url, location, internal_job_id }) =>
         <LinkContainer key={internal_job_id} href={absolute_url} target="_blank" rel="noopener nofollow noreferrer">
           <b>{title}</b>
           <i>{location.name}</i>
@@ -58,7 +42,7 @@ export default function Jobs({ jobsData }) {
         </LinkContainer>
       )}
 
-      {!isLoading && <p>{jobs.length < 1 && 'Currently there are no open positions. Convinced you can contribute to Cow Protocol?'}{jobs.length > 0 && "Can't find the position you're looking for?"} <ExternalLink href={discordURL} target="_blank" rel="noopener nofollow">Get in touch</ExternalLink></p>}
+      <p>{jobsData.length < 1 && 'Currently there are no open positions. Convinced you can contribute to Cow Protocol?'}{jobsData.length > 0 && "Can't find the position you're looking for?"} <ExternalLink href={discordURL} target="_blank" rel="noopener nofollow">Get in touch</ExternalLink></p>
 
     </Content>
   )
