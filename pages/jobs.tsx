@@ -35,6 +35,9 @@ export default function Jobs({ jobsData }) {
         setJobs(data)
         setLoading(false)
       })
+      .catch((error) => {
+        console.log(error)
+      })
   }, [])
 
   return (
@@ -66,5 +69,10 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: { jobsData },
+    
+    // Next.js will attempt to re-generate the page:
+    // - When a request comes in
+    // - At most once every 3600 seconds (1 hour)
+    revalidate: 3600, // In seconds
   }
 }
