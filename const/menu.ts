@@ -32,7 +32,7 @@ export const footerMenu = [
   },
   {
     id: 2, title: 'Support', links: [
-      { title: 'Discord', url: social.discord.url },
+      { title: 'Discord', url: social.discord.url, target: "_blank" },
       // TODO:
       // { title: 'Terms of service', url: '/' },
       // { title: 'Privacy Policy', url: '/' },
