@@ -55,7 +55,7 @@ export default function Home({ metricsData, siteConfigData }) {
         <div>
           <SectionImage margin={'0 auto -18rem'} height={'68rem'}><img loading="lazy" src="/images/cowBelt.jpg" alt="A fast growing protocol" /></SectionImage>
           <h2>A fast-growing trading protocol</h2>
-          <SubTitle align="center">Trade on CoW Protocol for <br /> better prices, gas cost savings and extra secure MEV protection. <ExternalLink href="https://dune.xyz/gnosis.protocol/Gnosis-Protocol-V2">View analytics</ExternalLink></SubTitle>
+          <SubTitle align="center">Trade on CoW Protocol for <br /> better prices, gas cost savings and extra secure MEV protection. <ExternalLink href="https://dune.xyz/gnosis.protocol/Gnosis-Protocol-V2" target="_blank" rel="noreferrer">View analytics</ExternalLink></SubTitle>
           <Metrics>
             {metricsData.map(({ label, value }, i) =>
               <div key={i}>
@@ -76,14 +76,14 @@ export default function Home({ metricsData, siteConfigData }) {
         <div className='container'>
           <h3>More than a Meta DEX Aggregator</h3>
           <IconList>
-            
+
             <IconListItem icon="images/icons/puzzle.svg">
               <span>
                 <b>Best On-Chain Prices</b>
                 <p>By leveraging any on-chain liquidity sources we are able to provide the best on-chain prices.</p>
               </span>
             </IconListItem>
-            
+
             <IconListItem icon="images/icons/trading.svg">
               <span>
                 <b>Professional Transaction Execution</b>
@@ -150,7 +150,7 @@ export default function Home({ metricsData, siteConfigData }) {
             </ApiParams>
 
             <ApiCurlCommand>
-              <SyntaxHighlighter language="json" style={dark} customStyle={{margin: 0, borderRadius: '1.2rem'}}>
+              <SyntaxHighlighter language="json" style={dark} customStyle={{ margin: 0, borderRadius: '1.2rem' }}>
                 {GET_QUOTE}
               </SyntaxHighlighter>
             </ApiCurlCommand>
