@@ -11,12 +11,16 @@ export const siteConfig = {
     api: API_BASE_URL + "/mainnet",
     apiDocs: API_BASE_URL + "/docs",
     analytics: "https://dune.xyz/gnosis.protocol/Gnosis-Protocol-V2",
-    explorer: "https://explorer.cow.fi"
+    explorer: "https://explorer.cow.fi",
+  },
+  greenhouse: {
+    api: "https://boards-api.greenhouse.io/v1/boards/gnosis/jobs?content=true",
+    deptID: 4065870002
   },
   social: {
     twitter: { label: 'Twitter', account: '@MEVprotection', url: 'https://twitter.com/mevprotection' },
     discord: { label: 'Discord', url: 'https://chat.cowswap.exchange/' },
     github: { label: 'GitHub', url: 'https://github.com/gnosis/gp-v2-contracts' },
-    forum: { label: 'Forum', url: 'https://forum.gnosis.io/' },
+    forum: { label: 'Forum', url: 'https://forum.cow.fi/' },
   }
 }

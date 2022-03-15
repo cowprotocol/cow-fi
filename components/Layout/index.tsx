@@ -5,7 +5,6 @@ import { siteConfig } from 'const/meta'
 import { mainMenu, footerMenu } from '../../const/menu'
 import Header from 'components/Layout/Header'
 import Footer from 'components/Layout/Footer'
-import { Media } from 'const/styles/variables'
 
 export type LayoutProps = PropsWithChildren<{
   siteConfigData?: any // needs fix
