@@ -1,4 +1,4 @@
-import { useState, useEffect, SetStateAction } from 'react'
+import { useState } from 'react'
 import { GetStaticProps } from 'next'
 import { siteConfig } from '@/const/meta'
 import Content from 'components/Layout/Content'
