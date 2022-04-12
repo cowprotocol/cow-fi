@@ -219,7 +219,7 @@ export const DropDown = styled.div`
   border: 0.1rem solid  ${Color.orange};
   width: 100%;
   padding: 0;
-  background: ${transparentize(0.9, Color.orange)};
+  background: transparent;
   color: ${Color.orange};
   border-radius: 0.6rem;
   font-size: 1.8rem;
@@ -254,8 +254,9 @@ export const DropDown = styled.div`
     display: block;
     color: inherit;
     font-size: inherit;
-    background: transparent;
     border: 0;
+    border-radius: inherit;
+    background: ${transparentize(0.9, Color.orange)};
 
       &:focus {
         outline: none;
