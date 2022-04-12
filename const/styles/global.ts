@@ -1,6 +1,7 @@
 import "inter-ui/inter.css";
 import styled, { createGlobalStyle } from 'styled-components'
 import { Color, Font, Media } from 'const/styles/variables'
+import { transparentize } from "polished";
 
 const GlobalStyles = createGlobalStyle`
 
@@ -79,8 +80,8 @@ const GlobalStyles = createGlobalStyle`
   }
 
   ::-webkit-scrollbar {
-    width: 6px !important;
-    height: 6px !important;
+    width: 0.6rem !important;
+    height: 0.6rem !important;
   }
 
   ::-webkit-scrollbar-thumb {
@@ -178,23 +179,23 @@ const GlobalStyles = createGlobalStyle`
     margin: 0 auto;
 
     ${Media.smallUp} {
-      max-width: 720px;
+      max-width: 72rem;
     }
     
     ${Media.mediumUp} {
-      max-width: 960px;
+      max-width: 96rem;
     }
 
     ${Media.mediumOnly} {
-      max-width: 720px;
+      max-width: 72rem;
     }
 
     ${Media.desktop} {
-      max-width: 1140px;
+      max-width: 114rem;
     }
 
     ${Media.desktopLarge} {
-      max-width: 1320px;
+      max-width: 132rem;
     }
   }
 `
@@ -210,7 +211,55 @@ export const ExternalLink = styled.a`
     color: inherit;
     font-size: ${Font.sizeDefault};
     display: inline-block;
-    margin-left: 5px;
+    margin: 0 0 0 0.2rem;
+  }
+`
+
+export const DropDown = styled.div`
+  border: 0.1rem solid  ${Color.orange};
+  width: 100%;
+  padding: 0;
+  background: ${transparentize(0.9, Color.orange)};
+  color: ${Color.orange};
+  border-radius: 0.6rem;
+  font-size: 1.8rem;
+  margin: 0 0 2.4rem;
+  display: flex;
+  flex-flow: row nowrap;
+  position: relative;
+
+  &::after {
+    content: "▼";
+    position: absolute;
+    border: 0;
+    color: inherit;
+    font-size: ${Font.sizeDefault};
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    margin: auto;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    right: 1.2rem;
+    cursor: pointer;
+  }
+
+  > select {
+    appearance: none;
+    cursor: pointer;
+    height: 100%;
+    padding: 1.2rem;
+    width: 100%;
+    display: block;
+    color: inherit;
+    font-size: inherit;
+    background: transparent;
+    border: 0;
+
+      &:focus {
+        outline: none;
+      }
   }
 `
 
