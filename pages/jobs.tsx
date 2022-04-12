@@ -96,6 +96,6 @@ export const getStaticProps: GetStaticProps = async () => {
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
     // - At most once every 3600 seconds (1 hour)
-    //revalidate: 3600, // In seconds
+    revalidate: 3600, // In seconds
   }
 }
