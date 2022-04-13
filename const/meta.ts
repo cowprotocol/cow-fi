@@ -14,8 +14,7 @@ export const siteConfig = {
     explorer: "https://explorer.cow.fi",
   },
   greenhouse: {
-    api: "https://boards-api.greenhouse.io/v1/boards/gnosis/jobs?content=true",
-    deptID: 4065870002
+    api: "https://boards-api.greenhouse.io/v1/boards/cowswap/jobs?content=true"
   },
   social: {
     twitter: { label: 'Twitter', account: '@MEVprotection', url: 'https://twitter.com/mevprotection' },

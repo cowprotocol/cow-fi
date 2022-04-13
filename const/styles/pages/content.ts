@@ -26,11 +26,11 @@ export const Content = styled.main`
   }
 `
 
-export const Section = styled.section`
+export const Section = styled.section<{ margin?: string }>`
   display: flex;
   flex-flow: row wrap;
   width: 100%;
-  margin: 0 0 6rem;
+  margin: ${({ margin }) => margin ? margin : '0 0 6rem'};
   position: relative;
   z-index: 1;
  `
@@ -53,6 +53,7 @@ export const SubTitle = styled.h2`
   font-weight: ${Font.weightLight};
   opacity: 0.75;
   text-align: center;
+  margin: 0 0 1.2rem;
 
   ${Media.mobile} {
     font-size: 2rem;
@@ -83,9 +84,14 @@ export const TitleSmall = styled.h3`
     text-decoration: none;
     position: relative;
     max-width: 100%;
+    width: 100%;
+
+      ${Media.mobile} {
+        padding: 1.6rem 6.2rem 1.6rem 1.6rem;
+      }
 
       &:last-of-type {
-        margin: 0 0 4.2rem;
+        margin: 0 0 2.4rem;
       }
 
       &:link, &:visited {
@@ -102,13 +108,22 @@ export const TitleSmall = styled.h3`
       }
 
       > b {
-        line-height: 1.2;
+        line-height: 1.3;
+
+        ${Media.mobile} {
+          font-size: 1.6rem;
+        }
       }
 
       > i {
         font-size: 1.6rem;
+        line-height: 1.3;
         font-style: normal;
         margin: 0.8rem 0 0;
+
+        ${Media.mobile} {
+          font-size: 1.4rem;
+        }
       }
 
       > svg {
@@ -125,9 +140,4 @@ export const TitleSmall = styled.h3`
           
         > path { fill: ${transparentize(0.7, Color.white)}; }
       }
- `
-
- export const LoadingText = styled.p`
-  font-size: 1.6rem;
-  color: ${Color.white}
  `
