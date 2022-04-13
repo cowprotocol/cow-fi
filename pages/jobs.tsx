@@ -13,7 +13,7 @@ async function getJobs() {
   try {
     const response = await fetch(api)
     const data = await response.json()
-    data.jobs.map(job => {
+    data.jobs.forEach(job => {
       const deptName = job.departments[0].name
       deptName && jobsData[deptName] ? jobsData[deptName].push(job) : jobsData[deptName] = [job]
     })
