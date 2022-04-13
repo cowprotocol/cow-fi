@@ -86,6 +86,10 @@ export const TitleSmall = styled.h3`
     max-width: 100%;
     width: 100%;
 
+      ${Media.mobile} {
+        padding: 1.6rem 6.2rem 1.6rem 1.6rem;
+      }
+
       &:last-of-type {
         margin: 0 0 2.4rem;
       }
@@ -104,13 +108,22 @@ export const TitleSmall = styled.h3`
       }
 
       > b {
-        line-height: 1.2;
+        line-height: 1.3;
+
+        ${Media.mobile} {
+          font-size: 1.6rem;
+        }
       }
 
       > i {
         font-size: 1.6rem;
+        line-height: 1.3;
         font-style: normal;
         margin: 0.8rem 0 0;
+
+        ${Media.mobile} {
+          font-size: 1.4rem;
+        }
       }
 
       > svg {

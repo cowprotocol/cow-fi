@@ -217,16 +217,17 @@ export const ExternalLink = styled.a`
 
 export const DropDown = styled.div`
   border: 0.1rem solid  ${Color.orange};
+  border-radius: 0.6rem;
   width: 100%;
   padding: 0;
   background: transparent;
   color: ${Color.orange};
-  border-radius: 0.6rem;
   font-size: 1.8rem;
   margin: 0 0 2.4rem;
   display: flex;
   flex-flow: row nowrap;
   position: relative;
+  font-family: ${Font.default};
 
   &::after {
     content: "▼";
@@ -253,6 +254,7 @@ export const DropDown = styled.div`
     width: 100%;
     display: block;
     color: inherit;
+    font-family: inherit;
     font-size: inherit;
     border: 0;
     border-radius: inherit;
@@ -260,6 +262,11 @@ export const DropDown = styled.div`
 
       &:focus {
         outline: none;
+      }
+
+      > option {
+        background-color: ${Color.black};
+        color: ${Color.orange};
       }
   }
 `
