@@ -222,7 +222,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
     // https://dune.xyz/gnosis.protocol/GPv2-Trader-Surplus
     //  Resonable + Unusual
-    {label: "Surplus generated for users", value: "$43M+"}
+    {label: "Surplus generated for users", value: "$64M+"}
   ]
 
 
