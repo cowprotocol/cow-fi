@@ -210,12 +210,7 @@ export default function Home({ totals, metricsData, siteConfigData }) {
 }
 
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=10, stale-while-revalidate=59'
-  )
-
+export const getStaticProps: GetStaticProps = async () => {
   const siteConfigData = siteConfig
   const { social } = siteConfig
   const { volumeUsd } = await cowSdk.cowSubgraphApi.getTotals()
@@ -232,6 +227,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 
 
   return {
-    props: { metricsData, siteConfigData, social }
+    props: { metricsData, siteConfigData, social },
+    revalidate: 5 * 60, // Cache 5min
   }
 }
