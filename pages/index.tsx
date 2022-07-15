@@ -26,7 +26,21 @@ const cowSdk = new CowSdk(1)
 const numberFormatter = Intl.NumberFormat('en', { notation: 'compact' })
 const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
-export default function Home({ totals, metricsData, siteConfigData }) {
+
+interface MetricsData {
+  totalVolume: string
+  tradesCount: string
+  tradesCountLastModified: string
+  totalSurplus: string
+  totalSurplusLastModified: string
+  
+}
+interface HomeProps {
+  metricsData: MetricsData
+  siteConfigData: typeof siteConfig
+}
+
+export default function Home({ metricsData, siteConfigData }: HomeProps) {
   const { title, descriptionShort, social, url } = siteConfigData
 
   const scrollToElRef = useRef(null);
@@ -66,12 +80,20 @@ export default function Home({ totals, metricsData, siteConfigData }) {
           <h2>A fast-growing trading protocol</h2>
           <SubTitle align="center">Trade on CoW Protocol for <br /> better prices, gas cost savings and extra secure MEV protection. <ExternalLink href="https://dune.xyz/gnosis.protocol/Gnosis-Protocol-V2" target="_blank" rel="noreferrer">View analytics</ExternalLink></SubTitle>
           <Metrics>
-            {metricsData.map(({ label, value }, i) =>
-              <div key={i}>
-                <b>{value}</b>
-                <i>{label}</i>
-              </div>
-            )}
+            <>
+            <div>
+              <b>{metricsData.totalVolume}</b>
+              <i>Total Volume</i>
+            </div>
+            <div>
+              <b data-last-modified={metricsData.tradesCountLastModified}>{metricsData.tradesCount}</b>
+              <i>All Time Trades</i>
+            </div>
+            <div>
+              <b data-last-modified={metricsData.totalSurplusLastModified}>{metricsData.totalSurplus}</b>
+              <i>Surplus generated for users</i>
+            </div>
+            </>
           </Metrics>
         </div>
       </Section>
@@ -213,7 +235,7 @@ export default function Home({ totals, metricsData, siteConfigData }) {
 }
 
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const siteConfigData = siteConfig
   const { social } = siteConfig
   const { volumeUsd } = await cowSdk.cowSubgraphApi.getTotals()
@@ -231,7 +253,16 @@ export const getStaticProps: GetStaticProps = async () => {
 
 
   return {
-    props: { metricsData, siteConfigData, social },
+    props: {      
+      metricsData: {
+        totalVolume: numberFormatter.format(+volumeUsd) + '+',
+        tradesCount: numberFormatter.format(totalTrades.tradesCount),
+        tradesCountLastModified: totalTrades.lastModified.toISOString(),
+        totalSurplus: "$64M+",
+        totalSurplusLastModified: totalTrades.lastModified.toISOString()
+      },
+      siteConfigData
+    },
     revalidate: DATA_CACHE_TIME_SECONDS,
   }
 }
