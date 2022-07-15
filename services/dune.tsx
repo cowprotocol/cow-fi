@@ -42,7 +42,8 @@ interface TotalCount {
 }
 
 export async function _getTotalCount(queryId: number): Promise<TotalCount> {
-  const queryResut = await getFromDune<{ count: number }>(TOTAL_TRADES_COUNT_QUERY_ID)
+  const queryResut = await getFromDune<{ count: number }>(queryId)
+  console.log('queryResut', queryId, queryResut)
 
   // Expect one row
   assert(
@@ -57,4 +58,16 @@ export async function _getTotalCount(queryId: number): Promise<TotalCount> {
 }
 
 export const getTotalTrades = () => _getTotalCount(TOTAL_TRADES_COUNT_QUERY_ID)
-export const getTotalSurplus = () => _getTotalCount(TOTAL_SURPLUS_COUNT_QUERY_ID)
+
+export const getTotalSurplus = async (): Promise<TotalCount> => {
+  const queryResut = await getFromDune<{ surplus_type: string, total_surplus_usd: number }>(TOTAL_SURPLUS_COUNT_QUERY_ID)
+
+  const totalCount = queryResut.rows.reduce((totalSurplus, surplus) => {
+    return totalSurplus + surplus.total_surplus_usd
+  }, 0)
+
+  return {
+    totalCount,
+    lastModified: new Date(queryResut.metadata.executed_at)
+  }
+}
