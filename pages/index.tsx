@@ -222,7 +222,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const metricsData = [
     {label: "Total Volume", value: numberFormatter.format(+volumeUsd) + '+'},
     
-    {label: "All Time Trades", value: totalTrades.tradesCount},
+    {label: "All Time Trades", value: numberFormatter.format(totalTrades.tradesCount) + '+'},
 
     // https://dune.xyz/gnosis.protocol/GPv2-Trader-Surplus
     //  Resonable + Unusual
