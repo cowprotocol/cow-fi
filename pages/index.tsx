@@ -6,9 +6,10 @@ import { useRef } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { default as dark } from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus';
 
+import { getTotalTrades } from 'services/dune'
+
 import { ExternalLink } from '@/const/styles/global'
 import { siteConfig } from '@/const/meta'
-import { GET_QUOTE } from '@/const/api'
 
 import Layout from '@/components/Layout'
 import { ButtonWrapper } from '@/components/Button'
@@ -19,6 +20,7 @@ import Button from '@/components/Button'
 
 import { CowSdk } from '@cowprotocol/cow-sdk'
 import { intlFormat } from 'date-fns/esm';
+import { GET_QUOTE } from '@/const/api';
 
 const cowSdk = new CowSdk(1)
 const numberFormatter = Intl.NumberFormat('en', { notation: 'compact' })
@@ -215,11 +217,12 @@ export const getStaticProps: GetStaticProps = async () => {
   const siteConfigData = siteConfig
   const { social } = siteConfig
   const { volumeUsd } = await cowSdk.cowSubgraphApi.getTotals()
+  const totalTrades = await getTotalTrades()
   
   const metricsData = [
     {label: "Total Volume", value: numberFormatter.format(+volumeUsd) + '+'},
     
-    {label: "All Time Trades", value: "321K+"},
+    {label: "All Time Trades", value: totalTrades.tradesCount},
 
     // https://dune.xyz/gnosis.protocol/GPv2-Trader-Surplus
     //  Resonable + Unusual
