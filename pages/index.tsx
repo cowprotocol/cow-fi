@@ -22,6 +22,7 @@ import { intlFormat } from 'date-fns/esm';
 
 const cowSdk = new CowSdk(1)
 const numberFormatter = Intl.NumberFormat('en', { notation: 'compact' })
+const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
 export default function Home({ totals, metricsData, siteConfigData }) {
   const { title, descriptionShort, social, url } = siteConfigData
@@ -228,6 +229,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: { metricsData, siteConfigData, social },
-    revalidate: 5 * 60, // Cache 5min
+    revalidate: DATA_CACHE_TIME_SECONDS,
   }
 }
