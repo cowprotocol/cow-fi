@@ -6,7 +6,7 @@ import { useRef } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { default as dark } from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus';
 
-import { getTotalTrades } from 'services/dune'
+import { getTotalTrades, getTotalSurplus } from 'services/dune'
 
 import { ExternalLink } from '@/const/styles/global'
 import { siteConfig } from '@/const/meta'
@@ -239,12 +239,13 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const siteConfigData = siteConfig
   const { social } = siteConfig
   const { volumeUsd } = await cowSdk.cowSubgraphApi.getTotals()
-  const totalTrades = await getTotalTrades()
+  const trades = await getTotalTrades()
+  const surplus = await getTotalSurplus()
   
   const metricsData = [
     {label: "Total Volume", value: numberFormatter.format(+volumeUsd) + '+'},
     
-    {label: "All Time Trades", value: numberFormatter.format(totalTrades.tradesCount) + '+'},
+    {label: "All Time Trades", value: numberFormatter.format(trades.totalCount) + '+'},
 
     // https://dune.xyz/gnosis.protocol/GPv2-Trader-Surplus
     //  Resonable + Unusual
@@ -256,10 +257,12 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
     props: {      
       metricsData: {
         totalVolume: numberFormatter.format(+volumeUsd) + '+',
-        tradesCount: numberFormatter.format(totalTrades.tradesCount),
-        tradesCountLastModified: totalTrades.lastModified.toISOString(),
-        totalSurplus: "$64M+",
-        totalSurplusLastModified: totalTrades.lastModified.toISOString()
+
+        tradesCount: numberFormatter.format(trades.totalCount) + '+',
+        tradesCountLastModified: trades.lastModified.toISOString(),
+
+        totalSurplus: numberFormatter.format(surplus.totalCount) + '+',
+        totalSurplusLastModified: surplus.lastModified.toISOString()
       },
       siteConfigData
     },

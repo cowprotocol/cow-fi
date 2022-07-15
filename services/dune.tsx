@@ -33,24 +33,28 @@ export async function getFromDune<T>(queryId: number): Promise<GetFromDuneResult
 // ------ End of TODO
 
 const TOTAL_TRADES_COUNT_QUERY_ID = 1034337
+const TOTAL_SURPLUS_COUNT_QUERY_ID = 270604
 
 
-interface GetTotalTradesResult {
-  tradesCount: number
+interface TotalCount {
+  totalCount: number
   lastModified: Date
 }
 
-export async function getTotalTrades(): Promise<GetTotalTradesResult> {
+export async function _getTotalCount(queryId: number): Promise<TotalCount> {
   const queryResut = await getFromDune<{ count: number }>(TOTAL_TRADES_COUNT_QUERY_ID)
 
   // Expect one row
   assert(
     queryResut.rows.length === 1, 
-    `Total Trades Dune query (${TOTAL_TRADES_COUNT_QUERY_ID}) must return just one row. Returned ${queryResut.rows.length}`
+    `Total Count Dune query (${queryId}) must return just one row. Returned ${queryResut.rows.length}`
   )
 
   return {
-    tradesCount: queryResut.rows[0].count,
+    totalCount: queryResut.rows[0].count,
     lastModified: new Date(queryResut.metadata.executed_at)
   }
 }
+
+export const getTotalTrades = () => _getTotalCount(TOTAL_TRADES_COUNT_QUERY_ID)
+export const getTotalSurplus = () => _getTotalCount(TOTAL_SURPLUS_COUNT_QUERY_ID)
