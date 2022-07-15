@@ -1,10 +1,13 @@
+
 import Head from 'next/head'
-import { GetStaticProps } from 'next'
+import { GetServerSideProps, GetStaticProps } from 'next'
 import { useRef } from 'react'
+
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { default as dark } from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus';
 
 import { ExternalLink } from '@/const/styles/global'
 import { siteConfig } from '@/const/meta'
-import metrics from '@/const/metrics'
 import { GET_QUOTE } from '@/const/api'
 
 import Layout from '@/components/Layout'
@@ -14,10 +17,14 @@ import { Section, SubTitle, SectionImage, IconList, IconListItem, Metrics, Check
 import SocialList from '@/components/SocialList'
 import Button from '@/components/Button'
 
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { default as dark } from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus';
+import { CowSdk } from '@cowprotocol/cow-sdk'
+import { intlFormat } from 'date-fns/esm';
 
-export default function Home({ metricsData, siteConfigData }) {
+const cowSdk = new CowSdk(1)
+const numberFormatter = Intl.NumberFormat('en', { notation: 'compact' })
+const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
+
+export default function Home({ totals, metricsData, siteConfigData }) {
   const { title, descriptionShort, social, url } = siteConfigData
 
   const scrollToElRef = useRef(null);
@@ -203,12 +210,25 @@ export default function Home({ metricsData, siteConfigData }) {
   )
 }
 
+
 export const getStaticProps: GetStaticProps = async () => {
   const siteConfigData = siteConfig
   const { social } = siteConfig
-  const metricsData = metrics
+  const { volumeUsd } = await cowSdk.cowSubgraphApi.getTotals()
+  
+  const metricsData = [
+    {label: "Total Volume", value: numberFormatter.format(+volumeUsd) + '+'},
+    
+    {label: "All Time Trades", value: "321K+"},
+
+    // https://dune.xyz/gnosis.protocol/GPv2-Trader-Surplus
+    //  Resonable + Unusual
+    {label: "Surplus generated for users", value: "$64M+"}
+  ]
+
 
   return {
-    props: { metricsData, siteConfigData, social }
+    props: { metricsData, siteConfigData, social },
+    revalidate: DATA_CACHE_TIME_SECONDS,
   }
 }
