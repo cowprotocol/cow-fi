@@ -261,7 +261,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   return {
     props: {      
       metricsData: {
-        totalVolume: numberFormatter.format(+volumeUsd) + '+',
+        totalVolume: numberFormatter.format(Math.random()*100000000) + '+',
 
         tradesCount: numberFormatter.format(trades.totalCount) + '+',
         tradesCountLastModified: trades.lastModified.toISOString(),
