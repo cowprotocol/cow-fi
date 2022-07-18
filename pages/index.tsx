@@ -6,9 +6,10 @@ import { useRef } from 'react'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { default as dark } from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus';
 
+import { getTotalTrades, getTotalSurplus } from 'services/dune'
+
 import { ExternalLink } from '@/const/styles/global'
 import { siteConfig } from '@/const/meta'
-import { GET_QUOTE } from '@/const/api'
 
 import Layout from '@/components/Layout'
 import { ButtonWrapper } from '@/components/Button'
@@ -19,12 +20,27 @@ import Button from '@/components/Button'
 
 import { CowSdk } from '@cowprotocol/cow-sdk'
 import { intlFormat } from 'date-fns/esm';
+import { GET_QUOTE } from '@/const/api';
 
 const cowSdk = new CowSdk(1)
 const numberFormatter = Intl.NumberFormat('en', { notation: 'compact' })
 const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
-export default function Home({ totals, metricsData, siteConfigData }) {
+
+interface MetricsData {
+  totalVolume: string
+  tradesCount: string
+  tradesCountLastModified: string
+  totalSurplus: string
+  totalSurplusLastModified: string
+  
+}
+interface HomeProps {
+  metricsData: MetricsData
+  siteConfigData: typeof siteConfig
+}
+
+export default function Home({ metricsData, siteConfigData }: HomeProps) {
   const { title, descriptionShort, social, url } = siteConfigData
 
   const scrollToElRef = useRef(null);
@@ -64,12 +80,20 @@ export default function Home({ totals, metricsData, siteConfigData }) {
           <h2>A fast-growing trading protocol</h2>
           <SubTitle align="center">Trade on CoW Protocol for <br /> better prices, gas cost savings and extra secure MEV protection. <ExternalLink href="https://dune.xyz/gnosis.protocol/Gnosis-Protocol-V2" target="_blank" rel="noreferrer">View analytics</ExternalLink></SubTitle>
           <Metrics>
-            {metricsData.map(({ label, value }, i) =>
-              <div key={i}>
-                <b>{value}</b>
-                <i>{label}</i>
-              </div>
-            )}
+            <>
+            <div>
+              <b>{metricsData.totalVolume}</b>
+              <i>Total Volume</i>
+            </div>
+            <div>
+              <b data-last-modified={metricsData.tradesCountLastModified}>{metricsData.tradesCount}</b>
+              <i>All Time Trades</i>
+            </div>
+            <div>
+              <b data-last-modified={metricsData.totalSurplusLastModified}>{metricsData.totalSurplus}</b>
+              <i>Surplus generated for users</i>
+            </div>
+            </>
           </Metrics>
         </div>
       </Section>
@@ -211,15 +235,17 @@ export default function Home({ totals, metricsData, siteConfigData }) {
 }
 
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const siteConfigData = siteConfig
   const { social } = siteConfig
   const { volumeUsd } = await cowSdk.cowSubgraphApi.getTotals()
+  const trades = await getTotalTrades()
+  const surplus = await getTotalSurplus()
   
   const metricsData = [
     {label: "Total Volume", value: numberFormatter.format(+volumeUsd) + '+'},
     
-    {label: "All Time Trades", value: "321K+"},
+    {label: "All Time Trades", value: numberFormatter.format(trades.totalCount) + '+'},
 
     // https://dune.xyz/gnosis.protocol/GPv2-Trader-Surplus
     //  Resonable + Unusual
@@ -228,7 +254,18 @@ export const getStaticProps: GetStaticProps = async () => {
 
 
   return {
-    props: { metricsData, siteConfigData, social },
+    props: {      
+      metricsData: {
+        totalVolume: numberFormatter.format(+volumeUsd) + '+',
+
+        tradesCount: numberFormatter.format(trades.totalCount) + '+',
+        tradesCountLastModified: trades.lastModified.toISOString(),
+
+        totalSurplus: numberFormatter.format(surplus.totalCount) + '+',
+        totalSurplusLastModified: surplus.lastModified.toISOString()
+      },
+      siteConfigData
+    },
     revalidate: DATA_CACHE_TIME_SECONDS,
   }
 }
