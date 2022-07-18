@@ -24,7 +24,7 @@ import { GET_QUOTE } from '@/const/api';
 
 const cowSdk = new CowSdk(1)
 const numberFormatter = Intl.NumberFormat('en', { notation: 'compact' })
-const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
+const DATA_CACHE_TIME_SECONDS = 10 // Cache 10 seconds
 
 
 interface MetricsData {
@@ -251,6 +251,11 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
     //  Resonable + Unusual
     {label: "Surplus generated for users", value: "$64M+"}
   ]
+
+  const worldWillEnd = ((new Date()).getMinutes()) % 2 === 0 // World ends if the minute is pair
+  if (worldWillEnd) {
+    throw new Error('🔥💥🌎  World is ending!')
+  }
 
 
   return {
