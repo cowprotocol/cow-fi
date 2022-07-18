@@ -6,16 +6,16 @@ assert(DUNE_API_KEY, "DUNE_API_KEY environment var is required")
 // TODO: getFromDune will be moved in a future PR to the SDK
 interface MetadataQuery {
   executed_at: string,
-  job_id: string,
-  query_duration_millis: number,
-  query_version: number,
-  result_bytes: number
-  result_rows: number
+  // job_id: string,
+  // query_duration_millis: number,
+  // query_version: number,
+  // result_bytes: number
+  // result_rows: number
 }
 
 interface GetFromDuneResult<T> {
   metadata: MetadataQuery
-  column_names: string[]
+  // column_names: string[]
   rows: T[]
 }
 
