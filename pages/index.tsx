@@ -21,6 +21,8 @@ import Button from '@/components/Button'
 import { CowSdk } from '@cowprotocol/cow-sdk'
 import { intlFormat } from 'date-fns/esm';
 import { GET_QUOTE } from '@/const/api';
+import { withSentry } from '@sentry/nextjs';
+
 
 const cowSdk = new CowSdk(1)
 const numberFormatter = Intl.NumberFormat('en', { notation: 'compact' })
@@ -235,7 +237,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
 }
 
 
-export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+export const getStaticProps: GetStaticProps<HomeProps> = withSentry(async () => {
   const siteConfigData = siteConfig
   const { social } = siteConfig
   const { volumeUsd } = await cowSdk.cowSubgraphApi.getTotals()
@@ -268,4 +270,4 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
     },
     revalidate: DATA_CACHE_TIME_SECONDS,
   }
-}
+})
