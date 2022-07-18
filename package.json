@@ -20,7 +20,7 @@
     "inter-ui": "^3.19.3",
     "make-plural": "^7.0.0",
     "markdown-to-jsx": "^7.1.5",
-    "next": "latest",
+    "next": "^12.2.2",
     "next-transpile-modules": "^9.0.0",
     "polished": "^4.1.3",
     "raw-loader": "^4.0.2",
