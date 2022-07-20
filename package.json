@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@cowprotocol/cow-sdk": "^0.0.15-RC.1",
     "@lingui/macro": "^3.12.1",
     "@lingui/react": "^3.12.1",
     "add": "^2.0.6",

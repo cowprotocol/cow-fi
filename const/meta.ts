@@ -3,7 +3,7 @@ const API_BASE_URL = "https://api.cow.fi"
 export const siteConfig = {
   title: 'CoW Protocol',
   description: 'CoW Protocol lets you swap assets MEV protected at the best exchange rate by leveraging its batch settlement layer built on top of AMMs and DEX Aggregators.',
-  descriptionShort: 'Ethereums MetaDEX Aggregator',
+  descriptionShort: 'Ethereum\'s MetaDEX Aggregator',
   url: {
     root: "https://cow.fi",
     swap: "https://cowswap.exchange",
@@ -19,7 +19,7 @@ export const siteConfig = {
   social: {
     twitter: { label: 'Twitter', account: '@MEVprotection', url: 'https://twitter.com/mevprotection' },
     discord: { label: 'Discord', url: 'https://discord.com/invite/cowprotocol' },
-    github: { label: 'GitHub', url: 'https://github.com/gnosis/gp-v2-contracts' },
+    github: { label: 'GitHub', url: 'https://github.com/cowprotocol/contracts' },
     forum: { label: 'Forum', url: 'https://forum.cow.fi/' },
   }
 }
