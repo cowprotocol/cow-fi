@@ -82,7 +82,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
           <Metrics>
             <>
             <div>
-              <b>{metricsData.totalVolume}</b>
+              <b>${metricsData.totalVolume}</b>
               <i>Total Volume</i>
             </div>
             <div>
@@ -90,7 +90,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
               <i>All Time Trades</i>
             </div>
             <div>
-              <b data-last-modified={metricsData.totalSurplusLastModified}>{metricsData.totalSurplus}</b>
+              <b data-last-modified={metricsData.totalSurplusLastModified}>${metricsData.totalSurplus}</b>
               <i>Surplus generated for users</i>
             </div>
             </>
