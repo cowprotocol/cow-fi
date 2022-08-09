@@ -51,6 +51,15 @@ const Wrapper = styled.header`
   }
 `
 
+const Content = styled.div`
+  width: 100%;
+  max-width: ${Defaults.pageMaxWidth};
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+`
+
 const Menu = styled.ol`
   display: flex;
   list-style: none;
@@ -204,6 +213,8 @@ export default function Header({ siteConfig, menu }) {
           <Pixel ref={ref} />
           <Wrapper className={!inView && 'sticky'}>
 
+            <Content>
+
             <Link passHref href='/'>
               <Logo />
             </Link>
@@ -219,6 +230,8 @@ export default function Header({ siteConfig, menu }) {
 
             <Button variant="outline" minHeight={4.8} fontSize={1.6} href={swapURL} label={'Trade on CoW Swap'} target="_blank" rel="noopener nofollow" />
             <MenuToggle onClick={handleClick} />
+
+            </Content>
 
           </Wrapper>
         </>

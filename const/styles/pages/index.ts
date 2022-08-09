@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { transparentize } from 'polished'
-import { Color, Font, Media } from 'const/styles/variables'
-
-const MAX_WIDTH = '117rem';
+import { Defaults, Color, Font, Media } from 'const/styles/variables'
 
 export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, colorVariant?: string, flow?: string, fullWidth?: boolean, mediumSwitchOrder?: boolean, mobileSwitchOrder?: boolean }>`
   display: flex;
@@ -38,7 +36,6 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
     }
 
     ${Media.mobile} {
-      min-height: initial;
       padding: 5.6rem 3.2rem 0;
     }
     
@@ -125,8 +122,12 @@ export const SectionContent = styled.div<{ flow?: string, hero?: boolean, breakM
   display: flex;
   margin: 0 auto;
   width: 100%;
-  max-width: ${MAX_WIDTH};
+  max-width: ${Defaults.pageMaxWidth};
   padding: ${({ hero }) => hero ? '0' : '24rem 0'};
+
+  ${Media.desktopDown} {
+    padding: 12rem 5.6rem;
+  }
 
   > div {
     display: flex;
@@ -164,7 +165,7 @@ export const StepContainer = styled.div`
   background: ${Color.darkBlue2};
   box-shadow: 0 12px 24px ${Color.darkBlue3};
   border-radius: 1.2rem;
-  padding: 1.8rem;
+  padding: 2rem;
 
     > span {
       height: 3.6rem;
@@ -190,7 +191,7 @@ export const StepContainer = styled.div`
     }
 
     > p {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       color: ${Color.text2};
       font-weight: ${Font.weightNormal};
       line-height: 1.6;
@@ -234,6 +235,7 @@ export const SubTitle = styled.p<{ color?: string, maxWidth?: number, align?: st
   line-height: ${({ lineHeight }) => lineHeight ? lineHeight : 1.6};
   text-align: ${({ align }) => align ? align : "center"};
   max-width: ${({ maxWidth }) => maxWidth && `${maxWidth}rem`};
+  margin: 0 auto;
   width: 100%;
   z-index: 1;
 
@@ -277,6 +279,11 @@ export const Metrics = styled.div`
   width: 100%;
   justify-content: center;
   gap: 12rem;
+  background: ${Color.darkBlue2};
+  box-shadow: 0 12px 24px ${Color.darkBlue3};
+  padding: 3.2rem;
+  border-radius: 1.2rem;
+  justify-content: space-between;
 
   ${Media.mobile} {
     gap: 4rem;
@@ -292,8 +299,11 @@ export const Metrics = styled.div`
   }
 
   > div > b {
-    font-size: 7.4rem;
+    font-size: 6rem;
     font-weight: ${Font.weightNormal};
+    background: ${Color.gradient};
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 
     ${Media.mediumOnly} {
       font-size: 5rem;
@@ -307,7 +317,7 @@ export const Metrics = styled.div`
   > div > i {
     font-style: normal;
     font-size: 1.5rem;
-    color: ${transparentize(0.2, Color.text1)};
+    color: ${Color.text2};
 
     ${Media.mobile} {
       font-size: 1.3rem;

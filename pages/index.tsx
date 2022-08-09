@@ -8,19 +8,18 @@ import { default as dark } from 'react-syntax-highlighter/dist/esm/styles/prism/
 
 import { getTotalTrades, getTotalSurplus } from 'services/dune'
 
-import { ExternalLink } from '@/const/styles/global'
+// import { ExternalLink } from '@/const/styles/global'
 import { siteConfig } from '@/const/meta'
 import { Color } from 'const/styles/variables'
 
 import Layout from '@/components/Layout'
 import { ButtonWrapper } from '@/components/Button'
-// import CowSlider, { CowSliderWrapper } from '@/components/CowSlider'
 import { Section, SectionContent, SubTitle, SectionImage, Separator, IconList, IconListItem, Metrics, CheckList, StepWrapper, StepContainer, ApiWrapper, ApiTool, ApiCurlCommand, ApiParams } from '../const/styles/pages/index'
 import SocialList from '@/components/SocialList'
 import Button from '@/components/Button'
 
 import { CowSdk } from '@cowprotocol/cow-sdk'
-import { intlFormat } from 'date-fns/esm';
+// import { intlFormat } from 'date-fns/esm';
 import { GET_QUOTE } from '@/const/api';
 
 const cowSdk = new CowSdk(1)
@@ -30,6 +29,7 @@ const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
 interface MetricsData {
   totalVolume: string
+  totalTraders: string
   tradesCount: string
   tradesCountLastModified: string
   totalSurplus: string
@@ -204,21 +204,25 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
       <Section ref={scrollToElRef} flow={'column'}>
         <SectionContent>  
         <div>
-          <h2>A fast-growing trading protocol</h2>
-          <SubTitle align="center">Trade on CoW Protocol for <br /> better prices, gas cost savings and extra secure MEV protection. <ExternalLink href="https://dune.xyz/gnosis.protocol/Gnosis-Protocol-V2" target="_blank" rel="noreferrer">View analytics</ExternalLink></SubTitle>
+          <h3>Serious volume, serious savings.</h3>
+          <SubTitle align="center">The most-seasoned DeFi pros trust CoW Swap to find the lowest prices possible and protect themselves from MEV.</SubTitle>
           <Metrics>
             <>
             <div>
               <b>${metricsData.totalVolume}</b>
-              <i>Total Volume</i>
+              <i>Total Volume traded (USD)</i>
+            </div>
+            <div>
+              <b>{metricsData.totalTraders}</b>
+              <i>Unique accounts</i>
             </div>
             <div>
               <b data-last-modified={metricsData.tradesCountLastModified}>{metricsData.tradesCount}</b>
-              <i>All Time Trades</i>
+              <i>All time trades</i>
             </div>
             <div>
               <b data-last-modified={metricsData.totalSurplusLastModified}>${metricsData.totalSurplus}</b>
-              <i>Surplus generated for users</i>
+              <i>Surplus saved for users</i>
             </div>
             </>
           </Metrics>
@@ -286,7 +290,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         <SectionContent>
         <div>
           <h3>Join the CoWmunity</h3>
-          <SubTitle align={'center'} maxWidth={62}>Learn more about CoW Protocol, chat with the team, others in the community, and have your say in shaping the future of decentralized finance.</SubTitle>
+          <SubTitle maxWidth={62}>Learn more about CoW Protocol, chat with the team, others in the community, and have your say in shaping the future of decentralized finance.</SubTitle>
           <SocialList social={social} />
         </div>
         </SectionContent>
@@ -301,25 +305,27 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const siteConfigData = siteConfig
   const { social } = siteConfig
-  const { volumeUsd } = await cowSdk.cowSubgraphApi.getTotals()
+  const { volumeUsd, volumeEth, traders } = await cowSdk.cowSubgraphApi.getTotals()
   const trades = await getTotalTrades()
   const surplus = await getTotalSurplus()
   
-  const metricsData = [
-    {label: "Total Volume", value: numberFormatter.format(+volumeUsd) + '+'},
+  // const metricsData = [
+  //   {label: "Total Volume", value: numberFormatter.format(+volumeUsd) + '+'},
     
-    {label: "All Time Trades", value: numberFormatter.format(trades.totalCount) + '+'},
+  //   {label: "All Time Trades", value: numberFormatter.format(trades.totalCount) + '+'},
 
-    // https://dune.xyz/gnosis.protocol/GPv2-Trader-Surplus
-    //  Resonable + Unusual
-    {label: "Surplus generated for users", value: "$64M+"}
-  ]
+  //   // https://dune.xyz/gnosis.protocol/GPv2-Trader-Surplus
+  //   //  Resonable + Unusual
+  //   {label: "Surplus generated for users", value: "$64M+"}
+  // ]
 
 
   return {
     props: {      
       metricsData: {
         totalVolume: numberFormatter.format(+volumeUsd) + '+',
+        totalVolumeETH: numberFormatter.format(+volumeEth) + '+',
+        totalTraders: numberFormatter.format(+traders),
 
         tradesCount: numberFormatter.format(trades.totalCount) + '+',
         tradesCountLastModified: trades.lastModified.toISOString(),

@@ -1,7 +1,8 @@
 import { transparentize } from 'polished'
 
 export const Defaults = {
-  borderRadius: '1.6rem'
+  borderRadius: '1.6rem',
+  pageMaxWidth: '126rem'
 }
 
 export const Color = {
