@@ -21,7 +21,7 @@ export const Content = styled.main`
   p {
     margin: 0 0 1.6rem;
     font-size: ${Font.sizeDefault};
-    color: ${Color.grey};
+    color: ${Color.text1};
     line-height: 1.4;
   }
 `
@@ -99,12 +99,12 @@ export const TitleSmall = styled.h3`
       }
 
       &:hover {
-        background: ${transparentize(0.9, Color.orange)};
-        border: 0.1rem solid ${Color.orange};
-        color: ${Color.orange};
+        background: ${transparentize(0.9, Color.darkBlue)};
+        border: 0.1rem solid ${Color.darkBlue};
+        color: ${Color.darkBlue};
 
         > svg { transform: translateX(0.6rem) }
-        > svg > path { fill: ${Color.orange}} }
+        > svg > path { fill: ${Color.darkBlue}} }
       }
 
       > b {

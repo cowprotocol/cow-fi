@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
   border-radius: 7rem;
   padding: 4.8rem;
   font-size: ${Font.sizeDefault};
-  color: ${Color.grey};
+  color: ${Color.text1};
   position: relative;
 
   ${Media.desktopLargeDown} {
@@ -105,7 +105,7 @@ export const CowTabs = styled.div`
   font-size: 1.4rem;
   justify-content: center;
   border: 0.1rem solid ${Color.border};
-  color: ${Color.grey};
+  color: ${Color.text1};
   padding: 0;
   border-radius: 4rem;
   gap: 0;
@@ -251,7 +251,7 @@ function getNetworkConfig(networkID) {
       return { label: 'CoW Protocol (P2P)', color: Color.orange }
       break;
     default:
-      return { label: 'Unkown Source', color: Color.grey }
+      return { label: 'Unkown Source', color: Color.text1 }
   }
 }
 

@@ -57,7 +57,7 @@ const LogoSection = styled.div`
 const MenuWrapper = styled.div`
   display: flex;
   flex-flow: column wrap;
-  color: ${Color.grey};
+  color: ${Color.text1};
   font-size: ${Font.sizeDefault};
 
   ${Media.mobile} {
@@ -126,7 +126,7 @@ const CopyrightLinks = styled.ol`
   flex-flow: column wrap;
   align-items: flex-end;
   font-size: 1.4rem;
-  color: ${Color.grey};
+  color: ${Color.text1};
   line-height: 1.5;
   padding: 0;
 

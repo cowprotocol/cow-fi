@@ -12,24 +12,25 @@ type ButtonProps = {
   label: string
   target?: string
   rel?: string
+  minHeight?: number
 }
 
 const Wrapper = styled.a<Omit<ButtonProps, "href" | "label" | "target" | "rel">>`
   display: flex;
-  background: ${({ variant }) => variant === 'white' ? Color.black : transparentize(0.9, Color.orange)};
+  background: ${({ variant }) => (variant === 'outline' || 'text') ? 'transparent' : Color.darkBlue};
   flex-flow: row;
-  border: 0.1rem solid ${({ variant }) => variant === 'white' ? transparentize(0.6, Color.grey) : Color.orange};
-  color: ${({ variant }) => variant === 'white' ? Color.white : Color.orange};
-  padding: ${({ paddingLR }) => paddingLR ? `0 ${paddingLR}rem` : '0 6rem'};
+  border: 0.1rem solid ${({ variant }) => (variant === 'outline' || 'text') ? Color.darkBlue : 'transparent'};
+  color: ${({ variant }) => variant === 'outline' || 'text' ? Color.darkBlue : Color.lightBlue};
+  padding: ${({ paddingLR }) => paddingLR ? `0 ${paddingLR}rem` : '0 2.4rem'};
   box-sizing: border-box;
   border-radius: ${({ borderRadius }) => borderRadius ? borderRadius : Defaults.borderRadius};
-  min-height: 5.6rem;
+  min-height: ${({ minHeight }) => minHeight ? `${minHeight}rem` : '5.6rem'};
   align-items: center;
-  font-size: ${({ fontSize }) => fontSize ? fontSize : Font.sizeDefault};
+  font-size: ${({ fontSize }) => fontSize ? `${fontSize}rem` : '2.2rem'};
   justify-content: center;
   transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
   white-space: ${({ wrapText }) => wrapText ? 'initial' : 'nowrap'};
-  font-weight: ${Font.weightNormal};
+  font-weight: ${Font.weightMedium};
   text-decoration: none;
 
   ${Media.mobile} {
@@ -38,8 +39,8 @@ const Wrapper = styled.a<Omit<ButtonProps, "href" | "label" | "target" | "rel">>
   }
 
   &:hover {
-    background: ${({ variant }) => variant === 'white' ? Color.white : Color.orange};
-    color: ${Color.black};
+    background: ${({ variant }) => variant === 'outline' ? Color.darkBlue : Color.text1};
+    color: ${Color.lightBlue};
   }
 `
 
@@ -68,10 +69,11 @@ export default function Button({
   href = "#",
   label,
   target,
-  rel
+  rel,
+  minHeight
 }: ButtonProps) {
   return (
-    <Wrapper {...{ wrapText, borderRadius, fontSize, paddingLR, variant }} href={href} target={target} rel={rel}>
+    <Wrapper {...{ wrapText, borderRadius, fontSize, paddingLR, variant, minHeight }} href={href} target={target} rel={rel}>
       {label}
     </Wrapper>
   )

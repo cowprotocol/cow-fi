@@ -41,8 +41,7 @@ const Wrapper = styled.header`
   }
 
   &.sticky {
-    background: ${transparentize(0.4, Color.black)};
-    backdrop-filter: blur(6rem);
+    background: ${Color.gradient};
   }
 
   > a {
@@ -55,8 +54,8 @@ const Wrapper = styled.header`
 const Menu = styled.ol`
   display: flex;
   list-style: none;
-  font-size: ${Font.sizeDefault};
-  color: ${Color.grey};
+  font-size: 1.8rem;
+  color: ${Color.text1};
   padding: 0;
   margin: 0;
 
@@ -111,7 +110,7 @@ const Menu = styled.ol`
     text-decoration: none;
 
     &:hover {
-      color: ${Color.white};
+      color: ${Color.darkBlue};
     }
   }
 `
@@ -121,7 +120,7 @@ const CloseIcon = styled.button`
   position: fixed;
   right: 1.6rem;
   top: 1.6rem;
-  color: ${Color.white};
+  color: ${Color.darkBlue};
   background: transparent;
   border: 0;
 
@@ -147,7 +146,7 @@ const MenuToggle = styled.button`
   flex-flow: row;
   align-items: center;
   justify-content: center;
-  border: 0.1rem solid ${transparentize(0.6, Color.grey)};
+  border: 0.1rem solid ${transparentize(0.6, Color.text1)};
   border-radius: ${Defaults.borderRadius};
   text-decoration: none;
   height: 5.6rem;
@@ -172,8 +171,8 @@ const MenuToggle = styled.button`
 `
 
 const Logo = styled.div`
-  width: 14rem;
-  height: 5.7rem;
+  width: 13.2rem;
+  height: 4.2rem;
   background: url(${LogoImage}) no-repeat center/contain;
   cursor: pointer;
 
@@ -218,7 +217,7 @@ export default function Header({ siteConfig, menu }) {
               <CloseIcon onClick={handleClick} />
             </Menu>
 
-            <Button paddingLR={2.4} href={swapURL} label={'Trade on CowSwap'} target="_blank" rel="noopener nofollow" />
+            <Button variant="outline" minHeight={4.8} fontSize={1.6} href={swapURL} label={'Trade on CoW Swap'} target="_blank" rel="noopener nofollow" />
             <MenuToggle onClick={handleClick} />
 
           </Wrapper>

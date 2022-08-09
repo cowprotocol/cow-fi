@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { transparentize } from 'polished'
 import { Color, Font, Media } from 'const/styles/variables'
 
+const MAX_WIDTH = '117rem';
 
 export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, colorVariant?: string, flow?: string, fullWidth?: boolean, mediumSwitchOrder?: boolean, mobileSwitchOrder?: boolean }>`
   display: flex;
@@ -9,15 +10,11 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
   min-height: 100%;
   flex-flow: ${({ flow }) => flow === 'column' ? 'column wrap' : 'row'};
   gap: 8rem;
-  margin: 10rem auto;
+  margin: 0 auto;
   position: relative;
   z-index: 1;
   align-items: ${({ hero }) => hero ? 'center' : 'normal'};
-
-  ${({ colorVariant }) => colorVariant === 'orange' && `
-    background: ${Color.orange};
-    color: ${Color.black};
-  `}
+  padding: 0;
 
   ${Media.mobile} {
     height: auto;
@@ -30,8 +27,9 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
   // Hero specific styling
   ${({ hero, breakMedium }) => (hero || breakMedium) && `
     margin: 0 auto;
-    min-height: 100%;
-    padding-top: 10rem;
+    min-height: 90rem;
+    // padding-top: 10rem;
+    background: ${Color.gradient};
 
     ${Media.mediumDown} {
       padding: 3.2rem 0;
@@ -43,14 +41,92 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
       min-height: initial;
       padding: 5.6rem 3.2rem 0;
     }
-
-    ${Media.desktopOnly} {
-      > div > h1 {
-        font-size: 4rem;
-      }
-    }
     
   `}
+  }
+
+  ${({ mobileSwitchOrder }) => mobileSwitchOrder && `
+    > div:first-child {
+      ${Media.mobile} {
+        order: 2;
+      }
+    }
+  `}
+
+  ${({ mobileSwitchOrder }) => mobileSwitchOrder && `
+    > div:last-child {
+      ${Media.mobile} {
+        order: 1;
+      }
+    }
+  `}
+
+  ${({ mediumSwitchOrder }) => mediumSwitchOrder && `
+    > div:first-child {
+      ${Media.mediumDown} {
+        order: 2;
+      }
+    }
+  `}
+
+  ${({ mediumSwitchOrder }) => mediumSwitchOrder && `
+    > div:last-child {
+      ${Media.mediumDown} {
+        order: 1;
+      }
+    }
+  `}
+
+  h1, h2, h3 {
+    font-size: 5rem;
+    line-height: 1.2;
+    font-weight: ${Font.weightNormal};
+    margin: 0;
+    text-align: center;
+    width: 100%;
+    z-index: 1;
+
+    ${Media.mediumDown} {
+      font-size: 4rem;
+      text-align: center;
+    }
+  }
+
+  h1 {
+    // Hero specific styling
+    ${({ hero, breakMedium }) => (hero || breakMedium) && `
+      color: ${Color.darkBlue};
+      font-size: 7rem;
+      text-align: left;
+    `}
+  }
+
+  a {
+    color: ${Color.lightBlue};
+    ${({ hero, breakMedium }) => (hero || breakMedium) && `
+      color: ${Color.darkBlue};
+    `}
+  }
+
+  h3 {
+    font-size: 6rem;
+    font-weight: ${Font.weightMedium};
+    background: ${Color.gradient};
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    ${Media.desktopDown} {
+      font-size: 3.8rem;
+    }
+  }
+`
+
+export const SectionContent = styled.div<{ flow?: string, hero?: boolean, breakMedium?: boolean }>`
+  display: flex;
+  margin: 0 auto;
+  width: 100%;
+  max-width: ${MAX_WIDTH};
+  padding: ${({ hero }) => hero ? '0' : '24rem 0'};
 
   > div {
     display: flex;
@@ -66,57 +142,75 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
       flex: 1 1 auto; 
     }
   }
+`
 
-  ${({ mobileSwitchOrder }) => mobileSwitchOrder && `
-    > div:first-child {
-      ${Media.mobile} {
-        order: 2;
-      }
+export const Separator = styled.div`
+  width: 100%;
+  height: 0.1rem;
+  background: ${Color.gradient};
+`
+
+export const StepWrapper = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.8rem;
+  margin: 2.6rem auto 0;
+`
+
+export const StepContainer = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  background: ${Color.darkBlue2};
+  box-shadow: 0 12px 24px ${Color.darkBlue3};
+  border-radius: 1.2rem;
+  padding: 1.8rem;
+
+    > span {
+      height: 3.6rem;
+      width: 3.6rem;
+      border-radius: 3.6rem;
+      margin: 0 0 1.6rem;
+      padding: 0;
+      background: ${Color.darkBlue};
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: ${Color.lightBlue};
+      font-size: 1.8rem;
+      font-weight: ${Font.weightBold};
     }
-  `}
 
-  ${({ mobileSwitchOrder }) => mobileSwitchOrder && `
-    > div:last-child {
-      ${Media.mobile} {
-        order: 1;
-      }
+    > img {
+      width: 6rem;
+      height: 12rem;
+      object-fit: contain;
+      margin: 0 auto 1.6rem;
+      flex: 0 1 auto;
     }
-  `}
 
-  ${({ mediumSwitchOrder }) => mediumSwitchOrder && `
-    > div:first-child {
-      ${Media.mediumDown} {
-        order: 2;
-      }
-    }
-  `}
-
-  ${({ mediumSwitchOrder }) => mediumSwitchOrder && `
-    > div:last-child {
-      ${Media.mediumDown} {
-        order: 1;
-      }
-    }
-  `}
-
-   h1, h2, h3 {
-    font-size: 5rem;
-    line-height: 1.2;
-    font-weight: ${Font.weightBold};
-    margin: 0;
-    z-index: 1;
-
-    ${Media.mediumDown} {
-      font-size: 4rem;
+    > p {
+      font-size: 1.5rem;
+      color: ${Color.text2};
+      font-weight: ${Font.weightNormal};
+      line-height: 1.6;
+      margin: 1.6rem auto;
       text-align: center;
+      flex: 0 1 auto;
     }
-  }
 
-  h3 {
-    ${Media.desktopDown} {
-      font-size: 3.8rem;
+    > p > b {
+      font-size: 3.4rem;
+      display: block;
+      color: ${Color.lightBlue};
+      background: ${Color.gradient};
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0 0 2.4rem;
+      width: 100%;
+      text-align: center;
+      line-height: 1;
     }
-  }
 `
 
 export const TopGradient = styled.div`
@@ -132,14 +226,15 @@ export const TopGradient = styled.div`
   opacity: 0.5;
 `
 
-export const SubTitle = styled.p<{ maxWidth?: number, align?: string, lineHeight?: number }>`
+export const SubTitle = styled.p<{ color?: string, maxWidth?: number, align?: string, lineHeight?: number }>`
   display: inline-block;
-  font-size: 1.9rem;
-  color: ${Color.grey};
+  font-size: 2.2rem;
+  color: ${({ color }) => color ? color : Color.text2};
   font-weight: ${Font.weightNormal};
-  line-height: ${({ lineHeight }) => lineHeight ? lineHeight : 1.5};
-  text-align: ${({ align }) => align ? align : "left"};
+  line-height: ${({ lineHeight }) => lineHeight ? lineHeight : 1.6};
+  text-align: ${({ align }) => align ? align : "center"};
   max-width: ${({ maxWidth }) => maxWidth && `${maxWidth}rem`};
+  width: 100%;
   z-index: 1;
 
   ${Media.mediumDown} {
@@ -212,7 +307,7 @@ export const Metrics = styled.div`
   > div > i {
     font-style: normal;
     font-size: 1.5rem;
-    color: ${transparentize(0.2, Color.grey)};
+    color: ${transparentize(0.2, Color.text1)};
 
     ${Media.mobile} {
       font-size: 1.3rem;
@@ -236,7 +331,7 @@ export const IconList = styled.ol`
 
 export const IconListItem = styled.li<{ icon?: string }>`
   display: grid;
-  grid-template-columns: 6.5rem 1fr; 
+  grid-template-columns: 5.4rem 1fr; 
   flex-flow: row wrap;
   align-items: flex-start;
   justify-content: flex-start;
@@ -246,10 +341,10 @@ export const IconListItem = styled.li<{ icon?: string }>`
   &::before {
     ${({ icon }) => icon && `
       content: "";
-      height: 100%;
-      width: 4.2rem;
+      height: 3.6rem;
+      width: 3.6rem;
       display: block;
-      margin: -1rem 0 0;
+      margin: -0.1rem 0 0;
       background: url(${icon}) no-repeat top/contain;
     `};
   }
@@ -262,20 +357,21 @@ export const IconListItem = styled.li<{ icon?: string }>`
   }
 
   > span > b {
-    font-size: 2.4rem;
+    font-size: 2.8rem;
     line-height: 1.2;
+    font-weight: ${Font.weightMedium}
   }
   
   > span > p {
-    font-size: ${Font.sizeDefault};
+    font-size: 1.8rem;
     line-height: 1.6;
-    color: ${Color.grey};
+    color: ${Color.text2};
   }
 `
 
 export const CheckList = styled.ol`
   list-style-type: none;
-  color: ${Color.grey};
+  color: ${Color.text2};
   font-weight: ${Font.weightNormal};
   font-size: ${Font.sizeDefault};
   gap: 1.2rem;
@@ -364,7 +460,7 @@ export const ApiParams = styled.div`
   > span > small {
     font-size: 1.8rem;
     line-height: 1;
-    color: ${transparentize(0.3, Color.grey)};
+    color: ${transparentize(0.3, Color.text1)};
   }
 `
 
@@ -397,6 +493,6 @@ export const ApiCurlCommand = styled.div`
   }
 
   > p > span {
-    color: ${Color.orange};
+    color: ${Color.darkBlue};
   }
 `

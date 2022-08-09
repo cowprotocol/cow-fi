@@ -12,7 +12,7 @@ const Wrapper = styled.ol<Pick<SocialListProps, "iconSize" | "gap" | "innerPaddi
   padding: 0;
   gap: ${({ gap }) => gap ? `${gap}rem` : '7rem'};
   list-style-type: none;
-  color: ${Color.grey};
+  color: ${Color.text1};
   font-weight: ${Font.weightNormal};
 
   ${Media.mobile} {
@@ -41,9 +41,9 @@ const Wrapper = styled.ol<Pick<SocialListProps, "iconSize" | "gap" | "innerPaddi
     }
 
     &:hover {
-      background: ${transparentize(0.9, Color.orange)};
-      border: 0.1rem solid ${Color.orange};
-      color: ${Color.orange};
+      background: ${transparentize(0.9, Color.darkBlue)};
+      border: 0.1rem solid ${Color.darkBlue};
+      color: ${Color.darkBlue};
     }
   }
 
