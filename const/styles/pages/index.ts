@@ -118,12 +118,12 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
   }
 `
 
-export const SectionContent = styled.div<{ flow?: string, hero?: boolean, breakMedium?: boolean }>`
+export const SectionContent = styled.div<{ flow?: string, hero?: boolean, breakMedium?: boolean, variant?: string }>`
   display: flex;
   margin: 0 auto;
   width: 100%;
   max-width: ${Defaults.pageMaxWidth};
-  padding: ${({ hero }) => hero ? '0' : '24rem 0'};
+  padding: ${({ hero }) => hero ? '0' : '16rem 0'};
 
   ${Media.desktopDown} {
     padding: 12rem 5.6rem;
@@ -143,6 +143,16 @@ export const SectionContent = styled.div<{ flow?: string, hero?: boolean, breakM
       flex: 1 1 auto; 
     }
   }
+
+  ${({ variant }) => variant === 'banner' && `
+    border-radius: 1.6rem;
+    border: 0.1rem solid ${Color.text1};
+    padding: 0;
+
+      > div {
+        padding: 6rem;
+      }
+  `}
 `
 
 export const Separator = styled.div`
@@ -183,7 +193,7 @@ export const StepContainer = styled.div`
     }
 
     > img {
-      width: 6rem;
+      width: 8rem;
       height: 12rem;
       object-fit: contain;
       margin: 0 auto 1.6rem;
@@ -280,8 +290,8 @@ export const Metrics = styled.div`
   justify-content: center;
   gap: 12rem;
   background: ${Color.darkBlue2};
-  box-shadow: 0 12px 24px ${Color.darkBlue3};
-  padding: 3.2rem;
+  box-shadow: 0 2.4rem 2.4rem ${Color.darkBlue3};
+  padding: 4.2rem;
   border-radius: 1.2rem;
   justify-content: space-between;
 
@@ -408,101 +418,136 @@ export const CheckList = styled.ol`
   }
 `
 
-export const ApiWrapper = styled.div`
-  overflow: hidden;
-  max-width: 100%;
-`
+// export const ApiWrapper = styled.div`
+//   overflow: hidden;
+//   max-width: 100%;
+// `
 
-export const ApiTool = styled.div`
+// export const ApiTool = styled.div`
+//   display: flex;
+//   width: 100%;
+//   flex-flow: column wrap;
+//   background: black;
+//   border: 0.1rem solid ${Color.border};
+//   backdrop-filter: blur(6rem);
+//   border-radius: 7rem;
+//   padding: 2.4rem 4.8rem;
+//   font-size: ${Font.sizeDefault};
+
+//   ${Media.desktopOnly} {
+//     border-radius: 3rem;
+//     padding: 0 2.4rem 2.4rem;
+//   }
+
+//   ${Media.mobile} {
+//     border-radius: 2rem;
+//     padding: 0 2.4rem 2.4rem;
+//   }
+
+//   > h4 {
+//     font-weight: ${Font.weightNormal};
+//     font-size: 2.4rem;
+//     line-height: 1;
+//     color: ${Color.white}
+//   }
+
+//   > p {
+//     line-height: 1.4;
+//   }
+
+//   pre {
+//     max-width: 100%;
+//   }
+// `
+
+// export const ApiParams = styled.div`
+//   display: flex;
+//   flex-flow: row wrap;
+//   gap: 4rem;
+//   margin: 1.6rem 0 4rem;
+
+//   > span {
+//     display: flex;
+//     flex-flow: column wrap;
+//   }
+
+//   > span > b {
+//     font-size: 2.8rem;
+//     line-height: 1;
+//     margin: 0 0 1rem;
+//   }
+
+//   > span > small {
+//     font-size: 1.8rem;
+//     line-height: 1;
+//     color: ${transparentize(0.3, Color.text1)};
+//   }
+// `
+
+// export const ApiCurlCommand = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: flex-start;
+//   width: 100%;
+//   border: 0.1rem solid ${Color.border};
+//   padding: 0;
+//   border-radius: 1.2rem;
+//   gap: 0;
+//   margin: 0 0 2.4rem;
+
+//   ${Media.mobile} {
+//     flex-flow: column wrap;
+//     align-items: flex-start;
+//     border: none;
+//     padding: 0;
+//     gap: 1rem;
+
+//     pre {
+//       margin: 0 !important;
+//     }
+//   }
+
+//   > p {
+//     display: inline-block;
+//     line-height: 1.2;
+//   }
+
+//   > p > span {
+//     color: ${Color.darkBlue};
+//   }
+// `
+
+export const IntegrationList = styled.div`
   display: flex;
-  width: 100%;
-  flex-flow: column wrap;
-  background: black;
-  border: 0.1rem solid ${Color.border};
-  backdrop-filter: blur(6rem);
-  border-radius: 7rem;
-  padding: 2.4rem 4.8rem;
-  font-size: ${Font.sizeDefault};
-
-  ${Media.desktopOnly} {
-    border-radius: 3rem;
-    padding: 0 2.4rem 2.4rem;
-  }
-
-  ${Media.mobile} {
-    border-radius: 2rem;
-    padding: 0 2.4rem 2.4rem;
-  }
-
-  > h4 {
-    font-weight: ${Font.weightNormal};
-    font-size: 2.4rem;
-    line-height: 1;
-    color: ${Color.white}
-  }
-
-  > p {
-    line-height: 1.4;
-  }
-
-  pre {
-    max-width: 100%;
-  }
-`
-
-export const ApiParams = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  gap: 4rem;
-  margin: 1.6rem 0 4rem;
-
-  > span {
-    display: flex;
-    flex-flow: column wrap;
-  }
-
-  > span > b {
-    font-size: 2.8rem;
-    line-height: 1;
-    margin: 0 0 1rem;
-  }
-
-  > span > small {
-    font-size: 1.8rem;
-    line-height: 1;
-    color: ${transparentize(0.3, Color.text1)};
-  }
-`
-
-export const ApiCurlCommand = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  border: 0.1rem solid ${Color.border};
+  width: 50%;
+  height: 100%;
+  background: ${Color.darkBlue2};
+  margin: 0;
   padding: 0;
-  border-radius: 1.2rem;
-  gap: 0;
-  margin: 0 0 2.4rem;
+  border-radius: 1.6rem 0 0 1.6rem;
 
-  ${Media.mobile} {
-    flex-flow: column wrap;
-    align-items: flex-start;
-    border: none;
-    padding: 0;
-    gap: 1rem;
-
-    pre {
-      margin: 0 !important;
+    > ol {
+      margin: 0;
+      padding: 0;
+      display: grid;
+      list-style: none;
+      gap: 4rem;
+      grid-template-columns: repeat(3, 1fr);
     }
-  }
 
-  > p {
-    display: inline-block;
-    line-height: 1.2;
-  }
+    > ol > li {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 5.6rem;
+    }
 
-  > p > span {
-    color: ${Color.darkBlue};
-  }
+    > ol > li > a {
+      font-size: 1.6rem;
+      padding: 4rem;
+      background: ${Color.darkBlue3};
+      border-radius: 1.2rem;
+      width: 100%;
+      height: 100%;
+    }
 `

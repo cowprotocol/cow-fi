@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { transparentize } from 'polished'
+// import { transparentize } from 'polished'
 import { Defaults, Color, Font, Media } from 'const/styles/variables'
 
 type ButtonProps = {
@@ -17,9 +17,9 @@ type ButtonProps = {
 
 const Wrapper = styled.a<Omit<ButtonProps, "href" | "label" | "target" | "rel">>`
   display: flex;
-  background: ${({ variant }) => (variant === 'outline' || 'text') ? 'transparent' : Color.darkBlue};
+  background: ${({ variant }) => (variant === 'outline' || 'text') ? 'transparent' : variant === 'light' ? Color.lightBlue : Color.darkBlue};
   flex-flow: row;
-  border: 0.1rem solid ${({ variant }) => (variant === 'outline' || 'text') ? Color.darkBlue : 'transparent'};
+  border: 0.1rem solid ${({ variant }) => (variant === 'outline' || 'text') ? Color.darkBlue : variant === 'outlineLight' ? Color.lightBlue : 'transparent'};
   color: ${({ variant }) => variant === 'outline' || 'text' ? Color.darkBlue : Color.lightBlue};
   padding: ${({ paddingLR }) => paddingLR ? `0 ${paddingLR}rem` : '0 2.4rem'};
   box-sizing: border-box;
