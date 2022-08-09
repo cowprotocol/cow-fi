@@ -17,10 +17,10 @@ type ButtonProps = {
 
 const Wrapper = styled.a<Omit<ButtonProps, "href" | "label" | "target" | "rel">>`
   display: flex;
-  background: ${({ variant }) => (variant === 'outline' || 'text') ? 'transparent' : variant === 'light' ? Color.lightBlue : Color.darkBlue};
+  background: ${({ variant }) => variant === 'light' ? Color.lightBlue : Color.darkBlue};
   flex-flow: row;
-  border: 0.1rem solid ${({ variant }) => (variant === 'outline' || 'text') ? Color.darkBlue : variant === 'outlineLight' ? Color.lightBlue : 'transparent'};
-  color: ${({ variant }) => variant === 'outline' || 'text' ? Color.darkBlue : Color.lightBlue};
+  border: 0.1rem solid transparent;
+  color: ${Color.lightBlue};
   padding: ${({ paddingLR }) => paddingLR ? `0 ${paddingLR}rem` : '0 2.4rem'};
   box-sizing: border-box;
   border-radius: ${({ borderRadius }) => borderRadius ? borderRadius : Defaults.borderRadius};
@@ -32,6 +32,21 @@ const Wrapper = styled.a<Omit<ButtonProps, "href" | "label" | "target" | "rel">>
   white-space: ${({ wrapText }) => wrapText ? 'initial' : 'nowrap'};
   font-weight: ${Font.weightMedium};
   text-decoration: none;
+
+  ${({ variant }) => variant === 'outline' && `
+    background: transparent;
+    border: 0.1rem solid ${Color.darkBlue};
+    color: ${Color.darkBlue};
+  `}
+
+  ${({ variant }) => variant === 'text' && `
+    background: transparent;
+    color: ${Color.darkBlue};
+  `}
+
+  ${({ variant }) => (variant === 'outlineLight') && `
+    border: 0.1rem solid ${Color.lightBlue};
+  `}
 
   ${Media.mobile} {
     padding: 0 1.6rem;

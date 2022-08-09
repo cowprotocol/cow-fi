@@ -115,7 +115,6 @@ const GlobalStyles = createGlobalStyle`
   a {   
     text-decoration: underline;
     cursor: pointer;
-    color: ${Color.darkBlue};
   }
 
   h1, h2, h3, p, b, i, strong {

@@ -14,6 +14,7 @@ export const Color = {
   darkBlue: '#052B65',
   darkBlue2: '#0D3673',
   darkBlue3: '#042a63',
+  darkBlue4: '#042456',
   lightBlue: '#CAE9FF',
   text1: '#405A82',
   text2: '#95BAEF',

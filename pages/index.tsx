@@ -180,7 +180,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
               
               <img src="images/icons/network.svg" alt="batch auction" />
               
-              <p><b>Search</b> CoW Protocol&apos;s solvers compete to find the best liquidity source for your trade, across all decentralized exchanges and aggregators. So the worst price you&apos;ll get with CoW Protocol is the best price available elsewhere.</p>
+              <p><b>Solve</b> CoW Protocol&apos;s solvers compete to find the best liquidity source for your trade, across all decentralized exchanges and aggregators. So the worst price you&apos;ll get with CoW Protocol is the best price available elsewhere.</p>
             </StepContainer>
 
             <StepContainer>
@@ -188,7 +188,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
               
               <img src="images/icons/dataProtection.svg" alt="On-chain MEV protection" />
               
-              <p><b>Settle</b> CoW Protocol submits the batches on-chain and hides them from the public mempool, so your trade is protected from manipulation (frontrunning and other forms of MEV) by miners and bots. Everyone in the batch gets the same price, and if the price improves after you submit your order, we pass the savings back to you.</p>
+              <p><b>Settle</b> CoW Protocol submits the batches on-chain and hides them from the public mempool, so your trade is protected from manipulation (frontrunning and other forms of MEV) by miners and bots.</p>
             </StepContainer>
           </StepWrapper>
         </div >

@@ -95,15 +95,23 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
       color: ${Color.darkBlue};
       font-size: 7rem;
       text-align: left;
+
+      ${Media.mediumDown} {
+        font-size: 4rem;
+      }
+
+      ${Media.mobile} {
+        font-size: 3.2rem;
+      }
     `}
   }
 
-  a {
+  /* a {
     color: ${Color.lightBlue};
     ${({ hero, breakMedium }) => (hero || breakMedium) && `
       color: ${Color.darkBlue};
     `}
-  }
+  } */
 
   h3 {
     font-size: 6rem;
@@ -126,7 +134,8 @@ export const SectionContent = styled.div<{ flow?: string, hero?: boolean, breakM
   padding: ${({ hero }) => hero ? '0' : '16rem 0'};
 
   ${Media.desktopDown} {
-    padding: 12rem 5.6rem;
+    padding: 8rem 0;
+    flex-flow: row wrap;
   }
 
   > div {
@@ -141,12 +150,13 @@ export const SectionContent = styled.div<{ flow?: string, hero?: boolean, breakM
 
     ${Media.mobile} {
       flex: 1 1 auto; 
+      gap: 3.2rem;
     }
   }
 
   ${({ variant }) => variant === 'banner' && `
     border-radius: 1.6rem;
-    border: 0.1rem solid ${Color.text1};
+    background: ${Color.darkBlue4};
     padding: 0;
 
       > div {
@@ -167,6 +177,11 @@ export const StepWrapper = styled.div`
   grid-template-columns: repeat(4, 1fr);
   gap: 1.8rem;
   margin: 2.6rem auto 0;
+
+  ${Media.mediumDown} {
+    display: flex;
+    flex-flow: column wrap;
+  }
 `
 
 export const StepContainer = styled.div`
@@ -175,7 +190,11 @@ export const StepContainer = styled.div`
   background: ${Color.darkBlue2};
   box-shadow: 0 12px 24px ${Color.darkBlue3};
   border-radius: 1.2rem;
-  padding: 2rem;
+  padding: 3.4rem;
+
+    ${Media.mediumDown} {
+      padding: 2.4rem;
+    }
 
     > span {
       height: 3.6rem;
@@ -198,6 +217,10 @@ export const StepContainer = styled.div`
       object-fit: contain;
       margin: 0 auto 1.6rem;
       flex: 0 1 auto;
+
+      ${Media.mediumDown} {
+        height: 8rem;
+      }
     }
 
     > p {
@@ -521,10 +544,12 @@ export const IntegrationList = styled.div`
   display: flex;
   width: 50%;
   height: 100%;
-  background: ${Color.darkBlue2};
   margin: 0;
   padding: 0;
-  border-radius: 1.6rem 0 0 1.6rem;
+
+  ${Media.mediumDown} {
+    width: 100%;
+  }
 
     > ol {
       margin: 0;
@@ -533,6 +558,11 @@ export const IntegrationList = styled.div`
       list-style: none;
       gap: 4rem;
       grid-template-columns: repeat(3, 1fr);
+
+      ${Media.mediumDown} {
+        display: flex;
+        flex-flow: column wrap;
+      }
     }
 
     > ol > li {
