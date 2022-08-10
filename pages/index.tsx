@@ -29,7 +29,6 @@ const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
 interface MetricsData {
   totalVolume: string
-  totalTraders: string
   tradesCount: string
   tradesCountLastModified: string
   totalSurplus: string
@@ -62,7 +61,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         <SectionContent>
         <div>
           <h1>Stop searching, <br/><b>for better prices</b></h1>
-          <SubTitle align={'left'} color={Color.text1} lineHeight={1.4}>CoW Protocol finds the lowest price for your trade across all exchanges and aggregators, such as Uniswap and 1inch – and protects you from MEV, unlike the others.</SubTitle>
+          <SubTitle align={'left'} color={Color.text1} lineHeight={1.4}>CoW Protocol finds the lowest price for your trade across all exchanges and aggregators, such as Uniswap and 1inch – and protects you from MEV, unlike the others</SubTitle>
 
           <ButtonWrapper>
             <Button paddingLR={4.2} href={'#'} target="_blank" label="Start trading" />
@@ -100,21 +99,21 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
     <IconListItem icon="images/icons/mev.svg">
       <span>
         <b>Protection from MEV.</b>
-        <p>CoW Protocol is the industry leader in protecting users from frontrunning and sandwich attacks – which lose traders millions of dollars every day. It does this by matching trades peer-to-peer, and leveraging batch auctions [→] so trade order becomes irrelevant.</p>
+        <p>CoW Protocol is the industry leader in protecting users from frontrunning and sandwich attacks, which lose traders thousands of dollars every day. It does this by matching trades peer-to-peer, and leveraging batch auctions [→] so trade order becomes irrelevant. </p>
       </span>
     </IconListItem>
 
     <IconListItem icon="images/icons/savings.svg">
       <span>
         <b>Keep your surplus.</b>
-        <p>If a price moves in your favor after you’ve placed an order, CoW Protocol gives you the price at the time of execution – unlike 1inch and other exchanges that pocket the difference for themselves.</p>
+        <p>If a price moves in your favor after you&apos;ve placed an order, CoW Protocol gives you the price at the time of execution.</p>
       </span>
     </IconListItem>
 
     <IconListItem icon="images/icons/sun.svg">
       <span>
         <b>Never pay for failed transactions.</b>
-        <p>CoW Protocol never charges for failed transactions – unlike Uniswap, 1inch, and almost every other DEX or aggregator.</p>
+        <p>CoW Protocol never charges for failed transactions – unlike almost every other DEX or aggregator.</p>
       </span >
     </IconListItem >
 
@@ -155,7 +154,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         <div>
           <h3>Cutting-edge technology</h3>
           <SubTitle align='center'>
-          CoW Protocol batches orders, matches Coincidences of Wants <a href="https://docs.cow.fi/overview-1/coincidence-of-wants" target="_blank" rel="noreferrer">(CoWs)</a>, and sources excess volume from all DEXs and DEX aggregators. That’s how we make sure you always get the best price for your trade.
+          CoW Protocol batches orders, matches Coincidences of Wants <a href="https://docs.cow.fi/overview-1/coincidence-of-wants" target="_blank" rel="noreferrer">(CoWs)</a>, and sources excess volume from all DEXs and DEX aggregators. That&apos;s how the protocol makes sure you always get the best price for your trade. 
           </SubTitle>
           
           <StepWrapper>
@@ -164,7 +163,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
               
               <img src="images/icons/funnel.svg" alt="funnel" />
   
-              <p><b>Batch</b> CoW Protocol collects orders into “batches” every 30 seconds. This is done off-chain, which has a few benefits – you won&apos;t pay if your trade fails, and the fees are collected in your sell token, not ETH.</p>
+              <p><b>Batch</b> CoW Protocol collects orders into “batches” every 30 seconds. This is done off-chain, which has a few benefits – you won’t pay if your trade fails, and the fees are collected in your sell token, not ETH. </p>
             </StepContainer>
 
             <StepContainer>
@@ -172,7 +171,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
               
               <img src="images/icons/p2p-v2.svg" alt="Peer to Peer" />
               
-              <p><b>Match</b>CoW Protocol&apos;s network of solving algorithms (“solvers”) search each batch for Coincidences of Wants (i.e. traders who want what each other has). These “CoWs” are matched peer-to-peer, so everyone gets a better price and no one pays unnecessary AMM fees.</p>
+              <p><b>Match</b>CoW Protocol&apos;s network of solving algorithms (“solvers”) scans each batch for Coincidences of Wants (i.e. traders who want what each other has). These “CoWs” are matched peer-to-peer, so everyone gets a better price and no one pays unnecessary AMM fees. </p>
             </StepContainer>
 
             <StepContainer>
@@ -180,15 +179,15 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
               
               <img src="images/icons/network.svg" alt="batch auction" />
               
-              <p><b>Solve</b> CoW Protocol&apos;s solvers compete to find the best liquidity source for your trade, across all decentralized exchanges and aggregators. So the worst price you&apos;ll get with CoW Protocol is the best price available elsewhere.</p>
+              <p><b>Search</b> CoW Protocol&apos;s solvers compete to find the best liquidity source for your trade across all decentralized exchanges and aggregators. So the worst price you&apos;ll get with CoW Protocol is the best price available elsewhere. </p>
             </StepContainer>
 
-            <StepContainer>
+            <StepContainer imageWidth={6}>
               <span>4</span>
               
-              <img src="images/icons/dataProtection.svg" alt="On-chain MEV protection" />
+              <img src="images/icons/shield2.svg" alt="On-chain MEV protection" />
               
-              <p><b>Settle</b> CoW Protocol submits the batches on-chain and hides them from the public mempool, so your trade is protected from manipulation (frontrunning and other forms of MEV) by miners and bots.</p>
+              <p><b>Settle</b> CoW Protocol submits the batches on-chain and hides them from the public mempool, so your trade is protected from manipulation (frontrunning and other forms of MEV) by miners and bots. </p>
             </StepContainer>
           </StepWrapper>
         </div >
@@ -205,16 +204,12 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         <SectionContent>  
         <div>
           <h3>Serious volume, serious savings.</h3>
-          <SubTitle align="center">The most-seasoned DeFi pros trust CoW Swap to find the lowest prices possible and protect themselves from MEV.</SubTitle>
+          <SubTitle maxWidth={80} align="center">Whether you are a whale, a dolphin or a prawn, you can always trust CoW Protocol to find the lowest prices possible and protect you from MEV.</SubTitle>
           <Metrics>
             <>
             <div>
               <b>${metricsData.totalVolume}</b>
-              <i>Total Volume traded (USD)</i>
-            </div>
-            <div>
-              <b>{metricsData.totalTraders}</b>
-              <i>Unique accounts</i>
+              <i>Total volume traded (USD)</i>
             </div>
             <div>
               <b data-last-modified={metricsData.tradesCountLastModified}>{metricsData.tradesCount}</b>
@@ -237,21 +232,23 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
 
 
       <Section className='container' id="developers">
-        <SectionContent variant="banner">
+        <SectionContent variant="banner" reverseOrderMobile={'column-reverse'}>
        <IntegrationList>
         <ol>
           <li><a href="#">Balancer</a></li>
+          <li><a href="#">Safe</a></li>
+          <li><a href="#">Swapr</a></li>
           <li><a href="#">ShapeShift</a></li>
           <li><a href="#">Yearn</a></li>
-          <li><a href="#">Swapr</a></li>
+          <li><a href="#">Aura</a></li>   
         </ol>
        </IntegrationList>
         <div>
-          <h3>Easily integrate with a trusted protocol.</h3>
-          <SubTitle>Join a growing list of partners that have already integrated CoW Protocol&apos;s many benefits into their products.</SubTitle>
+          <h3>Quick and simple integration</h3>
+          <SubTitle>Join a growing list of partners that have built a better experience for their users by integrating CoW Protocol.</SubTitle>
 
           <ButtonWrapper>
-            <Button href={url.apiDocs} label='Explore API' target="_blank" rel="noopener nofollow" variant="light" />
+            <Button href={url.apiDocs} label='Explore docs' target="_blank" rel="noopener nofollow" variant="light" />
             <Button href={'#'} label="Talk to us" target="_blank" rel="noopener nofollow" variant='outlineLight' />
           </ButtonWrapper>
         </div>
@@ -276,7 +273,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         </SectionContent>
       </Section >
 
-      <Separator/>
+      {/* <Separator/> */}
     </Layout >
   )
 }
@@ -285,7 +282,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const siteConfigData = siteConfig
   const { social } = siteConfig
-  const { volumeUsd, volumeEth, traders } = await cowSdk.cowSubgraphApi.getTotals()
+  const { volumeUsd, volumeEth } = await cowSdk.cowSubgraphApi.getTotals()
   const trades = await getTotalTrades()
   const surplus = await getTotalSurplus()
   
@@ -305,7 +302,6 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       metricsData: {
         totalVolume: numberFormatter.format(+volumeUsd) + '+',
         totalVolumeETH: numberFormatter.format(+volumeEth) + '+',
-        totalTraders: numberFormatter.format(+traders),
 
         tradesCount: numberFormatter.format(trades.totalCount) + '+',
         tradesCountLastModified: trades.lastModified.toISOString(),

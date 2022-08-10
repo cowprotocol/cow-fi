@@ -11,6 +11,7 @@ const Wrapper = styled.footer`
   z-index: 1;
   width: 100%;
   padding: 5.6rem;
+  margin: 16rem auto 0;
   position: relative;
 
   ${Media.mobile} {
@@ -166,7 +167,7 @@ export default function Footer({ siteConfig, menu }) {
         </Link>
         <SocialList social={social} labels={false} iconSize={2.8} gap={0.7} innerPadding={1} alignItems={'right'} />
         <CopyrightLinks>
-          <li>©{siteConfig.title} - {currentYear}</li>
+          <li>©{siteConfig.title} (formerly Gnosis Protocol v2) - {currentYear}</li>
         </CopyrightLinks>
       </LogoSection>
 

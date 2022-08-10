@@ -23,25 +23,28 @@ const Pixel = styled.div`
 const Wrapper = styled.header`
   z-index: 10;
   width: 100%;
+  height: 9.6rem;
   position: relative;
   display: flex;
   flex-flow: row;
   justify-content: space-between;
   align-items: center;
   background: transparent;
-  padding: 2.4rem 5.6rem;
+  padding: 0 5.6rem;
   margin: 0 auto;
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
-  transition: background 0.5s ease-in-out;
+  transition: background 0.2s ease-in-out, height 0.2s ease-in-out;
 
   ${Media.mobile} {
-    padding: 3rem;
+    padding: 0 3rem;
   }
 
   &.sticky {
-    background: ${Color.gradient};
+    background: ${transparentize(0.1, Color.lightBlue)};);
+    backdrop-filter: blur(5px);
+    height: 5.6rem;
   }
 
   > a {
@@ -63,7 +66,7 @@ const Content = styled.div`
 const Menu = styled.ol`
   display: flex;
   list-style: none;
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   color: ${Color.text1};
   padding: 0;
   margin: 0;
@@ -184,6 +187,11 @@ const Logo = styled.div`
   height: 4.2rem;
   background: url(${LogoImage}) no-repeat center/contain;
   cursor: pointer;
+
+  .sticky & {
+    width: 13.2rem;
+    height: 3.6rem;
+  }
 
   ${Media.mediumDown} {
     width: 5.5rem;

@@ -27,7 +27,7 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
     margin: 0 auto;
     min-height: 90rem;
     // padding-top: 10rem;
-    background: ${Color.gradient};
+    ${Color.gradientMesh};
 
     ${Media.mediumDown} {
       padding: 3.2rem 0;
@@ -99,19 +99,8 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
       ${Media.mediumDown} {
         font-size: 4rem;
       }
-
-      ${Media.mobile} {
-        font-size: 3.2rem;
-      }
     `}
   }
-
-  /* a {
-    color: ${Color.lightBlue};
-    ${({ hero, breakMedium }) => (hero || breakMedium) && `
-      color: ${Color.darkBlue};
-    `}
-  } */
 
   h3 {
     font-size: 6rem;
@@ -126,17 +115,22 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
   }
 `
 
-export const SectionContent = styled.div<{ flow?: string, hero?: boolean, breakMedium?: boolean, variant?: string }>`
+export const SectionContent = styled.div<{ flow?: string, hero?: boolean, breakMedium?: boolean, variant?: string, reverseOrderMobile?: string }>`
   display: flex;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   width: 100%;
   max-width: ${Defaults.pageMaxWidth};
-  padding: ${({ hero }) => hero ? '0' : '16rem 0'};
+  margin: ${({ hero }) => hero ? '0 auto' : '16rem auto 0'};
 
   ${Media.desktopDown} {
-    padding: 8rem 0;
     flex-flow: row wrap;
   }
+
+  ${({ reverseOrderMobile }) => reverseOrderMobile && `
+      ${Media.mobile} {
+        flex-flow: ${reverseOrderMobile};
+      }
+  ` };
 
   > div {
     display: flex;
@@ -151,6 +145,10 @@ export const SectionContent = styled.div<{ flow?: string, hero?: boolean, breakM
     ${Media.mobile} {
       flex: 1 1 auto; 
       gap: 3.2rem;
+    }
+
+    a {
+      color: ${Color.lightBlue};
     }
   }
 
@@ -184,11 +182,11 @@ export const StepWrapper = styled.div`
   }
 `
 
-export const StepContainer = styled.div`
+export const StepContainer = styled.div<{ imageWidth?: number}>`
   display: flex;
   flex-flow: column wrap;
   background: ${Color.darkBlue2};
-  box-shadow: 0 12px 24px ${Color.darkBlue3};
+  box-shadow: ${Defaults.boxShadow};
   border-radius: 1.2rem;
   padding: 3.4rem;
 
@@ -212,8 +210,10 @@ export const StepContainer = styled.div`
     }
 
     > img {
-      width: 8rem;
-      height: 12rem;
+      width: 100%;
+      height: 100%;
+      max-width: ${({ imageWidth }) => imageWidth ? `${imageWidth}rem` : '10rem'};
+      max-height: 10rem;
       object-fit: contain;
       margin: 0 auto 1.6rem;
       flex: 0 1 auto;
@@ -273,7 +273,7 @@ export const SubTitle = styled.p<{ color?: string, maxWidth?: number, align?: st
   z-index: 1;
 
   ${Media.mediumDown} {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     text-align: ${({ align }) => align ? align : "center"};
   }
 `
@@ -309,11 +309,12 @@ export const SectionImage = styled.div<{ centerMobile?: boolean, margin?: string
 export const Metrics = styled.div`
   display: flex;
   flex-flow: row wrap;
-  width: 100%;
+  width: max-width;
+  margin: 0 auto;
   justify-content: center;
   gap: 12rem;
   background: ${Color.darkBlue2};
-  box-shadow: 0 2.4rem 2.4rem ${Color.darkBlue3};
+  box-shadow: ${Defaults.boxShadow};
   padding: 4.2rem;
   border-radius: 1.2rem;
   justify-content: space-between;
@@ -329,6 +330,12 @@ export const Metrics = styled.div`
     display: flex;
     flex-flow: column wrap;
     gap: 1.6rem;
+
+    ${Media.mobile} {
+      width: 100%;
+      align-items: center;
+      gap: 2.4rem;
+    }
   }
 
   > div > b {
@@ -338,12 +345,12 @@ export const Metrics = styled.div`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
-    ${Media.mediumOnly} {
+    ${Media.mediumDown} {
       font-size: 5rem;
     }
 
     ${Media.mobile} {
-      font-size: 4rem;
+      text-align: center;
     }
   }
 
@@ -351,10 +358,6 @@ export const Metrics = styled.div`
     font-style: normal;
     font-size: 1.5rem;
     color: ${Color.text2};
-
-    ${Media.mobile} {
-      font-size: 1.3rem;
-    }
   }
 `
 
@@ -381,6 +384,10 @@ export const IconListItem = styled.li<{ icon?: string }>`
   justify-items: flex-start;
   align-content: flex-start;
 
+  ${Media.mobile} {
+    display: flex;
+  }
+
   &::before {
     ${({ icon }) => icon && `
       content: "";
@@ -389,6 +396,10 @@ export const IconListItem = styled.li<{ icon?: string }>`
       display: block;
       margin: -0.1rem 0 0;
       background: url(${icon}) no-repeat top/contain;
+
+      ${Media.mobile} {
+        margin: 0 auto 2.4rem;
+      }
     `};
   }
 
@@ -402,13 +413,22 @@ export const IconListItem = styled.li<{ icon?: string }>`
   > span > b {
     font-size: 2.8rem;
     line-height: 1.2;
-    font-weight: ${Font.weightMedium}
+    font-weight: ${Font.weightMedium};
+
+    ${Media.mobile} {
+      font-size: 2.6rem; 
+      text-align: center;
+    }
   }
   
   > span > p {
     font-size: 1.8rem;
     line-height: 1.6;
     color: ${Color.text2};
+
+    ${Media.mobile} {
+      text-align: center;
+    }
   }
 `
 

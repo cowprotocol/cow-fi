@@ -1,9 +1,5 @@
 import { transparentize } from 'polished'
-
-export const Defaults = {
-  borderRadius: '1.6rem',
-  pageMaxWidth: '126rem'
-}
+import { css } from 'styled-components'
 
 export const Color = {
   white: '#F6F6F6',
@@ -19,6 +15,23 @@ export const Color = {
   text1: '#405A82',
   text2: '#95BAEF',
   gradient: "linear-gradient(45deg,#FFE7E0 0%,#F8DBF4 20%,#C4DDFF 60%,#CAE9FF 100%)",
+  gradientMesh: css`
+    background-color:hsla(142,0%,100%,1);
+    background-image:
+    radial-gradient(at 5% 70%, hsla(204,100%,89%,1) 0px, transparent 50%),
+    radial-gradient(at 47% 40%, hsla(214,100%,88%,1) 0px, transparent 50%),
+    radial-gradient(at 73% 3%, hsla(308,67%,91%,1) 0px, transparent 50%),
+    radial-gradient(at 44% 13%, hsla(13,100%,93%,1) 0px, transparent 50%),
+    radial-gradient(at 61% 70%, hsla(204,100%,89%,1) 0px, transparent 50%),
+    radial-gradient(at 32% 81%, hsla(204,100%,89%,1) 0px, transparent 50%),
+    radial-gradient(at 19% 39%, hsla(204,100%,89%,1) 0px, transparent 50%);
+  `
+}
+
+export const Defaults = {
+  borderRadius: '1.6rem',
+  pageMaxWidth: '126rem',
+  boxShadow: `0 2.4rem 2.4rem ${Color.darkBlue3}`
 }
 
 export const Font = {
