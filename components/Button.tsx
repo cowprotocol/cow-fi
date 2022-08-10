@@ -17,7 +17,7 @@ type ButtonProps = {
 
 const Wrapper = styled.a<Omit<ButtonProps, "href" | "label" | "target" | "rel">>`
   display: flex;
-  background: ${({ variant }) => variant === 'light' ? Color.lightBlue : Color.darkBlue};
+  background: ${Color.darkBlue};
   flex-flow: row;
   border: 0.1rem solid transparent;
   color: ${Color.lightBlue};
@@ -39,8 +39,24 @@ const Wrapper = styled.a<Omit<ButtonProps, "href" | "label" | "target" | "rel">>
     color: ${Color.darkBlue};
   `}
 
+
+  ${({ variant }) => variant === 'small' && `
+    min-height: 3.6rem;
+    border-radius: ${({ borderRadius }) => borderRadius ? borderRadius : '1.2rem'};
+  `}
+
   ${({ variant }) => variant === 'text' && `
     background: transparent;
+    color: ${Color.darkBlue};
+  `}
+
+${({ variant }) => variant === 'textLight' && `
+    background: transparent;
+    color: ${Color.lightBlue};
+  `}
+
+  ${({ variant }) => variant === 'light' && `
+    background: ${Color.lightBlue};
     color: ${Color.darkBlue};
   `}
 
@@ -60,14 +76,20 @@ const Wrapper = styled.a<Omit<ButtonProps, "href" | "label" | "target" | "rel">>
 `
 
 // General purpose multiple button wrapper
-export const ButtonWrapper = styled.div`
+export const ButtonWrapper = styled.div<{center?: boolean}>`
   display: flex;
   gap: 1.6rem;
   width: 100%;
 
-  ${Media.mediumDown} {
+  ${({ center }) => center && `
     justify-content: center;
+    align-items: center;
+  `}
+
+
+  ${Media.mediumDown} {
     flex-flow: column wrap;
+    justify-content: center;
 
     > ${Wrapper} {
       width: 100%;

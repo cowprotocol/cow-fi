@@ -147,7 +147,7 @@ export const SectionContent = styled.div<{ flow?: string, hero?: boolean, breakM
       gap: 3.2rem;
     }
 
-    a {
+    p > a {
       color: ${Color.lightBlue};
     }
   }
@@ -560,44 +560,74 @@ export const CheckList = styled.ol`
 //   }
 // `
 
-export const IntegrationList = styled.div`
+export const IntegrationList = styled.span`
   display: flex;
   width: 50%;
   height: 100%;
   margin: 0;
   padding: 0;
+  justify-content: center;
+  align-items: center;
 
   ${Media.mediumDown} {
     width: 100%;
   }
 
     > ol {
-      margin: 0;
+      margin: auto;
       padding: 0;
       display: grid;
       list-style: none;
-      gap: 4rem;
+      gap: 3rem;
       grid-template-columns: repeat(3, 1fr);
 
       ${Media.mediumDown} {
         display: flex;
-        flex-flow: column wrap;
+        flex-flow: row wrap;
+        justify-content: center;
+        margin: 0 auto 5.6rem;
       }
     }
 
     > ol > li {
       padding: 0;
       margin: 0;
-      width: 100%;
-      height: 5.6rem;
+      width: 12rem;
+      height: 12rem;
+      display: flex;
+
+      ${Media.mobile} {
+        width: 9rem;
+        height: 9rem;
+      }
     }
 
     > ol > li > a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-size: 1.6rem;
-      padding: 4rem;
+      padding: 0;
       background: ${Color.darkBlue3};
-      border-radius: 1.2rem;
+      border-radius: 6rem;
       width: 100%;
       height: 100%;
+      transition: transform 0.8s ease-in-out;
+
+      ${Media.mobile} {
+        border-radius: 4.5rem;
+      }
+
+      &:hover {
+        transform: rotate(360deg);
+      }
+
+      > img {
+        margin: auto;
+        width: 100%;
+        height: 100%;
+        max-width: 65%;
+        max-height: 65%;
+      }
     }
 `

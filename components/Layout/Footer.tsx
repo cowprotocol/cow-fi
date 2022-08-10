@@ -23,7 +23,7 @@ const Wrapper = styled.footer`
     width: 100%;
     display: block;
     height: 0.1rem;
-    background: ${Color.border};
+    background: ${Color.gradient};
     position: absolute;
     top: 0;
     left: 0;

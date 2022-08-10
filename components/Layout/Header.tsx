@@ -44,7 +44,7 @@ const Wrapper = styled.header`
   &.sticky {
     background: ${transparentize(0.1, Color.lightBlue)};);
     backdrop-filter: blur(5px);
-    height: 5.6rem;
+    height: 6rem;
   }
 
   > a {
@@ -70,6 +70,10 @@ const Menu = styled.ol`
   color: ${Color.text1};
   padding: 0;
   margin: 0;
+
+  .sticky & {
+    font-size: 1.6rem;
+  }
 
   ${Media.mediumDown} {
     display: none;
@@ -189,8 +193,8 @@ const Logo = styled.div`
   cursor: pointer;
 
   .sticky & {
-    width: 13.2rem;
-    height: 3.6rem;
+    width: 10.1rem;
+    height: 3.2rem;
   }
 
   ${Media.mediumDown} {
@@ -236,7 +240,7 @@ export default function Header({ siteConfig, menu }) {
               <CloseIcon onClick={handleClick} />
             </Menu>
 
-            <Button variant="outline" minHeight={4.8} fontSize={1.6} href={swapURL} label={'Trade on CoW Swap'} target="_blank" rel="noopener nofollow" />
+            <Button variant={!inView ? 'small' : 'outline'} minHeight={4.8} fontSize={1.6} href={swapURL} label={'Trade on CoW Swap'} target="_blank" rel="noopener nofollow" />
             <MenuToggle onClick={handleClick} />
 
             </Content>

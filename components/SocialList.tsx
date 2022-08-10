@@ -52,11 +52,6 @@ const Wrapper = styled.ol<Pick<SocialListProps, "iconSize" | "gap" | "innerPaddi
     height: ${({ iconSize }) => iconSize ? `${iconSize}rem` : '5.8rem'};
     object-fit: contain;
     margin: 0 0 1.2rem;
-
-    ${Media.mobile} {
-      width: 4.6rem;
-      height: 4.6rem;
-    }
   }
 
   > li > a > b {

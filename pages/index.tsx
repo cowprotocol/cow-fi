@@ -235,21 +235,21 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         <SectionContent variant="banner" reverseOrderMobile={'column-reverse'}>
        <IntegrationList>
         <ol>
-          <li><a href="#">Balancer</a></li>
-          <li><a href="#">Safe</a></li>
-          <li><a href="#">Swapr</a></li>
-          <li><a href="#">ShapeShift</a></li>
-          <li><a href="#">Yearn</a></li>
-          <li><a href="#">Aura</a></li>   
+          <li><a  href="https://balancer.fi/" target="_blank" rel="noreferrer"><img src='images/icons/balancer.svg' alt="Balancer"/></a></li>
+          <li><a  href="https://safe.global/" target="_blank" rel="noreferrer"><img src='images/icons/safe.svg' alt="Safe"/></a></li>
+          <li><a  href="https://swapr.eth.limo/" target="_blank" rel="noreferrer"><img src='images/icons/swapr.svg' alt="Swapr"/></a></li>
+          <li><a  href="https://shapeshift.com/" target="_blank" rel="noreferrer"><img src='images/icons/shapeshift.svg' alt="Shapeshift"/></a></li>
+          <li><a  href="https://yearn.finance/" target="_blank" rel="noreferrer"><img src='images/icons/yearn.svg' alt="Yearn finance"/></a></li>
+          <li><a href="https://aura.finance/" target="_blank" rel="noreferrer"><img src='images/icons/aura.svg' alt="Aura finance"/></a></li>   
         </ol>
        </IntegrationList>
         <div>
           <h3>Quick and simple integration</h3>
           <SubTitle>Join a growing list of partners that have built a better experience for their users by integrating CoW Protocol.</SubTitle>
 
-          <ButtonWrapper>
+          <ButtonWrapper center>
             <Button href={url.apiDocs} label='Explore docs' target="_blank" rel="noopener nofollow" variant="light" />
-            <Button href={'#'} label="Talk to us" target="_blank" rel="noopener nofollow" variant='outlineLight' />
+            <Button href={'#'} label="Talk to us" target="_blank" rel="noopener nofollow" variant='textLight' />
           </ButtonWrapper>
         </div>
         </SectionContent>
