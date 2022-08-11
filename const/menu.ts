@@ -2,12 +2,22 @@ import { siteConfig } from 'const/meta'
 const {url, social} = siteConfig
 
 export const mainMenu = [
-  { id: 0, title: 'Docs', url: url.docs, target: "_blank", rel: "noopener nofollow" },
-  { id: 1, title: 'Developers', url: '/#developers'},
+  // { id: 0, title: 'About', url: '/#about'
+  // items: [
+  //   { id: 0, title: 'How it works', url: '/careers' },
+  //   { id: 1, title: 'Careers', url: '/careers' },
+  //   { id: 2, title: 'How it works', url: '/careers' },
+  //   { id: 3, title: 'Careers', url: '/careers' },
+  // ]
+// },
+  { id: 0, title: 'Developers', url: '/#developers'},
+  { id: 1, title: 'Governance', url: social.forum.url, target: "_blank", rel: "noopener nofollow"},
+  // { id: 0, title: 'Docs', url: url.docs, target: "_blank", rel: "noopener nofollow" },
+  // { id: 1, title: 'Developers', url: '/#developers'},
   // { id: 1, title: 'About', url: '/#about' },
-  { id: 2, title: 'Community', url: social.discord.url, target: "_blank", rel: "noopener nofollow" },
-  { id: 3, title: 'Analytics', url: url.analytics, target: "_blank", rel: "noopener nofollow" },
-  { id: 4, title: 'Jobs', url: '/jobs' },
+  // { id: 2, title: 'Community', url: social.discord.url, target: "_blank", rel: "noopener nofollow" },
+  // { id: 3, title: 'Analytics', url: url.analytics, target: "_blank", rel: "noopener nofollow" },
+  { id: 2, title: 'Careers', url: '/careers' },
 ]
 
 export const footerMenu = [
@@ -17,7 +27,7 @@ export const footerMenu = [
       { title: 'About CowSwap', url: 'https://cowswap.exchange/#/about', target: "_blank" },
       { title: 'CowSwap FAQ', url: 'https://cowswap.exchange/#/faq', target: "_blank" },
       { title: 'Analytics', url: url.analytics, target: "_blank" },
-      { title: 'Jobs', url: '/jobs' },
+      { title: 'Careers', url: '/careers' },
     
       // { title: 'Sitemap', url: '/' },
     ]
