@@ -29,6 +29,8 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
     // padding-top: 10rem;
     ${Color.gradientMesh};
 
+    > 
+
     ${Media.mediumDown} {
       padding: 3.2rem 0;
       min-height: initial;
@@ -122,9 +124,17 @@ export const SectionContent = styled.div<{ flow?: string, hero?: boolean, breakM
   max-width: ${Defaults.pageMaxWidth};
   margin: ${({ hero }) => hero ? '0 auto' : '16rem auto 0'};
 
-  ${Media.desktopDown} {
+  ${Media.mobile} {
     flex-flow: row wrap;
   }
+
+  ${({ hero }) => hero && `
+    ${Media.mediumDown} {
+      margin: 16rem 2.4rem 0;
+    }
+  `}
+
+
 
   ${({ reverseOrderMobile }) => reverseOrderMobile && `
       ${Media.mobile} {
@@ -278,7 +288,7 @@ export const SubTitle = styled.p<{ color?: string, maxWidth?: number, align?: st
   }
 `
 
-export const SectionImage = styled.div<{ centerMobile?: boolean, margin?: string, height?: string, width?: string }>`
+export const SectionImage = styled.div<{ hero?: boolean, centerMobile?: boolean, margin?: string, height?: string, width?: string }>`
   width: ${({ width }) => width ? width : '100%'};
   height: ${({ height }) => height ? height : '100%'};
   margin: ${({ margin }) => margin ? margin : '0'};
@@ -289,8 +299,16 @@ export const SectionImage = styled.div<{ centerMobile?: boolean, margin?: string
   position: relative;
   z-index: 0;
 
+  ${({ hero }) => hero && `
+    margin: 0 0 0 9.6rem;
+
+    ${Media.mobile} {
+      margin: 4.2rem 0 9rem;;
+    }
+  `}
+
   ${Media.mediumDown} {
-    height: initial;
+    /* height: initial; */
 
     ${({ centerMobile }) => centerMobile && `
       margin-left: auto;
