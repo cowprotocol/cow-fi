@@ -16,6 +16,7 @@ export const Content = styled.main`
     height: auto;
     max-width: 100%;
     min-height: initial;
+    padding: 12rem 3.2rem;
   }
 
   p {

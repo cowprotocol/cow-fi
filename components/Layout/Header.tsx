@@ -13,7 +13,7 @@ const LogoLightImage = 'images/logo-light.svg'
 const LogoIconImage = 'images/logo-icon.svg'
 const LogoIconLightImage = 'images/logo-icon-light.svg'
 const MenuImage = 'images/icons/menu.svg'
-const MenuImageLight = 'images/icons/menu.svg'
+const MenuImageLight = 'images/icons/menu-light.svg'
 
 const Pixel = styled.div`
   position: absolute;
@@ -104,6 +104,16 @@ const Menu = styled.ol<{isHome?: boolean}>`
 
   // any buttons or links right after menu
   + a {
+    background: transparent;
+    border: 0.1rem solid ${({ isHome }) => isHome ? Color.darkBlue : Color.lightBlue};
+    color: ${({ isHome }) => isHome ? Color.darkBlue : Color.lightBlue};
+
+    .sticky & {
+      background: transparent;
+      border: 0.1rem solid ${Color.darkBlue};
+      color: ${Color.darkBlue};
+    }
+
     ${Media.mediumDown} {
       margin: 0 2.4rem 0 auto;
       min-height: 3.2rem;
@@ -198,6 +208,10 @@ const MenuToggle = styled.button<{isHome?: boolean}>`
     ${({ isHome }) => !isHome && `background: url(${MenuImageLight}) no-repeat center/contain`};
     width: 62%;
     height: 100%;
+
+    .sticky & {
+      background: url(${MenuImage}) no-repeat center/contain;
+    }
   }
 
   ${Media.mediumDown} {
@@ -215,7 +229,7 @@ const Logo = styled.div<{isHome?: boolean}>`
   .sticky & {
     width: 10.1rem;
     height: 3.2rem;
-    ${({ isHome }) => !isHome && `background: url(${LogoImage}) no-repeat center/contain`};
+    background: url(${LogoImage}) no-repeat center/contain;
   }
 
   ${Media.mediumDown} {
@@ -229,6 +243,7 @@ const Logo = styled.div<{isHome?: boolean}>`
     .sticky & {
       width: 3.6rem;
       height: 3.2rem;
+      background: url(${LogoIconImage}) no-repeat center/contain;
     }
   }
 `
