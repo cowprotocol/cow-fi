@@ -188,26 +188,6 @@ const GlobalStyles = createGlobalStyle`
 
   .container {
     margin: 0 auto;
-
-    /* ${Media.smallUp} {
-      max-width: 72rem;
-    }
-    
-    ${Media.mediumUp} {
-      max-width: 96rem;
-    }
-
-    ${Media.mediumOnly} {
-      max-width: 72rem;
-    }
-
-    ${Media.desktop} {
-      max-width: 114rem;
-    }
-
-    ${Media.desktopLarge} {
-      max-width: 132rem;
-    } */
   }
 `
 

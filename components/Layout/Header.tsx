@@ -8,6 +8,7 @@ import { InView } from 'react-intersection-observer'
 import useMediaQuery from 'lib/hooks/useMediaQuery';
 
 const LogoImage = 'images/logo.svg'
+const LogoIconImage = 'images/logo-icon.svg'
 const MenuImage = 'images/icons/menu.svg'
 
 const Pixel = styled.div`
@@ -37,8 +38,9 @@ const Wrapper = styled.header`
   left: 0;
   transition: background 0.2s ease-in-out, height 0.2s ease-in-out;
 
-  ${Media.mobile} {
-    padding: 0 3rem;
+  ${Media.mediumUp} {
+    padding: 0 1.6rem;
+    height: 6rem;
   }
 
   &.sticky {
@@ -156,28 +158,32 @@ const CloseIcon = styled.button`
   }
 `
 
+const SubMenu = styled.ol`
+  display: flex;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  list-style: none;
+`
+
 const MenuToggle = styled.button`
   display: none;
   background: transparent;
   flex-flow: row;
   align-items: center;
   justify-content: center;
-  border: 0.1rem solid ${transparentize(0.6, Color.text1)};
   border-radius: ${Defaults.borderRadius};
   text-decoration: none;
-  height: 5.6rem;
-  width: 5.6rem;
-
-  ${Media.mobile} {
-    height: 4.8rem;
-    width: 4.8rem;
-  }
+  border: none;
+  height: 4.2rem;
+  width: 4.2rem;
+  padding: 0;
 
   &::before {
     display: flex;
     content: "";
     background: url(${MenuImage}) no-repeat center/contain;
-    width: 65%;
+    width: 62%;
     height: 100%;
   }
 
@@ -198,9 +204,16 @@ const Logo = styled.div`
   }
 
   ${Media.mediumDown} {
-    width: 5.5rem;
-    background-size: 14rem 100%;
+    background: url(${LogoIconImage}) no-repeat center/contain;
+    width: 3.6rem;
+    height: 3.2rem;
+    background-size: contain;
     background-position: left;
+
+    .sticky & {
+      width: 3.6rem;
+      height: 3.2rem;
+    }
   }
 `
 
