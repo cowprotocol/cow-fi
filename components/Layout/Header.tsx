@@ -6,10 +6,14 @@ import Button from 'components/Button'
 import { Defaults, Color, Font, Media } from 'const/styles/variables'
 import { InView } from 'react-intersection-observer'
 import useMediaQuery from 'lib/hooks/useMediaQuery';
+import { useRouter } from 'next/router'
 
 const LogoImage = 'images/logo.svg'
+const LogoLightImage = 'images/logo-light.svg'
 const LogoIconImage = 'images/logo-icon.svg'
+const LogoIconLightImage = 'images/logo-icon-light.svg'
 const MenuImage = 'images/icons/menu.svg'
+const MenuImageLight = 'images/icons/menu.svg'
 
 const Pixel = styled.div`
   position: absolute;
@@ -59,16 +63,17 @@ const Content = styled.div`
   align-items: center;
 `
 
-const Menu = styled.ol`
+const Menu = styled.ol<{isHome?: boolean}>`
   display: flex;
   list-style: none;
   font-size: 1.9rem;
-  color: ${Color.text1};
+  color: ${({ isHome }) => isHome ? Color.text1 : Color.lightBlue};
   padding: 0;
   margin: 0;
 
   .sticky & {
     font-size: 1.6rem;
+    color: ${Color.text1};
   }
 
   ${Media.mediumDown} {
@@ -77,7 +82,7 @@ const Menu = styled.ol`
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: ${Color.black};
+    background: ${Color.darkBlue};
     justify-content: flex-start;
     align-items: flex-start;
     align-content: flex-start;
@@ -102,7 +107,7 @@ const Menu = styled.ol`
     ${Media.mediumDown} {
       margin: 0 2.4rem 0 auto;
       min-height: 3.2rem;
-      border-radius: ${({ borderRadius }) => borderRadius ? borderRadius : '1rem'};
+      border-radius: 1rem;
     }
 
     ${Media.mobile} {
@@ -135,6 +140,7 @@ const Menu = styled.ol`
 
     &:hover {
       color: ${Color.darkBlue};
+      color: ${({ isHome }) => isHome ? Color.darkBlue : Color.lightBlue};
     }
   }
 `
@@ -144,7 +150,7 @@ const CloseIcon = styled.button`
   position: fixed;
   right: 1.6rem;
   top: 1.6rem;
-  color: ${Color.darkBlue};
+  color: ${Color.lightBlue};
   background: transparent;
   border: 0;
 
@@ -172,7 +178,7 @@ const SubMenu = styled.ol`
   list-style: none;
 `
 
-const MenuToggle = styled.button`
+const MenuToggle = styled.button<{isHome?: boolean}>`
   display: none;
   background: transparent;
   flex-flow: row;
@@ -189,6 +195,7 @@ const MenuToggle = styled.button`
     display: flex;
     content: "";
     background: url(${MenuImage}) no-repeat center/contain;
+    ${({ isHome }) => !isHome && `background: url(${MenuImageLight}) no-repeat center/contain`};
     width: 62%;
     height: 100%;
   }
@@ -198,19 +205,22 @@ const MenuToggle = styled.button`
   }
 `
 
-const Logo = styled.div`
+const Logo = styled.div<{isHome?: boolean}>`
   width: 12.2rem;
   height: 3.8rem;
   background: url(${LogoImage}) no-repeat center/contain;
+  ${({ isHome }) => !isHome && `background: url(${LogoLightImage}) no-repeat center/contain`};
   cursor: pointer;
 
   .sticky & {
     width: 10.1rem;
     height: 3.2rem;
+    ${({ isHome }) => !isHome && `background: url(${LogoImage}) no-repeat center/contain`};
   }
 
   ${Media.mediumDown} {
     background: url(${LogoIconImage}) no-repeat center/contain;
+    ${({ isHome }) => !isHome && `background: url(${LogoIconLightImage}) no-repeat center/contain`};
     width: 3.6rem;
     height: 3.2rem;
     background-size: contain;
@@ -237,6 +247,9 @@ export default function Header({ siteConfig, menu }) {
     }
   }
 
+  const router = useRouter()
+  const isHome = router.pathname === '/'
+
   return (
     <InView threshold={1} delay={500}>
       {({ inView, ref }) => (
@@ -247,10 +260,10 @@ export default function Header({ siteConfig, menu }) {
             <Content>
 
             <Link passHref href='/'>
-              <Logo />
+              <Logo isHome={isHome} />
             </Link>
 
-            <Menu className={menuVisible ? 'visible' : ""}>
+            <Menu className={menuVisible ? 'visible' : ""} isHome={isHome}>
               {menu.map(({ id, title, url, target, rel }) => (
                 <li key={id}>
                   <a onClick={handleClick} href={url} target={target} rel={rel}>{title}</a>
@@ -260,7 +273,7 @@ export default function Header({ siteConfig, menu }) {
             </Menu>
 
             <Button variant={!inView ? 'small' : 'outline'} minHeight={4.8} fontSize={1.6} href={swapURL} label={'Trade on CoW Swap'} target="_blank" rel="noopener nofollow" />
-            <MenuToggle onClick={handleClick} />
+            <MenuToggle isHome={isHome} onClick={handleClick} />
 
             </Content>
 

@@ -207,12 +207,12 @@ export const ExternalLink = styled.a`
 `
 
 export const DropDown = styled.div`
-  border: 0.1rem solid  ${Color.darkBlue};
+  border: 0.1rem solid ${transparentize(0.9, Color.lightBlue)};
   border-radius: 0.6rem;
   width: 100%;
   padding: 0;
-  background: transparent;
-  color: ${Color.darkBlue};
+  background: ${Color.darkBlue4};
+  color: ${Color.lightBlue};
   font-size: 1.8rem;
   margin: 0 0 2.4rem;
   display: flex;
