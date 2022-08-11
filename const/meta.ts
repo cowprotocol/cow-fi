@@ -6,7 +6,7 @@ export const siteConfig = {
   descriptionShort: 'The smartest way to trade cryptocurrencies',
   url: {
     root: "https://cow.fi",
-    swap: "https://swap.cow.fi",
+    swap: "https://cowswap.exchange",
     docs: "https://docs.cow.fi",
     api: API_BASE_URL + "/mainnet",
     apiDocs: API_BASE_URL + "/docs",
