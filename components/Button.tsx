@@ -33,12 +33,17 @@ const Wrapper = styled.a<Omit<ButtonProps, "href" | "label" | "target" | "rel">>
   font-weight: ${Font.weightMedium};
   text-decoration: none;
 
+  ${Media.mobile} {
+    padding: 0 1.6rem;
+    min-height: 4.8rem;
+  }
+
+
   ${({ variant }) => variant === 'outline' && `
     background: transparent;
     border: 0.1rem solid ${Color.darkBlue};
     color: ${Color.darkBlue};
   `}
-
 
   ${({ variant }) => variant === 'small' && `
     min-height: 3.6rem;
@@ -63,11 +68,6 @@ ${({ variant }) => variant === 'textLight' && `
   ${({ variant }) => (variant === 'outlineLight') && `
     border: 0.1rem solid ${Color.lightBlue};
   `}
-
-  ${Media.mobile} {
-    padding: 0 1.6rem;
-    min-height: 4.8rem;
-  }
 
   &:hover {
     background: ${({ variant }) => variant === 'outline' ? Color.darkBlue : Color.text1};

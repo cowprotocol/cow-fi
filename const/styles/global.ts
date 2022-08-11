@@ -5,7 +5,7 @@ import { transparentize } from "polished";
 const GlobalStyles = createGlobalStyle`
 
 @font-face {
-      font-family: '.';
+      font-family: 'Averta';
       src: url('fonts/averta-regular-webfont.woff2') format('woff2');
       font-weight: normal;
       font-style: normal;
@@ -13,7 +13,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   @font-face {
-      font-family: '.';
+      font-family: 'Averta';
       src: url('fonts/averta-semibold-webfont.woff2') format('woff2');
       font-weight: 500;
       font-style: normal;
@@ -21,7 +21,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   @font-face {
-      font-family: '.';
+      font-family: 'Averta';
       src: url('fonts/averta-bold-webfont.woff2') format('woff2');
       font-weight: bold;
       font-style: normal;
@@ -29,7 +29,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   @font-face {
-      font-family: '.';
+      font-family: 'Averta';
       src: url('fonts/averta-extrabold-webfont.woff2') format('woff2');
       font-weight: 900;
       font-style: normal;
@@ -188,26 +188,6 @@ const GlobalStyles = createGlobalStyle`
 
   .container {
     margin: 0 auto;
-
-    /* ${Media.smallUp} {
-      max-width: 72rem;
-    }
-    
-    ${Media.mediumUp} {
-      max-width: 96rem;
-    }
-
-    ${Media.mediumOnly} {
-      max-width: 72rem;
-    }
-
-    ${Media.desktop} {
-      max-width: 114rem;
-    }
-
-    ${Media.desktopLarge} {
-      max-width: 132rem;
-    } */
   }
 `
 
@@ -227,12 +207,12 @@ export const ExternalLink = styled.a`
 `
 
 export const DropDown = styled.div`
-  border: 0.1rem solid  ${Color.darkBlue};
+  border: 0.1rem solid ${transparentize(0.9, Color.lightBlue)};
   border-radius: 0.6rem;
   width: 100%;
   padding: 0;
-  background: transparent;
-  color: ${Color.darkBlue};
+  background: ${Color.darkBlue4};
+  color: ${Color.lightBlue};
   font-size: 1.8rem;
   margin: 0 0 2.4rem;
   display: flex;

@@ -45,9 +45,9 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
 
   const scrollToElRef = useRef(null);
 
-  const handleScrollDown = () => {
-    scrollToElRef.current.scrollIntoView({ behavior: 'smooth' })
-  }
+  // const handleScrollDown = () => {
+  //   scrollToElRef.current.scrollIntoView({ behavior: 'smooth' })
+  // }
 
   return (
     <Layout>
@@ -60,15 +60,15 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
       <Section className='container' hero>
         <SectionContent>
         <div>
-          <h1>Stop searching, <br/><b>for better prices</b></h1>
-          <SubTitle align={'left'} color={Color.text1} lineHeight={1.4}>CoW Protocol finds the lowest price for your trade across all exchanges and aggregators, such as Uniswap and 1inch – and protects you from MEV, unlike the others</SubTitle>
+          <h1>Stop searching <br/><b>for better prices</b></h1>
+          <SubTitle align={'left'} color={Color.text1} lineHeight={1.4}>CoW Protocol finds the lowest price for your trade across all exchanges and aggregators, such as Uniswap and 1inch – and protects you from MEV, unlike the others.</SubTitle>
 
           <ButtonWrapper>
-            <Button paddingLR={4.2} href={'#'} target="_blank" label="Start trading" />
-            <Button paddingLR={4.2} variant='text' href={'#'} label='Start building' target="_blank" rel="noopener nofollow" />
+            <Button paddingLR={4.2} href={url.swap} target="_blank" rel="noopener nofollow" label="Start trading" />
+            <Button paddingLR={4.2} variant='text' href={'/#developers'} label='Start building' />
           </ButtonWrapper>
         </div>
-        <div>- IMAGE HERE -</div> 
+        <SectionImage hero><img src="images/hero-image.svg" alt="CoW Protocol" /></SectionImage> 
         </SectionContent>
       </Section>
 
@@ -248,8 +248,8 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
           <SubTitle>Join a growing list of partners that have built a better experience for their users by integrating CoW Protocol.</SubTitle>
 
           <ButtonWrapper center>
-            <Button href={url.apiDocs} label='Explore docs' target="_blank" rel="noopener nofollow" variant="light" />
-            <Button href={'#'} label="Talk to us" target="_blank" rel="noopener nofollow" variant='textLight' />
+            <Button href={url.docs} label='Explore docs' target="_blank" rel="noopener nofollow" variant="light" />
+            <Button href={'https://calendar.app.google/sPhzubMnVrkd6CmY6'} label="Talk to us" target="_blank" rel="noopener nofollow" variant='textLight' />
           </ButtonWrapper>
         </div>
         </SectionContent>

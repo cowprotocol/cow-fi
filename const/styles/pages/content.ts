@@ -4,7 +4,7 @@ import { Color, Font, Media } from 'const/styles/variables'
 
 export const Content = styled.main`
   margin: 0 auto;
-  padding: 8rem 3.2rem;
+  padding: 20rem 3.2rem;
   box-sizing: border-box;
   width: 100%;
   max-width: 90rem;
@@ -16,12 +16,13 @@ export const Content = styled.main`
     height: auto;
     max-width: 100%;
     min-height: initial;
+    padding: 12rem 3.2rem;
   }
 
   p {
     margin: 0 0 1.6rem;
     font-size: ${Font.sizeDefault};
-    color: ${Color.text1};
+    color: ${Color.text2};
     line-height: 1.4;
   }
 `
@@ -76,8 +77,8 @@ export const TitleSmall = styled.h3`
     align-items: flex-start;
     justify-content: center;
     font-size: 1.8rem;
-    background: ${transparentize(0.9, Color.white)};
-    border: 0.1rem solid ${transparentize(0.9, Color.white)};
+    background: ${Color.darkBlue4};
+    border: 0.1rem solid ${transparentize(0.9, Color.lightBlue)};
     color: ${Color.white};
     transition: color 0.2s ease-in-out, background 0.2s ease-in-out, border 0.2s ease-in-out;
     font-weight: ${Font.weightLight};
@@ -99,12 +100,11 @@ export const TitleSmall = styled.h3`
       }
 
       &:hover {
-        background: ${transparentize(0.9, Color.darkBlue)};
+        background: ${Color.darkBlue2};
         border: 0.1rem solid ${Color.darkBlue};
-        color: ${Color.darkBlue};
 
         > svg { transform: translateX(0.6rem) }
-        > svg > path { fill: ${Color.darkBlue}} }
+        /* > svg > path { fill: ${Color.darkBlue}} } */
       }
 
       > b {
