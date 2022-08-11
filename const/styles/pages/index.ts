@@ -14,9 +14,12 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
   align-items: ${({ hero }) => hero ? 'center' : 'normal'};
   padding: 0;
 
+  ${Media.desktopDown} {
+    padding: 0 3.2rem;
+  }
+
   ${Media.mobile} {
     height: auto;
-    padding: 0 3.2rem;
     max-width: 100%;
     min-height: initial;
     flex-flow: column wrap;
