@@ -21,7 +21,7 @@ const Wrapper = styled.div`
 `
 
 const Content = styled.main`
-  margin: 0;
+  margin: -10.4rem auto 0;
   padding: 0;
   box-sizing: border-box;
   width: 100%;

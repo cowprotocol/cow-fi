@@ -6,13 +6,13 @@ const Wrapper = styled.ol<Pick<SocialListProps, "iconSize" | "gap" | "innerPaddi
   display: flex;
   justify-content: ${({ alignItems }) => (alignItems === 'left') ? 'flex-start' : (alignItems === 'right') ? 'flex-end' : 'center'};
   align-items: center;
-  max-width: 110rem;
+  max-width: 120rem;
   width: 100%;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   gap: ${({ gap }) => gap ? `${gap}rem` : '7rem'};
   list-style-type: none;
-  color: ${Color.grey};
+  color: ${Color.text2};
   font-weight: ${Font.weightNormal};
 
   ${Media.mobile} {
@@ -26,7 +26,7 @@ const Wrapper = styled.ol<Pick<SocialListProps, "iconSize" | "gap" | "innerPaddi
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-    font-size: ${Font.sizeDefault};
+    font-size: 1.8rem;
     line-height: 1;
     text-decoration: none;
     color: inherit;
@@ -41,21 +41,17 @@ const Wrapper = styled.ol<Pick<SocialListProps, "iconSize" | "gap" | "innerPaddi
     }
 
     &:hover {
-      background: ${transparentize(0.9, Color.orange)};
-      border: 0.1rem solid ${Color.orange};
-      color: ${Color.orange};
+      background: ${Color.darkBlue2};
+      border: 0.1rem solid ${Color.lightBlue};
+      color: ${Color.lightBlue};
     }
   }
 
   > li > a > img {
-    width: ${({ iconSize }) => iconSize ? `${iconSize}rem` : '5.6rem'};
-    height: ${({ iconSize }) => iconSize ? `${iconSize}rem` : '5.6rem'};
+    width: ${({ iconSize }) => iconSize ? `${iconSize}rem` : '5.8rem'};
+    height: ${({ iconSize }) => iconSize ? `${iconSize}rem` : '5.8rem'};
     object-fit: contain;
-
-    ${Media.mobile} {
-      width: 4.6rem;
-      height: 4.6rem;
-    }
+    margin: 0 0 1.2rem;
   }
 
   > li > a > b {

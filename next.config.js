@@ -8,5 +8,14 @@ module.exports = withTM({
   experimental: {
     // Enables the styled-components SWC transform
     styledComponents: true
+  },
+  async redirects() {
+    return [
+      {
+        source: '/jobs',
+        destination: '/careers',
+        permanent: true,
+      },
+    ]
   }
 });
