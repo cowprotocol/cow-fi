@@ -1,9 +1,9 @@
 const API_BASE_URL = "https://api.cow.fi"
 
 export const siteConfig = {
-  title: 'CoW Protocol',
-  description: 'CoW Protocol lets you swap assets MEV protected at the best exchange rate by leveraging its batch settlement layer built on top of AMMs and DEX Aggregators.',
-  descriptionShort: 'Ethereum\'s MetaDEX Aggregator',
+  title: 'CoW Protocol | The smartest way to trade cryptocurrencies',
+  description: 'CoW Protocol finds the lowest prices from all decentralized exchanges and DEX aggregators & saves you more with p2p trading and protection from MEV ',
+  descriptionShort: 'The smartest way to trade cryptocurrencies',
   url: {
     root: "https://cow.fi",
     swap: "https://cowswap.exchange",

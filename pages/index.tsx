@@ -248,7 +248,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
           <SubTitle>Join a growing list of partners that have built a better experience for their users by integrating CoW Protocol.</SubTitle>
 
           <ButtonWrapper center>
-            <Button href={url.apiDocs} label='Explore docs' target="_blank" rel="noopener nofollow" variant="light" />
+            <Button href={url.docs} label='Explore docs' target="_blank" rel="noopener nofollow" variant="light" />
             <Button href={'#'} label="Talk to us" target="_blank" rel="noopener nofollow" variant='textLight' />
           </ButtonWrapper>
         </div>

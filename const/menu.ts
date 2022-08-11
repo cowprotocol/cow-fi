@@ -2,7 +2,12 @@ import { siteConfig } from 'const/meta'
 const {url, social} = siteConfig
 
 export const mainMenu = [
-  { id: 0, title: 'About', url: '/#about'},
+  { id: 0, title: 'About', items: [
+    { id: 0, title: 'How it works', url: '/careers' },
+    { id: 1, title: 'Careers', url: '/careers' },
+    { id: 2, title: 'How it works', url: '/careers' },
+    { id: 3, title: 'Careers', url: '/careers' },
+  ]},
   { id: 1, title: 'Developers', url: '/#developers'},
   { id: 2, title: 'Governance', url: '/#governance'},
   // { id: 0, title: 'Docs', url: url.docs, target: "_blank", rel: "noopener nofollow" },
