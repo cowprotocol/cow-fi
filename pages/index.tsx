@@ -249,7 +249,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
 
           <ButtonWrapper center>
             <Button href={url.docs} label='Explore docs' target="_blank" rel="noopener nofollow" variant="light" />
-            <Button href={social.discord.url} label="Talk to us" target="_blank" rel="noopener nofollow" variant='textLight' />
+            <Button href={'https://calendar.app.google/sPhzubMnVrkd6CmY6'} label="Talk to us" target="_blank" rel="noopener nofollow" variant='textLight' />
           </ButtonWrapper>
         </div>
         </SectionContent>
