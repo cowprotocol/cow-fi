@@ -2,7 +2,7 @@
   "version": "0.4.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 8001",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "i18n:extract": "NODE_ENV=test npx lingui extract",
