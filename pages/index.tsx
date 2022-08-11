@@ -61,7 +61,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         <SectionContent>
         <div>
           <h1>Stop searching <br/><b>for better prices</b></h1>
-          <SubTitle align={'left'} color={Color.text1} lineHeight={1.4}>CoW Protocol finds the lowest price for your trade across all exchanges and aggregators, such as Uniswap and 1inch – and protects you from MEV, unlike the others</SubTitle>
+          <SubTitle align={'left'} color={Color.text1} lineHeight={1.4}>CoW Protocol finds the lowest price for your trade across all exchanges and aggregators, such as Uniswap and 1inch – and protects you from MEV, unlike the others.</SubTitle>
 
           <ButtonWrapper>
             <Button paddingLR={4.2} href={url.swap} target="_blank" rel="noopener nofollow" label="Start trading" />

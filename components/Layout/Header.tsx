@@ -83,6 +83,7 @@ const Menu = styled.ol<{isHome?: boolean}>`
     width: 100vw;
     height: 100vh;
     background: ${Color.darkBlue};
+    color: ${Color.text2};
     justify-content: flex-start;
     align-items: flex-start;
     align-content: flex-start;
