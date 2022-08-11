@@ -45,9 +45,9 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
 
   const scrollToElRef = useRef(null);
 
-  const handleScrollDown = () => {
-    scrollToElRef.current.scrollIntoView({ behavior: 'smooth' })
-  }
+  // const handleScrollDown = () => {
+  //   scrollToElRef.current.scrollIntoView({ behavior: 'smooth' })
+  // }
 
   return (
     <Layout>
@@ -64,8 +64,8 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
           <SubTitle align={'left'} color={Color.text1} lineHeight={1.4}>CoW Protocol finds the lowest price for your trade across all exchanges and aggregators, such as Uniswap and 1inch – and protects you from MEV, unlike the others</SubTitle>
 
           <ButtonWrapper>
-            <Button paddingLR={4.2} href={'#'} target="_blank" label="Start trading" />
-            <Button paddingLR={4.2} variant='text' href={'#'} label='Start building' target="_blank" rel="noopener nofollow" />
+            <Button paddingLR={4.2} href={url.swap} target="_blank" rel="noopener nofollow" label="Start trading" />
+            <Button paddingLR={4.2} variant='text' href={'/#developers'} label='Start building' />
           </ButtonWrapper>
         </div>
         <div>- IMAGE HERE -</div> 

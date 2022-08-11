@@ -58,7 +58,7 @@ const LogoSection = styled.div`
 const MenuWrapper = styled.div`
   display: flex;
   flex-flow: column wrap;
-  color: ${Color.text1};
+  color: ${Color.text2};
   font-size: ${Font.sizeDefault};
 
   ${Media.mobile} {
@@ -68,7 +68,7 @@ const MenuWrapper = styled.div`
   > b {
     display: block;
     font-size: 1.6rem;
-    color: ${Color.white};
+    color: ${Color.lightBlue};
     margin: 0 0 3rem;
 
     ${Media.mobile} {
@@ -127,7 +127,7 @@ const CopyrightLinks = styled.ol`
   flex-flow: column wrap;
   align-items: flex-end;
   font-size: 1.4rem;
-  color: ${Color.text1};
+  color: ${Color.text2};
   line-height: 1.5;
   padding: 0;
 
@@ -167,7 +167,7 @@ export default function Footer({ siteConfig, menu }) {
         </Link>
         <SocialList social={social} labels={false} iconSize={2.8} gap={0.7} innerPadding={1} alignItems={'right'} />
         <CopyrightLinks>
-          <li>©{siteConfig.title} (formerly Gnosis Protocol v2) - {currentYear}</li>
+          <li>©CoW Protocol - {currentYear}</li>
         </CopyrightLinks>
       </LogoSection>
 

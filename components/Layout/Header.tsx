@@ -38,7 +38,7 @@ const Wrapper = styled.header`
   left: 0;
   transition: background 0.2s ease-in-out, height 0.2s ease-in-out;
 
-  ${Media.mediumUp} {
+  ${Media.mediumDown} {
     padding: 0 1.6rem;
     height: 6rem;
   }
@@ -50,7 +50,7 @@ const Wrapper = styled.header`
   }
 
   > a {
-    ${Media.mediumOnly} {
+    ${Media.mediumDown} {
       margin: 0 2.4rem 0 auto;
     }
   }
@@ -193,8 +193,8 @@ const MenuToggle = styled.button`
 `
 
 const Logo = styled.div`
-  width: 13.2rem;
-  height: 4.2rem;
+  width: 12.2rem;
+  height: 3.8rem;
   background: url(${LogoImage}) no-repeat center/contain;
   cursor: pointer;
 
