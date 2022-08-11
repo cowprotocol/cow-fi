@@ -16,6 +16,7 @@ const Wrapper = styled.footer`
 
   ${Media.mobile} {
     flex-flow: column wrap;
+    padding: 5.6rem 2.4rem;
   }
 
   &::before {
@@ -51,7 +52,7 @@ const LogoSection = styled.div`
   ${Media.mobile} {
     flex: 1 1 100%;
     align-items: center;
-    margin: 5.6rem 0 0;
+    margin: 0;
   }
 `
 
@@ -73,6 +74,7 @@ const MenuWrapper = styled.div`
 
     ${Media.mobile} {
       text-align: center;
+      font-size: 1.9rem;
     }
   }
 `
@@ -104,7 +106,8 @@ const Menu = styled.ol`
     line-height: 1.2;
 
     ${Media.mediumDown} {
-      font-size: 1.2rem;
+      margin: 0 0 2.4rem;
+      display: block;
     }
 
     &:hover {

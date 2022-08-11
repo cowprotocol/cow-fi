@@ -48,12 +48,6 @@ const Wrapper = styled.header`
     backdrop-filter: blur(5px);
     height: 6rem;
   }
-
-  > a {
-    ${Media.mediumDown} {
-      margin: 0 2.4rem 0 auto;
-    }
-  }
 `
 
 const Content = styled.div`
@@ -101,7 +95,19 @@ const Menu = styled.ol`
         font-size: 2rem;
       }
     }
+  }
 
+  // any buttons or links right after menu
+  + a {
+    ${Media.mediumDown} {
+      margin: 0 2.4rem 0 auto;
+      min-height: 3.2rem;
+      border-radius: ${({ borderRadius }) => borderRadius ? borderRadius : '1rem'};
+    }
+
+    ${Media.mobile} {
+      margin: 0 auto;
+    }
   }
 
   > li:not(:last-of-type) {

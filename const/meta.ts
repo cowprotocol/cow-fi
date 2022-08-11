@@ -19,7 +19,7 @@ export const siteConfig = {
   social: {
     twitter: { label: 'Twitter', account: '@MEVprotection', url: 'https://twitter.com/mevprotection' },
     discord: { label: 'Discord', url: 'https://discord.com/invite/cowprotocol' },
-    github: { label: 'GitHub', url: 'https://github.com/cowprotocol/contracts' },
+    github: { label: 'GitHub', url: 'https://github.com/cowprotocol/' },
     forum: { label: 'Forum', url: 'https://forum.cow.fi/' },
   }
 }
