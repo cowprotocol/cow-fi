@@ -5,7 +5,7 @@ import { transparentize } from "polished";
 const GlobalStyles = createGlobalStyle`
 
 @font-face {
-      font-family: '.';
+      font-family: 'Averta';
       src: url('fonts/averta-regular-webfont.woff2') format('woff2');
       font-weight: normal;
       font-style: normal;
@@ -13,7 +13,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   @font-face {
-      font-family: '.';
+      font-family: 'Averta';
       src: url('fonts/averta-semibold-webfont.woff2') format('woff2');
       font-weight: 500;
       font-style: normal;
@@ -21,7 +21,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   @font-face {
-      font-family: '.';
+      font-family: 'Averta';
       src: url('fonts/averta-bold-webfont.woff2') format('woff2');
       font-weight: bold;
       font-style: normal;
@@ -29,7 +29,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   @font-face {
-      font-family: '.';
+      font-family: 'Averta';
       src: url('fonts/averta-extrabold-webfont.woff2') format('woff2');
       font-weight: 900;
       font-style: normal;
@@ -60,7 +60,7 @@ const GlobalStyles = createGlobalStyle`
     input,
     textarea,
     button {
-      font-family: 'Averta', sans-serif;
+      font-family: 'Averta', Arial, sans-serif;
       font-display: fallback;
   }
 
@@ -201,13 +201,9 @@ const GlobalStyles = createGlobalStyle`
       max-width: 72rem;
     }
 
-    ${Media.desktop} {
+    ${Media.LargeUp} {
       max-width: 114rem;
     }
-
-    ${Media.desktopLarge} {
-      max-width: 132rem;
-    } */
   }
 `
 

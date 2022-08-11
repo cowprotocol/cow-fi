@@ -45,9 +45,9 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
 
   const scrollToElRef = useRef(null);
 
-  const handleScrollDown = () => {
-    scrollToElRef.current.scrollIntoView({ behavior: 'smooth' })
-  }
+  // const handleScrollDown = () => {
+  //   scrollToElRef.current.scrollIntoView({ behavior: 'smooth' })
+  // }
 
   return (
     <Layout>

@@ -109,7 +109,7 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
-    ${Media.desktopDown} {
+    ${Media.LargeDown} {
       font-size: 3.8rem;
     }
   }
@@ -122,7 +122,7 @@ export const SectionContent = styled.div<{ flow?: string, hero?: boolean, breakM
   max-width: ${Defaults.pageMaxWidth};
   margin: ${({ hero }) => hero ? '0 auto' : '16rem auto 0'};
 
-  ${Media.desktopDown} {
+  ${Media.LargeDown} {
     flex-flow: row wrap;
   }
 

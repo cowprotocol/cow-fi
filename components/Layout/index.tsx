@@ -6,6 +6,7 @@ import { mainMenu, footerMenu } from '../../const/menu'
 import Header from 'components/Layout/Header'
 import Footer from 'components/Layout/Footer'
 
+
 export type LayoutProps = PropsWithChildren<{
   siteConfigData?: any // needs fix
   metrics?: any // needs fix
@@ -30,6 +31,7 @@ const Content = styled.main`
 `
 
 export default function Layout({ children }: LayoutProps) {
+
   return (
     <>
       <Wrapper>

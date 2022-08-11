@@ -51,8 +51,8 @@ export const Media = {
   smallScreenUp: '737px',
   mediumScreenSmall: '992px',
   mediumEnd: '1024px',
-  desktopScreen: '1200px',
-  desktopScreenLarge: '1400px',
+  LargeScreen: '1025px',
+  LargeScreenLarge: '1400px',
   get tinyDown(): string {
     return `@media only screen and (max-width : ${this.tinyScreen})`
   },
@@ -74,21 +74,21 @@ export const Media = {
   get mediumOnly(): string {
     return `@media only screen and (min-width : ${this.smallScreenUp}) and (max-width : ${this.mediumEnd})`
   },
-  get desktopOnly(): string {
-    return `@media only screen and (min-width : ${this.mediumEnd}) and (max-width : ${this.desktopScreen})`
+  // get LargeOnly(): string {
+  //   return `@media only screen and (min-width : ${this.mediumEnd}) and (max-width : ${this.LargeScreen})`
+  // },
+  get LargeDown(): string {
+    return `@media only screen and (max-width : ${this.LargeScreen})`
   },
-  get desktopDown(): string {
-    return `@media only screen and (max-width : ${this.desktopScreen})`
+  get LargeUp(): string {
+    return `@media only screen and (min-width : ${this.LargeScreen})`
   },
-  get desktop(): string {
-    return `@media only screen and (min-width : ${this.desktopScreen})`
-  },
-  get desktopLarge(): string {
-    return `@media only screen and (min-width: ${this.desktopScreenLarge})`
-  },
-  get desktopLargeDown(): string {
-    return `@media only screen and (max-width: ${this.desktopScreenLarge})`
-  },
+  // get LargeLarge(): string {
+  //   return `@media only screen and (min-width: ${this.LargeScreenLarge})`
+  // },
+  // get LargeLargeDown(): string {
+  //   return `@media only screen and (max-width: ${this.desktopScreenLarge})`
+  // },
   get tabletPortrait(): string {
     return `@media (min-device-width: ${this.smallScreenUp}) and (max-device-width: ${this.mediumEnd}) and (orientation: portrait)`
   },

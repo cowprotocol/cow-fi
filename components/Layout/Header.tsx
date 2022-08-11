@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, 
+  // useRef
+ } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link'
 import { transparentize } from 'polished'
@@ -6,8 +8,10 @@ import Button from 'components/Button'
 import { Defaults, Color, Font, Media } from 'const/styles/variables'
 import { InView } from 'react-intersection-observer'
 import useMediaQuery from 'lib/hooks/useMediaQuery';
+// import { useOnClickOutside } from 'hooks/useOnClickOutside';
 
 const LogoImage = 'images/logo.svg'
+const LogoIconImage = 'images/logo-icon.svg'
 const MenuImage = 'images/icons/menu.svg'
 
 const Pixel = styled.div`
@@ -37,12 +41,13 @@ const Wrapper = styled.header`
   left: 0;
   transition: background 0.2s ease-in-out, height 0.2s ease-in-out;
 
-  ${Media.mobile} {
-    padding: 0 3rem;
+  ${Media.mediumUp} {
+    padding: 0 1.6rem;
+    height: 6rem;
   }
 
   &.sticky {
-    background: ${transparentize(0.1, Color.lightBlue)};);
+    background: ${transparentize(0.1, Color.lightBlue)};
     backdrop-filter: blur(5px);
     height: 6rem;
   }
@@ -129,6 +134,22 @@ const Menu = styled.ol`
       color: ${Color.darkBlue};
     }
   }
+
+  // Any button/link right after the menu
+  /* + a {
+    ${Media.mobile} {
+      min-height: 3.2rem;
+      margin: 0 0 0 auto;
+    }
+  } */
+`
+
+const SubMenu = styled.ol`
+  display: flex;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  list-style: none;
 `
 
 const CloseIcon = styled.button`
@@ -157,32 +178,24 @@ const CloseIcon = styled.button`
 `
 
 const MenuToggle = styled.button`
-  display: none;
+  display: flex;
   background: transparent;
   flex-flow: row;
   align-items: center;
-  justify-content: center;
-  border: 0.1rem solid ${transparentize(0.6, Color.text1)};
+  justify-content: flex-end;
   border-radius: ${Defaults.borderRadius};
   text-decoration: none;
-  height: 5.6rem;
-  width: 5.6rem;
-
-  ${Media.mobile} {
-    height: 4.8rem;
-    width: 4.8rem;
-  }
+  border: none;
+  height: 4.2rem;
+  width: 4.2rem;
+  padding: 0;
 
   &::before {
     display: flex;
     content: "";
     background: url(${MenuImage}) no-repeat center/contain;
-    width: 65%;
+    width: 62%;
     height: 100%;
-  }
-
-  ${Media.mediumDown} {
-    display: flex;
   }
 `
 
@@ -198,25 +211,38 @@ const Logo = styled.div`
   }
 
   ${Media.mediumDown} {
-    width: 5.5rem;
-    background-size: 14rem 100%;
+    background: url(${LogoIconImage}) no-repeat center/contain;
+    width: 3.6rem;
+    height: 3.2rem;
+    background-size: contain;
     background-position: left;
+
+    .sticky & {
+      width: 3.6rem;
+      height: 3.2rem;
+    }
   }
 `
 
 export default function Header({ siteConfig, menu }) {
   const swapURL = siteConfig.url.swap
-  const isTouch = useMediaQuery(`(max-width: ${Media.mediumEnd})`);
-  const [menuVisible, setIsMenuVisible] = useState(false)
+  const isUpToSmall = useMediaQuery(`(max-width: ${Media.smallScreen})`);
+  const isUpToMedium = useMediaQuery(`(max-width: ${Media.mediumEnd})`);
+  // const isLargeAndUp = useMediaQuery(`(max-width: ${Media.LargeUp})`);
+  const [isMobileMenuOpen, setisMobileMenuOpen] = useState(false)
   const toggleBodyScroll = () => {
-    !menuVisible ? document.body.classList.add('noScroll') : document.body.classList.remove('noScroll')
+    !isMobileMenuOpen ? document.body.classList.add('noScroll') : document.body.classList.remove('noScroll')
   }
-  const handleClick = () => {
-    if (isTouch) {
-      setIsMenuVisible(!menuVisible)
+  const handleMobileMenuOnClick = () => {
+    if (isUpToMedium) {
+      setisMobileMenuOpen(!isMobileMenuOpen)
       toggleBodyScroll()
     }
   }
+
+  // const node = useRef<HTMLOListElement>()
+  // const [showMenu, setShowMenu] = useState(false)
+  // useOnClickOutside(node, () => isLargeAndUp && setShowMenu(false)) // only trigger on large screens
 
   return (
     <InView threshold={1} delay={500}>
@@ -231,17 +257,29 @@ export default function Header({ siteConfig, menu }) {
               <Logo />
             </Link>
 
-            <Menu className={menuVisible ? 'visible' : ""}>
-              {menu.map(({ id, title, url, target, rel }) => (
+            {/* <Menu className={isMobileMenuOpen ? 'visible' : ""}>
+              {menu.map(({ id, title, url, target, rel, items }) => (
                 <li key={id}>
-                  <a onClick={handleClick} href={url} target={target} rel={rel}>{title}</a>
+                  {url && <a onClick={handleMobileMenuOnClick} href={url} target={target} rel={rel}>{title}</a>}
+                  {!url && items.length > 0 && <>
+                  {title}
+
+                  <SubMenu ref={node as any}>
+                  {menu.map(({ id, title, url, target, rel, }) => (
+                    <li key={id}>
+                      <a onClick={handleMobileMenuOnClick} href={url} target={target} rel={rel}>{title}</a>
+                    </li>
+                  ))}
+                  </SubMenu>
+                  
+                  </>}
                 </li>
               ))}
-              <CloseIcon onClick={handleClick} />
-            </Menu>
+              <CloseIcon onClick={handleMobileMenuOnClick} />
+            </Menu> */}
 
-            <Button variant={!inView ? 'small' : 'outline'} minHeight={4.8} fontSize={1.6} href={swapURL} label={'Trade on CoW Swap'} target="_blank" rel="noopener nofollow" />
-            <MenuToggle onClick={handleClick} />
+            {!isUpToSmall && <Button variant={!inView ? 'small' : 'outline'} minHeight={4.8} fontSize={1.6} href={swapURL} label={'Trade on CoW Swap'} target="_blank" rel="noopener nofollow" />}
+            {isUpToMedium && <MenuToggle onClick={handleMobileMenuOnClick} />}
 
             </Content>
 
