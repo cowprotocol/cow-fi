@@ -17,7 +17,7 @@ export const siteConfig = {
     api: "https://boards-api.greenhouse.io/v1/boards/cowswap/jobs?content=true"
   },
   social: {
-    twitter: { label: 'Twitter', account: '@MEVprotection', url: 'https://twitter.com/mevprotection' },
+    twitter: { label: 'Twitter', account: '@CoWSwap', url: 'https://twitter.com/CoWSwap' },
     discord: { label: 'Discord', url: 'https://discord.com/invite/cowprotocol' },
     github: { label: 'GitHub', url: 'https://github.com/cowprotocol/' },
     forum: { label: 'Forum', url: 'https://forum.cow.fi/' },
