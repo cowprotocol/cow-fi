@@ -6,8 +6,6 @@ import { useRef } from 'react'
 // import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 // import { default as dark } from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus';
 
-import { getTotalTrades, getTotalSurplus } from 'services/dune'
-
 // import { ExternalLink } from '@/const/styles/global'
 import { siteConfig } from '@/const/meta'
 import { Color } from 'const/styles/variables'
@@ -283,8 +281,16 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const siteConfigData = siteConfig
   const { social } = siteConfig
   const { volumeUsd, volumeEth } = await cowSdk.cowSubgraphApi.getTotals()
-  const trades = await getTotalTrades()
-  const surplus = await getTotalSurplus()
+  const trades = {
+    // https://dune.com/queries/1034337
+    totalCount: 378802,
+    lastModified: new Date("2022-09-19"),
+  }
+  const surplus = {
+    // https://dune.com/queries/270604
+    totalCount: 81000000,
+    lastModified: new Date("2022-09-19"),
+  }
   
   // const metricsData = [
   //   {label: "Total Volume", value: numberFormatter.format(+volumeUsd) + '+'},
