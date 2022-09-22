@@ -10,7 +10,7 @@ export const siteConfig = {
     docs: "https://docs.cow.fi",
     api: API_BASE_URL + "/mainnet",
     apiDocs: API_BASE_URL + "/docs",
-    analytics: "https://dune.xyz/gnosis.protocol/Gnosis-Protocol-V2",
+    analytics: "https://dune.com/cowprotocol/Gnosis-Protocol-V2",
     explorer: "https://explorer.cow.fi",
   },
   greenhouse: {
