@@ -1,4 +1,7 @@
 {
-  "totalTrades": 123,
-  "surplus": 567
+  "totalTrades": 385291,
+  "surplus": {
+    "reasonable": 74059598.27,
+    "unusual": 7763083.89
+  }
 }
