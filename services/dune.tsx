@@ -57,8 +57,14 @@ export async function _getTotalCount(queryId: number): Promise<TotalCount> {
   }
 }
 
+/**
+ * @deprecated
+ */
 export const getTotalTrades = () => _getTotalCount(TOTAL_TRADES_COUNT_QUERY_ID)
 
+/**
+ * @deprecated
+ */
 export const getTotalSurplus = async (): Promise<TotalCount> => {
   const queryResut = await getFromDune<{ surplus_type: string, total_surplus_usd: number }>(TOTAL_SURPLUS_COUNT_QUERY_ID)
 
