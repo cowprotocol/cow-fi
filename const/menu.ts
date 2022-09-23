@@ -24,8 +24,8 @@ export const footerMenu = [
   {
     id: 0, title: 'CoW Protocol', links: [
       { title: 'About CoW Protocol', url: '/#about' },
-      { title: 'About CoW Swap', url: 'https://cowswap.exchange/#/about', target: "_blank" },
-      { title: 'CoW Swap FAQ', url: 'https://cowswap.exchange/#/faq', target: "_blank" },
+      { title: 'About CoW Swap', url: 'https://swap.cow.fi/#/about', target: "_blank" },
+      { title: 'CoW Swap FAQ', url: 'https://swap.cow.fi/#/faq', target: "_blank" },
       { title: 'Analytics', url: url.analytics, target: "_blank" },
       { title: 'Careers', url: '/careers' },
     
