@@ -6,8 +6,6 @@ import { useRef } from 'react'
 // import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 // import { default as dark } from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus';
 
-import { getTotalTrades, getTotalSurplus } from 'services/dune'
-
 // import { ExternalLink } from '@/const/styles/global'
 import { siteConfig } from '@/const/meta'
 import { Color } from 'const/styles/variables'
@@ -19,6 +17,7 @@ import SocialList from '@/components/SocialList'
 import Button from '@/components/Button'
 
 import { CowSdk } from '@cowprotocol/cow-sdk'
+import { getCowStats } from 'services/config'
 // import { intlFormat } from 'date-fns/esm';
 // import { GET_QUOTE } from '@/const/api';
 
@@ -283,8 +282,10 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const siteConfigData = siteConfig
   const { social } = siteConfig
   const { volumeUsd, volumeEth } = await cowSdk.cowSubgraphApi.getTotals()
-  const trades = await getTotalTrades()
-  const surplus = await getTotalSurplus()
+  const { surplus, totalTrades, lastModified } = await getCowStats()
+
+  const totalSurplus = surplus.reasonable + surplus.unusual
+  const lastModifiedFormatted = lastModified.toISOString()
   
   // const metricsData = [
   //   {label: "Total Volume", value: numberFormatter.format(+volumeUsd) + '+'},
@@ -303,11 +304,11 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
         totalVolume: numberFormatter.format(+volumeUsd) + '+',
         totalVolumeETH: numberFormatter.format(+volumeEth) + '+',
 
-        tradesCount: numberFormatter.format(trades.totalCount) + '+',
-        tradesCountLastModified: trades.lastModified.toISOString(),
+        tradesCount: numberFormatter.format(totalTrades) + '+',
+        tradesCountLastModified: lastModifiedFormatted,
 
-        totalSurplus: numberFormatter.format(surplus.totalCount) + '+',
-        totalSurplusLastModified: surplus.lastModified.toISOString()
+        totalSurplus: numberFormatter.format(totalSurplus) + '+',
+        totalSurplusLastModified: lastModifiedFormatted
       },
       siteConfigData
     },
