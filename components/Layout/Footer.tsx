@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Color, Font, Media } from 'const/styles/variables'
 import SocialList from 'components/SocialList'
 
-const LogoImage = 'images/logo.svg'
+const LogoImage = 'images/logo-light.svg'
 
 const Wrapper = styled.footer`
   display: flex;
@@ -52,7 +52,7 @@ const LogoSection = styled.div`
   ${Media.mobile} {
     flex: 1 1 100%;
     align-items: center;
-    margin: 0;
+    margin: 9rem auto 0;
   }
 `
 

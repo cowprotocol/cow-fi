@@ -114,6 +114,11 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
+    &::selection {
+      -webkit-background-clip: initial;
+      -webkit-text-fill-color: initial;
+    }
+
     ${Media.desktopDown} {
       font-size: 3.8rem;
     }
