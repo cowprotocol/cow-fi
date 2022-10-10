@@ -52,7 +52,7 @@ const LogoSection = styled.div`
   ${Media.mobile} {
     flex: 1 1 100%;
     align-items: center;
-    margin: 0;
+    margin: 9rem auto 0;
   }
 `
 
