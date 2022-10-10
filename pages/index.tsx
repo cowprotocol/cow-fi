@@ -12,7 +12,7 @@ import { Color } from 'const/styles/variables'
 
 import Layout from '@/components/Layout'
 import { ButtonWrapper } from '@/components/Button'
-import { Section, SectionContent, SubTitle, SectionImage, Separator, IconList, IconListItem, Metrics, IntegrationList, StepWrapper, StepContainer } from '../const/styles/pages/index'
+import { Section, SectionContent, SubTitle, SectionImage, IconList, IconListItem, Metrics, IntegrationList, StepWrapper, StepContainer } from '../const/styles/pages/index'
 import SocialList from '@/components/SocialList'
 import Button from '@/components/Button'
 
@@ -272,7 +272,6 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         </SectionContent>
       </Section >
 
-      {/* <Separator/> */}
     </Layout >
   )
 }
