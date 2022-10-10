@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Color, Font, Media } from 'const/styles/variables'
 import SocialList from 'components/SocialList'
 
-const LogoImage = 'images/logo.svg'
+const LogoImage = 'images/logo-light.svg'
 
 const Wrapper = styled.footer`
   display: flex;

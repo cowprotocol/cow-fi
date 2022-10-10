@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link'
-import { transparentize } from 'polished'
+import { transparentize, lighten } from 'polished'
 import Button from 'components/Button'
 import { Defaults, Color, Font, Media } from 'const/styles/variables'
 import { InView } from 'react-intersection-observer'
@@ -48,7 +48,7 @@ const Wrapper = styled.header`
   }
 
   &.sticky {
-    background: ${transparentize(0.1, Color.lightBlue)};);
+    background: ${transparentize(0.1, Color.lightBlue)};
     backdrop-filter: blur(5px);
     height: 6rem;
   }
@@ -150,8 +150,15 @@ const Menu = styled.ol<{isHome?: boolean}>`
     text-decoration: none;
 
     &:hover {
-      color: ${Color.darkBlue};
       color: ${({ isHome }) => isHome ? Color.darkBlue : Color.lightBlue};
+    }
+
+    ${Media.mobile} {
+      color: ${Color.lightBlue};
+
+      &:hover {
+        color: ${lighten(0.1, Color.lightBlue)}
+      }
     }
   }
 `
@@ -173,6 +180,11 @@ const CloseIcon = styled.button`
 
     ${Media.mobile} {
       font-size: 3.2rem;
+      color: ${Color.lightBlue};
+
+      &:hover {
+        color: ${lighten(0.1, Color.lightBlue)}
+      }
     }
   }
 
