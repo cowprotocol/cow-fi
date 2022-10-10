@@ -114,6 +114,11 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
+    &::selection {
+      -webkit-background-clip: initial;
+      -webkit-text-fill-color: initial;
+    }
+
     ${Media.desktopDown} {
       font-size: 3.8rem;
     }
@@ -257,6 +262,11 @@ export const StepContainer = styled.div<{ imageWidth?: number}>`
       width: 100%;
       text-align: center;
       line-height: 1;
+
+      &::selection {
+        -webkit-background-clip: initial;
+        -webkit-text-fill-color: initial;
+      }
     }
 `
 
@@ -365,6 +375,11 @@ export const Metrics = styled.div`
     background: ${Color.gradient};
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+
+    &::selection {
+      -webkit-background-clip: initial;
+      -webkit-text-fill-color: initial;
+    }
 
     ${Media.mediumDown} {
       font-size: 5rem;

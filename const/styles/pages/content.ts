@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { transparentize } from 'polished'
+import { lighten, transparentize } from 'polished'
 import { Color, Font, Media } from 'const/styles/variables'
 
 export const Content = styled.main`
@@ -34,6 +34,15 @@ export const Section = styled.section<{ margin?: string }>`
   margin: ${({ margin }) => margin ? margin : '0 0 6rem'};
   position: relative;
   z-index: 1;
+
+  > p a {
+    color: ${Color.lightBlue};
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: ${lighten(0.1, Color.lightBlue)};
+    }
+  }
  `
 
 export const Title = styled.h1`
