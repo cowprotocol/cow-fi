@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { useState } from 'react'
 import { GetStaticProps } from 'next'
 import { siteConfig } from '@/const/meta'
@@ -24,7 +25,8 @@ async function getJobs() {
   return jobsData
 }
 
-export default function Jobs({ jobsData }) {
+export default function Jobs({ jobsData, siteConfigData }) {
+  const { title } = siteConfigData
   const discordURL = siteConfig.social.discord.url
   const [department, setDepartment] = useState('All')
   const handleDepartmentChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -36,6 +38,10 @@ export default function Jobs({ jobsData }) {
   const jobsCountForDepartment = department === 'All' ? jobsCount : jobsData[department].length
 
   return (
+    <>
+    <Head>
+      <title>Careers - {title}</title>
+    </Head>
     <Content>
       <Section>
         <Title>Want to build the future of decentralized trading?</Title>
@@ -81,17 +87,21 @@ export default function Jobs({ jobsData }) {
         </Section>
       }
 
-      <p>{jobsCount < 1 && 'Currently there are no open positions. Convinced you can contribute to Cow Protocol?'}{jobsCount > 0 && "Can't find the position you're looking for?"} <ExternalLink href={discordURL} target="_blank" rel="noopener nofollow">Get in touch</ExternalLink></p>
+      <Section>
+        <p>{jobsCount < 1 && 'Currently there are no open positions. Convinced you can contribute to Cow Protocol?'}{jobsCount > 0 && "Can't find the position you're looking for?"} <ExternalLink href={discordURL} target="_blank" rel="noopener nofollow">Get in touch</ExternalLink></p>
+      </Section>
 
     </Content>
+    </>
   )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
   const jobsData = await getJobs()
+  const siteConfigData = siteConfig
 
   return {
-    props: { jobsData },
+    props: { jobsData, siteConfigData },
 
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
