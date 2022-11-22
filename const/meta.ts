@@ -13,6 +13,7 @@ export const siteConfig = {
     analytics: "https://dune.com/cowprotocol/Gnosis-Protocol-V2",
     explorer: "https://explorer.cow.fi",
     securityPortal: "https://app.chainpatrol.io/cow",
+    grants: "https://grants.cow.fi",
   },
   greenhouse: {
     api: "https://boards-api.greenhouse.io/v1/boards/cowswap/jobs?content=true"
