@@ -28,7 +28,7 @@ export const footerMenu = [
       { title: 'CoW Swap FAQ', url: 'https://swap.cow.fi/#/faq', target: "_blank" },
       { title: 'Analytics', url: url.analytics, target: "_blank" },
       { title: 'Careers', url: '/careers' },
-      { title: 'Grants', url: url.grants },
+      { title: 'Grants', url: url.grants, target: "_blank" },
 
       // { title: 'Sitemap', url: '/' },
     ]
