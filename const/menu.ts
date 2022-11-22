@@ -28,7 +28,8 @@ export const footerMenu = [
       { title: 'CoW Swap FAQ', url: 'https://swap.cow.fi/#/faq', target: "_blank" },
       { title: 'Analytics', url: url.analytics, target: "_blank" },
       { title: 'Careers', url: '/careers' },
-    
+      { title: 'Grants', url: url.grants, target: "_blank" },
+
       // { title: 'Sitemap', url: '/' },
     ]
   },
@@ -45,6 +46,7 @@ export const footerMenu = [
   {
     id: 2, title: 'Support', links: [
       { title: 'Discord', url: social.discord.url, target: "_blank" },
+      { title: 'Security portal', url: url.securityPortal, target: "_blank" },
       // TODO:
       // { title: 'Terms of service', url: '/' },
       // { title: 'Privacy Policy', url: '/' },
