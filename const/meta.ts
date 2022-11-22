@@ -12,6 +12,7 @@ export const siteConfig = {
     apiDocs: API_BASE_URL + "/docs",
     analytics: "https://dune.com/cowprotocol/Gnosis-Protocol-V2",
     explorer: "https://explorer.cow.fi",
+    securityPortal: "https://app.chainpatrol.io/cow",
   },
   greenhouse: {
     api: "https://boards-api.greenhouse.io/v1/boards/cowswap/jobs?content=true"
