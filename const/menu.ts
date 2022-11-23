@@ -34,10 +34,10 @@ export const footerMenu = [
     ]
   },
   {
-    id: 0, title: 'About CoW', links: [
+    id: 0, title: 'About', links: [
       { title: 'CoW', url: '/#about' },
       { title: 'CoW Swap', url: 'https://swap.cow.fi/#/about', target: "_blank" },
-      { title: 'FAQ', url: 'https://swap.cow.fi/#/faq', target: "_blank" },
+      { title: 'CoW Swap FAQ', url: 'https://swap.cow.fi/#/faq', target: "_blank" },
     
       // { title: 'Sitemap', url: '/' },
     ]
