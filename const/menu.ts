@@ -23,9 +23,9 @@ export const mainMenu = [
 export const footerMenu = [
   {
     id: 0, title: 'CoW Protocol', links: [      
-      { title: 'Governance', url: 'https://snapshot.org/#/cow.eth' },
-      { title: 'Forum', url: 'https://forum.cow.fi' },
-      { title: 'Blog', url: 'https://medium.com/@cow-protocol' },
+      { title: 'Governance', url: 'https://snapshot.org/#/cow.eth', target: "_blank"  },
+      { title: 'Forum', url: 'https://forum.cow.fi', target: "_blank"  },
+      { title: 'Blog', url: 'https://medium.com/@cow-protocol', target: "_blank"  },
       { title: 'Analytics', url: url.analytics, target: "_blank" },
       { title: 'Careers', url: '/careers' },
       { title: 'Grants', url: url.grants, target: "_blank" },
