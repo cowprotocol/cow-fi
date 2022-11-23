@@ -14,7 +14,7 @@ const Wrapper = styled.footer`
   margin: 16rem auto 0;
   position: relative;
 
-  ${Media.mobile} {
+  ${Media.mediumDown} {
     flex-flow: column wrap;
     padding: 5.6rem 2.4rem;
   }
@@ -33,9 +33,15 @@ const Wrapper = styled.footer`
 
 const MenuSection = styled.div`
   display: flex;
-  flex: 1 1 50%;
+  flex: 1 1 auto;
   flex-flow: row;
   gap: 4.8rem;
+
+  
+  ${Media.mediumDown} {
+    justify-content: space-around;
+  }
+  
 
   ${Media.mobile} {
     flex: 1 1 100%;
@@ -45,12 +51,12 @@ const MenuSection = styled.div`
 
 const LogoSection = styled.div`
   display: flex;
-  flex: 1 1 50%;
+  flex: 1 1 auto;
   flex-flow: column wrap;
   align-items: flex-end;
 
-  ${Media.mobile} {
-    flex: 1 1 100%;
+  ${Media.mediumDown} {
+    justify-content: space-around;
     align-items: center;
     margin: 9rem auto 0;
   }
@@ -134,7 +140,7 @@ const CopyrightLinks = styled.ol`
   line-height: 1.5;
   padding: 0;
 
-  ${Media.mobile} {
+  ${Media.mediumDown} {
     align-items: center;
   }
 `
