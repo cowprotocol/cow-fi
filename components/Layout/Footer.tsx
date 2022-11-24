@@ -152,7 +152,7 @@ const CopyrightLinks = styled.ol`
 function FooterMenu() {
   return (
     <MenuSection>
-      { FOOTER_LINK_GROUPS.map(({ title, links }, index) => (
+      { FOOTER_LINK_GROUPS.map(({ label: title, links }, index) => (
         <MenuWrapper key={index}>
           <b>{title}</b>
           <Menu>

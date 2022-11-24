@@ -4,7 +4,7 @@ type CustomLinkType = 'internal' | 'external'| 'external_untrusted'
 
 export interface CustomLinkProps {
   url: string
-  title: string, // TODO: label
+  label: string, // TODO: label
   type?: CustomLinkType
   onClick?: () => void
 }
@@ -28,7 +28,7 @@ function getAnchorRel(type?: CustomLinkType): { target?: string, rel?: string } 
 }
 
 export function CustomLink(props: CustomLinkProps) {
-  const { url, title, type='internal', onClick } = props
+  const { url, label: title, type='internal', onClick } = props
   const { rel, target } = getAnchorRel(type)
   return (
     <Link href={url}>
