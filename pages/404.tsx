@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Content from 'components/Layout/Content'
 import { GetStaticProps } from 'next'
-import { siteConfig } from '@/const/meta'
+import { CONFIG } from '@/const/meta'
 import { Title, Section } from 'const/styles/pages/content'
 
 // pages/404.js
@@ -25,7 +25,7 @@ export default function Custom404({ siteConfigData }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const siteConfigData = siteConfig
+  const siteConfigData = CONFIG
 
   return {
     props: { siteConfigData },

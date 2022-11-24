@@ -7,7 +7,7 @@ import { useRef } from 'react'
 // import { default as dark } from 'react-syntax-highlighter/dist/esm/styles/prism/vsc-dark-plus';
 
 // import { ExternalLink } from '@/const/styles/global'
-import { siteConfig } from '@/const/meta'
+import { CONFIG } from '@/const/meta'
 import { Color } from 'const/styles/variables'
 
 import Layout from '@/components/Layout'
@@ -36,7 +36,7 @@ interface MetricsData {
 }
 interface HomeProps {
   metricsData: MetricsData
-  siteConfigData: typeof siteConfig
+  siteConfigData: typeof CONFIG
 }
 
 export default function Home({ metricsData, siteConfigData }: HomeProps) {
@@ -278,8 +278,8 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
 
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const siteConfigData = siteConfig
-  const { social } = siteConfig
+  const siteConfigData = CONFIG
+  const { social } = CONFIG
   const { volumeUsd, volumeEth } = await cowSdk.cowSubgraphApi.getTotals()
   const { surplus, totalTrades, lastModified } = await getCowStats()
 

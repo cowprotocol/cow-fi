@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useState } from 'react'
 import { GetStaticProps } from 'next'
-import { siteConfig } from '@/const/meta'
+import { CONFIG } from '@/const/meta'
 import Content from 'components/Layout/Content'
 import { Section, Title, SubTitle, TitleSmall, LinkContainer } from 'const/styles/pages/content'
 import { DropDown, ExternalLink } from '@/const/styles/global'
@@ -9,7 +9,7 @@ import SVG from 'react-inlinesvg'
 
 async function getJobs() {
   const jobsData = {}
-  const { api } = siteConfig.greenhouse
+  const { api } = CONFIG.greenhouse
 
   try {
     const response = await fetch(api)
@@ -27,7 +27,7 @@ async function getJobs() {
 
 export default function Jobs({ jobsData, siteConfigData }) {
   const { title } = siteConfigData
-  const discordURL = siteConfig.social.discord.url
+  const discordURL = CONFIG.social.discord.url
   const [department, setDepartment] = useState('All')
   const handleDepartmentChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setDepartment(e.target.value)
@@ -98,7 +98,7 @@ export default function Jobs({ jobsData, siteConfigData }) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const jobsData = await getJobs()
-  const siteConfigData = siteConfig
+  const siteConfigData = CONFIG
 
   return {
     props: { jobsData, siteConfigData },

@@ -2,7 +2,7 @@ import { AppProps } from 'next/app'
 import GlobalStyles from 'const/styles/global'
 import Head from 'next/head'
 
-import { siteConfig } from '@/const/meta'
+import { CONFIG } from '@/const/meta'
 import { Analytics } from '@/components/Analytics'
 
 // import { i18n } from '@lingui/core'
@@ -40,7 +40,7 @@ export default function App(props: AppProps) {
   return (
     <>
       <Head>
-        <meta name="description" content={siteConfig.description} />
+        <meta name="description" content={CONFIG.description} />
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="black" />
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
 
@@ -49,16 +49,16 @@ export default function App(props: AppProps) {
         <link rel="apple-touch-icon" sizes="512x512" href="/favicon.png" />
 
         <meta property="og:type" content="website" />
-        <meta property="og:title" content={siteConfig.title} />
+        <meta property="og:title" content={CONFIG.title} />
 
-        <meta property="og:description" content={siteConfig.description} />
-        <meta property="og:image" content={siteConfig.url.root + "/images/og-meta-cowprotocol.png"} />
-        <meta property="og:url" content={siteConfig.url.root} /> {/* TODO: Add URL */}
+        <meta property="og:description" content={CONFIG.description} />
+        <meta property="og:image" content={CONFIG.url.root + "/images/og-meta-cowprotocol.png"} />
+        <meta property="og:url" content={CONFIG.url.root} /> {/* TODO: Add URL */}
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content={siteConfig.social.twitter.account} />
-        <meta name="twitter:title" content={siteConfig.title} />
-        <meta name="twitter:image" content={siteConfig.url.root + "/images/og-meta-cowprotocol.png"} />
+        <meta name="twitter:site" content={CONFIG.social.twitter.account} />
+        <meta name="twitter:title" content={CONFIG.title} />
+        <meta name="twitter:image" content={CONFIG.url.root + "/images/og-meta-cowprotocol.png"} />
         <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"></meta>
       </Head>
       

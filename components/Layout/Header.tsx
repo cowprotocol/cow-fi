@@ -7,6 +7,9 @@ import { Defaults, Color, Font, Media } from 'const/styles/variables'
 import { InView } from 'react-intersection-observer'
 import useMediaQuery from 'lib/hooks/useMediaQuery';
 import { useRouter } from 'next/router'
+import { CustomLink as CustomLink } from '../CustomLink';
+import { CONFIG } from '@/const/meta';
+import { HEADER_LINKS } from '@/const/menu';
 
 const LogoImage = 'images/logo.svg'
 const LogoLightImage = 'images/logo-light.svg'
@@ -261,8 +264,8 @@ const Logo = styled.div<{isHome?: boolean}>`
   }
 `
 
-export default function Header({ siteConfig, menu }) {
-  const swapURL = siteConfig.url.swap
+export default function Header() {
+  const swapURL = CONFIG.url.swap
   const isTouch = useMediaQuery(`(max-width: ${Media.mediumEnd})`);
   const [menuVisible, setIsMenuVisible] = useState(false)
   const toggleBodyScroll = () => {
@@ -292,9 +295,9 @@ export default function Header({ siteConfig, menu }) {
             </Link>
 
             <Menu className={menuVisible ? 'visible' : ""} isHome={isHome}>
-              {menu.map(({ id, title, url, target, rel }) => (
-                <li key={id}>
-                  <a onClick={handleClick} href={url} target={target} rel={rel}>{title}</a>
+              {HEADER_LINKS.map((link, index) => (
+                <li key={index}>
+                  <CustomLink {...link} />
                 </li>
               ))}
               <CloseIcon onClick={handleClick} />

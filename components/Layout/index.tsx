@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { PropsWithChildren } from 'react'
 
-import { siteConfig } from 'const/meta'
-import { mainMenu, footerMenu } from '../../const/menu'
+import { CONFIG } from 'const/meta'
+import { HEADER_LINKS, FOOTER_LINK_GROUPS } from '../../const/menu'
 import Header from 'components/Layout/Header'
 import Footer from 'components/Layout/Footer'
 
@@ -33,9 +33,9 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <>
       <Wrapper>
-        <Header menu={mainMenu} siteConfig={siteConfig} />
+        <Header menu={HEADER_LINKS} siteConfig={CONFIG} />
         <Content>{children ? children : 'No content found'}</Content>
-        <Footer menu={footerMenu} siteConfig={siteConfig} />
+        <Footer menu={FOOTER_LINK_GROUPS} siteConfig={CONFIG} />
       </Wrapper>
     </>
   )

@@ -2,8 +2,12 @@ import styled from 'styled-components';
 import Link from 'next/link'
 import { Color, Font, Media } from 'const/styles/variables'
 import SocialList from 'components/SocialList'
+import { CustomLink } from '../CustomLink';
+import { FooterLinkGroup, FOOTER_LINK_GROUPS } from '@/const/menu';
+import { CONFIG } from '@/const/meta';
 
 const LogoImage = 'images/logo-light.svg'
+const CURRENT_YEAR = new Date().getFullYear()
 
 const Wrapper = styled.footer`
   display: flex;
@@ -145,41 +149,45 @@ const CopyrightLinks = styled.ol`
   }
 `
 
-export default function Footer({ siteConfig, menu }) {
-  const { social } = siteConfig
-  const currentYear = new Date().getFullYear()
-
+function FooterMenu() {
   return (
-    <Wrapper>
-
-      {menu.length > 0 && <MenuSection>{menu.map(({ id, title, links }) => (
-        <MenuWrapper key={id}>
+    <MenuSection>
+      { FOOTER_LINK_GROUPS.map(({ title, links }, index) => (
+        <MenuWrapper key={index}>
           <b>{title}</b>
           <Menu>
-            {links.map(({ title, url, target }, index) =>
+            {links.map((link, index) =>
               <li key={index}>
-                <Link href={url}>
-                  <a target={target}>
-                    {title}
-                  </a>
-                </Link>
+                <CustomLink {...link} />
               </li>
             )}
           </Menu>
         </MenuWrapper>
-      ))}</MenuSection>}
+      ))}
+    </MenuSection>
+  )
+}
 
+function Social() {
+  const { social } = CONFIG    
+  return (
+    <LogoSection>
+      <Link passHref href='/'>
+        <Logo />
+      </Link>
+      <SocialList social={social} labels={false} iconSize={2.8} gap={0.7} innerPadding={1} alignItems={'right'} />
+      <CopyrightLinks>
+        <li>©CoW Protocol - {CURRENT_YEAR}</li>
+      </CopyrightLinks>
+    </LogoSection>
+  )
+}
 
-      <LogoSection>
-        <Link passHref href='/'>
-          <Logo />
-        </Link>
-        <SocialList social={social} labels={false} iconSize={2.8} gap={0.7} innerPadding={1} alignItems={'right'} />
-        <CopyrightLinks>
-          <li>©CoW Protocol - {currentYear}</li>
-        </CopyrightLinks>
-      </LogoSection>
-
+export default function Footer() {
+  return (
+    <Wrapper>
+      <FooterMenu />
+      <Social />
     </Wrapper >
   )
 }
