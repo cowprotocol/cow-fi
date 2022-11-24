@@ -22,14 +22,23 @@ export const mainMenu = [
 
 export const footerMenu = [
   {
-    id: 0, title: 'CoW Protocol', links: [
-      { title: 'About CoW Protocol', url: '/#about' },
-      { title: 'About CoW Swap', url: 'https://swap.cow.fi/#/about', target: "_blank" },
-      { title: 'CoW Swap FAQ', url: 'https://swap.cow.fi/#/faq', target: "_blank" },
+    id: 0, title: 'CoW Protocol', links: [      
+      { title: 'Governance', url: 'https://snapshot.org/#/cow.eth', target: "_blank"  },
+      { title: 'Forum', url: 'https://forum.cow.fi', target: "_blank"  },
+      { title: 'Blog', url: 'https://medium.com/@cow-protocol', target: "_blank"  },
       { title: 'Analytics', url: url.analytics, target: "_blank" },
       { title: 'Careers', url: '/careers' },
       { title: 'Grants', url: url.grants, target: "_blank" },
 
+      // { title: 'Sitemap', url: '/' },
+    ]
+  },
+  {
+    id: 0, title: 'About', links: [
+      { title: 'CoW Protocol', url: '/#about' },
+      { title: 'CoW Swap', url: 'https://swap.cow.fi/#/about', target: "_blank" },
+      { title: 'CoW Swap FAQ', url: 'https://swap.cow.fi/#/faq', target: "_blank" },
+    
       // { title: 'Sitemap', url: '/' },
     ]
   },
