@@ -1,6 +1,6 @@
-import { siteConfig } from '@/const/meta'
+import { CONFIG } from '@/const/meta'
 
-const { url } = siteConfig
+const { url } = CONFIG
 
 export const batches = [
   /*

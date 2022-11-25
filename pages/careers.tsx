@@ -1,15 +1,15 @@
 import Head from 'next/head'
 import { useState } from 'react'
 import { GetStaticProps } from 'next'
-import { siteConfig } from '@/const/meta'
-import Content from 'components/Layout/Content'
+import { CONFIG } from '@/const/meta'
+import Layout from '@/components/Layout'
 import { Section, Title, SubTitle, TitleSmall, LinkContainer } from 'const/styles/pages/content'
 import { DropDown, ExternalLink } from '@/const/styles/global'
 import SVG from 'react-inlinesvg'
 
 async function getJobs() {
   const jobsData = {}
-  const { api } = siteConfig.greenhouse
+  const { api } = CONFIG.greenhouse
 
   try {
     const response = await fetch(api)
@@ -27,7 +27,7 @@ async function getJobs() {
 
 export default function Jobs({ jobsData, siteConfigData }) {
   const { title } = siteConfigData
-  const discordURL = siteConfig.social.discord.url
+  const discordURL = CONFIG.social.discord.url
   const [department, setDepartment] = useState('All')
   const handleDepartmentChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setDepartment(e.target.value)
@@ -42,7 +42,7 @@ export default function Jobs({ jobsData, siteConfigData }) {
     <Head>
       <title>Careers - {title}</title>
     </Head>
-    <Content>
+    <Layout>
       <Section>
         <Title>Want to build the future of decentralized trading?</Title>
         <SubTitle>We are an ambitious, fast growing and international team working at the forefront of DeFi. We believe that we can make markets both more efficient and fair, by building the ultimate batch auction settlement layer across EVM compatible blockchains.</SubTitle>
@@ -91,14 +91,14 @@ export default function Jobs({ jobsData, siteConfigData }) {
         <p>{jobsCount < 1 && 'Currently there are no open positions. Convinced you can contribute to Cow Protocol?'}{jobsCount > 0 && "Can't find the position you're looking for?"} <ExternalLink href={discordURL} target="_blank" rel="noopener nofollow">Get in touch</ExternalLink></p>
       </Section>
 
-    </Content>
+    </Layout>
     </>
   )
 }
 
 export const getStaticProps: GetStaticProps = async () => {
   const jobsData = await getJobs()
-  const siteConfigData = siteConfig
+  const siteConfigData = CONFIG
 
   return {
     props: { jobsData, siteConfigData },

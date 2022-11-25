@@ -1,17 +1,7 @@
 import styled from 'styled-components';
 import { PropsWithChildren } from 'react'
-
-import { siteConfig } from 'const/meta'
-import { mainMenu, footerMenu } from '../../const/menu'
 import Header from 'components/Layout/Header'
 import Footer from 'components/Layout/Footer'
-
-export type LayoutProps = PropsWithChildren<{
-  siteConfigData?: any // needs fix
-  metrics?: any // needs fix
-  mainMenuData?: any // needs fix
-  footerMenuData?: any // needs fix
-}>
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -20,7 +10,7 @@ const Wrapper = styled.div`
   width: 100%;
 `
 
-const Content = styled.main`
+const FullWidthContent = styled.main`
   margin: -10.4rem auto 0;
   padding: 0;
   box-sizing: border-box;
@@ -29,13 +19,20 @@ const Content = styled.main`
   flex-flow: column wrap;
 `
 
-export default function Layout({ children }: LayoutProps) {
+import { Content } from 'const/styles/pages/content'
+
+type LayoutProps = PropsWithChildren<{ fullWidth?: boolean }>
+
+export default function Layout(props: LayoutProps) {
+  const { children, fullWidth = false } = props
+  const content = children ? children : 'No content found'
+  const ContentComponent = fullWidth ? FullWidthContent : Content
   return (
     <>
       <Wrapper>
-        <Header menu={mainMenu} siteConfig={siteConfig} />
-        <Content>{children ? children : 'No content found'}</Content>
-        <Footer menu={footerMenu} siteConfig={siteConfig} />
+        <Header />
+        <ContentComponent>{content}</ContentComponent>
+        <Footer />
       </Wrapper>
     </>
   )
