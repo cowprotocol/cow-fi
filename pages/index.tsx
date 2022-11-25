@@ -49,7 +49,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
   // }
 
   return (
-    <Layout>
+    <Layout fullWidth={true}>
 
       <Head>
         <title>{title} - {descriptionShort}</title>

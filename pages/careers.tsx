@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useState } from 'react'
 import { GetStaticProps } from 'next'
 import { CONFIG } from '@/const/meta'
-import Content from 'components/Layout/Content'
+import Layout from '@/components/Layout'
 import { Section, Title, SubTitle, TitleSmall, LinkContainer } from 'const/styles/pages/content'
 import { DropDown, ExternalLink } from '@/const/styles/global'
 import SVG from 'react-inlinesvg'
@@ -42,7 +42,7 @@ export default function Jobs({ jobsData, siteConfigData }) {
     <Head>
       <title>Careers - {title}</title>
     </Head>
-    <Content>
+    <Layout>
       <Section>
         <Title>Want to build the future of decentralized trading?</Title>
         <SubTitle>We are an ambitious, fast growing and international team working at the forefront of DeFi. We believe that we can make markets both more efficient and fair, by building the ultimate batch auction settlement layer across EVM compatible blockchains.</SubTitle>
@@ -91,7 +91,7 @@ export default function Jobs({ jobsData, siteConfigData }) {
         <p>{jobsCount < 1 && 'Currently there are no open positions. Convinced you can contribute to Cow Protocol?'}{jobsCount > 0 && "Can't find the position you're looking for?"} <ExternalLink href={discordURL} target="_blank" rel="noopener nofollow">Get in touch</ExternalLink></p>
       </Section>
 
-    </Content>
+    </Layout>
     </>
   )
 }
