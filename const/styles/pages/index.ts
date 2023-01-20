@@ -99,10 +99,12 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
     ${({ hero, breakMedium }) => (hero || breakMedium) && `
       color: ${Color.darkBlue};
       font-size: 7rem;
+      font-weight: 600;
       text-align: left;
 
       ${Media.mediumDown} {
         font-size: 4rem;
+        text-align: center;
       }
     `}
   }

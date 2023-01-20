@@ -59,7 +59,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
       <Section className='container' hero>
         <SectionContent>
           <div>
-            <h1>Stop searching <br /><b>for better prices</b></h1>
+            <h1>Better than the best prices</h1>
             <SubTitle align={'left'} color={Color.text1} lineHeight={1.4}>CoW Protocol finds the lowest price for your trade across all exchanges and aggregators, such as Uniswap and 1inch – and protects you from MEV, unlike the others.</SubTitle>
 
             <ButtonWrapper>
@@ -78,7 +78,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
       <Section fullWidth id="about">
         <SectionContent flow={'column'}>
           <div className='container'>
-            <h3>The smartest way to trade crypto assets.</h3>
+            <h3>The smartest way to trade.</h3>
             <IconList>
 
               <IconListItem icon="images/icons/lowPrice.svg">
