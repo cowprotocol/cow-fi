@@ -41,3 +41,4 @@ yarn i18n:extract
 # Generate JS files for the language file
 yarn i18n:compile
 ```
+
