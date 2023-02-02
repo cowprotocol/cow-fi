@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Router from 'next/router'
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 import { isMobile } from 'react-device-detect'
 
 const trackingId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
 
-
-function handleRouteChange(url: string) {
-  console.log('[Analytics] Page view', url)
-  ReactGA.pageview(url);
+function handleRouteChange(page_path: string) {
+  console.log('[Analytics] Page view', page_path)
+  ReactGA.send({ hitType: 'pageview', page_path })
 }
 
 function initializeAnalytics() {
