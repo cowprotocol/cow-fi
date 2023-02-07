@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { transparentize } from 'polished'
 import { Color, Font, Media } from 'const/styles/variables'
 
-const Wrapper = styled.ol<Pick<SocialListProps, "iconSize" | "gap" | "innerPadding" | "alignItems">>`
+const Wrapper = styled.ol<Pick<SocialListProps, "iconSize" | "gap" | "innerPadding" | "alignItems" | "labels">>`
   display: flex;
   justify-content: ${({ alignItems }) => (alignItems === 'left') ? 'flex-start' : (alignItems === 'right') ? 'flex-end' : 'center'};
   align-items: center;
@@ -51,7 +51,7 @@ const Wrapper = styled.ol<Pick<SocialListProps, "iconSize" | "gap" | "innerPaddi
     width: ${({ iconSize }) => iconSize ? `${iconSize}rem` : '5.8rem'};
     height: ${({ iconSize }) => iconSize ? `${iconSize}rem` : '5.8rem'};
     object-fit: contain;
-    margin: 0 0 1.2rem;
+    margin: ${({ labels }) => labels ? `0 0 1.2rem` : `0`};
   }
 
   > li > a > b {
@@ -72,7 +72,7 @@ interface SocialListProps {
 export default function SocialList({ social, labels = true, iconSize, gap, innerPadding, alignItems }: SocialListProps) {
 
   return (
-    <Wrapper iconSize={iconSize} gap={gap} innerPadding={innerPadding} alignItems={alignItems}>
+    <Wrapper iconSize={iconSize} gap={gap} innerPadding={innerPadding} alignItems={alignItems} labels={labels}>
       {Object.keys(social).map((item, i) =>
         <li key={i}>
           <a href={social[item].url} target="_blank" rel="noopener nofollow noreferrer">
