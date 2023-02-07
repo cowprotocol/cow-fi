@@ -30,6 +30,10 @@ export const FOOTER_LINK_GROUPS: FooterLinkGroup[] = [
       { label: 'CoW Protocol', url: '/#about' },
       { label: 'CoW Swap', url: 'https://swap.cow.fi/#/about', type: 'external' },
       { label: 'CoW Swap FAQ', url: 'https://swap.cow.fi/#/faq', type: 'external' },
+      { label: 'Terms and Conditions', url: 'https://swap.cow.fi/#/terms-and-conditions', type: 'external' },
+      { label: 'Privacy Policy', url: 'https://swap.cow.fi/#/privacy-policy', type: 'external' },
+      { label: 'Cookie Policy', url: 'https://swap.cow.fi/#/cookie-policy', type: 'external' },
+
     ]
   },
   {
