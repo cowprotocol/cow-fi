@@ -248,7 +248,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
 
             <ButtonWrapper center>
               <Button href={url.docs} label='Explore docs' target="_blank" rel="noopener nofollow" variant="light" />
-              <Button href={'https://calendly.com/d/d7f-pyj-7x3/cow-swap-integrations'} label="Talk to us" target="_blank" rel="noopener nofollow" variant='textLight' />
+              <Button href={'https://calendly.com/d/zxg-m2m-54p'} label="Talk to us" target="_blank" rel="noopener nofollow" variant='textLight' />
             </ButtonWrapper>
           </div>
         </SectionContent>
