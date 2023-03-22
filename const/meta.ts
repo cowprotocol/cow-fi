@@ -10,7 +10,7 @@ export const CONFIG = {
     docs: "https://docs.cow.fi",
     api: API_BASE_URL + "/mainnet",
     apiDocs: API_BASE_URL + "/docs",
-    analytics: "https://dune.com/cowprotocol/Gnosis-Protocol-V2",
+    analytics: "https://dune.com/cowprotocol/cowswap",
     explorer: "https://explorer.cow.fi",
     securityPortal: "https://app.chainpatrol.io/cow",
     grants: "https://grants.cow.fi",
