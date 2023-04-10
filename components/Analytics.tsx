@@ -2,26 +2,9 @@ import { useState, useEffect } from 'react'
 import Router from 'next/router'
 import ReactGA from 'react-ga4'
 import { isMobile } from 'react-device-detect'
+import { initBraveAnalytics } from 'lib/analytics/brave'
 
 const trackingId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS
-
-function initBraveAnalytics() {
-  let params: any = new Proxy(new URLSearchParams(window.location.search), {
-    get: (searchParams, prop) => searchParams.get(prop as string),
-  })
-
-  if (params && params.utm_source) {
-    document.cookie = `source=${params.utm_source};domain=.cow.fi;path=/`
-  }
-
-  if (params && params.utm_medium) {
-    document.cookie = `medium=${params.utm_medium};domain=.cow.fi;path=/`
-  }
-
-  if (params && params.utm_campaign) {
-    document.cookie = `campaign=${params.utm_campaign};domain=.cow.fi;path=/`
-  }
-}
 
 function handleRouteChange(page_path: string) {
   console.log('[Analytics] Page view', page_path)
