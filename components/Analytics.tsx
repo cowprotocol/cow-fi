@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 import Router from 'next/router'
-import ReactGA from 'react-ga4';
+import ReactGA from 'react-ga4'
 import { isMobile } from 'react-device-detect'
+import { initBraveAnalytics } from 'lib/analytics/brave'
 
-const trackingId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS;
+const trackingId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS
 
 function handleRouteChange(page_path: string) {
   console.log('[Analytics] Page view', page_path)
@@ -23,10 +24,12 @@ function initializeAnalytics() {
     customBrowserType: !isMobile
       ? 'desktop'
       : 'web3' in window || 'ethereum' in window
-        ? 'mobileWeb3'
-        : 'mobileRegular',
+      ? 'mobileWeb3'
+      : 'mobileRegular',
   })
 
+  // Init brave analytics
+  initBraveAnalytics()
 
   // Handle all route changes
   handleRouteChange(Router.pathname)
@@ -34,10 +37,9 @@ function initializeAnalytics() {
 }
 
 export function Analytics() {
-
   // Internal state
   const [analytics, setAnalytics] = useState({
-    isInitialized: false
+    isInitialized: false,
   })
 
   // Use effect is used so the code is only executed client side (not server side)
@@ -47,16 +49,16 @@ export function Analytics() {
     // Initialize Analytics
     if (trackingId && !isInitialized) {
       initializeAnalytics()
-      setAnalytics(prev => ({
+      setAnalytics((prev) => ({
         ...prev,
-        isInitialized: true
+        isInitialized: true,
       }))
     }
 
     return () => {
       // clean up
       if (isInitialized) {
-        Router.events.off('routeChangeComplete', handleRouteChange);
+        Router.events.off('routeChangeComplete', handleRouteChange)
       }
     }
   }, [analytics])
