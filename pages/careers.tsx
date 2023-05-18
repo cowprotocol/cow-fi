@@ -49,7 +49,7 @@ export default function Jobs({ jobsData, siteConfigData }) {
       </Section>
 
       {jobsCount > 0 && <TitleSmall>We&apos;re currently hiring for {jobsCountForDepartment} position{jobsCountForDepartment > 1 && 's'}{department !== 'All' && ` in ${department}`}:</TitleSmall>}
-      {jobsCount < 1 && <TitleSmall>There are currently no open positions.</TitleSmall>}
+      {jobsCount < 1 && <TitleSmall>Check back soooon to find the mooo.</TitleSmall>}
 
       {jobsCount > 0 && department.length > 0 && (
         <>
