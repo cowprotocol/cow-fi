@@ -25,7 +25,7 @@ export default function Jobs({ siteConfigData }) {
           </p>
 
           <p>
-            Sounds like a long time to wait? Allow us to explain! 😊 At CoW, we prioritize quality and make substantial investments in our people. We consider this our utmost priority and exercise great caution when onboarding new individuals. We genuinely care about ensuring that we bring on board the right people who align with our values and goals. Have Questions? Ask us at people@cow.fi
+            Sounds like a long time to wait? Allow us to explain! 😊 At CoW, we prioritize quality and make substantial investments in our people. We consider this our utmost priority and exercise great caution when onboarding new individuals. We genuinely care about ensuring that we bring on board the right people who align with our values and goals. Have Questions? Ask us at <a href="mailto:people@cow.fi" target="_blank" rel="noreferrer">people@cow.fi</a>
           </p>
 
           <h3>Conditions:</h3>
