@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Link from 'next/link'
 import Layout from '@/components/Layout'
 import { getAllTokensData } from 'lib/tokens'
@@ -14,7 +15,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin: 0 0 2.4rem;
+    margin: 0 0 1.6rem;
   }
 
   h1 > span {
@@ -89,11 +90,39 @@ const PlacerholderImage = styled.div`
   background-color: ${Color.lightBlue};
 `
 
+const SearchTokens = styled.input`
+  width: 100%;
+  border: 1px solid ${transparentize(0.9, Color.lightBlue)};
+  border-radius: 1.6rem;
+  background-color: ${transparentize(0.95, Color.lightBlue)};
+  padding: 1rem 1rem;
+  margin: 0 auto 1.6rem;
+  color: ${transparentize(0.1, Color.lightBlue)};
+  transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  outline: 0;
+`
+
 export default function Tokens({ tokens }) {
+  const [search, setSearch] = useState('');
+  const [filteredTokens, setFilteredTokens] = useState(tokens);
+
+  useEffect(() => {
+    setFilteredTokens(tokens.filter(token => 
+      token.name.toLowerCase().includes(search.toLowerCase()) ||
+      token.symbol.toLowerCase().includes(search.toLowerCase())
+    ));
+  }, [search, tokens]);
+
   return (
     <Layout>
       <Wrapper>
-        <h1>Tokens <span>({tokens.length})</span></h1>
+        <h1>Tokens <span>({filteredTokens.length})</span></h1>
+        <SearchTokens
+          type="text"
+          placeholder="Search tokens..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
         <TokenTable>
           <HeaderItem>
             <div>#</div>
@@ -103,7 +132,7 @@ export default function Tokens({ tokens }) {
             <div>Market Cap</div>
             <div>Volume</div>
           </HeaderItem>
-          {tokens.map((token, index) => (
+          {filteredTokens.map((token, index) => (
             <ListItem key={token.id}>
               <span>{index + 1}</span>
               <Link href={`/tokens/${token.id}`} passHref>
