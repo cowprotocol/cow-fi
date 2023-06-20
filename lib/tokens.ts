@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 
 // TODO: this could probably be fetched externaly
-function getAllTokensData() {
+export function getAllTokensData() {
   const filePath = path.join(process.cwd(), 'data', 'tokens.json')
   const jsonData = fs.readFileSync(filePath, 'utf-8')
 
