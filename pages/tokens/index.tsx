@@ -30,7 +30,7 @@ const TokenTable = styled.div`
 const HeaderItem = styled.div`
   display: contents;
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 0.5fr 5fr 1fr 1fr 1fr 1fr;
   align-items: center;
   justify-content: flex-start;
   padding: 1rem 0;
@@ -96,22 +96,23 @@ export default function Tokens({ tokens }) {
         <h1>Tokens <span>({tokens.length})</span></h1>
         <TokenTable>
           <HeaderItem>
+            <div>#</div>
             <div>Name</div>
             <div>Price</div>
             <div>Change</div>
             <div>Market Cap</div>
             <div>Volume</div>
           </HeaderItem>
-          {tokens.map((token) => (
+          {tokens.map((token, index) => (
             <ListItem key={token.id}>
+              <span>{index + 1}</span>
               <Link href={`/tokens/${token.id}`} passHref>
-              <TokenLink>
-                {(token.image.large && token.image.large !== 'missing_large.png') ? 
-                  <img src={token.image.large} alt={token.name} /> : 
-                  <PlacerholderImage />}
-                <span>{token.name} <i>({token.symbol})</i></span>
-              </TokenLink>
-
+                <TokenLink>
+                  {(token.image.large && token.image.large !== 'missing_large.png') ? 
+                    <img src={token.image.large} alt={token.name} /> : 
+                    <PlacerholderImage />}
+                  <span>{token.name} <i>({token.symbol})</i></span>
+                </TokenLink>
               </Link>
               <span>-</span> {/* Replace "-" with {token.price} */}
               <span>-</span> {/* Replace "-" with {token.change} */}
