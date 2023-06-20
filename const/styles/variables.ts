@@ -14,6 +14,12 @@ export const Color = {
   lightBlue: '#CAE9FF',
   text1: '#405A82',
   text2: '#95BAEF',
+  danger: '#D41300',
+  warning:  '#D94719',
+  alert: '#DB971E',
+  information: '#0d5ed9',
+  success: '#007B28',
+
   gradient: "linear-gradient(45deg,#FFE7E0 0%,#F8DBF4 20%,#C4DDFF 60%,#CAE9FF 100%)",
   gradientMesh: css`
     background-color:hsla(142,0%,100%,1);

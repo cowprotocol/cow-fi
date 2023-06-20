@@ -1,18 +1,11 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import Layout from '@/components/Layout'
+import styled from 'styled-components'
 import { getAllTokensIds, getTokenData } from 'lib/tokens'
-import { Heading, Title, Section, Symbol } from '@/const/styles/pages/token'
+import { DetailHeading, Section, Breadcrumbs, TokenTitle, TokenPrice, TokenChart } from '@/const/styles/pages/tokens'
 
-export default function Token({ data: { token } }) {
-  if (!token) {
-    return null
-  }
-
-  const name = token.name
-  const desc = token.description?.en || token.ico_data?.description || '-'
-  const links = token.links
-  const image = token.image
-  const symbol = token.symbol.toUpperCase()
+export default function Token({ name, symbol, desc, image }) {
 
   return (
     <>
@@ -24,19 +17,29 @@ export default function Token({ data: { token } }) {
 
       <Layout>
         <Section>
-          <Heading>
-            <div>
-              <img src={image.thumb} alt="" />
-              <Title>{name}</Title>
-              <Symbol>{symbol}</Symbol>
-            </div>
-          </Heading>
+          <Breadcrumbs>
+            <Link href="/tokens">Tokens</Link> {'>'} {name}
+          </Breadcrumbs>
+
+          <DetailHeading>
+            <TokenTitle>
+              <img src={image.large} alt={`${name} (${symbol})`} />
+              <h1>{name}</h1>
+              <span>{symbol}</span>
+            </TokenTitle>
+
+            <TokenPrice>
+              <b>$0.9993</b>
+              <span><b>+0.53%</b> <i>(24H)</i></span>
+            </TokenPrice>
+          </DetailHeading>
+
         </Section>
 
-        <Section>Graph</Section>
+        <TokenChart>- Chart component -</TokenChart>
 
         <Section>
-          <Title>{symbol} Stats</Title>
+          <h3>{symbol} Stats</h3>
         </Section>
 
         <Section>
@@ -59,11 +62,24 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const token = getTokenData(params.id)
+  
+  if (!token) {
+    return {
+      notFound: true,
+    };
+  }
+
+  const name = token.name;
+  const symbol = token.symbol.toUpperCase();
+  const desc = token.description?.en || token.ico_data?.description || '-';
+  const image = token.image;
 
   return {
     props: {
-      id: params.id,
-      data: { token },
+      name,
+      symbol,
+      desc,
+      image
     },
   }
 }
