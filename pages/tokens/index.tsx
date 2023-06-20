@@ -6,6 +6,7 @@ import { Color, Media } from 'const/styles/variables'
 import { transparentize } from 'polished'
 
 const Wrapper = styled.div`
+  --tokenSize: 24px;
   display: flex;
   flex-direction: column;
 
@@ -63,10 +64,10 @@ const TokenLink = styled.a`
   }
 
   > img {
-    --size: 24px;
-    width: var(--size);
-    height: var(--size);
-    border-radius: var(--size);
+    --tokenSize: 24px;
+    width: var(--tokenSize);
+    height: var(--tokenSize);
+    border-radius: var(--tokenSize);
     background-color: ${Color.lightBlue};
   }
 
@@ -79,6 +80,14 @@ const TokenLink = styled.a`
     font-style: normal;
     color: ${transparentize(0.5, Color.lightBlue)};
   }
+`
+
+const PlacerholderImage = styled.div`
+ 
+  width: var(--tokenSize);
+  height: var(--tokenSize);
+  border-radius: var(--tokenSize);
+  background-color: ${Color.lightBlue};
 `
 
 export default function Tokens({ tokens }) {
@@ -98,7 +107,8 @@ export default function Tokens({ tokens }) {
             <ListItem key={token.id}>
               <Link href={`/tokens/${token.id}`} passHref>
                 <TokenLink>
-                  <img src={token.image.large} alt={token.name} />
+                  {token.image.large && <img src={token.image.large} alt={token.name} />}
+                  {!token.image.large && <PlacerholderImage />}
                   <span>{token.name} <i>({token.symbol})</i></span>
                 </TokenLink>
               </Link>
