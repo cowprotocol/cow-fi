@@ -6,7 +6,7 @@ import { Color, Media } from 'const/styles/variables'
 import { transparentize } from 'polished'
 
 const Wrapper = styled.div`
-  --tokenSize: 24px;
+  --tokenSize: 2.6rem;
   display: flex;
   flex-direction: column;
 
@@ -64,7 +64,6 @@ const TokenLink = styled.a`
   }
 
   > img {
-    --tokenSize: 24px;
     width: var(--tokenSize);
     height: var(--tokenSize);
     border-radius: var(--tokenSize);
@@ -125,10 +124,22 @@ export default function Tokens({ tokens }) {
 }
 
 export async function getStaticProps() {
-  const tokens = getAllTokensData()
+  let tokens = getAllTokensData()
+
+  tokens = tokens.sort((a, b) => {
+    if (a.market_cap_rank === null) {
+      return 1; // always place nulls last
+    }
+    if (b.market_cap_rank === null) {
+      return -1; // always place nulls last
+    }
+    return a.market_cap_rank - b.market_cap_rank; // usual comparison
+  });
+
   return {
     props: {
       tokens,
     },
   }
 }
+
