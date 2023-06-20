@@ -105,11 +105,13 @@ export default function Tokens({ tokens }) {
           {tokens.map((token) => (
             <ListItem key={token.id}>
               <Link href={`/tokens/${token.id}`} passHref>
-                <TokenLink>
-                  {token.image.large && <img src={token.image.large} alt={token.name} />}
-                  {!token.image.large && <PlacerholderImage />}
-                  <span>{token.name} <i>({token.symbol})</i></span>
-                </TokenLink>
+              <TokenLink>
+                {(token.image.large && token.image.large !== 'missing_large.png') ? 
+                  <img src={token.image.large} alt={token.name} /> : 
+                  <PlacerholderImage />}
+                <span>{token.name} <i>({token.symbol})</i></span>
+              </TokenLink>
+
               </Link>
               <span>-</span> {/* Replace "-" with {token.price} */}
               <span>-</span> {/* Replace "-" with {token.change} */}
