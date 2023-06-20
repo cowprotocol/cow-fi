@@ -6,7 +6,7 @@ import { getAllTokensIds, getTokenData } from 'lib/tokens'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { Wrapper, MainContent, StickyContent, SwapWidget, DetailHeading, Section, TokenTitle, TokenPrice, TokenChart } from '@/const/styles/pages/tokens'
 
-export default function Token({ id, name, symbol, desc, image }) {
+export default function Token({ id, name, symbol, desc, image, contractAddressEthereum, contractAddressGnosis }) {
 
   return (
     <>
@@ -45,9 +45,35 @@ export default function Token({ id, name, symbol, desc, image }) {
 
         <Section>
           <h4>About {symbol} coin</h4>
-          <p>{desc}</p>
+          <p>{desc}
+          <br /><br />
+
+          {contractAddressEthereum && (
+  <a 
+    href={`https://swap.cow.fi/#/1/swap/WETH/${contractAddressEthereum}?sellAmount=1`}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Swap on CoW Swap (Ethereum) ↗
+  </a>
+)}
+
+{contractAddressGnosis && (
+  <a 
+    href={`https://swap.cow.fi/#/100/swap/WETH/${contractAddressGnosis}?sellAmount=1`}
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Swap on CoW Swap (Gnosis Chain)) ↗
+  </a>
+)}
+
+
+          </p>
+
         </Section>
         </MainContent>
+
         <StickyContent>
           <SwapWidget>
             <b>-Swap {symbol} widget -</b>
@@ -77,12 +103,15 @@ export async function getStaticProps({ params }) {
     };
   }
 
-  const {id: rawId, name: rawName, symbol: rawSymbol, description, ico_data, image} = token;
+  const {id: rawId, name: rawName, symbol: rawSymbol, description, ico_data, image, detail_platforms} = token;
 
   const id = rawId;
   const name = rawName;
   const symbol = rawSymbol.toUpperCase();
   const desc = description?.en || ico_data?.description || '-';
+
+  const contractAddressEthereum = detail_platforms.ethereum?.contract_address || '';
+  const contractAddressGnosis = detail_platforms.gnosis?.contract_address || '';
 
   return {
     props: {
@@ -90,8 +119,11 @@ export async function getStaticProps({ params }) {
       name,
       symbol,
       desc,
-      image
+      image,
+      contractAddressEthereum,
+      contractAddressGnosis
     },
   }
 }
+
 

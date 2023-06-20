@@ -47,9 +47,19 @@ export const SwapWidget = styled.div`
 `
 
 export const Section = styled.div`
+  font-size: 1.6rem;
   display: flex;
   flex-direction: column;
   padding: 2rem 1rem;
+
+  > p {
+    line-height: 1.5;
+  }
+
+  a {
+    color: ${Color.lightBlue};
+    transition: color 0.3s ease-in-out;
+  }
 `
 
 export const DetailHeading = styled.div`
