@@ -9,7 +9,7 @@ export default function Token({ data: { token } }) {
   }
 
   const name = token.name
-  const desc = token.description.en || token.ico_data.description
+  const desc = token.description?.en || token.ico_data?.description || '-'
   const links = token.links
   const image = token.image
   const symbol = token.symbol.toUpperCase()
