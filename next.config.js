@@ -1,4 +1,4 @@
-const withTM = require('next-transpile-modules')(['react-syntax-highlighter']); // pass the modules you would like to see transpiled
+const withTM = require('next-transpile-modules')(['react-syntax-highlighter']) // pass the modules you would like to see transpiled
 
 module.exports = withTM({
   i18n: {
@@ -7,7 +7,7 @@ module.exports = withTM({
   },
   experimental: {
     // Enables the styled-components SWC transform
-    styledComponents: true
+    styledComponents: true,
   },
   async redirects() {
     return [
@@ -17,5 +17,14 @@ module.exports = withTM({
         permanent: true,
       },
     ]
-  }
-});
+  },
+  webpack5: true,
+  webpack: (config) => {
+    config.resolve.fallback = {
+      fs: false,
+      path: false,
+    }
+
+    return config
+  },
+})
