@@ -3,9 +3,10 @@ import Link from 'next/link'
 import Layout from '@/components/Layout'
 import styled from 'styled-components'
 import { getAllTokensIds, getTokenData } from 'lib/tokens'
-import { DetailHeading, Section, Breadcrumbs, TokenTitle, TokenPrice, TokenChart } from '@/const/styles/pages/tokens'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
+import { Wrapper, MainContent, StickyContent, SwapWidget, DetailHeading, Section, TokenTitle, TokenPrice, TokenChart } from '@/const/styles/pages/tokens'
 
-export default function Token({ name, symbol, desc, image }) {
+export default function Token({ id, name, symbol, desc, image }) {
 
   return (
     <>
@@ -15,11 +16,11 @@ export default function Token({ name, symbol, desc, image }) {
         </title>
       </Head>
 
-      <Layout>
+      <Layout tokenDetail={true}>
+        <Wrapper>
+        <MainContent>
         <Section>
-          <Breadcrumbs>
-            <Link href="/tokens">Tokens</Link> {'>'} {name}
-          </Breadcrumbs>
+          <Breadcrumbs crumbs={[{ text: 'Tokens', href: '/tokens' }, { text: name, href: `/tokens/${id}` }]} />
 
           <DetailHeading>
             <TokenTitle>
@@ -46,6 +47,13 @@ export default function Token({ name, symbol, desc, image }) {
           <h4>About {symbol} coin</h4>
           <p>{desc}</p>
         </Section>
+        </MainContent>
+        <StickyContent>
+          <SwapWidget>
+            <b>-Swap {symbol} widget -</b>
+          </SwapWidget>
+        </StickyContent>
+        </Wrapper>
       </Layout>
     </>
   )
@@ -69,13 +77,16 @@ export async function getStaticProps({ params }) {
     };
   }
 
-  const name = token.name;
-  const symbol = token.symbol.toUpperCase();
-  const desc = token.description?.en || token.ico_data?.description || '-';
-  const image = token.image;
+  const {id: rawId, name: rawName, symbol: rawSymbol, description, ico_data, image} = token;
+
+  const id = rawId;
+  const name = rawName;
+  const symbol = rawSymbol.toUpperCase();
+  const desc = description?.en || ico_data?.description || '-';
 
   return {
     props: {
+      id,
       name,
       symbol,
       desc,
@@ -83,3 +94,4 @@ export async function getStaticProps({ params }) {
     },
   }
 }
+

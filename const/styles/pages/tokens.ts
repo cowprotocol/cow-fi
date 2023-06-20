@@ -2,6 +2,50 @@ import styled from 'styled-components'
 import { Color, Media } from 'const/styles/variables'
 import { transparentize } from 'polished'
 
+export const Wrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 27.2rem;
+  grid-gap: 3.2rem;
+  width: 100%;
+  position: relative;
+`
+
+export const MainContent = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+`
+
+export const StickyContent = styled.div`
+  position: sticky;
+  top: 10rem;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: max-content;
+  overflow: visible;
+`
+
+
+export const SwapWidget = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.1rem solid ${transparentize(0.8, Color.lightBlue)};
+  height: 20rem;
+  width: 100%;
+  border-radius: 1.6rem;
+  margin: 0 0 2rem;
+  padding: 1rem;
+
+   > b {
+    font-size: 1.2rem;
+   }
+`
+
 export const Section = styled.div`
   display: flex;
   flex-direction: column;
@@ -14,21 +58,10 @@ export const DetailHeading = styled.div`
   align-items: flex-start;
   justify-content: center;
   gap: 1rem;
-  margin: 0 0 1.6rem;
 
   > div {
     display: flex;
     align-items: center;
-  }
-`
-
-export const Breadcrumbs = styled.div`
-  font-size: 1.4rem;
-  margin: 0 0 1.6rem;
-  color: ${transparentize(0.2, Color.lightBlue)};
-
-  > a {
-    color: ${Color.lightBlue};
   }
 `
 
