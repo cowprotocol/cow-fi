@@ -31,7 +31,7 @@ const TokenTable = styled.div`
 const HeaderItem = styled.div`
   display: contents;
   display: grid;
-  grid-template-columns: 0.5fr 5fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 0.5fr 3fr 1fr 1fr 1fr 1fr;
   align-items: center;
   justify-content: flex-start;
   padding: 1rem 0;
