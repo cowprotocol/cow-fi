@@ -104,7 +104,7 @@ export const TokenTitle = styled.div`
   }
 
   > h1 {
-    font-size: 2.4rem;
+    font-size: 4rem;
     margin: 0;
   }
 
@@ -119,23 +119,32 @@ export const TokenTitle = styled.div`
 `
 
 export const TokenPrice = styled.div`
-  font-size: 3.6rem;
-  font-weight: 400;
+  font-size: 3.8rem;
   display: flex;
   align-items: center;
   line-height: 1;
   gap: 0.8rem;
 
+  > b {
+    font-weight: 400;
+  }
+
   > span {
     display: flex;
-    gap: 0.3rem;
-    font-size: 1.6rem;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 2.2rem;
     color: ${transparentize(0.2, Color.darkBlue)};
   }
 
   > span > b {
     font-weight: normal;
     color: ${Color.success};
+  }
+
+  > span > i {
+    font-size: 1.6rem;
+    font-style: normal;
   }
 `
 
