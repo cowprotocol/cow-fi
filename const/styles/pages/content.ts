@@ -8,9 +8,9 @@ export const Content = styled.main`
   box-sizing: border-box;
   width: 100%;
   max-width: 90rem;
+  min-height: 80rem;
   display: flex;
   flex-flow: column wrap;
-  min-height: 80rem;
   font-size: 16px;
 
   ${Media.mobile} {
