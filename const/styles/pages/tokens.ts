@@ -195,3 +195,61 @@ export const TokenLink = styled.a`
     color: ${transparentize(0.5, Color.lightBlue)};
   }
 `
+
+export const SwapCardsWrapper = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1.2rem;
+  width: 100%;
+`
+
+export const SwapCard = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border: 0.1rem solid ${transparentize(0.8, Color.lightBlue)};
+  transition: border 0.2s ease-in-out;
+  border-radius: 1.2rem;
+  padding: 1.2rem;
+  font-size: 1.4rem;
+
+  &:hover {
+    border: 0.1rem solid ${Color.lightBlue};
+
+    > a > img:last-child {
+      opacity: 1;
+    }
+  }
+
+  > a {
+    width: 100%;
+    text-decoration: none;
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+  }
+
+  > a > img:first-child {
+    --size: 2.8rem;
+    width: var(--size);
+    height: var(--size);
+    border-radius: var(--size);
+  }
+
+  > a > img:last-child {
+    --size: 1.8rem;
+    width: var(--size);
+    height: var(--size);
+    opacity: 0.6;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  > a > b {
+    line-height: 1.2;
+    font-weight: 600;
+  }
+
+`
