@@ -120,7 +120,7 @@ export default function TokenDetail({
             </Section>
 
             <Section>
-              <h3>Explorers</h3>
+              <h4>Explorers</h4>
 
               <NetworkTable>
                 <NetworkHeaderItem>

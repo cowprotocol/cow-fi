@@ -8,6 +8,18 @@ export const Wrapper = styled.div`
   grid-gap: 3.2rem;
   width: 100%;
   position: relative;
+
+  h3 {
+    font-size: 2.8rem;
+    line-height: 1.2;
+    margin: 0 0 1.2rem;
+  }
+
+  h4 {
+    font-size: 2.2rem;
+    line-height: 1.2;
+    margin: 0 0 1.2rem;
+  }
 `
 
 export const MainContent = styled.div`
@@ -131,8 +143,12 @@ export const TokenChart = styled.div`
   font-size: 1.3rem;
   margin: 0 auto 1.6rem;
   width: 100%;
-  border: 0.1rem solid ${transparentize(0.8, Color.lightBlue)};
-  min-height: 18rem;
+  background: linear-gradient(
+    to bottom,
+    ${transparentize(0.95, Color.lightBlue)},
+    ${transparentize(0.9, Color.lightBlue)}
+  );
+  min-height: 29rem;
   border-radius: 1.6rem;
 `
 
@@ -213,7 +229,7 @@ export const SwapCard = styled.div`
   border: 0.1rem solid ${transparentize(0.8, Color.lightBlue)};
   transition: border 0.2s ease-in-out;
   border-radius: 1.2rem;
-  padding: 1.2rem;
+  padding: 0;
   font-size: 1.4rem;
 
   &:hover {
@@ -230,6 +246,7 @@ export const SwapCard = styled.div`
     display: flex;
     gap: 1.2rem;
     align-items: center;
+    padding: 1.2rem;
   }
 
   > a > img:first-child {
