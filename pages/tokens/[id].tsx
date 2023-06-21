@@ -163,10 +163,10 @@ export async function getStaticProps({ params }) {
   const name = rawName
   const symbol = rawSymbol.toUpperCase()
   const desc = description?.en || ico_data?.description || '-'
-  const marketCap = token.market_data?.market_cap?.usd || '-'
-  const volume = token.market_data?.total_volume.usd || '-'
-  const ath = token.market_data?.ath.usd || '-'
-  const atl = token.market_data?.atl.usd || '-'
+  const marketCap = token.market_data?.market_cap?.usd || null
+  const volume = token.market_data?.total_volume.usd || null
+  const ath = token.market_data?.ath.usd || null
+  const atl = token.market_data?.atl.usd || null
 
   const contractAddressEthereum = detail_platforms.ethereum?.contract_address || ''
   const contractAddressGnosis = detail_platforms.xdai?.contract_address || ''
