@@ -76,7 +76,7 @@ export default function TokenDetail({
         <Wrapper>
           <MainContent>
             <Section>
-              <Breadcrumbs crumbs={[{ text: 'Tokens', href: '/tokens' }, { text: name, href: `/tokens/${id}` }]} />
+              <Breadcrumbs crumbs={[{ text: 'Tokens', href: '/tokens' }, { text: `${name} Price` }]} />
 
               <DetailHeading>
                 <TokenTitle>
@@ -87,7 +87,7 @@ export default function TokenDetail({
 
                 <TokenPrice>
                   <b>$0.9993</b>
-                  <span><b>+0.53%</b> <i>(24H)</i></span>
+                  <span><b>+8.31%</b> <i>(24H)</i></span>
                 </TokenPrice>
               </DetailHeading>
 

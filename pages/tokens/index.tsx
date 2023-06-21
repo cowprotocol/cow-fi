@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 121rem;
+  max-width: 126rem;
   margin: 0 auto;
   color: ${Color.darkBlue};
 

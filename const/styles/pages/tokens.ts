@@ -104,7 +104,7 @@ export const TokenTitle = styled.div`
   }
 
   > h1 {
-    font-size: 4rem;
+    font-size: 2.2rem;
     margin: 0;
   }
 

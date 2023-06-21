@@ -239,7 +239,7 @@ const Logo = styled.div<{isLight?: boolean}>`
   width: 12.2rem;
   height: 3.8rem;
   background: url(${LogoImage}) no-repeat center/contain;
-  ${({ isLight }) => !isLight && `background: url(${LogoLightImage}) no-repeat center/contain`};
+  ${({ isLight }) => !isLight && `background: url(/images/${LogoLightImage}) no-repeat center/contain`};
   cursor: pointer;
 
   .sticky & {
@@ -250,7 +250,7 @@ const Logo = styled.div<{isLight?: boolean}>`
 
   ${Media.mediumDown} {
     background: url(${LogoIconImage}) no-repeat center/contain;
-    ${({ isLight }) => !isLight && `background: url(${LogoIconLightImage}) no-repeat center/contain`};
+    ${({ isLight }) => !isLight && `background: url(/images/${LogoIconLightImage}) no-repeat center/contain`};
     width: 3.6rem;
     height: 3.2rem;
     background-size: contain;
