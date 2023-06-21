@@ -1,13 +1,37 @@
 import Head from 'next/head'
-import Link from 'next/link'
 import Layout from '@/components/Layout'
-import styled from 'styled-components'
 import { getAllTokensIds, getTokenData } from 'lib/tokens'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
-import { Wrapper, MainContent, StickyContent, SwapWidget, DetailHeading, Section, TokenTitle, TokenPrice, TokenChart } from '@/const/styles/pages/tokens'
+import {
+  Wrapper,
+  MainContent,
+  StickyContent,
+  SwapWidget,
+  DetailHeading,
+  Section,
+  TokenTitle,
+  TokenPrice,
+  TokenChart,
+  Stats,
+  StatItem,
+  StatTitle,
+  StatValue,
+  SectionSeparator,
+} from '@/const/styles/pages/tokens'
 
-export default function TokenDetail({ id, name, symbol, desc, image, contractAddressEthereum, contractAddressGnosis }) {
-
+export default function TokenDetail({
+  id,
+  name,
+  symbol,
+  desc,
+  image,
+  contractAddressEthereum,
+  contractAddressGnosis,
+  marketCap,
+  volume,
+  ath,
+  atl,
+}) {
   return (
     <>
       <Head>
@@ -18,67 +42,96 @@ export default function TokenDetail({ id, name, symbol, desc, image, contractAdd
 
       <Layout tokenDetail={true}>
         <Wrapper>
-        <MainContent>
-        <Section>
-          <Breadcrumbs crumbs={[{ text: 'Tokens', href: '/tokens' }, { text: name, href: `/tokens/${id}` }]} />
+          <MainContent>
+            <Section>
+              <Breadcrumbs
+                crumbs={[
+                  { text: 'Tokens', href: '/tokens' },
+                  { text: name, href: `/tokens/${id}` },
+                ]}
+              />
 
-          <DetailHeading>
-            <TokenTitle>
-              <img src={image.large} alt={`${name} (${symbol})`} />
-              <h1>{name}</h1>
-              <span>{symbol}</span>
-            </TokenTitle>
+              <DetailHeading>
+                <TokenTitle>
+                  <img src={image.large} alt={`${name} (${symbol})`} />
+                  <h1>{name}</h1>
+                  <span>{symbol}</span>
+                </TokenTitle>
 
-            <TokenPrice>
-              <b>$0.9993</b>
-              <span><b>+0.53%</b> <i>(24H)</i></span>
-            </TokenPrice>
-          </DetailHeading>
+                <TokenPrice>
+                  <b>$0.9993</b>
+                  <span>
+                    <b>+0.53%</b> <i>(24H)</i>
+                  </span>
+                </TokenPrice>
+              </DetailHeading>
+            </Section>
 
-        </Section>
+            <TokenChart>- Chart component -</TokenChart>
 
-        <TokenChart>- Chart component -</TokenChart>
+            <Section>
+              <TokenTitle>{symbol} Stats</TokenTitle>
 
-        <Section>
-          <h3>{symbol} Stats</h3>
-        </Section>
+              <Stats>
+                <StatItem>
+                  <StatTitle>Market Cap</StatTitle>
+                  <StatValue>$ {marketCap}</StatValue>
+                </StatItem>
 
-        <Section>
-          <h4>About {symbol} coin</h4>
-          <p>{desc}
-          <br /><br />
+                <StatItem>
+                  <StatTitle>24H Volume</StatTitle>
+                  <StatValue>$ {volume}</StatValue>
+                </StatItem>
 
-          {contractAddressEthereum && (
-  <a 
-    href={`https://swap.cow.fi/#/1/swap/WETH/${contractAddressEthereum}?sellAmount=1`}
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Swap on CoW Swap (Ethereum) ↗
-  </a>
-)}
+                <StatItem>
+                  <StatTitle>All-time High</StatTitle>
+                  <StatValue>$ {ath}</StatValue>
+                </StatItem>
 
-{contractAddressGnosis && (
-  <a 
-    href={`https://swap.cow.fi/#/100/swap/WETH/${contractAddressGnosis}?sellAmount=1`}
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Swap on CoW Swap (Gnosis Chain)) ↗
-  </a>
-)}
+                <StatItem>
+                  <StatTitle>All-time Low</StatTitle>
+                  <StatValue>$ {atl}</StatValue>
+                </StatItem>
+              </Stats>
+            </Section>
 
+            <SectionSeparator />
 
-          </p>
+            <Section>
+              <h4>About {symbol} coin</h4>
+              <p>
+                {desc}
+                <br />
+                <br />
 
-        </Section>
-        </MainContent>
+                {contractAddressEthereum && (
+                  <a
+                    href={`https://swap.cow.fi/#/1/swap/WETH/${contractAddressEthereum}?sellAmount=1`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Swap on CoW Swap (Ethereum) ↗
+                  </a>
+                )}
 
-        <StickyContent>
-          <SwapWidget>
-            <b>-Swap {symbol} widget -</b>
-          </SwapWidget>
-        </StickyContent>
+                {contractAddressGnosis && (
+                  <a
+                    href={`https://swap.cow.fi/#/100/swap/WETH/${contractAddressGnosis}?sellAmount=1`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Swap on CoW Swap (Gnosis Chain)) ↗
+                  </a>
+                )}
+              </p>
+            </Section>
+          </MainContent>
+
+          <StickyContent>
+            <SwapWidget>
+              <b>-Swap {symbol} widget -</b>
+            </SwapWidget>
+          </StickyContent>
         </Wrapper>
       </Layout>
     </>
@@ -96,22 +149,26 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const token = getTokenData(params.id)
-  
+
   if (!token) {
     return {
       notFound: true,
-    };
+    }
   }
 
-  const {id: rawId, name: rawName, symbol: rawSymbol, description, ico_data, image, detail_platforms} = token;
+  const { id: rawId, name: rawName, symbol: rawSymbol, description, ico_data, image, detail_platforms } = token
 
-  const id = rawId;
-  const name = rawName;
-  const symbol = rawSymbol.toUpperCase();
-  const desc = description?.en || ico_data?.description || '-';
+  const id = rawId
+  const name = rawName
+  const symbol = rawSymbol.toUpperCase()
+  const desc = description?.en || ico_data?.description || '-'
+  const marketCap = token.market_data?.market_cap?.usd || '-'
+  const volume = token.market_data?.total_volume.usd || '-'
+  const ath = token.market_data?.ath.usd || '-'
+  const atl = token.market_data?.atl.usd || '-'
 
-  const contractAddressEthereum = detail_platforms.ethereum?.contract_address || '';
-  const contractAddressGnosis = detail_platforms.xdai?.contract_address || '';
+  const contractAddressEthereum = detail_platforms.ethereum?.contract_address || ''
+  const contractAddressGnosis = detail_platforms.xdai?.contract_address || ''
 
   return {
     props: {
@@ -121,9 +178,11 @@ export async function getStaticProps({ params }) {
       desc,
       image,
       contractAddressEthereum,
-      contractAddressGnosis
+      contractAddressGnosis,
+      marketCap,
+      volume,
+      ath,
+      atl,
     },
   }
 }
-
-
