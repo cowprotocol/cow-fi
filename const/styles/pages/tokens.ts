@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   grid-template-columns: 1fr 36rem;
   grid-gap: 3.2rem;
   width: 100%;
-  max-width: 121rem;
+  max-width: 126rem;
   margin: 0 auto;
   position: relative;
   color: ${Color.darkBlue};
@@ -105,6 +105,7 @@ export const TokenTitle = styled.div`
 
   > h1 {
     font-size: 2.2rem;
+    font-weight: 600;
     margin: 0;
   }
 
@@ -114,6 +115,7 @@ export const TokenTitle = styled.div`
     color: ${Color.darkBlue};
     border-radius: 0.4rem;
     font-size: 1.4rem;
+    letter-spacing: 0.05rem;
     font-weight: 600;
   }
 `
@@ -126,7 +128,7 @@ export const TokenPrice = styled.div`
   gap: 0.8rem;
 
   > b {
-    font-weight: 400;
+    font-weight: 600;
   }
 
   > span {
@@ -145,6 +147,7 @@ export const TokenPrice = styled.div`
   > span > i {
     font-size: 1.6rem;
     font-style: normal;
+    font-weight: 400;
   }
 `
 
@@ -179,18 +182,62 @@ export const NetworkHeaderItem = styled.div`
   justify-content: flex-start;
   padding: 1rem 0;
   border-bottom: 1px solid ${transparentize(0.9, Color.darkBlue)};
-  gap: 1.4rem;
+  gap: 0.8rem;
 
   ${Media.mobile} {
     grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
   }
 
   > div {
-    font-weight: bold;
+    font-weight: normal;
+    font-size: 1.4rem;
+    line-height: 1;
   }
 `
 
-export const NetworkItem = styled(NetworkHeaderItem)``
+export const NetworkItem = styled(NetworkHeaderItem)`
+  font-size: 1.6rem;
+
+  > a {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  > a > img {
+    --size: 1.6rem;
+    width: var(--size);
+    height: var(--size);
+    border-radius: var(--size);
+    object-fit: contain;
+  }
+
+  > div {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: normal;
+    font-size: inherit;
+  }
+
+  > span {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 0.8rem;
+  }
+
+  > span > a > img,
+  > span > img {
+    --size: 2.4rem;
+    width: var(--size);
+    height: var(--size);
+    border-radius: var(--size);
+    object-fit: contain;
+  }
+`
 
 export const TokenLink = styled.a`
   display: flex;
@@ -282,4 +329,23 @@ export const SwapCard = styled.div`
     font-weight: 600;
   }
 
+`
+
+export const CopyIcon = styled.img`
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease-in-out;
+  --size: 1.7rem;
+  width: var(--size);
+  height: var(--size);
+
+  &:hover {
+    opacity: 1;
+  }
+`
+
+export const CopyMessage = styled.span`
+  color: ${Color.success};
+  font-size: 1.3rem;
+  margin: 0 0 0 0.2rem;
 `

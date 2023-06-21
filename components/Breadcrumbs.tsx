@@ -7,7 +7,7 @@ import Link from 'next/link'
 export const StyledBreadcrumbs = styled.div`
   display: flex;
   align-items: center;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   margin: 0 0 1.6rem;
   font-weight: 400;
   color: ${Color.darkBlue};

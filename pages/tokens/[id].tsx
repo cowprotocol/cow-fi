@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head'
 import Link from 'next/link'
 import Layout from '@/components/Layout'
 import { getAllTokensIds, getTokenData } from 'lib/tokens'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
-import { Wrapper, MainContent, StickyContent, SwapWidget, SwapCardsWrapper, SwapCard, DetailHeading, Section, TokenTitle, TokenPrice, TokenChart, NetworkTable, NetworkHeaderItem, NetworkItem, TokenLink } from '@/const/styles/pages/tokens'
+import { Wrapper, MainContent, StickyContent, SwapWidget, SwapCardsWrapper, SwapCard, DetailHeading, Section, TokenTitle, TokenPrice, TokenChart, NetworkTable, NetworkHeaderItem, NetworkItem, TokenLink, CopyIcon, CopyMessage } from '@/const/styles/pages/tokens'
 
 type PlatformData = {
   contractAddress: string;
@@ -51,6 +51,30 @@ const SwapLinkCard = ({ contractAddress, networkId, networkName, tokenSymbol }: 
   );
 };
 
+const CopyToClipboard = ({ text }) => {
+  const [copied, setCopied] = useState(false);
+
+  const copyToClipboard = async () => {
+    await navigator.clipboard.writeText(text);
+    setCopied(true);
+  };
+
+  useEffect(() => {
+    if (copied) {
+      const timer = setTimeout(() => {
+        setCopied(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [copied]);
+
+  return (
+    <>
+      <CopyIcon src="/images/icons/click-to-copy.svg" alt="Copy contract address" onClick={copyToClipboard} />
+      {copied && <CopyMessage>Copied!</CopyMessage>}
+    </>
+  );
+};
 
 export default function TokenDetail({
   id,
@@ -126,46 +150,55 @@ export default function TokenDetail({
                 <NetworkHeaderItem>
                   <div>Network</div>
                   <div>Contract Address</div>
-                  <div>Actions</div>
+                  <div></div>
                 </NetworkHeaderItem>
 
                 {Object.entries(platforms).map(([network, platformData]) => (
-                  <NetworkItem key={id}>
-                    <a
-                      href={network === 'xdai'
-                        ? `https://gnosisscan.io/address/${platformData.contractAddress}`
-                        : `https://etherscan.io/address/${platformData.contractAddress}`}
-                      title={`${name} (${symbol}) on ${network === 'xdai' ? 'Gnosis Chain' : 'Ethereum'}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {network === 'xdai' ? 'Gnosis Chain' : network.charAt(0).toUpperCase() + network.slice(1)}
-                    </a>
-                    <React.Fragment key={network}>
-                      <div>{platformData.contractAddress}</div>
+  platformData.contractAddress && (
+    <NetworkItem key={id}>
+      <a
+        href={network === 'xdai'
+          ? `https://gnosisscan.io/address/${platformData.contractAddress}`
+          : `https://etherscan.io/address/${platformData.contractAddress}`}
+        title={`${name} (${symbol}) on ${network === 'xdai' ? 'Gnosis Chain' : 'Ethereum'}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img 
+          src={`/images/${network === 'xdai' ? 'gnosis-chain' : network}.svg`} 
+          alt={network === 'xdai' ? 'Gnosis Chain' : 'Ethereum'} 
+        />
+        {network === 'xdai' ? 'Gnosis Chain' : network.charAt(0).toUpperCase() + network.slice(1)}
+      </a>
+      <React.Fragment key={network}>
+        <div>
+          {platformData.contractAddress} 
+          <CopyToClipboard text={platformData.contractAddress} />
+        </div>
 
-                      <span>
-                        <button onClick={() => navigator.clipboard.writeText(String(platformData.contractAddress))}>Copy</button>
+        <span>
+          <a
+            href={`https://link.trustwallet.com/add_asset?asset=c20000714&t=${platformData.contractAddress}&n=${name}&s=${symbol}&d=${platformData.decimalPlace}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src='/images/trust_platform.svg' alt="Add to Trust Wallet" />
+          </a>
 
-                        <a
-                          href={`https://link.trustwallet.com/add_asset?asset=c20000714&t=${platformData.contractAddress}&n=${name}&s=${symbol}&d=${platformData.decimalPlace}`}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          <img src='images/trust_platform.svg' alt="Add to Trust Wallet" />
-                        </a>
+          <a
+            href={`https://metamask.app.link/addToken?contractAddress=${platformData.contractAddress}&symbol=${symbol}&decimals=${platformData.decimalPlace}&name=${name}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img src='/images/metamask-fox.svg' alt="Add to Metamask" />
+          </a>
+        </span>
+      </React.Fragment>
+    </NetworkItem>
+  )
+))}
 
-                        <a
-                          href={`https://metamask.app.link/addToken?contractAddress=${platformData.contractAddress}&symbol=${symbol}&decimals=${platformData.decimalPlace}&name=${name}`}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          <img src='images/metamask-fox.svg' alt="Add to Metamask" />
-                        </a>
-                      </span>
-                    </React.Fragment>
-                  </NetworkItem>
-                ))}
+
 
               </NetworkTable>
 

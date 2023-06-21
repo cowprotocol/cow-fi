@@ -234,12 +234,12 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         <SectionContent variant="banner" reverseOrderMobile={'column-reverse'}>
           <IntegrationList>
             <ol>
-              <li><a href="https://balancer.fi/" target="_blank" rel="noreferrer"><img src='images/icons/balancer.svg' alt="Balancer" /></a></li>
-              <li><a href="https://safe.global/" target="_blank" rel="noreferrer"><img src='images/icons/safe.svg' alt="Safe" /></a></li>
-              <li><a href="https://swapr.eth.limo/" target="_blank" rel="noreferrer"><img src='images/icons/swapr.svg' alt="Swapr" /></a></li>
-              <li><a href="https://shapeshift.com/" target="_blank" rel="noreferrer"><img src='images/icons/shapeshift.svg' alt="Shapeshift" /></a></li>
-              <li><a href="https://yearn.finance/" target="_blank" rel="noreferrer"><img src='images/icons/yearn.svg' alt="Yearn finance" /></a></li>
-              <li><a href="https://aura.finance/" target="_blank" rel="noreferrer"><img src='images/icons/aura.svg' alt="Aura finance" /></a></li>
+              <li><a href="https://balancer.fi/" target="_blank" rel="noreferrer"><img src='/images/icons/balancer.svg' alt="Balancer" /></a></li>
+              <li><a href="https://safe.global/" target="_blank" rel="noreferrer"><img src='/images/icons/safe.svg' alt="Safe" /></a></li>
+              <li><a href="https://swapr.eth.limo/" target="_blank" rel="noreferrer"><img src='/images/icons/swapr.svg' alt="Swapr" /></a></li>
+              <li><a href="https://shapeshift.com/" target="_blank" rel="noreferrer"><img src='/images/icons/shapeshift.svg' alt="Shapeshift" /></a></li>
+              <li><a href="https://yearn.finance/" target="_blank" rel="noreferrer"><img src='/images/icons/yearn.svg' alt="Yearn finance" /></a></li>
+              <li><a href="https://aura.finance/" target="_blank" rel="noreferrer"><img src='/images/icons/aura.svg' alt="Aura finance" /></a></li>
             </ol>
           </IntegrationList>
           <div>

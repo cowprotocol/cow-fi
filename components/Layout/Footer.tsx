@@ -6,7 +6,7 @@ import { CustomLink } from '../CustomLink';
 import { FooterLinkGroup, FOOTER_LINK_GROUPS } from '@/const/menu';
 import { CONFIG } from '@/const/meta';
 
-const LogoImage = 'images/logo-light.svg'
+const LogoImage = '/images/logo-light.svg'
 const CURRENT_YEAR = new Date().getFullYear()
 
 const Wrapper = styled.footer<{noMargin?: boolean}>`

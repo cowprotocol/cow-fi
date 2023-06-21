@@ -11,12 +11,12 @@ import { CustomLink as CustomLink } from '../CustomLink';
 import { CONFIG } from '@/const/meta';
 import { HEADER_LINKS } from '@/const/menu';
 
-const LogoImage = 'images/logo.svg'
-const LogoLightImage = 'images/logo-light.svg'
-const LogoIconImage = 'images/logo-icon.svg'
-const LogoIconLightImage = 'images/logo-icon-light.svg'
-const MenuImage = 'images/icons/menu.svg'
-const MenuImageLight = 'images/icons/menu-light.svg'
+const LogoImage = '/images/logo.svg'
+const LogoLightImage = '/images/logo-light.svg'
+const LogoIconImage = '/images/logo-icon.svg'
+const LogoIconLightImage = '/images/logo-icon-light.svg'
+const MenuImage = '/images/icons/menu.svg'
+const MenuImageLight = '/images/icons/menu-light.svg'
 
 const Pixel = styled.div`
   position: absolute;
