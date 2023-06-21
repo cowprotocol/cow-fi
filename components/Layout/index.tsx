@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { PropsWithChildren } from 'react'
 import Header from 'components/Layout/Header'
 import Footer from 'components/Layout/Footer'
+import { Content } from 'const/styles/pages/content'
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -19,19 +20,30 @@ const FullWidthContent = styled.main`
   flex-flow: column wrap;
 `
 
-import { Content } from 'const/styles/pages/content'
+const TokenDetail = styled.main`
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2.4rem;
+  padding: 0 2.4rem
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 98rem;
+  min-height: 80rem;
+`
 
-type LayoutProps = PropsWithChildren<{ fullWidth?: boolean }>
+type LayoutProps = PropsWithChildren<{ fullWidth?: boolean; tokenDetail?: boolean }>
 
-export default function Layout(props: LayoutProps) {
-  const { children, fullWidth = false } = props
-  const content = children ? children : 'No content found'
-  const ContentComponent = fullWidth ? FullWidthContent : Content
+export default function Layout({ children, fullWidth = false, tokenDetail = false }: LayoutProps) {
+  const ContentComponent = fullWidth ? FullWidthContent : (tokenDetail ? TokenDetail : Content)
+  
   return (
     <>
       <Wrapper>
         <Header />
-        <ContentComponent>{content}</ContentComponent>
+        <ContentComponent>{children || 'No content found'}</ContentComponent>
         <Footer />
       </Wrapper>
     </>

@@ -1,33 +1,37 @@
 import Head from 'next/head'
 import Layout from '@/components/Layout'
 import { getAllTokensIds, getTokenData } from 'lib/tokens'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 import {
-  Heading,
-  Title,
+  Wrapper,
+  MainContent,
+  StickyContent,
+  SwapWidget,
+  DetailHeading,
   Section,
-  Symbol,
+  TokenTitle,
+  TokenPrice,
+  TokenChart,
+  Stats,
   StatItem,
   StatTitle,
   StatValue,
-  Stats,
   SectionSeparator,
-} from '@/const/styles/pages/token'
+} from '@/const/styles/pages/tokens'
 
-export default function Token({ data: { token } }) {
-  if (!token) {
-    return null
-  }
-
-  const name = token.name
-  const desc = token.description?.en || token.ico_data?.description || '-'
-  const links = token.links
-  const image = token.image
-  const symbol = token.symbol.toUpperCase()
-  const marketCap = token.market_data?.market_cap?.usd || '-'
-  const volume = token.market_data?.total_volume.usd || '-'
-  const ath = token.market_data?.ath.usd || '-'
-  const atl = token.market_data?.atl.usd || '-'
-
+export default function TokenDetail({
+  id,
+  name,
+  symbol,
+  desc,
+  image,
+  contractAddressEthereum,
+  contractAddressGnosis,
+  marketCap,
+  volume,
+  ath,
+  atl,
+}) {
   return (
     <>
       <Head>
@@ -36,53 +40,99 @@ export default function Token({ data: { token } }) {
         </title>
       </Head>
 
-      <Layout>
-        <Section>
-          <Heading>
-            <div>
-              <img src={image.thumb} alt="" />
-              <Title>{name}</Title>
-              <Symbol>{symbol}</Symbol>
-            </div>
-          </Heading>
-        </Section>
+      <Layout tokenDetail={true}>
+        <Wrapper>
+          <MainContent>
+            <Section>
+              <Breadcrumbs
+                crumbs={[
+                  { text: 'Tokens', href: '/tokens' },
+                  { text: name, href: `/tokens/${id}` },
+                ]}
+              />
 
-        <Section>Graph</Section>
+              <DetailHeading>
+                <TokenTitle>
+                  <img src={image.large} alt={`${name} (${symbol})`} />
+                  <h1>{name}</h1>
+                  <span>{symbol}</span>
+                </TokenTitle>
 
-        <Section>
-          <Title>{symbol} Stats</Title>
+                <TokenPrice>
+                  <b>$0.9993</b>
+                  <span>
+                    <b>+0.53%</b> <i>(24H)</i>
+                  </span>
+                </TokenPrice>
+              </DetailHeading>
+            </Section>
 
-          <Stats>
-            <StatItem>
-              <StatTitle>Market Cap</StatTitle>
-              <StatValue>$ {marketCap}</StatValue>
-            </StatItem>
+            <TokenChart>- Chart component -</TokenChart>
 
-            <StatItem>
-              <StatTitle>24H Volume</StatTitle>
-              <StatValue>$ {volume}</StatValue>
-            </StatItem>
+            <Section>
+              <TokenTitle>{symbol} Stats</TokenTitle>
 
-            <StatItem>
-              <StatTitle>All-time High</StatTitle>
-              <StatValue>$ {ath}</StatValue>
-            </StatItem>
+              <Stats>
+                <StatItem>
+                  <StatTitle>Market Cap</StatTitle>
+                  <StatValue>$ {marketCap}</StatValue>
+                </StatItem>
 
-            <StatItem>
-              <StatTitle>All-time Low</StatTitle>
-              <StatValue>$ {atl}</StatValue>
-            </StatItem>
-          </Stats>
-        </Section>
+                <StatItem>
+                  <StatTitle>24H Volume</StatTitle>
+                  <StatValue>$ {volume}</StatValue>
+                </StatItem>
 
-        <SectionSeparator />
+                <StatItem>
+                  <StatTitle>All-time High</StatTitle>
+                  <StatValue>$ {ath}</StatValue>
+                </StatItem>
 
-        <Section>
-          <h4>About {symbol} coin</h4>
-          <p>{desc}</p>
-        </Section>
+                <StatItem>
+                  <StatTitle>All-time Low</StatTitle>
+                  <StatValue>$ {atl}</StatValue>
+                </StatItem>
+              </Stats>
+            </Section>
 
-        <Section>Explorers</Section>
+            <SectionSeparator />
+
+            <Section>
+              <h4>About {symbol} coin</h4>
+              <p>
+                {desc}
+                <br />
+                <br />
+
+                {contractAddressEthereum && (
+                  <a
+                    href={`https://swap.cow.fi/#/1/swap/WETH/${contractAddressEthereum}?sellAmount=1`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Swap on CoW Swap (Ethereum) ↗
+                  </a>
+                )}
+
+                {contractAddressGnosis && (
+                  <a
+                    href={`https://swap.cow.fi/#/100/swap/WETH/${contractAddressGnosis}?sellAmount=1`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Swap on CoW Swap (Gnosis Chain)) ↗
+                  </a>
+                )}
+              </p>
+            </Section>
+          </MainContent>
+
+          <StickyContent>
+            <SwapWidget>
+              <b>-Swap {symbol} widget -</b>
+            </SwapWidget>
+          </StickyContent>
+        </Wrapper>
       </Layout>
     </>
   )
@@ -100,10 +150,39 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const token = getTokenData(params.id)
 
+  if (!token) {
+    return {
+      notFound: true,
+    }
+  }
+
+  const { id: rawId, name: rawName, symbol: rawSymbol, description, ico_data, image, detail_platforms } = token
+
+  const id = rawId
+  const name = rawName
+  const symbol = rawSymbol.toUpperCase()
+  const desc = description?.en || ico_data?.description || '-'
+  const marketCap = token.market_data?.market_cap?.usd || '-'
+  const volume = token.market_data?.total_volume.usd || '-'
+  const ath = token.market_data?.ath.usd || '-'
+  const atl = token.market_data?.atl.usd || '-'
+
+  const contractAddressEthereum = detail_platforms.ethereum?.contract_address || ''
+  const contractAddressGnosis = detail_platforms.xdai?.contract_address || ''
+
   return {
     props: {
-      id: params.id,
-      data: { token },
+      id,
+      name,
+      symbol,
+      desc,
+      image,
+      contractAddressEthereum,
+      contractAddressGnosis,
+      marketCap,
+      volume,
+      ath,
+      atl,
     },
   }
 }
