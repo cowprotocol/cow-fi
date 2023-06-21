@@ -1,12 +1,12 @@
 import styled, { createGlobalStyle } from 'styled-components'
 import { Color, Font, Media } from 'const/styles/variables'
-import { transparentize } from "polished";
+import { transparentize } from 'polished'
 
 const GlobalStyles = createGlobalStyle`
 
 @font-face {
       font-family: 'Averta';
-      src: url('fonts/averta-regular-webfont.woff2') format('woff2');
+      src: url('/fonts/averta-regular-webfont.woff2') format('woff2');
       font-weight: normal;
       font-style: normal;
       font-display: swap;
@@ -14,7 +14,7 @@ const GlobalStyles = createGlobalStyle`
 
   @font-face {
       font-family: 'Averta';
-      src: url('fonts/averta-semibold-webfont.woff2') format('woff2');
+      src: url('/fonts/averta-semibold-webfont.woff2') format('woff2');
       font-weight: 500;
       font-style: normal;
       font-display: swap;
@@ -22,7 +22,7 @@ const GlobalStyles = createGlobalStyle`
 
   @font-face {
       font-family: 'Averta';
-      src: url('fonts/averta-bold-webfont.woff2') format('woff2');
+      src: url('/fonts/averta-bold-webfont.woff2') format('woff2');
       font-weight: bold;
       font-style: normal;
       font-display: swap;
@@ -30,7 +30,7 @@ const GlobalStyles = createGlobalStyle`
 
   @font-face {
       font-family: 'Averta';
-      src: url('fonts/averta-extrabold-webfont.woff2') format('woff2');
+      src: url('/fonts/averta-extrabold-webfont.woff2') format('woff2');
       font-weight: 900;
       font-style: normal;
       font-display: swap;
@@ -198,7 +198,7 @@ export const ExternalLink = styled.a`
   white-space: nowrap;
 
   &::after {
-    content: "↗";
+    content: '↗';
     color: inherit;
     font-size: ${Font.sizeDefault};
     display: inline-block;
@@ -221,7 +221,7 @@ export const DropDown = styled.div`
   font-family: ${Font.default};
 
   &::after {
-    content: "▼";
+    content: '▼';
     position: absolute;
     border: 0;
     color: inherit;
@@ -251,14 +251,14 @@ export const DropDown = styled.div`
     border-radius: inherit;
     background: ${transparentize(0.9, Color.darkBlue)};
 
-      &:focus {
-        outline: none;
-      }
+    &:focus {
+      outline: none;
+    }
 
-      > option {
-        background-color: ${Color.black};
-        color: ${Color.darkBlue};
-      }
+    > option {
+      background-color: ${Color.black};
+      color: ${Color.darkBlue};
+    }
   }
 `
 
