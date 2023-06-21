@@ -201,7 +201,7 @@ export const NetworkItem = styled(NetworkHeaderItem)`
   > a {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.6rem;
     text-decoration: none;
     font-weight: 600;
   }
