@@ -6,7 +6,7 @@ import { getAllTokensIds, getTokenData } from 'lib/tokens'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { Wrapper, MainContent, StickyContent, SwapWidget, DetailHeading, Section, TokenTitle, TokenPrice, TokenChart } from '@/const/styles/pages/tokens'
 
-export default function Token({ id, name, symbol, desc, image, contractAddressEthereum, contractAddressGnosis }) {
+export default function TokenDetail({ id, name, symbol, desc, image, contractAddressEthereum, contractAddressGnosis }) {
 
   return (
     <>
@@ -111,7 +111,7 @@ export async function getStaticProps({ params }) {
   const desc = description?.en || ico_data?.description || '-';
 
   const contractAddressEthereum = detail_platforms.ethereum?.contract_address || '';
-  const contractAddressGnosis = detail_platforms.gnosis?.contract_address || '';
+  const contractAddressGnosis = detail_platforms.xdai?.contract_address || '';
 
   return {
     props: {
