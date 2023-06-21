@@ -5,11 +5,13 @@ import { getAllTokensData } from 'lib/tokens'
 import styled from 'styled-components'
 import { Color, Media } from 'const/styles/variables'
 import { transparentize } from 'polished'
+import { TokenLink } from '@/const/styles/pages/tokens'
 
 const Wrapper = styled.div`
   --tokenSize: 2.6rem;
   display: flex;
   flex-direction: column;
+  width: 100%;
 
   h1 {
     display: flex;
@@ -31,11 +33,12 @@ const TokenTable = styled.div`
 const HeaderItem = styled.div`
   display: contents;
   display: grid;
-  grid-template-columns: 0.5fr 3fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: auto 3fr 1fr 1fr 1fr 1fr;
   align-items: center;
   justify-content: flex-start;
   padding: 1rem 0;
   border-bottom: 1px solid ${transparentize(0.9, Color.lightBlue)};
+  gap: 1.4rem;
   
   ${Media.mobile} {
     grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
@@ -47,39 +50,6 @@ const HeaderItem = styled.div`
 `
 
 const ListItem = styled(HeaderItem)`
-`
-
-const TokenLink = styled.a`
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  line-height: 1.2;
-  gap: 0.8rem;
-  text-decoration: none;
-  color: ${transparentize(0.2, Color.lightBlue)};
-  transition: color 0.2s ease-in-out;
-
-  &:hover {
-    color: ${Color.lightBlue};
-    text-decoration: underline;
-  }
-
-  > img {
-    width: var(--tokenSize);
-    height: var(--tokenSize);
-    border-radius: var(--tokenSize);
-    background-color: ${Color.lightBlue};
-  }
-
-  > span {
-
-  }
-
-  > span > i {
-    text-transform: uppercase;
-    font-style: normal;
-    color: ${transparentize(0.5, Color.lightBlue)};
-  }
 `
 
 const PlacerholderImage = styled.div`
@@ -114,7 +84,7 @@ export default function Tokens({ tokens }) {
   }, [search, tokens]);
 
   return (
-    <Layout>
+    <Layout tokensPages={true}>
       <Wrapper>
         <h1>Tokens <span>({filteredTokens.length})</span></h1>
         <SearchTokens

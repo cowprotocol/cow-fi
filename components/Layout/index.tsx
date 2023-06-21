@@ -20,24 +20,25 @@ const FullWidthContent = styled.main`
   flex-flow: column wrap;
 `
 
-const TokenDetail = styled.main`
+const TokensPages = styled.main`
+  font-size: 1.6rem;
   display: flex;
   flex-flow: column wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   gap: 2.4rem;
-  padding: 0 2.4rem
+  padding: 4.2rem 2.4rem;
   box-sizing: border-box;
   margin: 0 auto;
   width: 100%;
-  max-width: 98rem;
+  max-width: 121rem;
   min-height: 80rem;
 `
 
-type LayoutProps = PropsWithChildren<{ fullWidth?: boolean; tokenDetail?: boolean }>
+type LayoutProps = PropsWithChildren<{ fullWidth?: boolean; tokensPages?: boolean }>
 
-export default function Layout({ children, fullWidth = false, tokenDetail = false }: LayoutProps) {
-  const ContentComponent = fullWidth ? FullWidthContent : (tokenDetail ? TokenDetail : Content)
+export default function Layout({ children, fullWidth = false, tokensPages = false }: LayoutProps) {
+  const ContentComponent = fullWidth ? FullWidthContent : (tokensPages ? TokensPages : Content)
   
   return (
     <>

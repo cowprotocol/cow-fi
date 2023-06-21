@@ -4,7 +4,7 @@ import { transparentize } from 'polished'
 
 export const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 27.2rem;
+  grid-template-columns: 1fr 36rem;
   grid-gap: 3.2rem;
   width: 100%;
   position: relative;
@@ -133,4 +133,63 @@ export const TokenChart = styled.div`
   border: 0.1rem solid ${transparentize(0.8, Color.lightBlue)};
   min-height: 18rem;
   border-radius: 1.6rem;
+`
+
+export const NetworkTable = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  `
+
+export const NetworkHeaderItem = styled.div`
+  display: contents;
+  display: grid;
+  grid-template-columns: auto 3fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem 0;
+  border-bottom: 1px solid ${transparentize(0.9, Color.lightBlue)};
+  gap: 1.4rem;
+
+  ${Media.mobile} {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  }
+
+  > div {
+    font-weight: bold;
+  }
+`
+
+export const NetworkItem = styled(NetworkHeaderItem)``
+
+export const TokenLink = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  line-height: 1.2;
+  gap: 0.8rem;
+  text-decoration: none;
+  color: ${transparentize(0.2, Color.lightBlue)};
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: ${Color.lightBlue};
+    text-decoration: underline;
+  }
+
+  > img {
+    width: var(--tokenSize);
+    height: var(--tokenSize);
+    border-radius: var(--tokenSize);
+    background-color: ${Color.lightBlue};
+  }
+
+  > span {
+
+  }
+
+  > span > i {
+    text-transform: uppercase;
+    font-style: normal;
+    color: ${transparentize(0.5, Color.lightBlue)};
+  }
 `

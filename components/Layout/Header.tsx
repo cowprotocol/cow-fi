@@ -31,7 +31,7 @@ const Pixel = styled.div`
 const Wrapper = styled.header`
   z-index: 10;
   width: 100%;
-  height: 9.6rem;
+  height: 7.2rem;
   position: relative;
   display: flex;
   flex-flow: row;
@@ -40,7 +40,6 @@ const Wrapper = styled.header`
   background: transparent;
   padding: 0 5.6rem;
   margin: 0 auto;
-  position: fixed;
   top: 0;
   left: 0;
   transition: background 0.2s ease-in-out, height 0.2s ease-in-out;
@@ -53,7 +52,8 @@ const Wrapper = styled.header`
   &.sticky {
     background: ${transparentize(0.1, Color.lightBlue)};
     backdrop-filter: blur(5px);
-    height: 6rem;
+    position: sticky;
+    top: 0;
   }
 `
 
