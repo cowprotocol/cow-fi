@@ -51,6 +51,7 @@ export const Section = styled.div`
   display: flex;
   flex-direction: column;
   padding: 2rem 1rem;
+  width: 100%;
 
   > p {
     line-height: 1.5;
@@ -138,12 +139,13 @@ export const TokenChart = styled.div`
 export const NetworkTable = styled.div`
   display: flex;
   flex-flow: column wrap;
+  width: 100%;
   `
 
 export const NetworkHeaderItem = styled.div`
   display: contents;
   display: grid;
-  grid-template-columns: auto 3fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 12rem 1fr auto;
   align-items: center;
   justify-content: flex-start;
   padding: 1rem 0;

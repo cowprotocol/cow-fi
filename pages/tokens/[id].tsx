@@ -72,7 +72,7 @@ export default function TokenDetail({ id, name, symbol, desc, image, contractAdd
             </Section>
 
             <Section>
-              <h4>Explorers</h4>
+              <h3>Explorers</h3>
 
               <NetworkTable>
                 <NetworkHeaderItem>
@@ -83,23 +83,17 @@ export default function TokenDetail({ id, name, symbol, desc, image, contractAdd
 
                 {Object.entries(platforms).map(([network, contractAddress]) => (
                   <NetworkItem key={id}>
- <a 
-      href={network === 'xdai'
-        ? `https://gnosisscan.io/address/${contractAddress}`
-        : `https://etherscan.io/address/${contractAddress}`}
-      title={`${name} (${symbol}) on ${network === 'xdai' ? 'Gnosis Chain' : 'Ethereum'}`}
-      target="_blank" 
-      rel="noopener noreferrer"
-    >
-      {network === 'xdai' ? 'Gnosis Chain' : network.charAt(0).toUpperCase() + network.slice(1)}
-    </a>
-
-
+                    <a 
+                          href={network === 'xdai'
+                            ? `https://gnosisscan.io/address/${contractAddress}`
+                            : `https://etherscan.io/address/${contractAddress}`}
+                          title={`${name} (${symbol}) on ${network === 'xdai' ? 'Gnosis Chain' : 'Ethereum'}`}
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                        >
+                          {network === 'xdai' ? 'Gnosis Chain' : network.charAt(0).toUpperCase() + network.slice(1)}
+                        </a>
                     <React.Fragment key={network}>
-                      <div>
-
-                      </div>
-
                       <div>{contractAddress}</div>
 
                       <span>
@@ -171,7 +165,7 @@ export async function getStaticProps({ params }) {
       symbol,
       desc,
       image,
-      platforms, // Pass the platforms object to the component
+      platforms,
     },
   }
 }
