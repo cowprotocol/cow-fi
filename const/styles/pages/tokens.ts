@@ -109,11 +109,12 @@ export const TokenTitle = styled.div`
   }
 
   > span {
-    padding: 0.6rem 1rem;
-    background: ${Color.darkBlue};
+    padding: 0.6rem;
+    background: ${transparentize(0.92, Color.darkBlue)};
     color: ${Color.darkBlue};
     border-radius: 0.4rem;
     font-size: 1.4rem;
+    font-weight: 600;
   }
 `
 

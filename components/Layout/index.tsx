@@ -28,25 +28,28 @@ const TokensPages = styled.main`
   justify-content: flex-start;
   align-items: flex-start;
   gap: 2.4rem;
-  padding: 4.2rem 2.4rem;
+  padding: 14.6rem 2.4rem;
   box-sizing: border-box;
-  margin: 0 auto;
+  margin: -10.4rem auto 0;
   width: 100%;
   min-height: 80rem;
   ${Color.gradientMesh};
+  background-size: 100vw 100vh;
+  background-attachment: fixed;
 `
 
 type LayoutProps = PropsWithChildren<{ fullWidth?: boolean; tokensPages?: boolean }>
 
 export default function Layout({ children, fullWidth = false, tokensPages = false }: LayoutProps) {
   const ContentComponent = fullWidth ? FullWidthContent : (tokensPages ? TokensPages : Content)
+  const FooterNoMargin = tokensPages ? true : false
   
   return (
     <>
       <Wrapper>
         <Header />
         <ContentComponent>{children || 'No content found'}</ContentComponent>
-        <Footer />
+        <Footer noMargin={FooterNoMargin} />
       </Wrapper>
     </>
   )

@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   width: 100%;
   max-width: 121rem;
+  margin: 0 auto;
   color: ${Color.darkBlue};
 
   h1 {
