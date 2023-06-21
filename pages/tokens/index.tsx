@@ -12,6 +12,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 121rem;
+  color: ${Color.darkBlue};
 
   h1 {
     display: flex;
@@ -37,7 +39,7 @@ const HeaderItem = styled.div`
   align-items: center;
   justify-content: flex-start;
   padding: 1rem 0;
-  border-bottom: 1px solid ${transparentize(0.9, Color.lightBlue)};
+  border-bottom: 1px solid ${transparentize(0.9, Color.darkBlue)};
   gap: 1.4rem;
   
   ${Media.mobile} {
@@ -57,17 +59,17 @@ const PlacerholderImage = styled.div`
   width: var(--tokenSize);
   height: var(--tokenSize);
   border-radius: var(--tokenSize);
-  background-color: ${Color.lightBlue};
+  background-color: ${Color.darkBlue};
 `
 
 const SearchTokens = styled.input`
   width: 100%;
-  border: 1px solid ${transparentize(0.9, Color.lightBlue)};
+  border: 1px solid ${transparentize(0.9, Color.darkBlue)};
   border-radius: 1.6rem;
-  background-color: ${transparentize(0.95, Color.lightBlue)};
+  background-color: ${transparentize(0.95, Color.darkBlue)};
   padding: 1rem 1rem;
   margin: 0 auto 1.6rem;
-  color: ${transparentize(0.1, Color.lightBlue)};
+  color: ${transparentize(0.1, Color.darkBlue)};
   transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out, color 0.2s ease-in-out;
   outline: 0;
 `

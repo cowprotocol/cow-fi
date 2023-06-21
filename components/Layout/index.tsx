@@ -3,6 +3,7 @@ import { PropsWithChildren } from 'react'
 import Header from 'components/Layout/Header'
 import Footer from 'components/Layout/Footer'
 import { Content } from 'const/styles/pages/content'
+import { Color } from 'const/styles/variables'
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -31,8 +32,8 @@ const TokensPages = styled.main`
   box-sizing: border-box;
   margin: 0 auto;
   width: 100%;
-  max-width: 121rem;
   min-height: 80rem;
+  ${Color.gradientMesh};
 `
 
 type LayoutProps = PropsWithChildren<{ fullWidth?: boolean; tokensPages?: boolean }>

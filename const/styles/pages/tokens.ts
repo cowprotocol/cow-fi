@@ -7,7 +7,10 @@ export const Wrapper = styled.div`
   grid-template-columns: 1fr 36rem;
   grid-gap: 3.2rem;
   width: 100%;
+  max-width: 121rem;
+  margin: 0 auto;
   position: relative;
+  color: ${Color.darkBlue};
 
   h3 {
     font-size: 2.8rem;
@@ -46,7 +49,7 @@ export const SwapWidget = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 0.1rem solid ${transparentize(0.8, Color.lightBlue)};
+  border: 0.1rem solid ${transparentize(0.8, Color.darkBlue)};
   height: 20rem;
   width: 100%;
   border-radius: 1.6rem;
@@ -70,7 +73,7 @@ export const Section = styled.div`
   }
 
   a {
-    color: ${Color.lightBlue};
+    color: ${Color.darkBlue};
     transition: color 0.3s ease-in-out;
   }
 `
@@ -107,7 +110,7 @@ export const TokenTitle = styled.div`
 
   > span {
     padding: 0.6rem 1rem;
-    background: ${Color.lightBlue};
+    background: ${Color.darkBlue};
     color: ${Color.darkBlue};
     border-radius: 0.4rem;
     font-size: 1.4rem;
@@ -126,7 +129,7 @@ export const TokenPrice = styled.div`
     display: flex;
     gap: 0.3rem;
     font-size: 1.6rem;
-    color: ${transparentize(0.2, Color.lightBlue)};
+    color: ${transparentize(0.2, Color.darkBlue)};
   }
 
   > span > b {
@@ -145,8 +148,8 @@ export const TokenChart = styled.div`
   width: 100%;
   background: linear-gradient(
     to bottom,
-    ${transparentize(0.95, Color.lightBlue)},
-    ${transparentize(0.9, Color.lightBlue)}
+    ${transparentize(0.95, Color.darkBlue)},
+    ${transparentize(0.9, Color.darkBlue)}
   );
   min-height: 29rem;
   border-radius: 1.6rem;
@@ -165,7 +168,7 @@ export const NetworkHeaderItem = styled.div`
   align-items: center;
   justify-content: flex-start;
   padding: 1rem 0;
-  border-bottom: 1px solid ${transparentize(0.9, Color.lightBlue)};
+  border-bottom: 1px solid ${transparentize(0.9, Color.darkBlue)};
   gap: 1.4rem;
 
   ${Media.mobile} {
@@ -186,11 +189,11 @@ export const TokenLink = styled.a`
   line-height: 1.2;
   gap: 0.8rem;
   text-decoration: none;
-  color: ${transparentize(0.2, Color.lightBlue)};
+  color: ${transparentize(0.2, Color.darkBlue)};
   transition: color 0.2s ease-in-out;
 
   &:hover {
-    color: ${Color.lightBlue};
+    color: ${Color.darkBlue};
     text-decoration: underline;
   }
 
@@ -198,7 +201,7 @@ export const TokenLink = styled.a`
     width: var(--tokenSize);
     height: var(--tokenSize);
     border-radius: var(--tokenSize);
-    background-color: ${Color.lightBlue};
+    background-color: ${Color.darkBlue};
   }
 
   > span {
@@ -208,7 +211,7 @@ export const TokenLink = styled.a`
   > span > i {
     text-transform: uppercase;
     font-style: normal;
-    color: ${transparentize(0.5, Color.lightBlue)};
+    color: ${transparentize(0.5, Color.darkBlue)};
   }
 `
 
@@ -226,14 +229,14 @@ export const SwapCard = styled.div`
   flex-flow: column wrap;
   align-items: flex-start;
   justify-content: flex-start;
-  border: 0.1rem solid ${transparentize(0.8, Color.lightBlue)};
+  border: 0.1rem solid ${transparentize(0.8, Color.darkBlue)};
   transition: border 0.2s ease-in-out;
   border-radius: 1.2rem;
   padding: 0;
   font-size: 1.4rem;
 
   &:hover {
-    border: 0.1rem solid ${Color.lightBlue};
+    border: 0.1rem solid ${Color.darkBlue};
 
     > a > img:last-child {
       opacity: 1;

@@ -7,10 +7,10 @@ import Link from 'next/link'
 export const StyledBreadcrumbs = styled.div`
   font-size: 1.4rem;
   margin: 0 0 1.6rem;
-  color: ${transparentize(0.2, Color.lightBlue)};
+  color: ${transparentize(0.2, Color.darkBlue)};
 
   > a {
-    color: ${Color.lightBlue};
+    color: ${Color.darkBlue};
   }
 `
 

@@ -9,13 +9,13 @@ import { CONFIG } from '@/const/meta';
 const LogoImage = 'images/logo-light.svg'
 const CURRENT_YEAR = new Date().getFullYear()
 
-const Wrapper = styled.footer`
+const Wrapper = styled.footer<{noMargin?: boolean}>`
   display: flex;
   justify-content: space-between;
   z-index: 1;
   width: 100%;
   padding: 5.6rem;
-  margin: 16rem auto 0;
+  margin: ${({noMargin}) => noMargin ? '0' : '16rem auto 0'};
   position: relative;
 
   ${Media.mediumDown} {
@@ -183,9 +183,9 @@ function Social() {
   )
 }
 
-export default function Footer() {
+export default function Footer(noMargin?: boolean) {
   return (
-    <Wrapper>
+    <Wrapper noMargin={noMargin}>
       <FooterMenu />
       <Social />
     </Wrapper >
