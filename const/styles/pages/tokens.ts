@@ -70,6 +70,7 @@ export const Section = styled.div`
 
   > p {
     line-height: 1.5;
+    color: ${Color.text1};
   }
 
   a {
@@ -112,7 +113,7 @@ export const TokenTitle = styled.div`
   > span {
     padding: 0.6rem;
     background: ${transparentize(0.92, Color.darkBlue)};
-    color: ${Color.darkBlue};
+    color: ${Color.text1};
     border-radius: 0.4rem;
     font-size: 1.4rem;
     letter-spacing: 0.05rem;
@@ -177,11 +178,11 @@ export const NetworkTable = styled.div`
 export const NetworkHeaderItem = styled.div`
   display: contents;
   display: grid;
-  grid-template-columns: 12rem 1fr auto;
+  grid-template-columns: 14rem auto auto;
   align-items: center;
-  justify-content: flex-start;
   padding: 1rem 0;
   border-bottom: 1px solid ${transparentize(0.9, Color.darkBlue)};
+  color: ${Color.text1};
   gap: 0.8rem;
 
   ${Media.mobile} {
@@ -197,6 +198,7 @@ export const NetworkHeaderItem = styled.div`
 
 export const NetworkItem = styled(NetworkHeaderItem)`
   font-size: 1.6rem;
+  color: ${Color.darkBlue};
 
   > a {
     display: flex;
@@ -207,7 +209,7 @@ export const NetworkItem = styled(NetworkHeaderItem)`
   }
 
   > a > img {
-    --size: 1.6rem;
+    --size: 2rem;
     width: var(--size);
     height: var(--size);
     border-radius: var(--size);
@@ -226,7 +228,8 @@ export const NetworkItem = styled(NetworkHeaderItem)`
   > span {
     display: flex;
     flex-flow: row wrap;
-    gap: 0.8rem;
+    gap: 1.2rem;
+    margin: 0 0 0 auto;
   }
 
   > span > a > img,
