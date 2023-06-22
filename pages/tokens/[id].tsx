@@ -186,7 +186,7 @@ export default function TokenDetail({
             <Section>
               <h4>About {symbol} coin</h4>
               <p>
-                {desc}
+                <div dangerouslySetInnerHTML={{ __html: desc }}></div>
                 <br />
                 <br />
 
