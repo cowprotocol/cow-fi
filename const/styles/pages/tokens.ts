@@ -67,14 +67,25 @@ export const Section = styled.div`
   padding: 2rem 1rem;
   width: 100%;
 
-  > p {
-    line-height: 1.5;
+  > p,
+  > div > p {
+    line-height: 1.6;
     color: ${Color.text1};
+    margin: 0 0 1.6rem;
+  }
+
+  > div > h4 {
+    margin: 3.6rem 0 1rem;
   }
 
   a {
     color: ${Color.darkBlue};
+    text-decoration: none;
     transition: color 0.3s ease-in-out;
+  }
+
+  a:hover {
+    text-decoration: underline;
   }
 `
 
@@ -95,6 +106,9 @@ export const TokenTitle = styled.div`
   display: flex;
   align-items: center;
   gap: 0.8rem;
+  font-weight: 600;
+  font-size: 2.2rem;
+  line-height: 1.2;
 
   > img {
     --size: 3.8rem;
@@ -104,8 +118,8 @@ export const TokenTitle = styled.div`
   }
 
   > h1 {
-    font-size: 2.2rem;
-    font-weight: 600;
+    font-size: 2.4rem;
+    font-weight: inherit;
     margin: 0;
   }
 
@@ -367,23 +381,32 @@ export const CopyMessage = styled.span`
 `
 
 export const Stats = styled.div`
-  margin: 2rem 0;
+  margin: 1.2rem 0;
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
+  gap: 1.2rem;
+  gap: 2rem;
+  width: 100%;
+  justify-content: space-between;
 `
 
 export const StatItem = styled.div`
+  display: flex;
+  flex-flow: column wrap;
   padding: 1rem 0;
-  margin-right: 30px;
+  gap: 0.2rem;
 `
 
 export const StatTitle = styled.div`
-  font-size: 14px;
-  margin-bottom: 10px;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  color: ${Color.text1};
 `
 
 export const StatValue = styled.h5`
-  font-size: 1.4rem;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.2;
   margin: 0;
 `
 
