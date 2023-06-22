@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 import { PropsWithChildren } from 'react'
 import Header from 'components/Layout/Header'
 import Footer from 'components/Layout/Footer'
@@ -26,7 +26,7 @@ const TokenDetail = styled.main`
   justify-content: center;
   align-items: flex-start;
   gap: 2.4rem;
-  padding: 0 2.4rem
+  padding: 0 2.4rem;
   box-sizing: border-box;
   margin: 0 auto;
   width: 100%;
@@ -37,8 +37,8 @@ const TokenDetail = styled.main`
 type LayoutProps = PropsWithChildren<{ fullWidth?: boolean; tokenDetail?: boolean }>
 
 export default function Layout({ children, fullWidth = false, tokenDetail = false }: LayoutProps) {
-  const ContentComponent = fullWidth ? FullWidthContent : (tokenDetail ? TokenDetail : Content)
-  
+  const ContentComponent = fullWidth ? FullWidthContent : tokenDetail ? TokenDetail : Content
+
   return (
     <>
       <Wrapper>
