@@ -8,7 +8,7 @@ import {
   Wrapper,
   MainContent,
   StickyContent,
-  SwapWidget,
+  SwapWidgetWrapper,
   SwapCardsWrapper,
   SwapCard,
   DetailHeading,
@@ -29,6 +29,7 @@ import {
 import { ParentSize } from '@visx/responsive'
 import prices from '../../data/tokenPrice.json'
 import { Chart } from '@/components/Chart'
+import { SwapWidget } from '@/components/SwapWidget'
 
 type PlatformData = {
   contractAddress: string
@@ -283,9 +284,9 @@ export default function TokenDetail({
           </MainContent>
 
           <StickyContent>
-            <SwapWidget>
-              <b>-Swap {symbol} widget -</b>
-            </SwapWidget>
+            <SwapWidgetWrapper>
+              <SwapWidget tokenSymbol={symbol} tokenImage={image.large} />
+            </SwapWidgetWrapper>
           </StickyContent>
         </Wrapper>
       </Layout>

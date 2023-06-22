@@ -44,7 +44,7 @@ export const StickyContent = styled.div`
   overflow: visible;
 `
 
-export const SwapWidget = styled.div`
+export const SwapWidgetWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
