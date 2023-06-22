@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
-import Link from 'next/link'
 import Layout from '@/components/Layout'
 import { getAllTokensIds, getTokenData } from 'lib/tokens'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
@@ -22,6 +21,10 @@ import {
   TokenLink,
   CopyIcon,
   CopyMessage,
+  Stats,
+  StatItem,
+  StatTitle,
+  StatValue,
 } from '@/const/styles/pages/tokens'
 
 type PlatformData = {
@@ -42,6 +45,10 @@ type TokenDetailProps = {
     large: string
   }
   platforms: Platforms
+  ath: string
+  atl: string
+  marketCap: string
+  volume: string
 }
 
 type SwapLinkCardProps = {
@@ -102,7 +109,18 @@ const CopyToClipboard = ({ text }) => {
   )
 }
 
-export default function TokenDetail({ id, name, symbol, desc, image, platforms }: TokenDetailProps) {
+export default function TokenDetail({
+  id,
+  name,
+  symbol,
+  desc,
+  image,
+  marketCap,
+  volume,
+  ath,
+  atl,
+  platforms,
+}: TokenDetailProps) {
   const contractAddressEthereum = platforms.ethereum.contractAddress
   const contractAddressGnosis = platforms.xdai.contractAddress
 
@@ -139,7 +157,29 @@ export default function TokenDetail({ id, name, symbol, desc, image, platforms }
             <TokenChart>- Chart component -</TokenChart>
 
             <Section>
-              <h3>{symbol} Stats</h3>
+              <TokenTitle>{symbol} Stats</TokenTitle>
+
+              <Stats>
+                <StatItem>
+                  <StatTitle>Market Cap</StatTitle>
+                  <StatValue>$ {marketCap}</StatValue>
+                </StatItem>
+
+                <StatItem>
+                  <StatTitle>24H Volume</StatTitle>
+                  <StatValue>$ {volume}</StatValue>
+                </StatItem>
+
+                <StatItem>
+                  <StatTitle>All-time High</StatTitle>
+                  <StatValue>$ {ath}</StatValue>
+                </StatItem>
+
+                <StatItem>
+                  <StatTitle>All-time Low</StatTitle>
+                  <StatValue>$ {atl}</StatValue>
+                </StatItem>
+              </Stats>
             </Section>
 
             <Section>
@@ -262,6 +302,10 @@ export async function getStaticProps({ params }) {
   const name = rawName
   const symbol = rawSymbol.toUpperCase()
   const desc = description?.en || ico_data?.description || '-'
+  const marketCap = token.market_data?.market_cap?.usd || '-'
+  const volume = token.market_data?.total_volume.usd || '-'
+  const ath = token.market_data?.ath.usd || '-'
+  const atl = token.market_data?.atl.usd || '-'
 
   // Get only the Ethereum and Gnosis Chain contract addresses and decimal places
   const platforms = {
@@ -283,6 +327,10 @@ export async function getStaticProps({ params }) {
       desc,
       image,
       platforms,
+      marketCap,
+      volume,
+      ath,
+      atl,
     },
   }
 }
