@@ -45,7 +45,7 @@ export function Chart({ prices, height, width }: ChartProps) {
   const curve = useMemo(() => curveCardinal.tension(curveTension), [curveTension])
 
   return (
-    <svg data-cy="price-chart" width={width} height={436} style={{ minWidth: '100%' }}>
+    <svg data-cy="price-chart" width={width} height={height} style={{ minWidth: '100%' }}>
       <LineChart
         width={width}
         height={height}
