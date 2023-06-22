@@ -44,7 +44,6 @@ export const StickyContent = styled.div`
   overflow: visible;
 `
 
-
 export const SwapWidget = styled.div`
   display: flex;
   justify-content: center;
@@ -56,9 +55,9 @@ export const SwapWidget = styled.div`
   margin: 0 0 2rem;
   padding: 1rem;
 
-   > b {
+  > b {
     font-size: 1.2rem;
-   }
+  }
 `
 
 export const Section = styled.div`
@@ -173,7 +172,7 @@ export const NetworkTable = styled.div`
   display: flex;
   flex-flow: column wrap;
   width: 100%;
-  `
+`
 
 export const NetworkHeaderItem = styled.div`
   display: contents;
@@ -294,7 +293,6 @@ export const TokenLink = styled.a`
   }
 
   > span {
-
   }
 
   > span > i {
@@ -360,7 +358,6 @@ export const SwapCard = styled.div`
     line-height: 1.2;
     font-weight: 600;
   }
-
 `
 
 export const CopyMessage = styled.span`
@@ -369,6 +366,33 @@ export const CopyMessage = styled.span`
   margin: 0 0 0 0.2rem;
 `
 
+export const Stats = styled.div`
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: row;
+`
+
+export const StatItem = styled.div`
+  padding: 1rem 0;
+  margin-right: 30px;
+`
+
+export const StatTitle = styled.div`
+  font-size: 14px;
+  margin-bottom: 10px;
+`
+
+export const StatValue = styled.h5`
+  font-size: 1.4rem;
+  margin: 0;
+`
+
+export const SectionSeparator = styled.div`
+  height: 1px;
+  width: 100%;
+  background: white;
+  opacity: 0.3;
+`
 export const CopyIcon = styled.img`
   cursor: pointer;
   opacity: 0.6;

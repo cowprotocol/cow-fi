@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import { tokenDescriptions } from 'data/description'
 
 // TODO: this could probably be fetched externaly
 export function getAllTokensData() {
@@ -18,5 +19,11 @@ export function getAllTokensIds() {
 export function getTokenData(id) {
   const tokensData = getAllTokensData()
 
-  return tokensData.find(({ id: _id }) => _id === id)
+  const token = tokensData.find(({ id: _id }) => _id === id)
+
+  if (id in tokenDescriptions) {
+    token.description.en = tokenDescriptions[id]
+  }
+
+  return token
 }
