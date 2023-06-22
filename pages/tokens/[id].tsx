@@ -26,6 +26,7 @@ import {
   StatTitle,
   StatValue,
 } from '@/const/styles/pages/tokens'
+import { formatUSD } from 'util/tokens'
 
 type PlatformData = {
   contractAddress: string
@@ -162,22 +163,22 @@ export default function TokenDetail({
               <Stats>
                 <StatItem>
                   <StatTitle>Market Cap</StatTitle>
-                  <StatValue>$ {marketCap}</StatValue>
+                  <StatValue>{formatUSD(marketCap)}</StatValue>
                 </StatItem>
 
                 <StatItem>
                   <StatTitle>24H Volume</StatTitle>
-                  <StatValue>$ {volume}</StatValue>
+                  <StatValue>{formatUSD(volume)}</StatValue>
                 </StatItem>
 
                 <StatItem>
                   <StatTitle>All-time High</StatTitle>
-                  <StatValue>$ {ath}</StatValue>
+                  <StatValue>{formatUSD(ath)}</StatValue>
                 </StatItem>
 
                 <StatItem>
                   <StatTitle>All-time Low</StatTitle>
-                  <StatValue>$ {atl}</StatValue>
+                  <StatValue>{formatUSD(atl)}</StatValue>
                 </StatItem>
               </Stats>
             </Section>
