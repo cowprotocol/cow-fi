@@ -74,7 +74,7 @@ const SwapLinkCard = ({ contractAddress, networkId, networkName, tokenSymbol }: 
             alt={networkName}
           />
           <b>
-            Swap {tokenSymbol} token <br /> on {networkName}
+            Swap {tokenSymbol} <br /> on {networkName}
           </b>
           <img src="/images/external-arrow.svg" alt="Go to CoW Swap" />
         </a>
