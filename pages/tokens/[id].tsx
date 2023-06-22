@@ -19,7 +19,6 @@ import {
   NetworkTable,
   NetworkHeaderItem,
   NetworkItem,
-  TokenLink,
   CopyIcon,
   CopyMessage,
   Stats,
@@ -68,7 +67,7 @@ const SwapLinkCard = ({ contractAddress, networkId, networkName, tokenSymbol }: 
             networkId === 100 ? 'WXDAI' : 'WETH'
           }/${contractAddress}?sellAmount=1`}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="nofollow noreferrer"
         >
           <img
             src={`/images/${(networkName === 'Gnosis Chain' ? 'gnosis-chain' : networkName).toLowerCase()}.svg`}
@@ -186,8 +185,7 @@ export default function TokenDetail({
             </Section>
 
             <Section>
-              <h4>About {symbol} coin</h4>
-              <p>
+              <h4>About {symbol} token</h4>
                 <div dangerouslySetInnerHTML={{ __html: desc }}></div>
 
                 <br />
@@ -207,7 +205,6 @@ export default function TokenDetail({
                     tokenSymbol={symbol}
                   />
                 </SwapCardsWrapper>
-              </p>
             </Section>
 
             <Section>
@@ -232,7 +229,7 @@ export default function TokenDetail({
                           }
                           title={`${name} (${symbol}) on ${network === 'xdai' ? 'Gnosis Chain' : 'Ethereum'}`}
                           target="_blank"
-                          rel="noopener noreferrer"
+                          rel="noreferrer nofollow"
                         >
                           <img
                             src={`/images/${network === 'xdai' ? 'gnosis-chain' : network}.svg`}
@@ -249,7 +246,7 @@ export default function TokenDetail({
                             }
                             title={`${name} (${symbol}) on ${network === 'xdai' ? 'Gnosis Chain' : 'Ethereum'}`}
                             target="_blank"
-                            rel="noopener noreferrer"
+                            rel="noreferrer nofollow"
                           >
                             <div>
                               <i>{platformData.contractAddress}</i>
@@ -261,7 +258,7 @@ export default function TokenDetail({
                             <a
                               href={`https://link.trustwallet.com/add_asset?asset=c20000714&t=${platformData.contractAddress}&n=${name}&s=${symbol}&d=${platformData.decimalPlace}`}
                               target="_blank"
-                              rel="noreferrer"
+                              rel="noreferrer nofollow"
                             >
                               <img src="/images/trust_platform.svg" alt="Add to Trust Wallet" />
                             </a>
@@ -269,7 +266,7 @@ export default function TokenDetail({
                             <a
                               href={`https://metamask.app.link/addToken?contractAddress=${platformData.contractAddress}&symbol=${symbol}&decimals=${platformData.decimalPlace}&name=${name}`}
                               target="_blank"
-                              rel="noreferrer"
+                              rel="noreferrer nofollow"
                             >
                               <img src="/images/metamask-fox.svg" alt="Add to Metamask" />
                             </a>
