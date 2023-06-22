@@ -185,9 +185,8 @@ export default function TokenDetail({
 
             <Section>
               <h4>About {symbol} coin</h4>
+              <div dangerouslySetInnerHTML={{ __html: desc }}></div>
               <p>
-                <div dangerouslySetInnerHTML={{ __html: desc }}></div>
-                <br />
                 <br />
 
                 <SwapCardsWrapper>
@@ -220,7 +219,7 @@ export default function TokenDetail({
                 {Object.entries(platforms).map(
                   ([network, platformData]) =>
                     platformData.contractAddress && (
-                      <NetworkItem key={id}>
+                      <NetworkItem key={platformData.contractAddress}>
                         <a
                           href={
                             network === 'xdai'
