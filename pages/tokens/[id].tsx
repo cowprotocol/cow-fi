@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Layout from '@/components/Layout'
 import { getAllTokensIds, getTokenData } from 'lib/tokens'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
+import { formatUSD } from 'util/tokens'
 import {
   Wrapper,
   MainContent,
@@ -26,7 +27,6 @@ import {
   StatTitle,
   StatValue,
 } from '@/const/styles/pages/tokens'
-import { formatUSD } from 'util/tokens'
 
 type PlatformData = {
   contractAddress: string
@@ -317,10 +317,10 @@ export async function getStaticProps({ params }) {
   const name = rawName
   const symbol = rawSymbol.toUpperCase()
   const desc = description?.en || ico_data?.description || '-'
-  const marketCap = token.market_data?.market_cap?.usd || '-'
-  const volume = token.market_data?.total_volume.usd || '-'
-  const ath = token.market_data?.ath.usd || '-'
-  const atl = token.market_data?.atl.usd || '-'
+  const marketCap = token.market_data?.market_cap?.usd || null
+  const volume = token.market_data?.total_volume.usd || null
+  const ath = token.market_data?.ath.usd || null
+  const atl = token.market_data?.atl.usd || null
 
   // Get only the Ethereum and Gnosis Chain contract addresses and decimal places
   const platforms = {

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 import { PropsWithChildren } from 'react'
 import Header from 'components/Layout/Header'
 import Footer from 'components/Layout/Footer'
@@ -41,9 +41,9 @@ const TokensPages = styled.main`
 type LayoutProps = PropsWithChildren<{ fullWidth?: boolean; tokensPages?: boolean }>
 
 export default function Layout({ children, fullWidth = false, tokensPages = false }: LayoutProps) {
-  const ContentComponent = fullWidth ? FullWidthContent : (tokensPages ? TokensPages : Content)
+  const ContentComponent = fullWidth ? FullWidthContent : tokensPages ? TokensPages : Content
   const FooterNoMargin = tokensPages ? true : false
-  
+
   return (
     <>
       <Wrapper>

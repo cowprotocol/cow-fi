@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Color, Font, Media } from 'const/styles/variables'
 import SocialList from 'components/SocialList'
 import { CustomLink } from '../CustomLink'
-import { FooterLinkGroup, FOOTER_LINK_GROUPS } from '@/const/menu'
+import { FOOTER_LINK_GROUPS } from '@/const/menu'
 import { CONFIG } from '@/const/meta'
 
 const LogoImage = '/images/logo-light.svg'
