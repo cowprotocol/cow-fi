@@ -69,13 +69,12 @@ const Content = styled.div`
 const Menu = styled.ol<{ isLight?: boolean }>`
   display: flex;
   list-style: none;
-  font-size: 1.9rem;
+  font-size: 1.5rem;
   color: ${({ isLight }) => (isLight ? Color.text1 : Color.lightBlue)};
   padding: 0;
   margin: 0;
 
   .sticky & {
-    font-size: 1.6rem;
     color: ${Color.text1};
   }
 

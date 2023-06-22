@@ -4,7 +4,7 @@ import { transparentize } from 'polished'
 
 export const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 36rem;
+  grid-template-columns: 1fr 32rem;
   grid-gap: 3.2rem;
   width: 100%;
   max-width: 126rem;
@@ -48,9 +48,10 @@ export const SwapWidgetWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 0.1rem solid ${transparentize(0.8, Color.darkBlue)};
+  background: white;
   height: 20rem;
   width: 100%;
+  box-shadow: 0 0.2rem 1.2rem rgba(0,0,0,.03), 0 2rem 7rem rgba(0,0,0,.06), 0 0.2rem 0.4rem rgba(0,0,0,.02);
   border-radius: 1.6rem;
   margin: 0 0 2rem;
   padding: 1rem;
@@ -173,7 +174,7 @@ export const TokenChart = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   font-size: 1.3rem;
-  margin: 0 auto 1.6rem;
+  margin: 0 auto 1rem;
   width: 100%;
   border-radius: 1.6rem;
 

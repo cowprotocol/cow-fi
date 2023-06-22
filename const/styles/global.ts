@@ -54,7 +54,7 @@ const GlobalStyles = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     font-feature-settings: 'ss01' on, 'ss02' on, 'cv01' on, 'cv03' on;
-    scrollbar-color: ${Color.darkBlue} ${Color.lightBlue};
+    /* scrollbar-color: ${Color.text1} ${Color.white}; */
 
     html,
     input,
@@ -64,18 +64,18 @@ const GlobalStyles = createGlobalStyle`
       font-display: fallback;
   }
 
-    &::-webkit-scrollbar {
+    /* &::-webkit-scrollbar {
       width: 4rem;
-    }
+    } */
 
-    &::-webkit-scrollbar-track {
+    /* &::-webkit-scrollbar-track {
       background-color: ${Color.lightBlue};
-    }
+    } */
 
-    &::-webkit-scrollbar-thumb {
-      background-color: ${Color.darkBlue};
+    /* &::-webkit-scrollbar-thumb {
+      background-color: ${Color.text1};
       border-radius: 10rem;
-    }
+    } */
   }
 
   *::selection {
@@ -95,18 +95,18 @@ const GlobalStyles = createGlobalStyle`
     line-height: revert;
   }
 
-  ::-webkit-scrollbar {
+  /* ::-webkit-scrollbar {
     width: 1rem !important;
     height: 1rem !important;
-  }
+  } */
 
-  ::-webkit-scrollbar-thumb {
+  /* ::-webkit-scrollbar-thumb {
       background-color: rgba(0,0,0,.2);
-  }
+  } */
 
-  ::-webkit-scrollbar-track {
+  /* ::-webkit-scrollbar-track {
       background: hsla(0,0%,100%,.1);
-  }
+  } */
 
   *, *:before, *:after {
     box-sizing: inherit;

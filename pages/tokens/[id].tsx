@@ -160,7 +160,7 @@ export default function TokenDetail({
 
             <TokenChart>
               <ParentSize>
-                {({ width }) => <Chart timePeriod={TimePeriod.DAY} prices={prices} width={width} height={350} />}
+                {({ width }) => <Chart timePeriod={TimePeriod.DAY} prices={prices} width={width} height={240} />}
               </ParentSize>
             </TokenChart>
 
@@ -287,7 +287,7 @@ export default function TokenDetail({
 
           <StickyContent>
             <SwapWidgetWrapper>
-              <SwapWidget tokenSymbol={symbol} tokenImage={image.large} />
+            <SwapWidget tokenSymbol={symbol} tokenImage={image.large} platforms={platforms} />
             </SwapWidgetWrapper>
           </StickyContent>
         </Wrapper>
