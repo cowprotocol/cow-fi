@@ -4,10 +4,25 @@ import { transparentize } from 'polished'
 
 export const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 27.2rem;
+  grid-template-columns: 1fr 36rem;
   grid-gap: 3.2rem;
   width: 100%;
+  max-width: 126rem;
+  margin: 0 auto;
   position: relative;
+  color: ${Color.darkBlue};
+
+  h3 {
+    font-size: 2.8rem;
+    line-height: 1.2;
+    margin: 0 0 1.2rem;
+  }
+
+  h4 {
+    font-size: 2.2rem;
+    line-height: 1.2;
+    margin: 0 0 1.2rem;
+  }
 `
 
 export const MainContent = styled.div`
@@ -33,7 +48,7 @@ export const SwapWidget = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 0.1rem solid ${transparentize(0.8, Color.lightBlue)};
+  border: 0.1rem solid ${transparentize(0.8, Color.darkBlue)};
   height: 20rem;
   width: 100%;
   border-radius: 1.6rem;
@@ -50,14 +65,27 @@ export const Section = styled.div`
   display: flex;
   flex-direction: column;
   padding: 2rem 1rem;
+  width: 100%;
 
-  > p {
-    line-height: 1.5;
+  > p,
+  > div > p {
+    line-height: 1.6;
+    color: ${Color.text1};
+    margin: 0 0 1.6rem;
+  }
+
+  > div > h4 {
+    margin: 3.6rem 0 1rem;
   }
 
   a {
-    color: ${Color.lightBlue};
+    color: ${Color.darkBlue};
+    text-decoration: none;
     transition: color 0.3s ease-in-out;
+  }
+
+  a:hover {
+    text-decoration: underline;
   }
 `
 
@@ -78,6 +106,9 @@ export const TokenTitle = styled.div`
   display: flex;
   align-items: center;
   gap: 0.8rem;
+  font-weight: 600;
+  font-size: 2.2rem;
+  line-height: 1.2;
 
   > img {
     --size: 3.8rem;
@@ -88,36 +119,49 @@ export const TokenTitle = styled.div`
 
   > h1 {
     font-size: 2.4rem;
+    font-weight: inherit;
     margin: 0;
   }
 
   > span {
-    padding: 0.6rem 1rem;
-    background: ${Color.lightBlue};
-    color: ${Color.darkBlue};
+    padding: 0.6rem;
+    background: ${transparentize(0.92, Color.darkBlue)};
+    color: ${Color.text1};
     border-radius: 0.4rem;
     font-size: 1.4rem;
+    letter-spacing: 0.05rem;
+    font-weight: 600;
   }
 `
 
 export const TokenPrice = styled.div`
-  font-size: 3.6rem;
-  font-weight: 400;
+  font-size: 3.8rem;
   display: flex;
   align-items: center;
   line-height: 1;
   gap: 0.8rem;
 
+  > b {
+    font-weight: 600;
+  }
+
   > span {
     display: flex;
-    gap: 0.3rem;
-    font-size: 1.6rem;
-    color: ${transparentize(0.2, Color.lightBlue)};
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 2.2rem;
+    color: ${transparentize(0.2, Color.darkBlue)};
   }
 
   > span > b {
     font-weight: normal;
     color: ${Color.success};
+  }
+
+  > span > i {
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 400;
   }
 `
 
@@ -129,29 +173,240 @@ export const TokenChart = styled.div`
   font-size: 1.3rem;
   margin: 0 auto 1.6rem;
   width: 100%;
-  border: 0.1rem solid ${transparentize(0.8, Color.lightBlue)};
-  min-height: 18rem;
+  background: linear-gradient(
+    to bottom,
+    ${transparentize(0.95, Color.darkBlue)},
+    ${transparentize(0.9, Color.darkBlue)}
+  );
+  min-height: 29rem;
   border-radius: 1.6rem;
 `
 
-export const Stats = styled.div`
-  margin: 2rem 0;
+export const NetworkTable = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-flow: column wrap;
+  width: 100%;
+`
+
+export const NetworkHeaderItem = styled.div`
+  display: contents;
+  display: grid;
+  grid-template-columns: 14rem auto auto;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid ${transparentize(0.9, Color.darkBlue)};
+  color: ${Color.text1};
+  gap: 0.8rem;
+
+  ${Media.mobile} {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  }
+
+  > div {
+    font-weight: normal;
+    font-size: 1.4rem;
+    line-height: 1;
+  }
+`
+
+export const NetworkItem = styled(NetworkHeaderItem)`
+  font-size: 1.6rem;
+  color: ${Color.darkBlue};
+
+  > a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.6rem;
+    line-height: 1;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  > a:hover {
+    text-decoration: underline;
+  }
+
+  > a > img {
+    --size: 2rem;
+    width: var(--size);
+    height: var(--size);
+    border-radius: var(--size);
+    object-fit: contain;
+  }
+
+  > a:last-child {
+    font-weight: 400;
+  }
+
+  > div {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    font-weight: normal;
+    font-size: inherit;
+  }
+
+  > span {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1.2rem;
+    margin: 0 0 0 auto;
+    position: relative;
+  }
+
+  > span > a > img,
+  > span > img {
+    --size: 2rem;
+    width: var(--size);
+    height: var(--size);
+    object-fit: contain;
+  }
+
+  > a > div {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+  }
+
+  > a > div > img {
+    --size: 2.4rem;
+    width: var(--size);
+    height: var(--size);
+    object-fit: contain;
+  }
+
+  > a > div > i {
+    font-style: normal;
+    font-weight: 400;
+  }
+`
+
+export const TokenLink = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  line-height: 1.2;
+  gap: 0.8rem;
+  text-decoration: none;
+  color: ${transparentize(0.2, Color.darkBlue)};
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: ${Color.darkBlue};
+    text-decoration: underline;
+  }
+
+  > img {
+    width: var(--tokenSize);
+    height: var(--tokenSize);
+    border-radius: var(--tokenSize);
+    background-color: ${Color.darkBlue};
+  }
+
+  > span {
+  }
+
+  > span > i {
+    text-transform: uppercase;
+    font-style: normal;
+    color: ${transparentize(0.5, Color.darkBlue)};
+  }
+`
+
+export const SwapCardsWrapper = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1.2rem;
+  width: 100%;
+`
+
+export const SwapCard = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  border: 0.1rem solid ${transparentize(0.8, Color.darkBlue)};
+  transition: border 0.2s ease-in-out;
+  border-radius: 1.2rem;
+  padding: 0;
+  font-size: 1.4rem;
+
+  &:hover {
+    border: 0.1rem solid ${Color.darkBlue};
+
+    > a > img:last-child {
+      opacity: 1;
+    }
+  }
+
+  > a {
+    width: 100%;
+    text-decoration: none;
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    padding: 1.2rem;
+  }
+
+  > a > img:first-child {
+    --size: 2.8rem;
+    width: var(--size);
+    height: var(--size);
+    border-radius: var(--size);
+  }
+
+  > a > img:last-child {
+    --size: 1.8rem;
+    width: var(--size);
+    height: var(--size);
+    opacity: 0.6;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  > a > b {
+    line-height: 1.2;
+    font-weight: 600;
+  }
+`
+
+export const CopyMessage = styled.span`
+  color: ${Color.success};
+  font-size: 1.3rem;
+  margin: 0 0 0 0.2rem;
+`
+
+export const Stats = styled.div`
+  margin: 1.2rem 0;
+  display: flex;
+  flex-flow: row wrap;
+  gap: 1.2rem;
+  gap: 2rem;
+  width: 100%;
+  justify-content: space-between;
 `
 
 export const StatItem = styled.div`
+  display: flex;
+  flex-flow: column wrap;
   padding: 1rem 0;
-  margin-right: 30px;
+  gap: 0.2rem;
 `
 
 export const StatTitle = styled.div`
-  font-size: 14px;
-  margin-bottom: 10px;
+  font-size: 1.4rem;
+  line-height: 1.2;
+  color: ${Color.text1};
 `
 
 export const StatValue = styled.h5`
-  font-size: 1.4rem;
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.2;
   margin: 0;
 `
 
@@ -160,4 +415,14 @@ export const SectionSeparator = styled.div`
   width: 100%;
   background: white;
   opacity: 0.3;
+`
+export const CopyIcon = styled.img`
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease-in-out;
+  padding: 0.2rem;
+
+  &:hover {
+    opacity: 1;
+  }
 `

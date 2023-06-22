@@ -15,7 +15,7 @@ export const Color = {
   text1: '#405A82',
   text2: '#95BAEF',
   danger: '#D41300',
-  warning:  '#D94719',
+  warning: '#D94719',
   alert: '#DB971E',
   information: '#0d5ed9',
   success: '#007B28',

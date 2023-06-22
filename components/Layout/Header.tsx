@@ -31,7 +31,7 @@ const Pixel = styled.div`
 const Wrapper = styled.header`
   z-index: 10;
   width: 100%;
-  height: 9.6rem;
+  height: 7.2rem;
   position: relative;
   display: flex;
   flex-flow: row;
@@ -40,7 +40,6 @@ const Wrapper = styled.header`
   background: transparent;
   padding: 0 5.6rem;
   margin: 0 auto;
-  position: fixed;
   top: 0;
   left: 0;
   transition: background 0.2s ease-in-out, height 0.2s ease-in-out;
@@ -53,7 +52,8 @@ const Wrapper = styled.header`
   &.sticky {
     background: ${transparentize(0.1, Color.lightBlue)};
     backdrop-filter: blur(5px);
-    height: 6rem;
+    position: sticky;
+    top: 0;
   }
 `
 
@@ -66,11 +66,11 @@ const Content = styled.div`
   align-items: center;
 `
 
-const Menu = styled.ol<{ isHome?: boolean }>`
+const Menu = styled.ol<{ isLight?: boolean }>`
   display: flex;
   list-style: none;
   font-size: 1.9rem;
-  color: ${({ isHome }) => (isHome ? Color.text1 : Color.lightBlue)};
+  color: ${({ isLight }) => (isLight ? Color.text1 : Color.lightBlue)};
   padding: 0;
   margin: 0;
 
@@ -109,8 +109,8 @@ const Menu = styled.ol<{ isHome?: boolean }>`
   // any buttons or links right after menu
   + a {
     background: transparent;
-    border: 0.1rem solid ${({ isHome }) => (isHome ? Color.darkBlue : Color.lightBlue)};
-    color: ${({ isHome }) => (isHome ? Color.darkBlue : Color.lightBlue)};
+    border: 0.1rem solid ${({ isLight }) => (isLight ? Color.darkBlue : Color.lightBlue)};
+    color: ${({ isLight }) => (isLight ? Color.darkBlue : Color.lightBlue)};
 
     .sticky & {
       background: transparent;
@@ -153,7 +153,7 @@ const Menu = styled.ol<{ isHome?: boolean }>`
     text-decoration: none;
 
     &:hover {
-      color: ${({ isHome }) => (isHome ? Color.darkBlue : Color.lightBlue)};
+      color: ${({ isLight }) => (isLight ? Color.darkBlue : Color.lightBlue)};
     }
 
     ${Media.mobile} {
@@ -204,7 +204,7 @@ const SubMenu = styled.ol`
   list-style: none;
 `
 
-const MenuToggle = styled.button<{ isHome?: boolean }>`
+const MenuToggle = styled.button<{ isLight?: boolean }>`
   display: none;
   background: transparent;
   flex-flow: row;
@@ -221,7 +221,7 @@ const MenuToggle = styled.button<{ isHome?: boolean }>`
     display: flex;
     content: '';
     background: url(${MenuImage}) no-repeat center/contain;
-    ${({ isHome }) => !isHome && `background: url(${MenuImageLight}) no-repeat center/contain`};
+    ${({ isLight }) => !isLight && `background: url(${MenuImageLight}) no-repeat center/contain`};
     width: 62%;
     height: 100%;
 
@@ -235,11 +235,11 @@ const MenuToggle = styled.button<{ isHome?: boolean }>`
   }
 `
 
-const Logo = styled.div<{ isHome?: boolean }>`
+const Logo = styled.div<{ isLight?: boolean }>`
   width: 12.2rem;
   height: 3.8rem;
   background: url(${LogoImage}) no-repeat center/contain;
-  ${({ isHome }) => !isHome && `background: url(${LogoLightImage}) no-repeat center/contain`};
+  ${({ isLight }) => !isLight && `background: url(/images/${LogoLightImage}) no-repeat center/contain`};
   cursor: pointer;
 
   .sticky & {
@@ -250,7 +250,7 @@ const Logo = styled.div<{ isHome?: boolean }>`
 
   ${Media.mediumDown} {
     background: url(${LogoIconImage}) no-repeat center/contain;
-    ${({ isHome }) => !isHome && `background: url(${LogoIconLightImage}) no-repeat center/contain`};
+    ${({ isLight }) => !isLight && `background: url(/images/${LogoIconLightImage}) no-repeat center/contain`};
     width: 3.6rem;
     height: 3.2rem;
     background-size: contain;
@@ -279,8 +279,7 @@ export default function Header() {
   }
 
   const router = useRouter()
-  const isHome = router.pathname === '/'
-
+  const isLight = router.pathname === '/' || router.pathname.startsWith('/tokens')
   return (
     <InView threshold={1} delay={500}>
       {({ inView, ref }) => (
@@ -289,10 +288,10 @@ export default function Header() {
           <Wrapper className={!inView && 'sticky'}>
             <Content>
               <Link passHref href="/">
-                <Logo isHome={isHome} />
+                <Logo isLight={isLight} />
               </Link>
 
-              <Menu className={menuVisible ? 'visible' : ''} isHome={isHome}>
+              <Menu className={menuVisible ? 'visible' : ''} isLight={isLight}>
                 {HEADER_LINKS.map((link, index) => (
                   <li key={index}>
                     <CustomLink {...link} />
@@ -310,7 +309,7 @@ export default function Header() {
                 target="_blank"
                 rel="noopener nofollow"
               />
-              <MenuToggle isHome={isHome} onClick={handleClick} />
+              <MenuToggle isLight={isLight} onClick={handleClick} />
             </Content>
           </Wrapper>
         </>

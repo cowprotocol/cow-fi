@@ -3,6 +3,7 @@ import { PropsWithChildren } from 'react'
 import Header from 'components/Layout/Header'
 import Footer from 'components/Layout/Footer'
 import { Content } from 'const/styles/pages/content'
+import { Color } from 'const/styles/variables'
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -20,31 +21,35 @@ const FullWidthContent = styled.main`
   flex-flow: column wrap;
 `
 
-const TokenDetail = styled.main`
+const TokensPages = styled.main`
+  font-size: 1.6rem;
   display: flex;
   flex-flow: column wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   gap: 2.4rem;
-  padding: 0 2.4rem;
+  padding: 14.6rem 2.4rem;
   box-sizing: border-box;
-  margin: 0 auto;
+  margin: -10.4rem auto 0;
   width: 100%;
-  max-width: 98rem;
   min-height: 80rem;
+  ${Color.gradientMesh};
+  background-size: 100vw 100vh;
+  background-attachment: fixed;
 `
 
-type LayoutProps = PropsWithChildren<{ fullWidth?: boolean; tokenDetail?: boolean }>
+type LayoutProps = PropsWithChildren<{ fullWidth?: boolean; tokensPages?: boolean }>
 
-export default function Layout({ children, fullWidth = false, tokenDetail = false }: LayoutProps) {
-  const ContentComponent = fullWidth ? FullWidthContent : tokenDetail ? TokenDetail : Content
+export default function Layout({ children, fullWidth = false, tokensPages = false }: LayoutProps) {
+  const ContentComponent = fullWidth ? FullWidthContent : tokensPages ? TokensPages : Content
+  const FooterNoMargin = tokensPages ? true : false
 
   return (
     <>
       <Wrapper>
         <Header />
         <ContentComponent>{children || 'No content found'}</ContentComponent>
-        <Footer />
+        <Footer noMargin={FooterNoMargin} />
       </Wrapper>
     </>
   )

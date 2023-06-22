@@ -273,7 +273,7 @@ export const StepContainer = styled.div<{ imageWidth?: number}>`
 `
 
 export const TopGradient = styled.div`
-  background: url('images/gradient.svg') no-repeat center/cover;
+  background: url('/images/gradient.svg') no-repeat center/cover;
   filter: blur(10rem);
   width: 100%;
   height: 100%;
@@ -494,7 +494,7 @@ export const CheckList = styled.ol`
     height: 2.4rem;
     width: 2.4rem;
     min-width: 2.4rem;
-    background: url('images/icons/check.svg') no-repeat center/contain;
+    background: url('/images/icons/check.svg') no-repeat center/contain;
     margin: 0 1rem 0 0;
   }
 `
