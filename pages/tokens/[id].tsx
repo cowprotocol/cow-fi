@@ -28,7 +28,7 @@ import {
 } from '@/const/styles/pages/tokens'
 import { ParentSize } from '@visx/responsive'
 import prices from '../../data/tokenPrice.json'
-import { Chart } from '@/components/Chart'
+import { Chart, TimePeriod } from '@/components/Chart'
 import { SwapWidget } from '@/components/SwapWidget'
 
 type PlatformData = {
@@ -142,24 +142,26 @@ export default function TokenDetail({
       <Layout tokensPages={true}>
         <Wrapper>
           <MainContent>
-              <Breadcrumbs crumbs={[{ text: 'Tokens', href: '/tokens' }, { text: `${name} Price` }]} />
+            <Breadcrumbs crumbs={[{ text: 'Tokens', href: '/tokens' }, { text: `${name} Price` }]} />
 
-              <DetailHeading>
-                <TokenTitle>
-                  <img src={image.large} alt={`${name} (${symbol})`} />
-                  <h1>{name}</h1>
-                  <span>{symbol}</span>
-                </TokenTitle>
+            <DetailHeading>
+              <TokenTitle>
+                <img src={image.large} alt={`${name} (${symbol})`} />
+                <h1>{name}</h1>
+                <span>{symbol}</span>
+              </TokenTitle>
               <TokenPrice>
-                    <b>$0.9993</b>
-                    <span>
-                      <b>+8.31%</b> <i>(24H)</i>
-                    </span>
-                  </TokenPrice>
-              </DetailHeading>
+                <b>$0.9993</b>
+                <span>
+                  <b>+8.31%</b> <i>(24H)</i>
+                </span>
+              </TokenPrice>
+            </DetailHeading>
 
             <TokenChart>
-              <ParentSize>{({ width }) => <Chart prices={prices} width={width} height={248} />}</ParentSize>
+              <ParentSize>
+                {({ width }) => <Chart timePeriod={TimePeriod.DAY} prices={prices} width={width} height={350} />}
+              </ParentSize>
             </TokenChart>
 
             <Section>
