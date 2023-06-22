@@ -33,7 +33,15 @@
     "remark": "^14.0.2",
     "remark-html": "^15.0.1",
     "sass": "^1.43.4",
-    "styled-components": "^5.3.3"
+    "styled-components": "^5.3.3",
+    "@visx/axis": "^2.12.2",
+    "@visx/event": "^2.6.0",
+    "@visx/glyph": "^2.10.0",
+    "@visx/group": "^2.10.0",
+    "@visx/react-spring": "^2.12.2",
+    "@visx/responsive": "^2.10.0",
+    "@visx/shape": "^2.11.1",
+    "d3": "^7.8.5"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo } from 'react'
 import Head from 'next/head'
 import Layout from '@/components/Layout'
 import { getAllTokensIds, getTokenData } from 'lib/tokens'
@@ -26,6 +26,9 @@ import {
   StatTitle,
   StatValue,
 } from '@/const/styles/pages/tokens'
+import { ParentSize } from '@visx/responsive'
+import prices from '../../data/tokenPrice.json'
+import { Chart } from '@/components/Chart'
 
 type PlatformData = {
   contractAddress: string
@@ -49,6 +52,7 @@ type TokenDetailProps = {
   atl: string
   marketCap: string
   volume: string
+  prices: any
 }
 
 type SwapLinkCardProps = {
@@ -112,7 +116,6 @@ const CopyToClipboard = ({ text }) => {
 }
 
 export default function TokenDetail({
-  id,
   name,
   symbol,
   desc,
@@ -122,6 +125,7 @@ export default function TokenDetail({
   ath,
   atl,
   platforms,
+  prices,
 }: TokenDetailProps) {
   const contractAddressEthereum = platforms.ethereum.contractAddress
   const contractAddressGnosis = platforms.xdai.contractAddress
@@ -145,17 +149,16 @@ export default function TokenDetail({
                   <h1>{name}</h1>
                   <span>{symbol}</span>
                 </TokenTitle>
-
-              </DetailHeading>
-
-            <TokenChart>
               <TokenPrice>
                     <b>$0.9993</b>
                     <span>
                       <b>+8.31%</b> <i>(24H)</i>
                     </span>
                   </TokenPrice>
-                <b>- Chart component -</b>
+              </DetailHeading>
+
+            <TokenChart>
+              <ParentSize>{({ width }) => <Chart prices={prices} width={width} height={248} />}</ParentSize>
             </TokenChart>
 
             <Section>
@@ -186,25 +189,25 @@ export default function TokenDetail({
 
             <Section>
               <h4>About {symbol} token</h4>
-                <div dangerouslySetInnerHTML={{ __html: desc }}></div>
+              <div dangerouslySetInnerHTML={{ __html: desc }}></div>
 
-                <br />
-                <br />
+              <br />
+              <br />
 
-                <SwapCardsWrapper>
-                  <SwapLinkCard
-                    contractAddress={contractAddressEthereum}
-                    networkId={1}
-                    networkName="Ethereum"
-                    tokenSymbol={symbol}
-                  />
-                  <SwapLinkCard
-                    contractAddress={contractAddressGnosis}
-                    networkId={100}
-                    networkName="Gnosis Chain"
-                    tokenSymbol={symbol}
-                  />
-                </SwapCardsWrapper>
+              <SwapCardsWrapper>
+                <SwapLinkCard
+                  contractAddress={contractAddressEthereum}
+                  networkId={1}
+                  networkName="Ethereum"
+                  tokenSymbol={symbol}
+                />
+                <SwapLinkCard
+                  contractAddress={contractAddressGnosis}
+                  networkId={100}
+                  networkName="Gnosis Chain"
+                  tokenSymbol={symbol}
+                />
+              </SwapCardsWrapper>
             </Section>
 
             <Section>
@@ -343,6 +346,7 @@ export async function getStaticProps({ params }) {
       volume,
       ath,
       atl,
+      prices,
     },
   }
 }
