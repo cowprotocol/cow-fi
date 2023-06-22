@@ -185,8 +185,10 @@ export default function TokenDetail({
 
             <Section>
               <h4>About {symbol} coin</h4>
-              <div dangerouslySetInnerHTML={{ __html: desc }}></div>
               <p>
+                <div dangerouslySetInnerHTML={{ __html: desc }}></div>
+
+                <br />
                 <br />
 
                 <SwapCardsWrapper>
