@@ -1,6 +1,7 @@
 import LineChart from '@/components/Chart/LineChart'
 import { bisect, curveCardinal, NumberValue, scaleLinear, timeDay, timeHour, timeMinute, timeMonth } from 'd3'
 import { useMemo } from 'react'
+import { Color } from 'const/styles/variables'
 export type PricePoint = { timestamp: number; value: number }
 
 type ChartProps = {
@@ -55,6 +56,7 @@ export function Chart({ prices, height, width }: ChartProps) {
         marginTop={margin.top}
         curve={curve}
         strokeWidth={2}
+        color={Color.success}
       />
     </svg>
   )
