@@ -161,7 +161,7 @@ export default function TokenDetail({
             </Section>
 
             <TokenChart>
-              <ParentSize>{({ width }) => <Chart prices={prices} width={width} height={350} />}</ParentSize>
+              <ParentSize>{({ width }) => <Chart prices={prices} width={width} height={248} />}</ParentSize>
             </TokenChart>
 
             <Section>
