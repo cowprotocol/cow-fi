@@ -23,6 +23,8 @@ export function getTokenData(id) {
 
   if (id in tokenDescriptions) {
     token.description.en = tokenDescriptions[id]
+  } else {
+    token.description.en = `<p>${token.description.en}</p>`
   }
 
   return token

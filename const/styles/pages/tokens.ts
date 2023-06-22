@@ -64,7 +64,7 @@ export const Section = styled.div`
   font-size: 1.6rem;
   display: flex;
   flex-direction: column;
-  padding: 2rem 1rem;
+  padding: 2rem 0 0;
   width: 100%;
 
   > p,
@@ -93,8 +93,10 @@ export const DetailHeading = styled.div`
   display: flex;
   flex-flow: column wrap;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
+  width: 100%;
+  margin: 0 0 0.6rem;
 
   > div {
     display: flex;
@@ -168,8 +170,8 @@ export const TokenPrice = styled.div`
 export const TokenChart = styled.div`
   display: flex;
   flex-flow: column wrap;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   font-size: 1.3rem;
   margin: 0 auto 1.6rem;
   width: 100%;
@@ -178,7 +180,12 @@ export const TokenChart = styled.div`
     ${transparentize(0.95, Color.darkBlue)},
     ${transparentize(0.9, Color.darkBlue)}
   ); */
+  min-height: 29rem;
   border-radius: 1.6rem;
+
+  > b {
+    margin: 1.6rem 0 0.8rem;
+  }
 `
 
 export const NetworkTable = styled.div`

@@ -65,7 +65,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
     &::-webkit-scrollbar {
-      width: 2.4rem;
+      width: 4rem;
     }
 
     &::-webkit-scrollbar-track {
@@ -96,8 +96,8 @@ const GlobalStyles = createGlobalStyle`
   }
 
   ::-webkit-scrollbar {
-    width: 0.6rem !important;
-    height: 0.6rem !important;
+    width: 1rem !important;
+    height: 1rem !important;
   }
 
   ::-webkit-scrollbar-thumb {

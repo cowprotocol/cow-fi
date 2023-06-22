@@ -78,7 +78,7 @@ const SwapLinkCard = ({ contractAddress, networkId, networkName, tokenSymbol }: 
             alt={networkName}
           />
           <b>
-            Swap {tokenSymbol} token <br /> on {networkName}
+            Swap {tokenSymbol} <br /> on {networkName}
           </b>
           <img src="/images/external-arrow.svg" alt="Go to CoW Swap" />
         </a>
@@ -141,7 +141,6 @@ export default function TokenDetail({
       <Layout tokensPages={true}>
         <Wrapper>
           <MainContent>
-            <Section>
               <Breadcrumbs crumbs={[{ text: 'Tokens', href: '/tokens' }, { text: `${name} Price` }]} />
 
               <DetailHeading>
@@ -150,15 +149,13 @@ export default function TokenDetail({
                   <h1>{name}</h1>
                   <span>{symbol}</span>
                 </TokenTitle>
-
-                <TokenPrice>
-                  <b>$0.9993</b>
-                  <span>
-                    <b>+8.31%</b> <i>(24H)</i>
-                  </span>
-                </TokenPrice>
+              <TokenPrice>
+                    <b>$0.9993</b>
+                    <span>
+                      <b>+8.31%</b> <i>(24H)</i>
+                    </span>
+                  </TokenPrice>
               </DetailHeading>
-            </Section>
 
             <TokenChart>
               <ParentSize>{({ width }) => <Chart prices={prices} width={width} height={248} />}</ParentSize>
