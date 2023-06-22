@@ -175,8 +175,8 @@ export const TokenChart = styled.div`
   width: 100%;
   background: linear-gradient(
     to bottom,
-    ${transparentize(0.95, Color.darkBlue)},
-    ${transparentize(0.9, Color.darkBlue)}
+    ${transparentize(0.99, Color.darkBlue)},
+    ${transparentize(0.96, Color.darkBlue)}
   );
   min-height: 29rem;
   border-radius: 1.6rem;
