@@ -64,7 +64,7 @@ export const Section = styled.div`
   font-size: 1.6rem;
   display: flex;
   flex-direction: column;
-  padding: 2rem 0 0;
+  padding: 2rem 0;
   width: 100%;
 
   > p,
