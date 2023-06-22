@@ -202,9 +202,15 @@ export const NetworkItem = styled(NetworkHeaderItem)`
   > a {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     gap: 0.6rem;
+    line-height: 1;
     text-decoration: none;
     font-weight: 600;
+  }
+
+  > a:hover {
+    text-decoration: underline;
   }
 
   > a > img {
@@ -215,10 +221,15 @@ export const NetworkItem = styled(NetworkHeaderItem)`
     object-fit: contain;
   }
 
+  > a:last-child {
+    font-weight: 400;
+  }
+
   > div {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
+    justify-content: center;
     gap: 0.6rem;
     font-weight: normal;
     font-size: inherit;
@@ -229,15 +240,33 @@ export const NetworkItem = styled(NetworkHeaderItem)`
     flex-flow: row wrap;
     gap: 1.2rem;
     margin: 0 0 0 auto;
+    position: relative;
   }
 
   > span > a > img,
   > span > img {
+    --size: 2rem;
+    width: var(--size);
+    height: var(--size);
+    object-fit: contain;
+  }
+
+  > a > div {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+  }
+
+  > a > div > img {
     --size: 2.4rem;
     width: var(--size);
     height: var(--size);
-    border-radius: var(--size);
     object-fit: contain;
+  }
+
+  > a > div > i {
+    font-style: normal;
+    font-weight: 400;
   }
 `
 
@@ -331,19 +360,6 @@ export const SwapCard = styled.div`
   }
 `
 
-export const CopyIcon = styled.img`
-  cursor: pointer;
-  opacity: 0.6;
-  transition: opacity 0.2s ease-in-out;
-  --size: 1.7rem;
-  width: var(--size);
-  height: var(--size);
-
-  &:hover {
-    opacity: 1;
-  }
-`
-
 export const CopyMessage = styled.span`
   color: ${Color.success};
   font-size: 1.3rem;
@@ -376,4 +392,14 @@ export const SectionSeparator = styled.div`
   width: 100%;
   background: white;
   opacity: 0.3;
+`
+export const CopyIcon = styled.img`
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease-in-out;
+  padding: 0.2rem;
+
+  &:hover {
+    opacity: 1;
+  }
 `

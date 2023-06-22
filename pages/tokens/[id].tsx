@@ -64,7 +64,9 @@ const SwapLinkCard = ({ contractAddress, networkId, networkName, tokenSymbol }: 
     contractAddress && (
       <SwapCard>
         <a
-          href={`https://swap.cow.fi/#/${networkId}/swap/WETH/${contractAddress}?sellAmount=1`}
+          href={`https://swap.cow.fi/#/${networkId}/swap/${
+            networkId === 100 ? 'WXDAI' : 'WETH'
+          }/${contractAddress}?sellAmount=1`}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -239,12 +241,23 @@ export default function TokenDetail({
                           {network === 'xdai' ? 'Gnosis Chain' : network.charAt(0).toUpperCase() + network.slice(1)}
                         </a>
                         <React.Fragment key={network}>
-                          <div>
-                            {platformData.contractAddress}
-                            <CopyToClipboard text={platformData.contractAddress} />
-                          </div>
-
+                          <a
+                            href={
+                              network === 'xdai'
+                                ? `https://gnosisscan.io/address/${platformData.contractAddress}`
+                                : `https://etherscan.io/address/${platformData.contractAddress}`
+                            }
+                            title={`${name} (${symbol}) on ${network === 'xdai' ? 'Gnosis Chain' : 'Ethereum'}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <div>
+                              <i>{platformData.contractAddress}</i>
+                              <img src="/images/external-arrow.svg" alt="Go to explorer" />
+                            </div>
+                          </a>
                           <span>
+                            <CopyToClipboard text={platformData.contractAddress} />
                             <a
                               href={`https://link.trustwallet.com/add_asset?asset=c20000714&t=${platformData.contractAddress}&n=${name}&s=${symbol}&d=${platformData.decimalPlace}`}
                               target="_blank"
