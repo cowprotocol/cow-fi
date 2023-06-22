@@ -28,7 +28,7 @@ import {
 } from '@/const/styles/pages/tokens'
 import { ParentSize } from '@visx/responsive'
 import prices from '../../data/tokenPrice.json'
-import { Chart } from '@/components/Chart'
+import { Chart, TimePeriod } from '@/components/Chart'
 
 type PlatformData = {
   contractAddress: string
@@ -161,7 +161,9 @@ export default function TokenDetail({
             </Section>
 
             <TokenChart>
-              <ParentSize>{({ width }) => <Chart prices={prices} width={width} height={350} />}</ParentSize>
+              <ParentSize>
+                {({ width }) => <Chart timePeriod={TimePeriod.DAY} prices={prices} width={width} height={350} />}
+              </ParentSize>
             </TokenChart>
 
             <Section>
