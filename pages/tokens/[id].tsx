@@ -8,7 +8,7 @@ import {
   Wrapper,
   MainContent,
   StickyContent,
-  SwapWidget,
+  SwapWidgetWrapper,
   SwapCardsWrapper,
   SwapCard,
   DetailHeading,
@@ -29,6 +29,7 @@ import {
 import { ParentSize } from '@visx/responsive'
 import prices from '../../data/tokenPrice.json'
 import { Chart, TimePeriod } from '@/components/Chart'
+import { SwapWidget } from '@/components/SwapWidget'
 
 type PlatformData = {
   contractAddress: string
@@ -159,7 +160,7 @@ export default function TokenDetail({
 
             <TokenChart>
               <ParentSize>
-                {({ width }) => <Chart timePeriod={TimePeriod.DAY} prices={prices} width={width} height={350} />}
+                {({ width }) => <Chart timePeriod={TimePeriod.DAY} prices={prices} width={width} height={240} />}
               </ParentSize>
             </TokenChart>
 
@@ -285,9 +286,9 @@ export default function TokenDetail({
           </MainContent>
 
           <StickyContent>
-            <SwapWidget>
-              <b>-Swap {symbol} widget -</b>
-            </SwapWidget>
+            <SwapWidgetWrapper>
+              <SwapWidget tokenSymbol={symbol} tokenImage={image.large} platforms={platforms} />
+            </SwapWidgetWrapper>
           </StickyContent>
         </Wrapper>
       </Layout>

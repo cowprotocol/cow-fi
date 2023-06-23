@@ -4,7 +4,7 @@ import { transparentize } from 'polished'
 
 export const Wrapper = styled.div`
   display: grid;
-  grid-template-columns: 1fr 36rem;
+  grid-template-columns: 1fr 32rem;
   grid-gap: 3.2rem;
   width: 100%;
   max-width: 126rem;
@@ -44,16 +44,17 @@ export const StickyContent = styled.div`
   overflow: visible;
 `
 
-export const SwapWidget = styled.div`
+export const SwapWidgetWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 0.1rem solid ${transparentize(0.8, Color.darkBlue)};
-  height: 20rem;
+  background: ${Color.white};
+  height: 26.2rem;
   width: 100%;
+  box-shadow: 0 0.2rem 1.2rem rgba(0,0,0,.03), 0 2rem 7rem rgba(0,0,0,.06), 0 0.2rem 0.4rem rgba(0,0,0,.02);
   border-radius: 1.6rem;
   margin: 0 0 2rem;
-  padding: 1rem;
+  padding: 1.2rem;
 
   > b {
     font-size: 1.2rem;
@@ -173,7 +174,7 @@ export const TokenChart = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   font-size: 1.3rem;
-  margin: 0 auto 1.6rem;
+  margin: 0 auto 1rem;
   width: 100%;
   border-radius: 1.6rem;
 
@@ -194,7 +195,7 @@ export const NetworkHeaderItem = styled.div`
   grid-template-columns: 14rem auto auto;
   align-items: center;
   padding: 1rem 0;
-  border-bottom: 1px solid ${transparentize(0.9, Color.darkBlue)};
+  border-bottom: 0.1rem solid ${transparentize(0.9, Color.darkBlue)};
   color: ${Color.text1};
   gap: 0.8rem;
 
@@ -411,7 +412,7 @@ export const StatValue = styled.h5`
 `
 
 export const SectionSeparator = styled.div`
-  height: 1px;
+  height: 0.1rem;
   width: 100%;
   background: white;
   opacity: 0.3;

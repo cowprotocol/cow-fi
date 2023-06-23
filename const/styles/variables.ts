@@ -2,7 +2,7 @@ import { transparentize } from 'polished'
 import { css } from 'styled-components'
 
 export const Color = {
-  white: '#F6F6F6',
+  white: '#FFFFFF',
   black: '#000000',
   orange: '#ED6834',
   border: transparentize(0.75, '#979797'),
@@ -12,6 +12,7 @@ export const Color = {
   darkBlue3: '#042a63',
   darkBlue4: '#042456',
   lightBlue: '#CAE9FF',
+  grey: 'rgb(236, 241, 248)',
   text1: '#405A82',
   text2: '#95BAEF',
   danger: '#D41300',

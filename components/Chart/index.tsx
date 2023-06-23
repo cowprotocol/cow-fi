@@ -14,6 +14,7 @@ import { Line } from '@visx/shape'
 import { GlyphCircle } from '@visx/glyph'
 import { localPoint } from '@visx/event'
 import { EventType } from '@visx/event/lib/types'
+import { Color } from '@/const/styles/variables'
 
 export type PricePoint = { timestamp: number; value: number }
 
@@ -178,7 +179,7 @@ export function Chart({ prices, height, width, timePeriod }: ChartProps) {
   }, [setCrosshair, setDisplayPrice, endingPrice])
 
   return (
-    <svg data-cy="price-chart" width={width} height={height} style={{ minWidth: '100%' }}>
+    <svg data-cy="price-chart" width={width} height={height} style={{ minWidth: '100%', maxWidth: '100%' }}>
       <LineChart
         width={width}
         height={height}
@@ -188,23 +189,24 @@ export function Chart({ prices, height, width, timePeriod }: ChartProps) {
         marginTop={margin.top}
         curve={curve}
         strokeWidth={2}
+        color={Color.success}
       />
 
       {crosshair !== null ? (
         <g>
           <AxisBottom
             scale={timeScale}
-            stroke={'blue'}
+            stroke={Color.text1}
             tickFormat={tickFormatter}
-            tickStroke={'blue'}
+            tickStroke={Color.text1}
             tickLength={4}
             hideTicks={true}
             tickTransform="translate(0 -5)"
             tickValues={updatedTicks}
             top={height - 1}
             tickLabelProps={() => ({
-              fill: 'blue',
-              fontSize: 12,
+              fill: Color.text1,
+              fontSize: 11,
               textAnchor: 'middle',
               transform: 'translate(0 -24)',
             })}
@@ -213,15 +215,15 @@ export function Chart({ prices, height, width, timePeriod }: ChartProps) {
             x={crosshair + (crosshairAtEdge ? -4 : 4)}
             y={margin.crosshair + 10}
             textAnchor={crosshairAtEdge ? 'end' : 'start'}
-            fontSize={12}
-            fill={'blue'}
+            fontSize={15}
+            fill={Color.text1}
           >
             {crosshairDateFormatter(displayPrice.timestamp)}
           </text>
           <Line
             from={{ x: crosshair, y: margin.crosshair }}
             to={{ x: crosshair, y: height }}
-            stroke={'blue'}
+            stroke={Color.text1}
             strokeWidth={1}
             pointerEvents="none"
             strokeDasharray="4,4"
@@ -230,13 +232,13 @@ export function Chart({ prices, height, width, timePeriod }: ChartProps) {
             left={crosshair}
             top={rdScale(displayPrice.value) + margin.top}
             size={50}
-            fill={'blue'}
-            stroke={'blue'}
+            fill={Color.success}
+            stroke={Color.success}
             strokeWidth={0.5}
           />
         </g>
       ) : (
-        <AxisBottom hideAxisLine={true} scale={timeScale} stroke={'blue'} top={height - 1} hideTicks />
+        <AxisBottom hideAxisLine={true} scale={timeScale} stroke={Color.text1} top={height - 1} hideTicks />
       )}
       <rect
         x={0}
