@@ -51,7 +51,7 @@ export const SwapWidgetWrapper = styled.div`
   background: ${Color.white};
   height: 26.2rem;
   width: 100%;
-  box-shadow: 0 0.2rem 1.2rem rgba(0,0,0,.03), 0 2rem 7rem rgba(0,0,0,.06), 0 0.2rem 0.4rem rgba(0,0,0,.02);
+  box-shadow: 0 0.2rem 1.2rem rgba(0, 0, 0, 0.03), 0 2rem 7rem rgba(0, 0, 0, 0.06), 0 0.2rem 0.4rem rgba(0, 0, 0, 0.02);
   border-radius: 1.6rem;
   margin: 0 0 2rem;
   padding: 1.2rem;
@@ -137,7 +137,7 @@ export const TokenTitle = styled.div`
   }
 `
 
-export const TokenPrice = styled.div`
+export const TokenPrice = styled.div<{ priceChange?: string }>`
   font-size: 3.8rem;
   display: flex;
   align-items: center;
@@ -158,7 +158,7 @@ export const TokenPrice = styled.div`
 
   > span > b {
     font-weight: normal;
-    color: ${Color.success};
+    color: ${({ priceChange }) => (Number(priceChange) > 0 ? Color.success : Color.alert)};
   }
 
   > span > i {
