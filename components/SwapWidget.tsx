@@ -207,13 +207,10 @@ export const SwapWidget = ({ tokenSymbol, tokenImage, platforms }: SwapWidgetPro
   }, [platforms])
 
   const onSwap = () => {
-    console.log('network:', network);
-    console.log('platforms:', platforms);
-    
     if (network && platforms[network.toLowerCase()]) {
-      const networkId = network === 'Gnosis Chain' ? 100 : 1;
+      const networkId = network === 'xdai' ? 100 : 1;
       const contractAddress = platforms[network.toLowerCase()].contractAddress;
-    
+  
       let sellToken, buyToken;
       if (activeTab === 'Buy') {
         sellToken = networkId === 100 ? 'WXDAI' : 'WETH';
@@ -222,14 +219,14 @@ export const SwapWidget = ({ tokenSymbol, tokenImage, platforms }: SwapWidgetPro
         sellToken = contractAddress;
         buyToken = networkId === 100 ? 'WXDAI' : 'WETH';
       }
-    
+  
       const url = `https://swap.cow.fi/#/${networkId}/swap/${sellToken}/${buyToken}?${activeTab.toLowerCase()}Amount=${amount}`;
       return url;
     } else {
       return '#';
     }
   };  
-  
+
   return (
     <Wrapper>
       <TabContainer>
@@ -239,25 +236,25 @@ export const SwapWidget = ({ tokenSymbol, tokenImage, platforms }: SwapWidgetPro
 
       <DropdownContainer>
         <DropdownHeader onClick={() => setIsOpen(!isOpen)}>
-          <img 
-            src={`/images/${network === 'Ethereum' ? 'ethereum' : 'gnosis-chain'}.svg`} 
-            alt={network} 
+          <img
+            src={`/images/${network === 'Ethereum' ? 'ethereum' : 'gnosis-chain'}.svg`}
+            alt={network}
           />
           <b>{network}</b>
         </DropdownHeader>
         {isOpen && (
           <DropdownBody>
-            {platforms.ethereum.contractAddress && 
-              <DropdownOption 
+            {platforms.ethereum.contractAddress &&
+              <DropdownOption
                 onClick={() => handleSelect('Ethereum')}
               >
                 <img src="/images/ethereum.svg" alt="Ethereum" />
                 Ethereum
               </DropdownOption>
             }
-            {platforms.xdai.contractAddress && 
-              <DropdownOption 
-                onClick={() => handleSelect('Gnosis Chain')}
+            {platforms.xdai.contractAddress &&
+              <DropdownOption
+                onClick={() => handleSelect('xdai')}
               >
                 <img src="/images/gnosis-chain.svg" alt="Gnosis Chain" />
                 Gnosis Chain
