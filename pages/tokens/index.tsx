@@ -141,8 +141,8 @@ export default function Tokens({ tokens }) {
                 <ListItemValue color={getPriceChangeColor(change)}>
                   {change ? `${Number(change).toFixed(2)}%` : '-'}
                 </ListItemValue>
-                <ListItemValue>{formatNumber(marketCap)}</ListItemValue>
-                <ListItemValue>{formatNumber(volume)}</ListItemValue>
+                <ListItemValue>${formatNumber(marketCap)}</ListItemValue>
+                <ListItemValue>${formatNumber(volume)}</ListItemValue>
               </ListItem>
             )
           })}
