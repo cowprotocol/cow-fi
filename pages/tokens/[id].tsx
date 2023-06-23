@@ -164,7 +164,15 @@ export default function TokenDetail({
 
             <TokenChart>
               <ParentSize>
-                {({ width }) => <Chart timePeriod={TimePeriod.DAY} prices={prices} width={width} height={240} />}
+                {({ width }) => (
+                  <Chart
+                    priceChange={priceChange24h}
+                    timePeriod={TimePeriod.DAY}
+                    prices={prices}
+                    width={width}
+                    height={240}
+                  />
+                )}
               </ParentSize>
             </TokenChart>
 

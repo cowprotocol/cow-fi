@@ -31,6 +31,7 @@ type ChartProps = {
   height: number
   prices: any
   timePeriod: TimePeriod
+  priceChange: string
 }
 
 export function getPriceBounds(pricePoints: PricePoint[]): [number, number] {
@@ -40,7 +41,7 @@ export function getPriceBounds(pricePoints: PricePoint[]): [number, number] {
   return [min, max]
 }
 
-export function Chart({ prices, height, width, timePeriod }: ChartProps) {
+export function Chart({ prices, height, width, timePeriod, priceChange }: ChartProps) {
   const locale = 'en-US'
 
   const startingPrice = prices?.[0]
@@ -178,6 +179,8 @@ export function Chart({ prices, height, width, timePeriod }: ChartProps) {
     setDisplayPrice(endingPrice)
   }, [setCrosshair, setDisplayPrice, endingPrice])
 
+  const mainColor = Number(priceChange) > 0 ? Color.success : Color.danger
+
   return (
     <svg data-cy="price-chart" width={width} height={height} style={{ minWidth: '100%', maxWidth: '100%' }}>
       <LineChart
@@ -189,7 +192,7 @@ export function Chart({ prices, height, width, timePeriod }: ChartProps) {
         marginTop={margin.top}
         curve={curve}
         strokeWidth={2}
-        color={Color.success}
+        color={mainColor}
       />
 
       {crosshair !== null ? (
@@ -232,8 +235,8 @@ export function Chart({ prices, height, width, timePeriod }: ChartProps) {
             left={crosshair}
             top={rdScale(displayPrice.value) + margin.top}
             size={50}
-            fill={Color.success}
-            stroke={Color.success}
+            fill={mainColor}
+            stroke={mainColor}
             strokeWidth={0.5}
           />
         </g>

@@ -158,7 +158,7 @@ export const TokenPrice = styled.div<{ priceChange?: string }>`
 
   > span > b {
     font-weight: normal;
-    color: ${({ priceChange }) => (Number(priceChange) > 0 ? Color.success : Color.alert)};
+    color: ${({ priceChange }) => (Number(priceChange) > 0 ? Color.success : Color.danger)};
   }
 
   > span > i {
