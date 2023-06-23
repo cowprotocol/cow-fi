@@ -137,12 +137,12 @@ export default function Tokens({ tokens }) {
                   </TokenLink>
                 </Link>
 
-                <ListItemValue>${price}</ListItemValue>
+                <ListItemValue>{price ? `$${price}` : '-'}</ListItemValue>
                 <ListItemValue color={getPriceChangeColor(change)}>
                   {change ? `${Number(change).toFixed(2)}%` : '-'}
                 </ListItemValue>
-                <ListItemValue>${formatNumber(marketCap)}</ListItemValue>
-                <ListItemValue>${formatNumber(volume)}</ListItemValue>
+                <ListItemValue>{marketCap ? `$${formatNumber(marketCap)}` : '-'}</ListItemValue>
+                <ListItemValue>{volume ? `$${formatNumber(volume)}` : '-'}</ListItemValue>
               </ListItem>
             )
           })}
