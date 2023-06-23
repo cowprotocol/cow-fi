@@ -200,16 +200,20 @@ export const SwapWidget = ({ tokenSymbol, tokenImage, platforms }: SwapWidgetPro
   }
 
   useEffect(() => {
+    console.log('platforms:', platforms);
     // set initial network based on the available platforms
     if (platforms.ethereum.contractAddress) setNetwork('Ethereum')
     else if (platforms.xdai.contractAddress) setNetwork('Gnosis Chain')
   }, [platforms])
 
   const onSwap = () => {
-    if (network) {
+    console.log('network:', network);
+    console.log('platforms:', platforms);
+    
+    if (network && platforms[network.toLowerCase()]) {
       const networkId = network === 'Gnosis Chain' ? 100 : 1;
       const contractAddress = platforms[network.toLowerCase()].contractAddress;
-  
+    
       let sellToken, buyToken;
       if (activeTab === 'Buy') {
         sellToken = networkId === 100 ? 'WXDAI' : 'WETH';
@@ -218,14 +222,13 @@ export const SwapWidget = ({ tokenSymbol, tokenImage, platforms }: SwapWidgetPro
         sellToken = contractAddress;
         buyToken = networkId === 100 ? 'WXDAI' : 'WETH';
       }
-  
+    
       const url = `https://swap.cow.fi/#/${networkId}/swap/${sellToken}/${buyToken}?${activeTab.toLowerCase()}Amount=${amount}`;
       return url;
     } else {
       return '#';
     }
-  };
-  
+  };  
   
   return (
     <Wrapper>
