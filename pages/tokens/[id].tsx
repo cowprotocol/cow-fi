@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Layout from '@/components/Layout'
 import { getAllTokensIds, getTokenData } from 'lib/tokens'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
-import { formatUSD } from 'util/tokens'
+import { formatNumber } from 'util/tokens'
 import {
   Wrapper,
   MainContent,
@@ -174,22 +174,22 @@ export default function TokenDetail({
               <Stats>
                 <StatItem>
                   <StatTitle>Market Cap</StatTitle>
-                  <StatValue>{formatUSD(marketCap)}</StatValue>
+                  <StatValue>${formatNumber(marketCap)}</StatValue>
                 </StatItem>
 
                 <StatItem>
                   <StatTitle>24H Volume</StatTitle>
-                  <StatValue>{formatUSD(volume)}</StatValue>
+                  <StatValue>${formatNumber(volume)}</StatValue>
                 </StatItem>
 
                 <StatItem>
                   <StatTitle>All-time High</StatTitle>
-                  <StatValue>{formatUSD(ath)}</StatValue>
+                  <StatValue>${formatNumber(ath)}</StatValue>
                 </StatItem>
 
                 <StatItem>
                   <StatTitle>All-time Low</StatTitle>
-                  <StatValue>{formatUSD(atl)}</StatValue>
+                  <StatValue>${formatNumber(atl)}</StatValue>
                 </StatItem>
               </Stats>
             </Section>
