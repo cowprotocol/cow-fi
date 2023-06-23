@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Layout from '@/components/Layout'
 import { getAllTokensIds, getTokenData } from 'lib/tokens'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
-import { formatUSD } from 'util/tokens'
+import { formatNumber } from 'util/tokens'
 import {
   Wrapper,
   MainContent,
@@ -54,6 +54,8 @@ type TokenDetailProps = {
   marketCap: string
   volume: string
   prices: any
+  currentPrice: string
+  priceChange24h: string
 }
 
 type SwapLinkCardProps = {
@@ -127,6 +129,8 @@ export default function TokenDetail({
   atl,
   platforms,
   prices,
+  currentPrice,
+  priceChange24h,
 }: TokenDetailProps) {
   const contractAddressEthereum = platforms.ethereum.contractAddress
   const contractAddressGnosis = platforms.xdai.contractAddress
@@ -150,10 +154,10 @@ export default function TokenDetail({
                 <h1>{name}</h1>
                 <span>{symbol}</span>
               </TokenTitle>
-              <TokenPrice>
-                <b>$0.9993</b>
+              <TokenPrice priceChange={priceChange24h}>
+                <b>${currentPrice}</b>
                 <span>
-                  <b>+8.31%</b> <i>(24H)</i>
+                  <b>{priceChange24h}%</b> <i>(24H)</i>
                 </span>
               </TokenPrice>
             </DetailHeading>
@@ -170,22 +174,22 @@ export default function TokenDetail({
               <Stats>
                 <StatItem>
                   <StatTitle>Market Cap</StatTitle>
-                  <StatValue>{formatUSD(marketCap)}</StatValue>
+                  <StatValue>${formatNumber(marketCap)}</StatValue>
                 </StatItem>
 
                 <StatItem>
                   <StatTitle>24H Volume</StatTitle>
-                  <StatValue>{formatUSD(volume)}</StatValue>
+                  <StatValue>${formatNumber(volume)}</StatValue>
                 </StatItem>
 
                 <StatItem>
                   <StatTitle>All-time High</StatTitle>
-                  <StatValue>{formatUSD(ath)}</StatValue>
+                  <StatValue>${formatNumber(ath)}</StatValue>
                 </StatItem>
 
                 <StatItem>
                   <StatTitle>All-time Low</StatTitle>
-                  <StatValue>{formatUSD(atl)}</StatValue>
+                  <StatValue>${formatNumber(atl)}</StatValue>
                 </StatItem>
               </Stats>
             </Section>
@@ -324,6 +328,8 @@ export async function getStaticProps({ params }) {
   const volume = token.market_data?.total_volume.usd || null
   const ath = token.market_data?.ath.usd || null
   const atl = token.market_data?.atl.usd || null
+  const currentPrice = token.market_data?.current_price?.usd || null
+  const priceChange24h = token.market_data?.price_change_percentage_24h?.toFixed(2) || null
 
   // Get only the Ethereum and Gnosis Chain contract addresses and decimal places
   const platforms = {
@@ -350,6 +356,8 @@ export async function getStaticProps({ params }) {
       ath,
       atl,
       prices,
+      currentPrice,
+      priceChange24h,
     },
   }
 }

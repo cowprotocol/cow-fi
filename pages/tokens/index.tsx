@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Layout from '@/components/Layout'
 import { getAllTokensData } from 'lib/tokens'
@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import { Color, Media } from 'const/styles/variables'
 import { transparentize } from 'polished'
 import { TokenLink } from '@/const/styles/pages/tokens'
+import { formatNumber } from 'util/tokens'
 
 const Wrapper = styled.div`
   --tokenSize: 2.6rem;
@@ -42,7 +43,7 @@ const HeaderItem = styled.div`
   padding: 1rem 0;
   border-bottom: 1px solid ${transparentize(0.9, Color.darkBlue)};
   gap: 1.4rem;
-  
+
   ${Media.mobile} {
     grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
   }
@@ -52,11 +53,13 @@ const HeaderItem = styled.div`
   }
 `
 
-const ListItem = styled(HeaderItem)`
+const ListItem = styled(HeaderItem)``
+const ListItemValue = styled.span<{ color?: string }>`
+  font-size: 14px;
+  color: ${({ color }) => color || 'inherit'};
 `
 
 const PlacerholderImage = styled.div`
- 
   width: var(--tokenSize);
   height: var(--tokenSize);
   border-radius: var(--tokenSize);
@@ -76,20 +79,25 @@ const SearchTokens = styled.input`
 `
 
 export default function Tokens({ tokens }) {
-  const [search, setSearch] = useState('');
-  const [filteredTokens, setFilteredTokens] = useState(tokens);
+  const [search, setSearch] = useState('')
+  const [filteredTokens, setFilteredTokens] = useState(tokens)
 
   useEffect(() => {
-    setFilteredTokens(tokens.filter(token => 
-      token.name.toLowerCase().includes(search.toLowerCase()) ||
-      token.symbol.toLowerCase().includes(search.toLowerCase())
-    ));
-  }, [search, tokens]);
+    setFilteredTokens(
+      tokens.filter(
+        (token) =>
+          token.name.toLowerCase().includes(search.toLowerCase()) ||
+          token.symbol.toLowerCase().includes(search.toLowerCase())
+      )
+    )
+  }, [search, tokens])
 
   return (
     <Layout tokensPages={true}>
       <Wrapper>
-        <h1>Tokens <span>({filteredTokens.length})</span></h1>
+        <h1>
+          Tokens <span>({filteredTokens.length})</span>
+        </h1>
         <SearchTokens
           type="text"
           placeholder="Search tokens..."
@@ -105,23 +113,38 @@ export default function Tokens({ tokens }) {
             <div>Market Cap</div>
             <div>Volume</div>
           </HeaderItem>
-          {filteredTokens.map((token, index) => (
-            <ListItem key={token.id}>
-              <span>{index + 1}</span>
-              <Link href={`/tokens/${token.id}`} passHref>
-                <TokenLink>
-                  {(token.image.large && token.image.large !== 'missing_large.png') ? 
-                    <img src={token.image.large} alt={token.name} /> : 
-                    <PlacerholderImage />}
-                  <span>{token.name} <i>({token.symbol})</i></span>
-                </TokenLink>
-              </Link>
-              <span>-</span> {/* Replace "-" with {token.price} */}
-              <span>-</span> {/* Replace "-" with {token.change} */}
-              <span>-</span> {/* Replace "-" with {token.marketCap} */}
-              <span>-</span> {/* Replace "-" with {token.volume} */}
-            </ListItem>
-          ))}
+          {filteredTokens.map((token, index) => {
+            const price = token.market_data?.current_price?.usd
+            const change = token.market_data?.price_change_percentage_24h
+            const marketCap = token.market_data?.market_cap?.usd
+            const volume = token.market_data?.total_volume?.usd
+
+            return (
+              <ListItem key={token.id}>
+                <span>{index + 1}</span>
+
+                <Link href={`/tokens/${token.id}`} passHref>
+                  <TokenLink>
+                    {token.image.large && token.image.large !== 'missing_large.png' ? (
+                      <img src={token.image.large} alt={token.name} />
+                    ) : (
+                      <PlacerholderImage />
+                    )}
+                    <span>
+                      {token.name} <i>({token.symbol})</i>
+                    </span>
+                  </TokenLink>
+                </Link>
+
+                <ListItemValue>${price}</ListItemValue>
+                <ListItemValue color={Number(change) > 0 ? Color.success : Color.danger}>
+                  {Number(change).toFixed(2)}%
+                </ListItemValue>
+                <ListItemValue>{formatNumber(marketCap)}</ListItemValue>
+                <ListItemValue>{formatNumber(volume)}</ListItemValue>
+              </ListItem>
+            )
+          })}
         </TokenTable>
       </Wrapper>
     </Layout>
@@ -133,13 +156,13 @@ export async function getStaticProps() {
 
   tokens = tokens.sort((a, b) => {
     if (a.market_cap_rank === null) {
-      return 1; // always place nulls last
+      return 1 // always place nulls last
     }
     if (b.market_cap_rank === null) {
-      return -1; // always place nulls last
+      return -1 // always place nulls last
     }
-    return a.market_cap_rank - b.market_cap_rank; // usual comparison
-  });
+    return a.market_cap_rank - b.market_cap_rank // usual comparison
+  })
 
   return {
     props: {
@@ -147,4 +170,3 @@ export async function getStaticProps() {
     },
   }
 }
-

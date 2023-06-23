@@ -1,4 +1,4 @@
-export function formatUSD(number) {
+export function formatNumber(number) {
   if (!number) {
     return '-'
   }
@@ -21,7 +21,7 @@ export function formatUSD(number) {
   }
 
   // Format the amount with the currency symbol
-  const formattedAmount = '$' + wholeNumber + (decimalPart ? '.' + decimalPart : '')
+  const formattedAmount = wholeNumber + (decimalPart ? '.' + decimalPart : '')
 
   return formattedAmount
 }
