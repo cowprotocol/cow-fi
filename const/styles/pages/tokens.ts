@@ -137,7 +137,7 @@ export const TokenTitle = styled.div`
   }
 `
 
-export const TokenPrice = styled.div<{ priceChange?: string }>`
+export const TokenPrice = styled.div<{ changeColor?: string }>`
   font-size: 3.8rem;
   display: flex;
   align-items: center;
@@ -158,7 +158,7 @@ export const TokenPrice = styled.div<{ priceChange?: string }>`
 
   > span > b {
     font-weight: normal;
-    color: ${({ priceChange }) => (Number(priceChange) > 0 ? Color.success : Color.alert)};
+    color: ${({ changeColor }) => changeColor || Color.text1};
   }
 
   > span > i {

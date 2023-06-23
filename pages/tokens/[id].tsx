@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Layout from '@/components/Layout'
 import { getAllTokensIds, getTokenData } from 'lib/tokens'
@@ -27,9 +27,10 @@ import {
   StatValue,
 } from '@/const/styles/pages/tokens'
 import { ParentSize } from '@visx/responsive'
-import prices from '../../data/tokenPrice.json'
 import { Chart, TimePeriod } from '@/components/Chart'
 import { SwapWidget } from '@/components/SwapWidget'
+import { getPriceChangeColor } from 'util/getPriceChangeColor'
+import prices from '../../data/tokenPrice.json'
 
 type PlatformData = {
   contractAddress: string
@@ -134,6 +135,7 @@ export default function TokenDetail({
 }: TokenDetailProps) {
   const contractAddressEthereum = platforms.ethereum.contractAddress
   const contractAddressGnosis = platforms.xdai.contractAddress
+  const changeColor = getPriceChangeColor(priceChange24h)
 
   return (
     <>
@@ -154,17 +156,25 @@ export default function TokenDetail({
                 <h1>{name}</h1>
                 <span>{symbol}</span>
               </TokenTitle>
-              <TokenPrice priceChange={priceChange24h}>
+              <TokenPrice changeColor={changeColor}>
                 <b>${currentPrice}</b>
                 <span>
-                  <b>{priceChange24h}%</b> <i>(24H)</i>
+                  <b>{priceChange24h || '0.00'}%</b> <i>(24H)</i>
                 </span>
               </TokenPrice>
             </DetailHeading>
 
             <TokenChart>
               <ParentSize>
-                {({ width }) => <Chart timePeriod={TimePeriod.DAY} prices={prices} width={width} height={240} />}
+                {({ width }) => (
+                  <Chart
+                    priceChange={priceChange24h}
+                    timePeriod={TimePeriod.DAY}
+                    prices={prices}
+                    width={width}
+                    height={240}
+                  />
+                )}
               </ParentSize>
             </TokenChart>
 
@@ -329,7 +339,7 @@ export async function getStaticProps({ params }) {
   const ath = token.market_data?.ath.usd || null
   const atl = token.market_data?.atl.usd || null
   const currentPrice = token.market_data?.current_price?.usd || null
-  const priceChange24h = token.market_data?.price_change_percentage_24h?.toFixed(2) || null
+  const priceChange24h = token.market_data?.price_change_percentage_24h?.toFixed(4) || null
 
   // Get only the Ethereum and Gnosis Chain contract addresses and decimal places
   const platforms = {
