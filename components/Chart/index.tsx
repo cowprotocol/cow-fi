@@ -15,6 +15,7 @@ import { GlyphCircle } from '@visx/glyph'
 import { localPoint } from '@visx/event'
 import { EventType } from '@visx/event/lib/types'
 import { Color } from '@/const/styles/variables'
+import { getPriceChangeColor } from 'util/getPriceChangeColor'
 
 export type PricePoint = { timestamp: number; value: number }
 
@@ -179,7 +180,7 @@ export function Chart({ prices, height, width, timePeriod, priceChange }: ChartP
     setDisplayPrice(endingPrice)
   }, [setCrosshair, setDisplayPrice, endingPrice])
 
-  const mainColor = Number(priceChange) > 0 ? Color.success : Color.danger
+  const mainColor = getPriceChangeColor(priceChange)
 
   return (
     <svg data-cy="price-chart" width={width} height={height} style={{ minWidth: '100%', maxWidth: '100%' }}>

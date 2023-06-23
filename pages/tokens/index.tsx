@@ -7,6 +7,7 @@ import { Color, Media } from 'const/styles/variables'
 import { transparentize } from 'polished'
 import { TokenLink } from '@/const/styles/pages/tokens'
 import { formatNumber } from 'util/tokens'
+import { getPriceChangeColor } from 'util/getPriceChangeColor'
 
 const Wrapper = styled.div`
   --tokenSize: 2.6rem;
@@ -137,8 +138,8 @@ export default function Tokens({ tokens }) {
                 </Link>
 
                 <ListItemValue>${price}</ListItemValue>
-                <ListItemValue color={Number(change) > 0 ? Color.success : Color.danger}>
-                  {Number(change).toFixed(2)}%
+                <ListItemValue color={getPriceChangeColor(change)}>
+                  {change ? `${Number(change).toFixed(2)}%` : '-'}
                 </ListItemValue>
                 <ListItemValue>{formatNumber(marketCap)}</ListItemValue>
                 <ListItemValue>{formatNumber(volume)}</ListItemValue>
