@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Color } from '@/const/styles/variables';
 import Button from '@/components/Button';
+import { transparentize } from 'polished';
 
 type TabProps = {
   active: boolean;
@@ -15,20 +16,27 @@ const Wrapper = styled.div`
 
 const Tab = styled.div<TabProps>`
   cursor: pointer;
-  padding: 10px;
-  background-color: ${({ active }) => active ? 'green' : 'grey'};
-  color: white;
+  padding: 1.6rem 0;
+  background: none;
+  color: ${({ active }) => active ? Color.darkBlue : transparentize(0.5, Color.darkBlue)};
+  transition: color 0.2s ease-in-out, border-bottom 0.2s ease-in-out;
+  border-bottom: ${({ active }) => active ? `0.2rem solid ${Color.darkBlue}` : `0.1rem solid ${transparentize(0.8, Color.darkBlue)}`};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
 `;
 
 const TabContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   justify-content: space-between;
 `;
 
 const Dropdown = styled.select`
   width: 100%;
-  padding: 10px;
-  margin: 10px 0;
+  padding: 1rem;
+  margin: 1rem 0;
 `;
 
 const Input = styled.input`
@@ -67,6 +75,7 @@ const InputLabel = styled.div`
   background: ${Color.grey};
   padding: 1.2rem;
   font-size: 1.4rem;
+  margin: 0 0 1rem;
 
   > div {
     display: flex;
@@ -159,7 +168,7 @@ const DropdownOption = styled.div`
     --size: 2rem;
     width: var(--size);
     height: var(--size);
-    margin-right: 10px;
+    margin: 0 1rem 0 0;
   }
 `;
 
@@ -197,11 +206,27 @@ export const SwapWidget = ({ tokenSymbol, tokenImage, platforms }: SwapWidgetPro
   }, [platforms])
 
   const onSwap = () => {
-    const networkId = network === 'Gnosis Chain' ? 100 : 1;
-    const url = `https://swap.cow.fi/#/${networkId}/swap/WETH/?${activeTab.toLowerCase()}Amount=${amount}`;
-    return url;
+    if (network) {
+      const networkId = network === 'Gnosis Chain' ? 100 : 1;
+      const contractAddress = platforms[network.toLowerCase()].contractAddress;
+  
+      let sellToken, buyToken;
+      if (activeTab === 'Buy') {
+        sellToken = networkId === 100 ? 'WXDAI' : 'WETH';
+        buyToken = contractAddress;
+      } else {
+        sellToken = contractAddress;
+        buyToken = networkId === 100 ? 'WXDAI' : 'WETH';
+      }
+  
+      const url = `https://swap.cow.fi/#/${networkId}/swap/${sellToken}/${buyToken}?${activeTab.toLowerCase()}Amount=${amount}`;
+      return url;
+    } else {
+      return '#';
+    }
   };
-
+  
+  
   return (
     <Wrapper>
       <TabContainer>

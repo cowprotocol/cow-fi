@@ -20,7 +20,7 @@ const Wrapper = styled.a<Omit<ButtonProps, "href" | "label" | "target" | "rel">>
   background: ${Color.darkBlue};
   flex-flow: row;
   border: 0.1rem solid transparent;
-  color: ${Color.lightBlue};
+  color: ${Color.white};
   padding: ${({ paddingLR }) => paddingLR ? `0 ${paddingLR}rem` : '0 2.4rem'};
   box-sizing: border-box;
   border-radius: ${({ borderRadius }) => borderRadius ? borderRadius : Defaults.borderRadius};
