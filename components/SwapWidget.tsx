@@ -34,6 +34,8 @@ const Dropdown = styled.select`
 const Input = styled.input`
   width: 100%;
   padding: 1rem 0 1rem 1rem;
+  font-size: 2rem;
+  font-weight: 500;
   margin: 1rem 0;
   flex: 1;
   text-align: right;
@@ -41,6 +43,14 @@ const Input = styled.input`
   border: 0;
   outline: 0;
   -moz-appearance: textfield;
+
+    &::placeholder {
+      opacity: 0.5;
+    }
+
+    &:focus::placeholder {
+      color: transparent;
+    }
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
@@ -55,7 +65,7 @@ const InputLabel = styled.div`
   justify-content: space-between;
   border-radius: 0.8rem;
   background: ${Color.grey};
-  padding: 1rem;
+  padding: 1.2rem;
   font-size: 1.4rem;
 
   > div {
@@ -70,13 +80,14 @@ const TokenLabel = styled.div`
   gap: 0.5rem;
   
   > img {
-    --size: 2rem;
+    --size: 2.1rem;
     width: var(--size);
     height: var(--size);
     border-radius: var(--size);
   }
 
   > span {
+    font-size: 2rem;
     font-weight: 600;
   }
 `
@@ -84,7 +95,7 @@ const TokenLabel = styled.div`
 const DropdownContainer = styled.div`
   position: relative;
   width: 100%;
-  margin: 1rem 0;
+  margin: 1.4rem 0;
 `;
 
 const DropdownHeader = styled.div`
@@ -101,6 +112,21 @@ const DropdownHeader = styled.div`
     width: var(--size);
     height: var(--size);
   }
+
+  > b {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 0.3rem;
+  }
+
+  > b::after {
+    --size: 1rem;
+    content: "";
+    width: var(--size);
+    height: var(--size);
+    display: inline-block;
+    background: url(/images/icons/carret-down.svg) no-repeat center / contain;
+  }
 `;
 
 const DropdownBody = styled.div`
@@ -110,6 +136,10 @@ const DropdownBody = styled.div`
   width: 100%;
   background-color: ${Color.grey};
   border-radius: 1.6rem;
+  padding: 0.6rem;
+  display: flex;
+  flex-flow: column wrap;
+  gap: 0.6rem;
 `;
 
 const DropdownOption = styled.div`
@@ -122,6 +152,7 @@ const DropdownOption = styled.div`
 
   &:hover {
     background-color: ${Color.white};
+    border-radius: 1rem;
   }
   
   > img {
@@ -184,7 +215,7 @@ export const SwapWidget = ({ tokenSymbol, tokenImage, platforms }: SwapWidgetPro
             src={`/images/${network === 'Ethereum' ? 'ethereum' : 'gnosis-chain'}.svg`} 
             alt={network} 
           />
-          {network}
+          <b>{network}</b>
         </DropdownHeader>
         {isOpen && (
           <DropdownBody>
@@ -216,7 +247,7 @@ export const SwapWidget = ({ tokenSymbol, tokenImage, platforms }: SwapWidgetPro
             <img src={tokenImage} alt={tokenSymbol} />
             <span>{tokenSymbol}</span>
           </TokenLabel>
-          <Input type="number" value={amount} onChange={e => setAmount(parseFloat(e.target.value))} placeholder="0.0" />
+          <Input type="number" onChange={e => setAmount(parseFloat(e.target.value))} placeholder="0" />
         </div>
 
       </InputLabel>
