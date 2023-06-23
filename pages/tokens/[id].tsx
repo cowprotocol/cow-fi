@@ -287,7 +287,7 @@ export default function TokenDetail({
 
           <StickyContent>
             <SwapWidgetWrapper>
-            <SwapWidget tokenSymbol={symbol} tokenImage={image.large} platforms={platforms} />
+              <SwapWidget tokenSymbol={symbol} tokenImage={image.large} platforms={platforms} />
             </SwapWidgetWrapper>
           </StickyContent>
         </Wrapper>
