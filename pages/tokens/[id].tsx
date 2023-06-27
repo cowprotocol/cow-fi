@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useMemo } from 'react'
 import Head from 'next/head'
 import Layout from '@/components/Layout'
 import { getAllTokensIds, getTokenData } from 'lib/tokens'
@@ -10,17 +10,12 @@ import {
   StickyContent,
   SwapWidgetWrapper,
   SwapCardsWrapper,
-  SwapCard,
   DetailHeading,
   Section,
   TokenTitle,
   TokenPrice,
   TokenChart,
   NetworkTable,
-  NetworkHeaderItem,
-  NetworkItem,
-  CopyIcon,
-  CopyMessage,
   Stats,
   StatItem,
   StatTitle,
@@ -31,6 +26,11 @@ import { Chart, TimePeriod } from '@/components/Chart'
 import { SwapWidget } from '@/components/SwapWidget'
 import { getPriceChangeColor } from 'util/getPriceChangeColor'
 import prices from '../../data/tokenPrice.json'
+import { SwapLinkCard } from '@/components/SwapLinkCard'
+import { NetworkHeaderItem } from '@/components/NetworkItem/styles'
+import { NetworkItem } from '@/components/NetworkItem'
+import { useQuery } from '@apollo/client'
+import { tokenPriceQuery, HistoryDuration, Chain } from 'services/graphql/queries'
 
 type PlatformData = {
   contractAddress: string
@@ -59,66 +59,6 @@ type TokenDetailProps = {
   priceChange24h: string
 }
 
-type SwapLinkCardProps = {
-  contractAddress: string
-  networkId: number
-  networkName: string
-  tokenSymbol: string
-}
-
-const SwapLinkCard = ({ contractAddress, networkId, networkName, tokenSymbol }: SwapLinkCardProps) => {
-  return (
-    contractAddress && (
-      <SwapCard>
-        <a
-          href={`https://swap.cow.fi/#/${networkId}/swap/${
-            networkId === 100 ? 'WXDAI' : 'WETH'
-          }/${contractAddress}?sellAmount=1`}
-          target="_blank"
-          rel="nofollow noreferrer"
-        >
-          <img
-            src={`/images/${(networkName === 'Gnosis Chain' ? 'gnosis-chain' : networkName).toLowerCase()}.svg`}
-            alt={networkName}
-          />
-          <b>
-            Swap {tokenSymbol} <br /> on {networkName}
-          </b>
-          <img src="/images/external-arrow.svg" alt="Go to CoW Swap" />
-        </a>
-      </SwapCard>
-    )
-  )
-}
-
-const CopyToClipboard = ({ text }) => {
-  const [copied, setCopied] = useState(false)
-
-  const copyToClipboard = async () => {
-    await navigator.clipboard.writeText(text)
-    setCopied(true)
-  }
-
-  useEffect(() => {
-    let timer = null
-
-    if (copied) {
-      timer = setTimeout(() => {
-        setCopied(false)
-      }, 3000)
-    }
-
-    return () => clearTimeout(timer)
-  }, [copied])
-
-  return (
-    <>
-      <CopyIcon src="/images/icons/click-to-copy.svg" alt="Copy contract address" onClick={copyToClipboard} />
-      {copied && <CopyMessage>Copied!</CopyMessage>}
-    </>
-  )
-}
-
 export default function TokenDetail({
   name,
   symbol,
@@ -136,6 +76,24 @@ export default function TokenDetail({
   const contractAddressEthereum = platforms.ethereum.contractAddress
   const contractAddressGnosis = platforms.xdai.contractAddress
   const changeColor = getPriceChangeColor(priceChange24h)
+
+  const queryVariables = useMemo(() => {
+    const output: any = { duration: HistoryDuration.Day }
+
+    if (platforms.ethereum.contractAddress) {
+      output.chain = Chain.Ethereum
+      output.address = platforms.ethereum.contractAddress
+      return output
+    }
+
+    return null
+  }, [platforms.ethereum.contractAddress])
+
+  const { data, loading, error } = useQuery(tokenPriceQuery, {
+    variables: { ...queryVariables },
+  })
+
+  console.log('debug', data, loading, error)
 
   return (
     <>
@@ -240,59 +198,16 @@ export default function TokenDetail({
                 {Object.entries(platforms).map(
                   ([network, platformData]) =>
                     platformData.contractAddress && (
-                      <NetworkItem key={platformData.contractAddress}>
-                        <a
-                          href={
-                            network === 'xdai'
-                              ? `https://gnosisscan.io/address/${platformData.contractAddress}`
-                              : `https://etherscan.io/address/${platformData.contractAddress}`
-                          }
-                          title={`${name} (${symbol}) on ${network === 'xdai' ? 'Gnosis Chain' : 'Ethereum'}`}
-                          target="_blank"
-                          rel="noreferrer nofollow"
-                        >
-                          <img
-                            src={`/images/${network === 'xdai' ? 'gnosis-chain' : network}.svg`}
-                            alt={network === 'xdai' ? 'Gnosis Chain' : 'Ethereum'}
-                          />
-                          {network === 'xdai' ? 'Gnosis Chain' : network.charAt(0).toUpperCase() + network.slice(1)}
-                        </a>
-                        <React.Fragment key={network}>
-                          <a
-                            href={
-                              network === 'xdai'
-                                ? `https://gnosisscan.io/address/${platformData.contractAddress}`
-                                : `https://etherscan.io/address/${platformData.contractAddress}`
-                            }
-                            title={`${name} (${symbol}) on ${network === 'xdai' ? 'Gnosis Chain' : 'Ethereum'}`}
-                            target="_blank"
-                            rel="noreferrer nofollow"
-                          >
-                            <div>
-                              <i>{platformData.contractAddress}</i>
-                              <img src="/images/external-arrow.svg" alt="Go to explorer" />
-                            </div>
-                          </a>
-                          <span>
-                            <CopyToClipboard text={platformData.contractAddress} />
-                            <a
-                              href={`https://link.trustwallet.com/add_asset?asset=c20000714&t=${platformData.contractAddress}&n=${name}&s=${symbol}&d=${platformData.decimalPlace}`}
-                              target="_blank"
-                              rel="noreferrer nofollow"
-                            >
-                              <img src="/images/trust_platform.svg" alt="Add to Trust Wallet" />
-                            </a>
-
-                            <a
-                              href={`https://metamask.app.link/addToken?contractAddress=${platformData.contractAddress}&symbol=${symbol}&decimals=${platformData.decimalPlace}&name=${name}`}
-                              target="_blank"
-                              rel="noreferrer nofollow"
-                            >
-                              <img src="/images/metamask-fox.svg" alt="Add to Metamask" />
-                            </a>
-                          </span>
-                        </React.Fragment>
-                      </NetworkItem>
+                      <NetworkItem
+                        key={`${network}-${platformData.contractAddress}`}
+                        network={network}
+                        platformData={{
+                          address: platformData.contractAddress,
+                          decimals: platformData.decimalPlace,
+                          symbol,
+                          name,
+                        }}
+                      />
                     )
                 )}
               </NetworkTable>
