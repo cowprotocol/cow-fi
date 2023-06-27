@@ -31,6 +31,7 @@ import { NetworkHeaderItem } from '@/components/NetworkItem/styles'
 import { NetworkItem } from '@/components/NetworkItem'
 import { useQuery } from '@apollo/client'
 import { tokenPriceQuery, HistoryDuration, Chain } from 'services/graphql/queries'
+import { usePriceHistory } from 'lib/hooks/usePriceHistory'
 
 type PlatformData = {
   contractAddress: string
@@ -69,7 +70,6 @@ export default function TokenDetail({
   ath,
   atl,
   platforms,
-  prices,
   currentPrice,
   priceChange24h,
 }: TokenDetailProps) {
@@ -93,7 +93,31 @@ export default function TokenDetail({
     variables: { ...queryVariables },
   })
 
-  console.log('debug', data, loading, error)
+  const prices = usePriceHistory(data)
+
+  const renderChart = useMemo(() => {
+    if (loading) {
+      return <div>Loading chart</div>
+    } else if (error) {
+      return <div>Error loading chart</div>
+    } else if (data) {
+      return (
+        <ParentSize>
+          {({ width }) => (
+            <Chart
+              priceChange={priceChange24h}
+              timePeriod={TimePeriod.DAY}
+              prices={prices}
+              width={width}
+              height={240}
+            />
+          )}
+        </ParentSize>
+      )
+    } else {
+      return null
+    }
+  }, [data, error, loading, priceChange24h, prices])
 
   return (
     <>
@@ -122,19 +146,7 @@ export default function TokenDetail({
               </TokenPrice>
             </DetailHeading>
 
-            <TokenChart>
-              <ParentSize>
-                {({ width }) => (
-                  <Chart
-                    priceChange={priceChange24h}
-                    timePeriod={TimePeriod.DAY}
-                    prices={prices}
-                    width={width}
-                    height={240}
-                  />
-                )}
-              </ParentSize>
-            </TokenChart>
+            <TokenChart>{renderChart}</TokenChart>
 
             <Section>
               <TokenTitle>{symbol} Stats</TokenTitle>
@@ -280,7 +292,6 @@ export async function getStaticProps({ params }) {
       volume,
       ath,
       atl,
-      prices,
       currentPrice,
       priceChange24h,
     },
