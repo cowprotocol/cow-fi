@@ -8,7 +8,7 @@ export function isPricePoint(p: PricePoint | null): p is PricePoint {
 export function usePriceHistory(tokenPriceData: any): PricePoint[] | undefined {
   // Appends the current price to the end of the priceHistory array
   return useMemo(() => {
-    if (!tokenPriceData) return []
+    if (!tokenPriceData) return null
 
     const market = tokenPriceData.token?.market
     const priceHistory = market?.priceHistory?.filter(isPricePoint)

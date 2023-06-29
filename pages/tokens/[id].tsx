@@ -21,24 +21,21 @@ import {
   StatTitle,
   StatValue,
 } from '@/const/styles/pages/tokens'
-import { ParentSize } from '@visx/responsive'
-import { Chart, TimePeriod } from '@/components/Chart'
+import { TimePeriod } from '@/components/Chart'
 import { SwapWidget } from '@/components/SwapWidget'
 import { getPriceChangeColor } from 'util/getPriceChangeColor'
-import prices from '../../data/tokenPrice.json'
 import { SwapLinkCard } from '@/components/SwapLinkCard'
 import { NetworkHeaderItem } from '@/components/NetworkItem/styles'
 import { NetworkItem } from '@/components/NetworkItem'
-import { useQuery } from '@apollo/client'
-import { tokenPriceQuery, HistoryDuration, Chain } from 'services/graphql/queries'
-import { usePriceHistory } from 'lib/hooks/usePriceHistory'
+
+import { ChartSection } from '@/components/ChartSection'
 
 type PlatformData = {
   contractAddress: string
   decimalPlace: number
 }
 
-type Platforms = {
+export type Platforms = {
   [key: string]: PlatformData
 }
 
@@ -77,48 +74,6 @@ export default function TokenDetail({
   const contractAddressGnosis = platforms.xdai.contractAddress
   const changeColor = getPriceChangeColor(priceChange24h)
 
-  const queryVariables = useMemo(() => {
-    const output: any = { duration: HistoryDuration.Day }
-
-    if (platforms.ethereum.contractAddress) {
-      output.chain = Chain.Ethereum
-      output.address = platforms.ethereum.contractAddress
-      return output
-    }
-
-    return null
-  }, [platforms.ethereum.contractAddress])
-
-  const { data, loading, error } = useQuery(tokenPriceQuery, {
-    variables: { ...queryVariables },
-  })
-
-  const prices = usePriceHistory(data)
-
-  const renderChart = useMemo(() => {
-    if (loading) {
-      return <div>Loading chart</div>
-    } else if (error) {
-      return <div>Error loading chart</div>
-    } else if (data) {
-      return (
-        <ParentSize>
-          {({ width }) => (
-            <Chart
-              priceChange={priceChange24h}
-              timePeriod={TimePeriod.DAY}
-              prices={prices}
-              width={width}
-              height={240}
-            />
-          )}
-        </ParentSize>
-      )
-    } else {
-      return null
-    }
-  }, [data, error, loading, priceChange24h, prices])
-
   return (
     <>
       <Head>
@@ -146,7 +101,9 @@ export default function TokenDetail({
               </TokenPrice>
             </DetailHeading>
 
-            <TokenChart>{renderChart}</TokenChart>
+            <TokenChart>
+              <ChartSection priceChange={priceChange24h} platforms={platforms} />
+            </TokenChart>
 
             <Section>
               <TokenTitle>{symbol} Stats</TokenTitle>

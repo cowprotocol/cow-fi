@@ -16,6 +16,7 @@ import { localPoint } from '@visx/event'
 import { EventType } from '@visx/event/lib/types'
 import { Color } from '@/const/styles/variables'
 import { getPriceChangeColor } from 'util/getPriceChangeColor'
+import { MissingPriceChart } from './MissingChart'
 
 export type PricePoint = { timestamp: number; value: number }
 
@@ -27,13 +28,15 @@ export enum TimePeriod {
   YEAR,
 }
 
-type ChartProps = {
-  width: number
-  height: number
+export type ChartProps = {
+  width?: number
+  height?: number
   prices: any
   timePeriod: TimePeriod
   priceChange: string
 }
+
+const DATA_EMPTY = { value: 0, timestamp: 0 }
 
 export function getPriceBounds(pricePoints: PricePoint[]): [number, number] {
   const prices = pricePoints.map((x) => x.value)
@@ -43,10 +46,22 @@ export function getPriceBounds(pricePoints: PricePoint[]): [number, number] {
 }
 
 export function Chart({ prices, height, width, timePeriod, priceChange }: ChartProps) {
+  const chartAvailable = !!prices && prices.length > 0
+
+  const missingPricesMessage = !chartAvailable ? (
+    prices?.length === 0 ? (
+      <>
+        <span>Missing price data due to recently low trading volume</span>
+      </>
+    ) : (
+      <span>Missing chart data</span>
+    )
+  ) : null
+
   const locale = 'en-US'
 
-  const startingPrice = prices?.[0]
-  const endingPrice = prices?.[prices.length - 1]
+  const startingPrice = prices?.[0] ?? DATA_EMPTY
+  const endingPrice = prices?.[prices.length - 1] ?? DATA_EMPTY
   const margin = { top: 100, bottom: 48, crosshair: 72 }
 
   const graphInnerHeight = height - margin.top - margin.bottom > 0 ? height - margin.top - margin.bottom : 0
@@ -182,7 +197,9 @@ export function Chart({ prices, height, width, timePeriod, priceChange }: ChartP
 
   const mainColor = getPriceChangeColor(priceChange)
 
-  return (
+  return !chartAvailable ? (
+    <MissingPriceChart width={width} height={height} message={!!displayPrice.value && missingPricesMessage} />
+  ) : (
     <svg data-cy="price-chart" width={width} height={height} style={{ minWidth: '100%', maxWidth: '100%' }}>
       <LineChart
         width={width}

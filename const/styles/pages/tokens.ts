@@ -30,6 +30,8 @@ export const MainContent = styled.div`
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: flex-start;
+  max-width: 100%;
+  overflow: hidden;
 `
 
 export const StickyContent = styled.div`
