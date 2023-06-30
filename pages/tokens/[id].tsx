@@ -197,7 +197,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const token = getTokenData(params.id)
+  const token = await getTokenData(params.id)
 
   if (!token) {
     return {
