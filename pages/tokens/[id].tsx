@@ -1,9 +1,8 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import Head from 'next/head'
 import Layout from '@/components/Layout'
 import { getAllTokensIds, getTokenData } from 'lib/tokens'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
-import { formatNumber } from 'util/tokens'
 import {
   Wrapper,
   MainContent,
@@ -13,7 +12,6 @@ import {
   DetailHeading,
   Section,
   TokenTitle,
-  TokenPrice,
   TokenChart,
   NetworkTable,
   Stats,
@@ -22,12 +20,12 @@ import {
   StatValue,
 } from '@/const/styles/pages/tokens'
 import { SwapWidget } from '@/components/SwapWidget'
-import { getPriceChangeColor } from 'util/getPriceChangeColor'
 import { SwapLinkCard } from '@/components/SwapLinkCard'
 import { NetworkHeaderItem } from '@/components/NetworkItem/styles'
 import { NetworkItem } from '@/components/NetworkItem'
 
 import { ChartSection } from '@/components/ChartSection'
+import { formatUSDPrice } from 'util/formatUSDPrice'
 
 type PlatformData = {
   contractAddress: string
@@ -66,12 +64,10 @@ export default function TokenDetail({
   ath,
   atl,
   platforms,
-  currentPrice,
   priceChange24h,
 }: TokenDetailProps) {
   const contractAddressEthereum = platforms.ethereum.contractAddress
   const contractAddressGnosis = platforms.xdai.contractAddress
-  const changeColor = getPriceChangeColor(priceChange24h)
 
   return (
     <>
@@ -104,22 +100,22 @@ export default function TokenDetail({
               <Stats>
                 <StatItem>
                   <StatTitle>Market Cap</StatTitle>
-                  <StatValue>${formatNumber(marketCap)}</StatValue>
+                  <StatValue>{formatUSDPrice(marketCap)}</StatValue>
                 </StatItem>
 
                 <StatItem>
                   <StatTitle>24H Volume</StatTitle>
-                  <StatValue>${formatNumber(volume)}</StatValue>
+                  <StatValue>{formatUSDPrice(volume)}</StatValue>
                 </StatItem>
 
                 <StatItem>
                   <StatTitle>All-time High</StatTitle>
-                  <StatValue>${formatNumber(ath)}</StatValue>
+                  <StatValue>{formatUSDPrice(ath)}</StatValue>
                 </StatItem>
 
                 <StatItem>
                   <StatTitle>All-time Low</StatTitle>
-                  <StatValue>${formatNumber(atl)}</StatValue>
+                  <StatValue>{formatUSDPrice(atl)}</StatValue>
                 </StatItem>
               </Stats>
             </Section>

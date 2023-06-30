@@ -1281,11 +1281,6 @@
     "@typescript-eslint/types" "5.7.0"
     eslint-visitor-keys "^3.0.0"
 
-"@uniswap/conedison@^1.7.1":
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/@uniswap/conedison/-/conedison-1.7.1.tgz#10076d57fe111abff106d3cd3704f02c37eb0c8e"
-  integrity sha512-iFH36R4cPy2daffrHoJ5/iLhgUFUVbNXujd7dYWPzAaS7XOleQ0tHrRmoUcwnO5Z50jDyZC0A86+yOs3UGj8bw==
-
 "@visx/axis@2.18.0", "@visx/axis@^2.12.2":
   version "2.18.0"
   resolved "https://registry.yarnpkg.com/@visx/axis/-/axis-2.18.0.tgz#9175e9d969df420592082b1ea64c16422377b389"

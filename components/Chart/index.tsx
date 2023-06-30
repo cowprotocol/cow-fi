@@ -28,7 +28,7 @@ import {
   TokenPrice,
   TokenPriceWrapper,
 } from './styled'
-import { formatUSDPrice } from '@uniswap/conedison/format'
+import { formatUSDPrice } from 'util/formatUSDPrice'
 
 export type PricePoint = { timestamp: number; value: number }
 
