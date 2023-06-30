@@ -45,7 +45,6 @@ export type ChartProps = {
   height?: number
   prices: any
   timePeriod: TimePeriod
-  priceChange: string
 }
 
 const DATA_EMPTY = { value: 0, timestamp: 0 }
@@ -80,7 +79,7 @@ export function formatDelta(delta: number | null | undefined) {
   return formattedDelta
 }
 
-export function Chart({ prices, height, width, timePeriod, priceChange }: ChartProps) {
+export function Chart({ prices, height, width, timePeriod }: ChartProps) {
   const chartAvailable = !!prices && prices.length > 0
 
   const missingPricesMessage = !chartAvailable ? (
@@ -232,7 +231,7 @@ export function Chart({ prices, height, width, timePeriod, priceChange }: ChartP
     setDisplayPrice(endingPrice)
   }, [setCrosshair, setDisplayPrice, endingPrice])
 
-  const mainColor = getPriceChangeColor(priceChange)
+  const mainColor = Color.lightBlue3
 
   return (
     <>

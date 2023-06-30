@@ -91,7 +91,7 @@ export default function TokenDetail({
             </DetailHeading>
 
             <TokenChart>
-              <ChartSection priceChange={priceChange24h} platforms={platforms} />
+              <ChartSection platforms={platforms} />
             </TokenChart>
 
             <Section>

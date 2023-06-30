@@ -10,10 +10,9 @@ import { fixChart } from 'util/fixChart'
 
 type ChartSectionProps = {
   platforms: Platforms
-  priceChange: string
 }
 
-export function ChartSection({ platforms, priceChange }: ChartSectionProps) {
+export function ChartSection({ platforms }: ChartSectionProps) {
   const queryVariables = useMemo(() => {
     const output: any = { duration: HistoryDuration.Day }
 
@@ -44,9 +43,7 @@ export function ChartSection({ platforms, priceChange }: ChartSectionProps) {
   return (
     <ChartContainer>
       <ParentSize>
-        {({ width }) => (
-          <Chart priceChange={priceChange} prices={prices} timePeriod={TimePeriod.DAY} width={width} height={350} />
-        )}
+        {({ width }) => <Chart prices={prices} timePeriod={TimePeriod.DAY} width={width} height={350} />}
       </ParentSize>
     </ChartContainer>
   )

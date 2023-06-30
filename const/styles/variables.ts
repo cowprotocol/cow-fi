@@ -13,6 +13,7 @@ export const Color = {
   darkBlue4: '#042456',
   lightBlue: '#CAE9FF',
   lightBlue2: 'rgb(176 194 255)',
+  lightBlue3: 'rgb(118 167 230)',
   grey: 'rgb(236, 241, 248)',
   grey2: 'rgb(201 211 226)',
   grey3: '#737b96',
