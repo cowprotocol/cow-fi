@@ -17,6 +17,18 @@ import { EventType } from '@visx/event/lib/types'
 import { Color } from '@/const/styles/variables'
 import { getPriceChangeColor } from 'util/getPriceChangeColor'
 import { MissingPriceChart } from './MissingChart'
+import {
+  ArrowCell,
+  ChartHeader,
+  DeltaContainer,
+  MissingPrice,
+  MissingPriceCaption,
+  StyledDownArrow,
+  StyledUpArrow,
+  TokenPrice,
+  TokenPriceWrapper,
+} from './styled'
+import { formatUSDPrice } from '@uniswap/conedison/format'
 
 export type PricePoint = { timestamp: number; value: number }
 
@@ -43,6 +55,29 @@ export function getPriceBounds(pricePoints: PricePoint[]): [number, number] {
   const min = Math.min(...prices)
   const max = Math.max(...prices)
   return [min, max]
+}
+
+function calculateDelta(start: number, current: number) {
+  return (current / start - 1) * 100
+}
+
+export function getDeltaArrow(delta: number | null | undefined, iconSize = 20) {
+  // Null-check not including zero
+  if (delta === null || delta === undefined) {
+    return null
+  } else if (Math.sign(delta) < 0) {
+    return <StyledDownArrow size={iconSize} key="arrow-down" aria-label="down" />
+  }
+  return <StyledUpArrow size={iconSize} key="arrow-up" aria-label="up" />
+}
+
+export function formatDelta(delta: number | null | undefined) {
+  // Null-check not including zero
+  if (delta === null || delta === undefined || delta === Infinity || isNaN(delta)) {
+    return '-'
+  }
+  const formattedDelta = Math.abs(delta).toFixed(2) + '%'
+  return formattedDelta
 }
 
 export function Chart({ prices, height, width, timePeriod, priceChange }: ChartProps) {
@@ -89,9 +124,6 @@ export function Chart({ prices, height, width, timePeriod, priceChange }: ChartP
 
   const [crosshair, setCrosshair] = useState<number | null>(null)
   const [displayPrice, setDisplayPrice] = useState(startingPrice)
-
-  const crosshairEdgeMax = width * 0.85
-  const crosshairAtEdge = !!crosshair && crosshair > crosshairEdgeMax
 
   useEffect(() => {
     setDisplayPrice(endingPrice)
@@ -156,6 +188,11 @@ export function Chart({ prices, height, width, timePeriod, priceChange }: ChartP
   }
 
   const updatedTicks = maxTicks > 0 ? (ticks.length > maxTicks ? calculateTicks(ticks) : ticks) : []
+  const delta = calculateDelta(startingPrice.value, displayPrice.value)
+  const formattedDelta = formatDelta(delta)
+  const arrow = getDeltaArrow(delta)
+  const crosshairEdgeMax = width * 0.85
+  const crosshairAtEdge = !!crosshair && crosshair > crosshairEdgeMax
 
   useEffect(() => {
     setCrosshair(null)
@@ -197,81 +234,103 @@ export function Chart({ prices, height, width, timePeriod, priceChange }: ChartP
 
   const mainColor = getPriceChangeColor(priceChange)
 
-  return !chartAvailable ? (
-    <MissingPriceChart width={width} height={height} message={!!displayPrice.value && missingPricesMessage} />
-  ) : (
-    <svg data-cy="price-chart" width={width} height={height} style={{ minWidth: '100%', maxWidth: '100%' }}>
-      <LineChart
-        width={width}
-        height={height}
-        data={prices}
-        getX={getX}
-        getY={getY}
-        marginTop={margin.top}
-        curve={curve}
-        strokeWidth={2}
-        color={mainColor}
-      />
+  return (
+    <>
+      <ChartHeader data-cy="chart-header">
+        {displayPrice.value ? (
+          <TokenPriceWrapper>
+            <TokenPrice>{formatUSDPrice(displayPrice.value)}</TokenPrice>
 
-      {crosshair !== null ? (
-        <g>
-          <AxisBottom
-            scale={timeScale}
-            stroke={Color.text1}
-            tickFormat={tickFormatter}
-            tickStroke={Color.text1}
-            tickLength={4}
-            hideTicks={true}
-            tickTransform="translate(0 -5)"
-            tickValues={updatedTicks}
-            top={height - 1}
-            tickLabelProps={() => ({
-              fill: Color.text1,
-              fontSize: 11,
-              textAnchor: 'middle',
-              transform: 'translate(0 -24)',
-            })}
-          />
-          <text
-            x={crosshair + (crosshairAtEdge ? -4 : 4)}
-            y={margin.crosshair + 10}
-            textAnchor={crosshairAtEdge ? 'end' : 'start'}
-            fontSize={15}
-            fill={Color.text1}
-          >
-            {crosshairDateFormatter(displayPrice.timestamp)}
-          </text>
-          <Line
-            from={{ x: crosshair, y: margin.crosshair }}
-            to={{ x: crosshair, y: height }}
-            stroke={Color.text1}
-            strokeWidth={1}
-            pointerEvents="none"
-            strokeDasharray="4,4"
-          />
-          <GlyphCircle
-            left={crosshair}
-            top={rdScale(displayPrice.value) + margin.top}
-            size={50}
-            fill={mainColor}
-            stroke={mainColor}
-            strokeWidth={0.5}
-          />
-        </g>
+            <DeltaContainer>
+              {formattedDelta}
+              <ArrowCell>{arrow}</ArrowCell>
+            </DeltaContainer>
+          </TokenPriceWrapper>
+        ) : (
+          <>
+            <MissingPrice>Price Unavailable</MissingPrice>
+            <MissingPriceCaption>{missingPricesMessage}</MissingPriceCaption>
+          </>
+        )}
+      </ChartHeader>
+
+      {!chartAvailable ? (
+        <MissingPriceChart width={width} height={height} message={!!displayPrice.value && missingPricesMessage} />
       ) : (
-        <AxisBottom hideAxisLine={true} scale={timeScale} stroke={Color.text1} top={height - 1} hideTicks />
+        <svg data-cy="price-chart" width={width} height={height} style={{ minWidth: '100%', maxWidth: '100%' }}>
+          <LineChart
+            width={width}
+            height={height}
+            data={prices}
+            getX={getX}
+            getY={getY}
+            marginTop={margin.top}
+            curve={curve}
+            strokeWidth={2}
+            color={mainColor}
+          />
+
+          {crosshair !== null ? (
+            <g>
+              <AxisBottom
+                scale={timeScale}
+                stroke={Color.text1}
+                tickFormat={tickFormatter}
+                tickStroke={Color.text1}
+                tickLength={4}
+                hideTicks={true}
+                tickTransform="translate(0 -5)"
+                tickValues={updatedTicks}
+                top={height - 1}
+                tickLabelProps={() => ({
+                  fill: Color.text1,
+                  fontSize: 11,
+                  textAnchor: 'middle',
+                  transform: 'translate(0 -24)',
+                })}
+              />
+              <text
+                x={crosshair + (crosshairAtEdge ? -4 : 4)}
+                y={margin.crosshair + 10}
+                textAnchor={crosshairAtEdge ? 'end' : 'start'}
+                fontSize={15}
+                fill={Color.text1}
+              >
+                {crosshairDateFormatter(displayPrice.timestamp)}
+              </text>
+              <Line
+                from={{ x: crosshair, y: margin.crosshair }}
+                to={{ x: crosshair, y: height }}
+                stroke={Color.text1}
+                strokeWidth={1}
+                pointerEvents="none"
+                strokeDasharray="4,4"
+              />
+              <GlyphCircle
+                left={crosshair}
+                top={rdScale(displayPrice.value) + margin.top}
+                size={50}
+                fill={mainColor}
+                stroke={mainColor}
+                strokeWidth={0.5}
+              />
+            </g>
+          ) : (
+            <AxisBottom hideAxisLine={true} scale={timeScale} stroke={Color.text1} top={height - 1} hideTicks />
+          )}
+          <rect
+            x={0}
+            y={0}
+            width={width}
+            height={height}
+            fill="transparent"
+            onTouchStart={handleHover}
+            onTouchMove={handleHover}
+            onMouseMove={handleHover}
+            onMouseLeave={resetDisplay}
+          />
+        </svg>
       )}
-      <rect
-        x={0}
-        y={0}
-        width={width}
-        height={height}
-        fill="transparent"
-        onTouchStart={handleHover}
-        onTouchMove={handleHover}
-        onMouseMove={handleHover}
-        onMouseLeave={resetDisplay}
-      />
-    </svg>
+    </>
   )
 }

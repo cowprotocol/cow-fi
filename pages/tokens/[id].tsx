@@ -21,7 +21,6 @@ import {
   StatTitle,
   StatValue,
 } from '@/const/styles/pages/tokens'
-import { TimePeriod } from '@/components/Chart'
 import { SwapWidget } from '@/components/SwapWidget'
 import { getPriceChangeColor } from 'util/getPriceChangeColor'
 import { SwapLinkCard } from '@/components/SwapLinkCard'
@@ -93,12 +92,6 @@ export default function TokenDetail({
                 <h1>{name}</h1>
                 <span>{symbol}</span>
               </TokenTitle>
-              <TokenPrice changeColor={changeColor}>
-                <b>${currentPrice}</b>
-                <span>
-                  <b>{priceChange24h || '0.00'}%</b> <i>(24H)</i>
-                </span>
-              </TokenPrice>
             </DetailHeading>
 
             <TokenChart>

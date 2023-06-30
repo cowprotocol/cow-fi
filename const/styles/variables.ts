@@ -15,6 +15,7 @@ export const Color = {
   lightBlue2: 'rgb(176 194 255)',
   grey: 'rgb(236, 241, 248)',
   grey2: 'rgb(201 211 226)',
+  grey3: '#737b96',
   text1: '#405A82',
   text2: '#95BAEF',
   danger: '#D41300',
