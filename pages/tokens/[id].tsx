@@ -51,7 +51,6 @@ type TokenDetailProps = {
   volume: string
   prices: any
   currentPrice: string
-  priceChange24h: string
 }
 
 export default function TokenDetail({
@@ -64,7 +63,6 @@ export default function TokenDetail({
   ath,
   atl,
   platforms,
-  priceChange24h,
 }: TokenDetailProps) {
   const contractAddressEthereum = platforms.ethereum.contractAddress
   const contractAddressGnosis = platforms.xdai.contractAddress
@@ -121,7 +119,7 @@ export default function TokenDetail({
             </Section>
 
             <Section>
-              <h4>About {symbol} token</h4>
+              <h1>About {symbol} token</h1>
               <div dangerouslySetInnerHTML={{ __html: desc }}></div>
 
               <br />
@@ -212,7 +210,6 @@ export async function getStaticProps({ params }) {
   const ath = token.market_data?.ath.usd || null
   const atl = token.market_data?.atl.usd || null
   const currentPrice = token.market_data?.current_price?.usd || null
-  const priceChange24h = token.market_data?.price_change_percentage_24h?.toFixed(4) || null
 
   // Get only the Ethereum and Gnosis Chain contract addresses and decimal places
   const platforms = {
@@ -239,7 +236,6 @@ export async function getStaticProps({ params }) {
       ath,
       atl,
       currentPrice,
-      priceChange24h,
     },
   }
 }
