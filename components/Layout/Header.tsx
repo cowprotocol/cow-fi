@@ -1,22 +1,22 @@
-import { useState } from 'react';
-import styled from 'styled-components';
+import { useState } from 'react'
+import styled from 'styled-components'
 import Link from 'next/link'
 import { transparentize, lighten } from 'polished'
 import Button from 'components/Button'
 import { Defaults, Color, Font, Media } from 'const/styles/variables'
 import { InView } from 'react-intersection-observer'
-import useMediaQuery from 'lib/hooks/useMediaQuery';
+import useMediaQuery from 'lib/hooks/useMediaQuery'
 import { useRouter } from 'next/router'
-import { CustomLink as CustomLink } from '../CustomLink';
-import { CONFIG } from '@/const/meta';
-import { HEADER_LINKS } from '@/const/menu';
+import { CustomLink as CustomLink } from '../CustomLink'
+import { CONFIG } from '@/const/meta'
+import { HEADER_LINKS } from '@/const/menu'
 
-const LogoImage = 'images/logo.svg'
-const LogoLightImage = 'images/logo-light.svg'
-const LogoIconImage = 'images/logo-icon.svg'
-const LogoIconLightImage = 'images/logo-icon-light.svg'
-const MenuImage = 'images/icons/menu.svg'
-const MenuImageLight = 'images/icons/menu-light.svg'
+const LogoImage = '/images/logo.svg'
+const LogoLightImage = '/images/logo-light.svg'
+const LogoIconImage = '/images/logo-icon.svg'
+const LogoIconLightImage = '/images/logo-icon-light.svg'
+const MenuImage = '/images/icons/menu.svg'
+const MenuImageLight = '/images/icons/menu-light.svg'
 
 const Pixel = styled.div`
   position: absolute;
@@ -24,14 +24,14 @@ const Pixel = styled.div`
   left: 0;
   width: 1px;
   height: 1px;
-  display:block;
+  display: block;
   background: transparent;
 `
 
 const Wrapper = styled.header`
   z-index: 10;
   width: 100%;
-  height: 9.6rem;
+  height: 7.2rem;
   position: relative;
   display: flex;
   flex-flow: row;
@@ -40,7 +40,6 @@ const Wrapper = styled.header`
   background: transparent;
   padding: 0 5.6rem;
   margin: 0 auto;
-  position: fixed;
   top: 0;
   left: 0;
   transition: background 0.2s ease-in-out, height 0.2s ease-in-out;
@@ -53,7 +52,8 @@ const Wrapper = styled.header`
   &.sticky {
     background: ${transparentize(0.1, Color.lightBlue)};
     backdrop-filter: blur(5px);
-    height: 6rem;
+    position: sticky;
+    top: 0;
   }
 `
 
@@ -66,16 +66,15 @@ const Content = styled.div`
   align-items: center;
 `
 
-const Menu = styled.ol<{isHome?: boolean}>`
+const Menu = styled.ol<{ isLight?: boolean }>`
   display: flex;
   list-style: none;
-  font-size: 1.9rem;
-  color: ${({ isHome }) => isHome ? Color.text1 : Color.lightBlue};
+  font-size: 1.5rem;
+  color: ${({ isLight }) => (isLight ? Color.text1 : Color.lightBlue)};
   padding: 0;
   margin: 0;
 
   .sticky & {
-    font-size: 1.6rem;
     color: ${Color.text1};
   }
 
@@ -109,8 +108,8 @@ const Menu = styled.ol<{isHome?: boolean}>`
   // any buttons or links right after menu
   + a {
     background: transparent;
-    border: 0.1rem solid ${({ isHome }) => isHome ? Color.darkBlue : Color.lightBlue};
-    color: ${({ isHome }) => isHome ? Color.darkBlue : Color.lightBlue};
+    border: 0.1rem solid ${({ isLight }) => (isLight ? Color.darkBlue : Color.lightBlue)};
+    color: ${({ isLight }) => (isLight ? Color.darkBlue : Color.lightBlue)};
 
     .sticky & {
       background: transparent;
@@ -153,14 +152,14 @@ const Menu = styled.ol<{isHome?: boolean}>`
     text-decoration: none;
 
     &:hover {
-      color: ${({ isHome }) => isHome ? Color.darkBlue : Color.lightBlue};
+      color: ${({ isLight }) => (isLight ? Color.darkBlue : Color.lightBlue)};
     }
 
     ${Media.mobile} {
       color: ${Color.lightBlue};
 
       &:hover {
-        color: ${lighten(0.1, Color.lightBlue)}
+        color: ${lighten(0.1, Color.lightBlue)};
       }
     }
   }
@@ -186,7 +185,7 @@ const CloseIcon = styled.button`
       color: ${Color.lightBlue};
 
       &:hover {
-        color: ${lighten(0.1, Color.lightBlue)}
+        color: ${lighten(0.1, Color.lightBlue)};
       }
     }
   }
@@ -204,7 +203,7 @@ const SubMenu = styled.ol`
   list-style: none;
 `
 
-const MenuToggle = styled.button<{isHome?: boolean}>`
+const MenuToggle = styled.button<{ isLight?: boolean }>`
   display: none;
   background: transparent;
   flex-flow: row;
@@ -219,9 +218,9 @@ const MenuToggle = styled.button<{isHome?: boolean}>`
 
   &::before {
     display: flex;
-    content: "";
+    content: '';
     background: url(${MenuImage}) no-repeat center/contain;
-    ${({ isHome }) => !isHome && `background: url(${MenuImageLight}) no-repeat center/contain`};
+    ${({ isLight }) => !isLight && `background: url(${MenuImageLight}) no-repeat center/contain`};
     width: 62%;
     height: 100%;
 
@@ -235,11 +234,11 @@ const MenuToggle = styled.button<{isHome?: boolean}>`
   }
 `
 
-const Logo = styled.div<{isHome?: boolean}>`
+const Logo = styled.div<{ isLight?: boolean }>`
   width: 12.2rem;
   height: 3.8rem;
   background: url(${LogoImage}) no-repeat center/contain;
-  ${({ isHome }) => !isHome && `background: url(${LogoLightImage}) no-repeat center/contain`};
+  ${({ isLight }) => !isLight && `background: url(/images/${LogoLightImage}) no-repeat center/contain`};
   cursor: pointer;
 
   .sticky & {
@@ -250,7 +249,7 @@ const Logo = styled.div<{isHome?: boolean}>`
 
   ${Media.mediumDown} {
     background: url(${LogoIconImage}) no-repeat center/contain;
-    ${({ isHome }) => !isHome && `background: url(${LogoIconLightImage}) no-repeat center/contain`};
+    ${({ isLight }) => !isLight && `background: url(/images/${LogoIconLightImage}) no-repeat center/contain`};
     width: 3.6rem;
     height: 3.2rem;
     background-size: contain;
@@ -266,7 +265,7 @@ const Logo = styled.div<{isHome?: boolean}>`
 
 export default function Header() {
   const swapURL = CONFIG.url.swap
-  const isTouch = useMediaQuery(`(max-width: ${Media.mediumEnd})`);
+  const isTouch = useMediaQuery(`(max-width: ${Media.mediumEnd})`)
   const [menuVisible, setIsMenuVisible] = useState(false)
   const toggleBodyScroll = () => {
     !menuVisible ? document.body.classList.add('noScroll') : document.body.classList.remove('noScroll')
@@ -279,35 +278,38 @@ export default function Header() {
   }
 
   const router = useRouter()
-  const isHome = router.pathname === '/'
-
+  const isLight = router.pathname === '/' || router.pathname.startsWith('/tokens')
   return (
     <InView threshold={1} delay={500}>
       {({ inView, ref }) => (
         <>
           <Pixel ref={ref} />
           <Wrapper className={!inView && 'sticky'}>
-
             <Content>
+              <Link passHref href="/">
+                <Logo isLight={isLight} />
+              </Link>
 
-            <Link passHref href='/'>
-              <Logo isHome={isHome} />
-            </Link>
+              <Menu className={menuVisible ? 'visible' : ''} isLight={isLight}>
+                {HEADER_LINKS.map((link, index) => (
+                  <li key={index}>
+                    <CustomLink {...link} />
+                  </li>
+                ))}
+                <CloseIcon onClick={handleClick} />
+              </Menu>
 
-            <Menu className={menuVisible ? 'visible' : ""} isHome={isHome}>
-              {HEADER_LINKS.map((link, index) => (
-                <li key={index}>
-                  <CustomLink {...link} />
-                </li>
-              ))}
-              <CloseIcon onClick={handleClick} />
-            </Menu>
-
-            <Button variant={!inView ? 'small' : 'outline'} minHeight={4.8} fontSize={1.6} href={swapURL} label={'Trade on CoW Swap'} target="_blank" rel="noopener nofollow" />
-            <MenuToggle isHome={isHome} onClick={handleClick} />
-
+              <Button
+                variant={!inView ? 'small' : 'outline'}
+                minHeight={4.8}
+                fontSize={1.6}
+                href={swapURL}
+                label={'Trade on CoW Swap'}
+                target="_blank"
+                rel="noopener nofollow"
+              />
+              <MenuToggle isLight={isLight} onClick={handleClick} />
             </Content>
-
           </Wrapper>
         </>
       )}
