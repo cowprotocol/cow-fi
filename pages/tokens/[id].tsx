@@ -17,7 +17,7 @@ import {
   Stats,
   StatItem,
   StatTitle,
-  StatValue
+  StatValue,
 } from '@/const/styles/pages/tokens'
 import { SwapWidget } from '@/components/SwapWidget'
 import { SwapLinkCard } from '@/components/SwapLinkCard'
@@ -91,7 +91,9 @@ export default function TokenDetail({ token }: TokenDetailProps) {
             </Section>
 
             <Section>
-              <h1>About {symbol} token</h1>
+              <h1>
+                About {name} ({symbol}) token
+              </h1>
               <div dangerouslySetInnerHTML={{ __html: description }}></div>
 
               <br />

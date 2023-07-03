@@ -12,10 +12,16 @@ export const Wrapper = styled.div`
   position: relative;
   color: ${Color.darkBlue};
 
+  ${Media.mobile} {
+    display: flex;
+    max-width: 100%;
+    flex-flow: column wrap;
+  }
+
   h3 {
-    font-size: 2.8rem;
+    font-size: 2.2rem;
     line-height: 1.2;
-    margin: 0 0 1.2rem;
+    margin: 1.2rem 0 0.8rem;
   }
 
   h4 {
@@ -78,7 +84,7 @@ export const Section = styled.div`
   > div > p {
     line-height: 1.6;
     color: ${Color.text1};
-    margin: 0 0 1.6rem;
+    margin: 0 0 2.8rem;
   }
 
   > div > h4 {
@@ -86,9 +92,8 @@ export const Section = styled.div`
   }
 
   h2 {
-    font-size: 2.8rem;
-    margin-top: 15px;
-    margin-bottom: 10px;
+    font-size: 2.2rem;
+    margin: 1.2rem 0 0.8rem;
   }
 
   a {
