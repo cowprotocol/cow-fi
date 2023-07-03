@@ -155,6 +155,7 @@ export default function Tokens({ tokens }) {
 export async function getStaticProps() {
   let tokens = getAllTokensData()
 
+  // Sort by market cap
   tokens = tokens.sort((a, b) => {
     if (a.market_cap_rank === null) {
       return 1 // always place nulls last
@@ -164,6 +165,14 @@ export async function getStaticProps() {
     }
     return a.market_cap_rank - b.market_cap_rank // usual comparison
   })
+
+  // Move COW at the top
+  tokens.unshift(
+    tokens.splice(
+      tokens.findIndex((item) => item.id === 'cow-protocol'),
+      1
+    )[0]
+  )
 
   return {
     props: {
