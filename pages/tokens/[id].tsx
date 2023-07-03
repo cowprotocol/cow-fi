@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import Layout from '@/components/Layout'
-import { getAllTokensIds, getTokenData } from 'lib/tokens'
+import { getTokensIds as getTokensIds, getTokenDetails as getTokenDetails } from 'lib/tokens'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import {
   Wrapper,
@@ -26,46 +26,18 @@ import { NetworkItem } from '@/components/NetworkItem'
 
 import { ChartSection } from '@/components/ChartSection'
 import { formatUSDPrice } from 'util/formatUSDPrice'
+import { TokenDetails } from 'types'
+import { GetStaticProps } from 'next'
+import { ParsedUrlQuery } from 'querystring'
 
-type PlatformData = {
-  contractAddress: string
-  decimalPlace: number
+export interface TokenDetailProps {
+  token: TokenDetails
 }
 
-export type Platforms = {
-  [key: string]: PlatformData
-}
-
-type TokenDetailProps = {
-  id: string
-  name: string
-  symbol: string
-  desc: string
-  image: {
-    large: string
-  }
-  platforms: Platforms
-  ath: string
-  atl: string
-  marketCap: string
-  volume: string
-  prices: any
-  currentPrice: string
-}
-
-export default function TokenDetail({
-  name,
-  symbol,
-  desc,
-  image,
-  marketCap,
-  volume,
-  ath,
-  atl,
-  platforms,
-}: TokenDetailProps) {
-  const contractAddressEthereum = platforms.ethereum.contractAddress
-  const contractAddressGnosis = platforms.xdai.contractAddress
+export default function TokenDetail({ token }: TokenDetailProps) {
+  const { name, symbol, image, marketCap, allTimeHigh, allTimeLow, volume, description, platforms } = token
+  const contractAddressEthereum = platforms?.ethereum?.contractAddress
+  const contractAddressGnosis = platforms?.xdai?.contractAddress
 
   return (
     <>
@@ -108,36 +80,41 @@ export default function TokenDetail({
 
                 <StatItem>
                   <StatTitle>All-time High</StatTitle>
-                  <StatValue>{formatUSDPrice(ath)}</StatValue>
+                  <StatValue>{formatUSDPrice(allTimeHigh)}</StatValue>
                 </StatItem>
 
                 <StatItem>
                   <StatTitle>All-time Low</StatTitle>
-                  <StatValue>{formatUSDPrice(atl)}</StatValue>
+                  <StatValue>{formatUSDPrice(allTimeLow)}</StatValue>
                 </StatItem>
               </Stats>
             </Section>
 
             <Section>
               <h1>About {symbol} token</h1>
-              <div dangerouslySetInnerHTML={{ __html: desc }}></div>
+              <div dangerouslySetInnerHTML={{ __html: description }}></div>
 
               <br />
               <br />
 
               <SwapCardsWrapper>
-                <SwapLinkCard
-                  contractAddress={contractAddressEthereum}
-                  networkId={1}
-                  networkName="Ethereum"
-                  tokenSymbol={symbol}
-                />
-                <SwapLinkCard
-                  contractAddress={contractAddressGnosis}
-                  networkId={100}
-                  networkName="Gnosis Chain"
-                  tokenSymbol={symbol}
-                />
+                {contractAddressEthereum && (
+                  <SwapLinkCard
+                    contractAddress={contractAddressEthereum}
+                    networkId={1}
+                    networkName="Ethereum"
+                    tokenSymbol={symbol}
+                  />
+                )}
+
+                {contractAddressGnosis && (
+                  <SwapLinkCard
+                    contractAddress={contractAddressGnosis}
+                    networkId={100}
+                    networkName="Gnosis Chain"
+                    tokenSymbol={symbol}
+                  />
+                )}
               </SwapCardsWrapper>
             </Section>
 
@@ -182,16 +159,16 @@ export default function TokenDetail({
 }
 
 export async function getStaticPaths() {
-  const paths = getAllTokensIds()
+  const tokenIds = getTokensIds()
 
   return {
     fallback: false,
-    paths,
+    paths: tokenIds.map((id) => ({ params: { id } })),
   }
 }
 
-export async function getStaticProps({ params }) {
-  const token = await getTokenData(params.id)
+export const getStaticProps: GetStaticProps<TokenDetailProps> = async ({ params }) => {
+  const token = await getTokenDetails(params.id as string)
 
   if (!token) {
     return {
@@ -199,43 +176,9 @@ export async function getStaticProps({ params }) {
     }
   }
 
-  const { id: rawId, name: rawName, symbol: rawSymbol, description, ico_data, image, detail_platforms } = token
-
-  const id = rawId
-  const name = rawName
-  const symbol = rawSymbol.toUpperCase()
-  const desc = description?.en || ico_data?.description || '-'
-  const marketCap = token.market_data?.market_cap?.usd || null
-  const volume = token.market_data?.total_volume.usd || null
-  const ath = token.market_data?.ath.usd || null
-  const atl = token.market_data?.atl.usd || null
-  const currentPrice = token.market_data?.current_price?.usd || null
-
-  // Get only the Ethereum and Gnosis Chain contract addresses and decimal places
-  const platforms = {
-    ethereum: {
-      contractAddress: detail_platforms.ethereum?.contract_address || '',
-      decimalPlace: detail_platforms.ethereum?.decimal_place || 18,
-    },
-    xdai: {
-      contractAddress: detail_platforms.xdai?.contract_address || '',
-      decimalPlace: detail_platforms.xdai?.decimal_place || 18,
-    },
-  }
-
   return {
     props: {
-      id,
-      name,
-      symbol,
-      desc,
-      image,
-      platforms,
-      marketCap,
-      volume,
-      ath,
-      atl,
-      currentPrice,
+      token: token,
     },
   }
 }
