@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import Link from 'next/link'
 import { Color, Font, Media } from 'const/styles/variables'
@@ -12,6 +13,7 @@ const CURRENT_YEAR = new Date().getFullYear()
 const Wrapper = styled.footer<{ noMargin?: boolean }>`
   display: flex;
   justify-content: space-between;
+  flex-flow: row wrap;
   z-index: 1;
   width: 100%;
   padding: 5.6rem;
@@ -147,6 +149,22 @@ const CopyrightLinks = styled.ol`
   }
 `
 
+const FooterDisclaimer = styled.div`
+  width: 100%;
+  color: ${Color.text2};
+  margin: 5.6rem auto 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+
+  > p {
+    line-height: 1.4;
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
+`
+
 function FooterMenu() {
   return (
     <MenuSection>
@@ -186,10 +204,14 @@ type FooterProps = {
 }
 
 export default function Footer({ noMargin }: FooterProps) {
+  const router = useRouter()
+  const showDisclaimer = router.asPath.startsWith('/tokens')
+
   return (
     <Wrapper noMargin={noMargin}>
       <FooterMenu />
       <Social />
+      {showDisclaimer && <FooterDisclaimer><p>{CONFIG.tokenDisclaimer}</p></FooterDisclaimer>}
     </Wrapper>
   )
 }

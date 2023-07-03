@@ -28,7 +28,7 @@ const TokensPages = styled.main`
   justify-content: flex-start;
   align-items: flex-start;
   gap: 2.4rem;
-  padding: 14.6rem 2.4rem;
+  padding: 14.6rem 2.4rem 5.6rem;
   box-sizing: border-box;
   margin: -10.4rem auto 0;
   width: 100%;
