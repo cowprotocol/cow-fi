@@ -70,6 +70,10 @@ export const Section = styled.div`
   padding: 2rem 0;
   width: 100%;
 
+  h1 {
+    margin-bottom: 25px;
+  }
+
   > p,
   > div > p {
     line-height: 1.6;
@@ -79,6 +83,12 @@ export const Section = styled.div`
 
   > div > h4 {
     margin: 3.6rem 0 1rem;
+  }
+
+  h2 {
+    font-size: 2.8rem;
+    margin-top: 15px;
+    margin-bottom: 10px;
   }
 
   a {

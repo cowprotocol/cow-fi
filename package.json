@@ -14,7 +14,6 @@
     "@cowprotocol/cow-sdk": "^0.0.15-RC.1",
     "@lingui/macro": "^3.12.1",
     "@lingui/react": "^3.12.1",
-    "@uniswap/conedison": "^1.7.1",
     "@visx/axis": "^2.12.2",
     "@visx/event": "^2.6.0",
     "@visx/glyph": "^2.10.0",

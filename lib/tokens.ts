@@ -1,13 +1,18 @@
 import fs from 'fs'
 import path from 'path'
-import { tokenDescriptions } from 'data/description'
 
-// TODO: this could probably be fetched externaly
+const tokensPath = path.join(process.cwd(), 'data', 'tokens.json')
+const descriptionPath = path.join(process.cwd(), 'data', 'descriptions')
+
 export function getAllTokensData() {
-  const filePath = path.join(process.cwd(), 'data', 'tokens.json')
-  const jsonData = fs.readFileSync(filePath, 'utf-8')
+  const tokenJson = fs.readFileSync(tokensPath, 'utf-8')
+  const tokenData = JSON.parse(tokenJson)
 
-  return JSON.parse(jsonData)
+  const descriptionFiles = fs.readdirSync(descriptionPath).map((f) => f.replace('.md', ''))
+
+  const output = tokenData.filter((token) => descriptionFiles.includes(token.id))
+
+  return output
 }
 
 export function getAllTokensIds() {
@@ -16,16 +21,17 @@ export function getAllTokensIds() {
   return tokensData.map(({ id }) => ({ params: { id } }))
 }
 
-export function getTokenData(id) {
+export async function getTokenData(_id) {
+  const id = _id.toLowerCase()
+
   const tokensData = getAllTokensData()
 
   const token = tokensData.find(({ id: _id }) => _id === id)
 
-  if (id in tokenDescriptions) {
-    token.description.en = tokenDescriptions[id]
-  } else {
-    token.description.en = `<p>${token.description.en}</p>`
-  }
+  const filePath = path.join(descriptionPath, `${id}.md`)
+  const description = fs.readFileSync(filePath, 'utf-8')
+
+  token.description.en = description
 
   return token
 }
