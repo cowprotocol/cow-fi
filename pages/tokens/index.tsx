@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Layout from '@/components/Layout'
-import { getAllTokensData } from 'lib/tokens'
+import { getTokensInfo } from 'lib/tokens'
 import styled from 'styled-components'
 import { Color, Media } from 'const/styles/variables'
 import { transparentize } from 'polished'
 import { TokenLink } from '@/const/styles/pages/tokens'
 import { getPriceChangeColor } from 'util/getPriceChangeColor'
 import { formatUSDPrice } from 'util/formatUSDPrice'
+import { TokenInfo } from 'types'
 
 const Wrapper = styled.div`
   --tokenSize: 2.6rem;
@@ -79,7 +80,36 @@ const SearchTokens = styled.input`
   outline: 0;
 `
 
-export default function Tokens({ tokens }) {
+function TokenItem({ token, index }: { token: TokenInfo; index: number }) {
+  const { id, name, symbol, change24h, priceUsd, marketCap, volume, image } = token
+  return (
+    <ListItem key={id}>
+      <span>{index + 1}</span>
+
+      <Link href={`/tokens/${id}`} passHref>
+        <TokenLink>
+          {image.large && image.large !== 'missing_large.png' ? (
+            <img src={image.large} alt={name} />
+          ) : (
+            <PlacerholderImage />
+          )}
+          <span>
+            {name} <i>({symbol})</i>
+          </span>
+        </TokenLink>
+      </Link>
+
+      <ListItemValue>{priceUsd ? `$${priceUsd}` : '-'}</ListItemValue>
+      <ListItemValue color={getPriceChangeColor(change24h)}>
+        {change24h ? `${Number(change24h).toFixed(2)}%` : '-'}
+      </ListItemValue>
+      <ListItemValue>{marketCap ? `${formatUSDPrice(marketCap)}` : '-'}</ListItemValue>
+      <ListItemValue>{volume ? `${formatUSDPrice(volume)}` : '-'}</ListItemValue>
+    </ListItem>
+  )
+}
+
+export default function TokenList({ tokens }: { tokens: TokenInfo[] }) {
   const [search, setSearch] = useState('')
   const [filteredTokens, setFilteredTokens] = useState(tokens)
 
@@ -114,38 +144,9 @@ export default function Tokens({ tokens }) {
             <div>Market Cap</div>
             <div>Volume</div>
           </HeaderItem>
-          {filteredTokens.map((token, index) => {
-            const price = token.market_data?.current_price?.usd
-            const change = token.market_data?.price_change_percentage_24h
-            const marketCap = token.market_data?.market_cap?.usd
-            const volume = token.market_data?.total_volume?.usd
-
-            return (
-              <ListItem key={token.id}>
-                <span>{index + 1}</span>
-
-                <Link href={`/tokens/${token.id}`} passHref>
-                  <TokenLink>
-                    {token.image.large && token.image.large !== 'missing_large.png' ? (
-                      <img src={token.image.large} alt={token.name} />
-                    ) : (
-                      <PlacerholderImage />
-                    )}
-                    <span>
-                      {token.name} <i>({token.symbol})</i>
-                    </span>
-                  </TokenLink>
-                </Link>
-
-                <ListItemValue>{price ? `$${price}` : '-'}</ListItemValue>
-                <ListItemValue color={getPriceChangeColor(change)}>
-                  {change ? `${Number(change).toFixed(2)}%` : '-'}
-                </ListItemValue>
-                <ListItemValue>{marketCap ? `${formatUSDPrice(marketCap)}` : '-'}</ListItemValue>
-                <ListItemValue>{volume ? `${formatUSDPrice(volume)}` : '-'}</ListItemValue>
-              </ListItem>
-            )
-          })}
+          {filteredTokens.map((token, index) => (
+            <TokenItem key={token.id} token={token} index={index} />
+          ))}
         </TokenTable>
       </Wrapper>
     </Layout>
@@ -153,26 +154,9 @@ export default function Tokens({ tokens }) {
 }
 
 export async function getStaticProps() {
-  let tokens = getAllTokensData()
+  let tokens = getTokensInfo()
 
-  // Sort by market cap
-  tokens = tokens.sort((a, b) => {
-    if (a.market_cap_rank === null) {
-      return 1 // always place nulls last
-    }
-    if (b.market_cap_rank === null) {
-      return -1 // always place nulls last
-    }
-    return a.market_cap_rank - b.market_cap_rank // usual comparison
-  })
-
-  // Move COW at the top
-  tokens.unshift(
-    tokens.splice(
-      tokens.findIndex((item) => item.id === 'cow-protocol'),
-      1
-    )[0]
-  )
+  console.log('tokens getStaticProps', tokens)
 
   return {
     props: {

@@ -7,19 +7,24 @@ export interface Platforms {
   [key: string]: PlatformData
 }
 
-export interface TokenDetailProps {
+export interface TokenInfo {
   id: string
   name: string
   symbol: string
-  desc: string
+  priceUsd: string | null
+  change24h: string | null
+  volume: string | null
+  marketCap: string | null
   image: {
-    large: string
+    large: string | null
   }
+  marketCapRank: number | null
+  // market_data, TODO: is this needed???
+}
+
+export interface TokenDetails extends TokenInfo {
+  description: string
   platforms: Platforms
-  ath: string
-  atl: string
-  marketCap: string
-  volume: string
-  prices: any
-  currentPrice: string
+  allTimeHigh: string | null
+  allTimeLow: string | null
 }
