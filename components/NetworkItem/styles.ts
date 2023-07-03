@@ -13,6 +13,8 @@ export const NetworkHeaderItem = styled.div`
   gap: 0.8rem;
 
   ${Media.mobile} {
+    padding: 2.4rem 0;
+    gap: 1.4rem;
     grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
   }
 
@@ -69,6 +71,10 @@ export const ItemWrapper = styled(NetworkHeaderItem)`
     gap: 1.2rem;
     margin: 0 0 0 auto;
     position: relative;
+
+    ${Media.mobile} {
+      width: 100%;
+    }
   }
 
   > span > a > img,
@@ -83,6 +89,11 @@ export const ItemWrapper = styled(NetworkHeaderItem)`
     display: flex;
     align-items: center;
     font-size: 1.5rem;
+
+    ${Media.mobile} {
+      flex-flow: column wrap;
+      align-items: flex-start;
+    }
   }
 
   > a > div > img {
@@ -95,5 +106,6 @@ export const ItemWrapper = styled(NetworkHeaderItem)`
   > a > div > i {
     font-style: normal;
     font-weight: 400;
+    word-break: break-all;
   }
 `

@@ -48,7 +48,7 @@ export function NetworkItem(props: Props) {
       </a>
       <span>
         <CopyToClipboard text={address} />
-        <a
+        {/* <a
           href={`https://link.trustwallet.com/add_asset?asset=c20000714&t=${address}&n=${name}&s=${symbol}&d=${decimals}`}
           target="_blank"
           rel="noreferrer nofollow"
@@ -62,7 +62,7 @@ export function NetworkItem(props: Props) {
           rel="noreferrer nofollow"
         >
           <img src="/images/metamask-fox.svg" alt="Add to Metamask" />
-        </a>
+        </a> */}
       </span>
     </ItemWrapper>
   )
