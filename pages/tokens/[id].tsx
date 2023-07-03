@@ -17,7 +17,7 @@ import {
   Stats,
   StatItem,
   StatTitle,
-  StatValue,
+  StatValue
 } from '@/const/styles/pages/tokens'
 import { SwapWidget } from '@/components/SwapWidget'
 import { SwapLinkCard } from '@/components/SwapLinkCard'
