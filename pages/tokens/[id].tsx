@@ -161,7 +161,7 @@ export default function TokenDetail({ token }: TokenDetailProps) {
 }
 
 export async function getStaticPaths() {
-  const tokenIds = getTokensIds()
+  const tokenIds = await getTokensIds()
 
   return {
     fallback: false,

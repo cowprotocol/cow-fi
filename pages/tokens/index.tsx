@@ -164,7 +164,7 @@ export default function TokenList({ tokens }: { tokens: TokenInfo[] }) {
 }
 
 export const getStaticProps: GetStaticProps<TokenListProps> = async () => {
-  const tokens = getTokensInfo()
+  const tokens = await getTokensInfo()
 
   return {
     props: {
