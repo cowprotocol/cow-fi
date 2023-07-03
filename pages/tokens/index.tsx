@@ -11,6 +11,8 @@ import { formatUSDPrice } from 'util/formatUSDPrice'
 import { TokenInfo } from 'types'
 import { GetStaticProps } from 'next'
 
+const DATA_CACHE_TIME_SECONDS = 10 * 60 // 10 minutes
+
 const Wrapper = styled.div`
   --tokenSize: 2.6rem;
   display: flex;
@@ -170,5 +172,6 @@ export const getStaticProps: GetStaticProps<TokenListProps> = async () => {
     props: {
       tokens,
     },
+    revalidate: DATA_CACHE_TIME_SECONDS,
   }
 }
