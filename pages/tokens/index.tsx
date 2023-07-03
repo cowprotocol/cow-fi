@@ -9,6 +9,7 @@ import { TokenLink } from '@/const/styles/pages/tokens'
 import { getPriceChangeColor } from 'util/getPriceChangeColor'
 import { formatUSDPrice } from 'util/formatUSDPrice'
 import { TokenInfo } from 'types'
+import { GetStaticProps } from 'next'
 
 const Wrapper = styled.div`
   --tokenSize: 2.6rem;
@@ -80,7 +81,12 @@ const SearchTokens = styled.input`
   outline: 0;
 `
 
-function TokenItem({ token, index }: { token: TokenInfo; index: number }) {
+export interface TokenItemProps {
+  token: TokenInfo
+  index: number
+}
+
+function TokenItem({ token, index }: TokenItemProps) {
   const { id, name, symbol, change24h, priceUsd, marketCap, volume, image } = token
   return (
     <ListItem key={id}>
@@ -107,6 +113,10 @@ function TokenItem({ token, index }: { token: TokenInfo; index: number }) {
       <ListItemValue>{volume ? `${formatUSDPrice(volume)}` : '-'}</ListItemValue>
     </ListItem>
   )
+}
+
+export interface TokenListProps {
+  tokens: TokenInfo[]
 }
 
 export default function TokenList({ tokens }: { tokens: TokenInfo[] }) {
@@ -153,10 +163,8 @@ export default function TokenList({ tokens }: { tokens: TokenInfo[] }) {
   )
 }
 
-export async function getStaticProps() {
-  let tokens = getTokensInfo()
-
-  console.log('tokens getStaticProps', tokens)
+export const getStaticProps: GetStaticProps<TokenListProps> = async () => {
+  const tokens = getTokensInfo()
 
   return {
     props: {

@@ -27,18 +27,15 @@ import { NetworkItem } from '@/components/NetworkItem'
 import { ChartSection } from '@/components/ChartSection'
 import { formatUSDPrice } from 'util/formatUSDPrice'
 import { TokenDetails } from 'types'
+import { GetStaticProps } from 'next'
+import { ParsedUrlQuery } from 'querystring'
 
-export default function TokenDetail({
-  name,
-  symbol,
-  image,
-  marketCap,
-  allTimeHigh,
-  allTimeLow,
-  volume,
-  description,
-  platforms,
-}: TokenDetails) {
+export interface TokenDetailProps {
+  token: TokenDetails
+}
+
+export default function TokenDetail({ token }: TokenDetailProps) {
+  const { name, symbol, image, marketCap, allTimeHigh, allTimeLow, volume, description, platforms } = token
   const contractAddressEthereum = platforms?.ethereum?.contractAddress
   const contractAddressGnosis = platforms?.xdai?.contractAddress
 
@@ -170,8 +167,8 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params }) {
-  const token = await getTokenDetails(params.id)
+export const getStaticProps: GetStaticProps<TokenDetailProps> = async ({ params }) => {
+  const token = await getTokenDetails(params.id as string)
 
   if (!token) {
     return {
@@ -180,6 +177,8 @@ export async function getStaticProps({ params }) {
   }
 
   return {
-    props: token,
+    props: {
+      token: token,
+    },
   }
 }
