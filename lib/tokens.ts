@@ -68,11 +68,8 @@ async function fetchWithBackoff(url) {
       })
     },
     {
-      numOfAttempts: 50,
-      maxDelay: 36000000, // 10min
-      startingDelay: 5000, // 5s
       retry: (e, attemptNum) => {
-        console.log(`Error fetching ${url}, attempt ${attemptNum}. Retrying soon...`)
+        console.log(`Error fetching ${url}, attempt ${attemptNum}. Retrying soon...`, e)
         return true
       },
     }
