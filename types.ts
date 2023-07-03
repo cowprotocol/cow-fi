@@ -1,12 +1,25 @@
-export interface Post {
+export interface PlatformData {
+  contractAddress: string
+  decimalPlace: number
+}
+
+export interface Platforms {
+  [key: string]: PlatformData
+}
+
+export interface TokenDetailProps {
   id: string
-  date?: string
-}
-
-export interface PostDetails extends Post {
-  contentHtml: string
-}
-
-export interface NotFoundItem {
-  notFound: true
+  name: string
+  symbol: string
+  desc: string
+  image: {
+    large: string
+  }
+  platforms: Platforms
+  ath: string
+  atl: string
+  marketCap: string
+  volume: string
+  prices: any
+  currentPrice: string
 }

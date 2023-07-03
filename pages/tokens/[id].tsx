@@ -26,32 +26,7 @@ import { NetworkItem } from '@/components/NetworkItem'
 
 import { ChartSection } from '@/components/ChartSection'
 import { formatUSDPrice } from 'util/formatUSDPrice'
-
-type PlatformData = {
-  contractAddress: string
-  decimalPlace: number
-}
-
-export type Platforms = {
-  [key: string]: PlatformData
-}
-
-type TokenDetailProps = {
-  id: string
-  name: string
-  symbol: string
-  desc: string
-  image: {
-    large: string
-  }
-  platforms: Platforms
-  ath: string
-  atl: string
-  marketCap: string
-  volume: string
-  prices: any
-  currentPrice: string
-}
+import { TokenDetailProps } from 'types'
 
 export default function TokenDetail({
   name,
