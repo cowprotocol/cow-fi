@@ -5,8 +5,8 @@ import { useMemo } from 'react'
 import { useQuery } from '@apollo/client'
 import { tokenPriceQuery, HistoryDuration, Chain } from 'services/graphql/queries'
 import { usePriceHistory } from 'lib/hooks/usePriceHistory'
-import { Platforms } from '@/pages/tokens/[id]'
 import { fixChart } from 'util/fixChart'
+import { Platforms } from 'types'
 
 type ChartSectionProps = {
   platforms: Platforms
