@@ -1,4 +1,4 @@
-import { CopyIcon, CopyMessage } from '@/pages/tokens/index.styles'
+import { CopyIcon, CopyMessage } from '@/components/TokenDetails/index.styles'
 import { useEffect, useState } from 'react'
 
 export const CopyToClipboard = ({ text }) => {
