@@ -6,7 +6,7 @@ import { backOff } from 'exponential-backoff'
 const NETWORKS = ['ethereum', 'xdai']
 const COW_TOKEN_ID = 'cow-protocol'
 
-// const TOKENS_PATH = path.join(process.cwd(), 'data', 'tokens.json')
+const TOKEN_LISTS_URL = 'https://files.cow.fi/tokens/cowFi-tokens.json'
 const DESCRIPTIONS_DIR_PATH = path.join(process.cwd(), 'data', 'descriptions')
 
 /**
@@ -76,16 +76,8 @@ async function fetchWithBackoff(url) {
   )
 }
 
-function _getTokensRawInfo(): Promise<any[]> {
-  // const tokenJson = fs.readFileSync(TOKENS_PATH, 'utf-8')
-  // const tokenData = JSON.parse(tokenJson)
-
-  // return tokenData
-  return fetchWithBackoff('https://raw.githubusercontent.com/cowprotocol/cow-fi/develop/data/tokens.json')
-}
-
 async function _getAllTokensData(): Promise<TokenDetails[]> {
-  const tokenRawData = await _getTokensRawInfo()
+  const tokenRawData = await fetchWithBackoff(TOKEN_LISTS_URL)
 
   // Get manual descriptions
   const descriptionFilePaths = _getDescriptionFilePaths()
