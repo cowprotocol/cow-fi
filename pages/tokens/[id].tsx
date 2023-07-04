@@ -4,6 +4,7 @@ import Layout from '@/components/Layout'
 import { getTokensIds as getTokensIds, getTokenDetails as getTokenDetails } from 'services/tokens'
 import { TokenDetails as TokenDetailsPure, TokenDetailProps } from '@/components/TokenDetails'
 import { GetStaticProps } from 'next'
+import { CONFIG } from '@/const/meta'
 
 const DATA_CACHE_TIME_SECONDS = 10 * 60 // 10 minutes
 
@@ -14,7 +15,7 @@ export default function TokenDetailsPage({ token }: TokenDetailProps) {
     <>
       <Head>
         <title>
-          {name} ({symbol}) price | CoW Protocol
+          {name} ({symbol}) - {CONFIG.title}
         </title>
       </Head>
 

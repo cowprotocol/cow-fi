@@ -301,7 +301,13 @@ export const SwapWidget = ({ tokenSymbol, tokenImage, platforms }: SwapWidgetPro
             <img src={tokenImage} alt={tokenSymbol} />
             <span>{tokenSymbol}</span>
           </TokenLabel>
-          <Input type="number" onChange={(e) => setAmount(parseFloat(e.target.value))} placeholder="0" />
+          <Input
+            value={amount}
+            min={0}
+            type="number"
+            onChange={(e) => setAmount(parseFloat(e.target.value))}
+            placeholder="0"
+          />
         </div>
       </InputLabel>
 

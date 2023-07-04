@@ -12,6 +12,7 @@ import {
   SearchTokens,
   TokenTable,
   Wrapper,
+  NoTokensText,
 } from './index.style'
 
 export interface TokenListProps {
@@ -52,9 +53,11 @@ export function TokenList({ tokens }: TokenListProps) {
           <div>Market Cap</div>
           <div>Volume</div>
         </HeaderItem>
-        {filteredTokens.map((token, index) => (
-          <TokenItem key={token.id} token={token} index={index} />
-        ))}
+        {filteredTokens.length ? (
+          filteredTokens.map((token, index) => <TokenItem key={token.id} token={token} index={index} />)
+        ) : (
+          <NoTokensText>No tokens found</NoTokensText>
+        )}
       </TokenTable>
     </Wrapper>
   )

@@ -1,4 +1,4 @@
-import { CopyIcon, CopyMessage } from '@/components/TokenDetails/index.styles'
+import { CopyIcon, CopyMessage, CopyWrapper } from '@/components/TokenDetails/index.styles'
 import { useEffect, useState } from 'react'
 
 export const CopyToClipboard = ({ text }) => {
@@ -22,9 +22,9 @@ export const CopyToClipboard = ({ text }) => {
   }, [copied])
 
   return (
-    <>
-      <CopyIcon src="/images/icons/click-to-copy.svg" alt="Copy contract address" onClick={copyToClipboard} />
+    <CopyWrapper>
       {copied && <CopyMessage>Copied!</CopyMessage>}
-    </>
+      <CopyIcon src="/images/icons/click-to-copy.svg" alt="Copy contract address" onClick={copyToClipboard} />
+    </CopyWrapper>
   )
 }

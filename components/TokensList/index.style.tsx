@@ -71,3 +71,10 @@ export const PlacerholderImage = styled.div`
   border-radius: var(--tokenSize);
   background-color: ${Color.darkBlue};
 `
+
+export const NoTokensText = styled.div`
+  font-size: 2rem;
+  padding: 1rem;
+  padding-top: 2rem;
+  color: ${Color.text1};
+`
