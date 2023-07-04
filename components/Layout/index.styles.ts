@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { lighten, transparentize } from 'polished'
-import { Color, Font, Media } from 'const/styles/variables'
+import { Color, Font, Media } from 'styles/variables'
 
 export const Content = styled.main`
   margin: 0 auto;

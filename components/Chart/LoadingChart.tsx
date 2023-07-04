@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Color } from '@/const/styles/variables'
+import { Color } from 'styles/variables'
 
 export const ChartContainer = styled.div`
   display: flex;

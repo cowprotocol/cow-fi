@@ -1,17 +1,25 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 import { transparentize } from 'polished'
-import { Defaults, Color, Font, Media } from 'const/styles/variables'
+import { Defaults, Color, Font, Media } from 'styles/variables'
 
-export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, colorVariant?: string, flow?: string, fullWidth?: boolean, mediumSwitchOrder?: boolean, mobileSwitchOrder?: boolean }>`
+export const Section = styled.section<{
+  hero?: boolean
+  breakMedium?: boolean
+  colorVariant?: string
+  flow?: string
+  fullWidth?: boolean
+  mediumSwitchOrder?: boolean
+  mobileSwitchOrder?: boolean
+}>`
   display: flex;
   width: 100%;
   min-height: 100%;
-  flex-flow: ${({ flow }) => flow === 'column' ? 'column wrap' : 'row'};
+  flex-flow: ${({ flow }) => (flow === 'column' ? 'column wrap' : 'row')};
   gap: 8rem;
   margin: 0 auto;
   position: relative;
   z-index: 1;
-  align-items: ${({ hero }) => hero ? 'center' : 'normal'};
+  align-items: ${({ hero }) => (hero ? 'center' : 'normal')};
   padding: 0;
 
   ${Media.desktopDown} {
@@ -26,7 +34,9 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
   }
 
   // Hero specific styling
-  ${({ hero, breakMedium }) => (hero || breakMedium) && `
+  ${({ hero, breakMedium }) =>
+    (hero || breakMedium) &&
+    `
     margin: 0 auto;
     min-height: 90rem;
     // padding-top: 10rem;
@@ -47,7 +57,9 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
   `}
   }
 
-  ${({ mobileSwitchOrder }) => mobileSwitchOrder && `
+  ${({ mobileSwitchOrder }) =>
+    mobileSwitchOrder &&
+    `
     > div:first-child {
       ${Media.mobile} {
         order: 2;
@@ -55,7 +67,9 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
     }
   `}
 
-  ${({ mobileSwitchOrder }) => mobileSwitchOrder && `
+  ${({ mobileSwitchOrder }) =>
+    mobileSwitchOrder &&
+    `
     > div:last-child {
       ${Media.mobile} {
         order: 1;
@@ -63,7 +77,9 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
     }
   `}
 
-  ${({ mediumSwitchOrder }) => mediumSwitchOrder && `
+  ${({ mediumSwitchOrder }) =>
+    mediumSwitchOrder &&
+    `
     > div:first-child {
       ${Media.mediumDown} {
         order: 2;
@@ -71,7 +87,9 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
     }
   `}
 
-  ${({ mediumSwitchOrder }) => mediumSwitchOrder && `
+  ${({ mediumSwitchOrder }) =>
+    mediumSwitchOrder &&
+    `
     > div:last-child {
       ${Media.mediumDown} {
         order: 1;
@@ -96,7 +114,9 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
 
   h1 {
     // Hero specific styling
-    ${({ hero, breakMedium }) => (hero || breakMedium) && `
+    ${({ hero, breakMedium }) =>
+      (hero || breakMedium) &&
+      `
       color: ${Color.darkBlue};
       font-size: 7rem;
       font-weight: 600;
@@ -127,43 +147,51 @@ export const Section = styled.section<{ hero?: boolean, breakMedium?: boolean, c
   }
 `
 
-export const SectionContent = styled.div<{ flow?: string, hero?: boolean, breakMedium?: boolean, variant?: string, reverseOrderMobile?: string }>`
+export const SectionContent = styled.div<{
+  flow?: string
+  hero?: boolean
+  breakMedium?: boolean
+  variant?: string
+  reverseOrderMobile?: string
+}>`
   display: flex;
   /* margin: 0 auto; */
   width: 100%;
   max-width: ${Defaults.pageMaxWidth};
-  margin: ${({ hero }) => hero ? '0 auto' : '16rem auto 0'};
+  margin: ${({ hero }) => (hero ? '0 auto' : '16rem auto 0')};
 
   ${Media.mobile} {
     flex-flow: row wrap;
   }
 
-  ${({ hero }) => hero && `
+  ${({ hero }) =>
+    hero &&
+    `
     ${Media.mediumDown} {
       margin: 16rem 2.4rem 0;
     }
   `}
 
-
-
-  ${({ reverseOrderMobile }) => reverseOrderMobile && `
+  ${({ reverseOrderMobile }) =>
+    reverseOrderMobile &&
+    `
       ${Media.mobile} {
         flex-flow: ${reverseOrderMobile};
       }
-  ` };
+  `};
 
   > div {
     display: flex;
-    flex-flow: ${({ flow }) => flow === 'column' ? 'column wrap' : 'row wrap'};
-    flex: ${({ flow }) => flow === 'column' ? '1 1 auto' : '1 1 50%'};
-    justify-content: ${({ flow }) => flow === 'column' ? 'center' : 'flex-start'};
+    flex-flow: ${({ flow }) => (flow === 'column' ? 'column wrap' : 'row wrap')};
+    flex: ${({ flow }) => (flow === 'column' ? '1 1 auto' : '1 1 50%')};
+    justify-content: ${({ flow }) => (flow === 'column' ? 'center' : 'flex-start')};
     align-items: center;
     align-content: center;
     gap: 5rem;
     z-index: 1;
 
     ${Media.mobile} {
-      flex: 1 1 auto; 
+      flex: 1 1 auto;
       gap: 3.2rem;
     }
 
@@ -172,7 +200,9 @@ export const SectionContent = styled.div<{ flow?: string, hero?: boolean, breakM
     }
   }
 
-  ${({ variant }) => variant === 'banner' && `
+  ${({ variant }) =>
+    variant === 'banner' &&
+    `
     border-radius: 1.6rem;
     background: ${Color.darkBlue4};
     padding: 0;
@@ -202,7 +232,7 @@ export const StepWrapper = styled.div`
   }
 `
 
-export const StepContainer = styled.div<{ imageWidth?: number}>`
+export const StepContainer = styled.div<{ imageWidth?: number }>`
   display: flex;
   flex-flow: column wrap;
   background: ${Color.darkBlue2};
@@ -210,66 +240,66 @@ export const StepContainer = styled.div<{ imageWidth?: number}>`
   border-radius: 1.2rem;
   padding: 3.4rem;
 
+  ${Media.mediumDown} {
+    padding: 2.4rem;
+  }
+
+  > span {
+    height: 3.6rem;
+    width: 3.6rem;
+    border-radius: 3.6rem;
+    margin: 0 0 1.6rem;
+    padding: 0;
+    background: ${Color.darkBlue};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: ${Color.lightBlue};
+    font-size: 1.8rem;
+    font-weight: ${Font.weightBold};
+  }
+
+  > img {
+    width: 100%;
+    height: 100%;
+    max-width: ${({ imageWidth }) => (imageWidth ? `${imageWidth}rem` : '10rem')};
+    max-height: 10rem;
+    object-fit: contain;
+    margin: 0 auto 1.6rem;
+    flex: 0 1 auto;
+
     ${Media.mediumDown} {
-      padding: 2.4rem;
+      height: 8rem;
     }
+  }
 
-    > span {
-      height: 3.6rem;
-      width: 3.6rem;
-      border-radius: 3.6rem;
-      margin: 0 0 1.6rem;
-      padding: 0;
-      background: ${Color.darkBlue};
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: ${Color.lightBlue};
-      font-size: 1.8rem;
-      font-weight: ${Font.weightBold};
+  > p {
+    font-size: 1.6rem;
+    color: ${Color.text2};
+    font-weight: ${Font.weightNormal};
+    line-height: 1.6;
+    margin: 1.6rem auto;
+    text-align: center;
+    flex: 0 1 auto;
+  }
+
+  > p > b {
+    font-size: 3.4rem;
+    display: block;
+    color: ${Color.lightBlue};
+    background: ${Color.gradient};
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0 0 2.4rem;
+    width: 100%;
+    text-align: center;
+    line-height: 1;
+
+    &::selection {
+      -webkit-background-clip: initial;
+      -webkit-text-fill-color: initial;
     }
-
-    > img {
-      width: 100%;
-      height: 100%;
-      max-width: ${({ imageWidth }) => imageWidth ? `${imageWidth}rem` : '10rem'};
-      max-height: 10rem;
-      object-fit: contain;
-      margin: 0 auto 1.6rem;
-      flex: 0 1 auto;
-
-      ${Media.mediumDown} {
-        height: 8rem;
-      }
-    }
-
-    > p {
-      font-size: 1.6rem;
-      color: ${Color.text2};
-      font-weight: ${Font.weightNormal};
-      line-height: 1.6;
-      margin: 1.6rem auto;
-      text-align: center;
-      flex: 0 1 auto;
-    }
-
-    > p > b {
-      font-size: 3.4rem;
-      display: block;
-      color: ${Color.lightBlue};
-      background: ${Color.gradient};
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin: 0 0 2.4rem;
-      width: 100%;
-      text-align: center;
-      line-height: 1;
-
-      &::selection {
-        -webkit-background-clip: initial;
-        -webkit-text-fill-color: initial;
-      }
-    }
+  }
 `
 
 export const TopGradient = styled.div`
@@ -285,13 +315,13 @@ export const TopGradient = styled.div`
   opacity: 0.5;
 `
 
-export const SubTitle = styled.p<{ color?: string, maxWidth?: number, align?: string, lineHeight?: number }>`
+export const SubTitle = styled.p<{ color?: string; maxWidth?: number; align?: string; lineHeight?: number }>`
   display: inline-block;
   font-size: 2.2rem;
-  color: ${({ color }) => color ? color : Color.text2};
+  color: ${({ color }) => (color ? color : Color.text2)};
   font-weight: ${Font.weightNormal};
-  line-height: ${({ lineHeight }) => lineHeight ? lineHeight : 1.6};
-  text-align: ${({ align }) => align ? align : "center"};
+  line-height: ${({ lineHeight }) => (lineHeight ? lineHeight : 1.6)};
+  text-align: ${({ align }) => (align ? align : 'center')};
   max-width: ${({ maxWidth }) => maxWidth && `${maxWidth}rem`};
   margin: 0 auto;
   width: 100%;
@@ -299,14 +329,20 @@ export const SubTitle = styled.p<{ color?: string, maxWidth?: number, align?: st
 
   ${Media.mediumDown} {
     font-size: 1.8rem;
-    text-align: ${({ align }) => align ? align : "center"};
+    text-align: ${({ align }) => (align ? align : 'center')};
   }
 `
 
-export const SectionImage = styled.div<{ hero?: boolean, centerMobile?: boolean, margin?: string, height?: string, width?: string }>`
-  width: ${({ width }) => width ? width : '100%'};
-  height: ${({ height }) => height ? height : '100%'};
-  margin: ${({ margin }) => margin ? margin : '0'};
+export const SectionImage = styled.div<{
+  hero?: boolean
+  centerMobile?: boolean
+  margin?: string
+  height?: string
+  width?: string
+}>`
+  width: ${({ width }) => (width ? width : '100%')};
+  height: ${({ height }) => (height ? height : '100%')};
+  margin: ${({ margin }) => (margin ? margin : '0')};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -314,7 +350,9 @@ export const SectionImage = styled.div<{ hero?: boolean, centerMobile?: boolean,
   position: relative;
   z-index: 0;
 
-  ${({ hero }) => hero && `
+  ${({ hero }) =>
+    hero &&
+    `
     margin: 0 0 0 9.6rem;
 
     ${Media.mobile} {
@@ -325,7 +363,9 @@ export const SectionImage = styled.div<{ hero?: boolean, centerMobile?: boolean,
   ${Media.mediumDown} {
     /* height: initial; */
 
-    ${({ centerMobile }) => centerMobile && `
+    ${({ centerMobile }) =>
+      centerMobile &&
+      `
       margin-left: auto;
       margin-right: auto;
     `}
@@ -402,20 +442,20 @@ export const Metrics = styled.div`
 export const IconList = styled.ol`
   display: grid;
   max-width: 110rem;
-  grid-template-columns: 1fr 1fr; 
+  grid-template-columns: 1fr 1fr;
   width: 100%;
   margin: 5.6rem auto 0;
   padding: 0;
   gap: 7rem 10rem;
 
-    ${Media.mobile} {
-      grid-template-columns: 1fr; 
-    }
+  ${Media.mobile} {
+    grid-template-columns: 1fr;
+  }
 `
 
 export const IconListItem = styled.li<{ icon?: string }>`
   display: grid;
-  grid-template-columns: 5.4rem 1fr; 
+  grid-template-columns: 5.4rem 1fr;
   flex-flow: row wrap;
   align-items: flex-start;
   justify-content: flex-start;
@@ -427,7 +467,9 @@ export const IconListItem = styled.li<{ icon?: string }>`
   }
 
   &::before {
-    ${({ icon }) => icon && `
+    ${({ icon }) =>
+      icon &&
+      `
       content: "";
       height: 3.6rem;
       width: 3.6rem;
@@ -454,11 +496,11 @@ export const IconListItem = styled.li<{ icon?: string }>`
     font-weight: ${Font.weightMedium};
 
     ${Media.mobile} {
-      font-size: 2.6rem; 
+      font-size: 2.6rem;
       text-align: center;
     }
   }
-  
+
   > span > p {
     font-size: 1.8rem;
     line-height: 1.6;
@@ -489,7 +531,7 @@ export const CheckList = styled.ol`
   }
 
   > li::before {
-    content: "";
+    content: '';
     display: inline-block;
     height: 2.4rem;
     width: 2.4rem;
@@ -611,61 +653,61 @@ export const IntegrationList = styled.span`
     width: 100%;
   }
 
-    > ol {
-      margin: auto;
-      padding: 0;
-      display: grid;
-      list-style: none;
-      gap: 3rem;
-      grid-template-columns: repeat(3, 1fr);
+  > ol {
+    margin: auto;
+    padding: 0;
+    display: grid;
+    list-style: none;
+    gap: 3rem;
+    grid-template-columns: repeat(3, 1fr);
 
-      ${Media.mediumDown} {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-        margin: 0 auto 5.6rem;
-      }
-    }
-
-    > ol > li {
-      padding: 0;
-      margin: 0;
-      width: 12rem;
-      height: 12rem;
+    ${Media.mediumDown} {
       display: flex;
-
-      ${Media.mobile} {
-        width: 9rem;
-        height: 9rem;
-      }
-    }
-
-    > ol > li > a {
-      display: flex;
-      align-items: center;
+      flex-flow: row wrap;
       justify-content: center;
-      font-size: 1.6rem;
-      padding: 0;
-      background: ${Color.darkBlue3};
-      border-radius: 6rem;
+      margin: 0 auto 5.6rem;
+    }
+  }
+
+  > ol > li {
+    padding: 0;
+    margin: 0;
+    width: 12rem;
+    height: 12rem;
+    display: flex;
+
+    ${Media.mobile} {
+      width: 9rem;
+      height: 9rem;
+    }
+  }
+
+  > ol > li > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    padding: 0;
+    background: ${Color.darkBlue3};
+    border-radius: 6rem;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s ease-in-out;
+
+    ${Media.mobile} {
+      border-radius: 4.5rem;
+    }
+
+    &:hover {
+      transform: rotate(360deg);
+    }
+
+    > img {
+      margin: auto;
       width: 100%;
       height: 100%;
-      transition: transform 0.8s ease-in-out;
-
-      ${Media.mobile} {
-        border-radius: 4.5rem;
-      }
-
-      &:hover {
-        transform: rotate(360deg);
-      }
-
-      > img {
-        margin: auto;
-        width: 100%;
-        height: 100%;
-        max-width: 65%;
-        max-height: 65%;
-      }
+      max-width: 65%;
+      max-height: 65%;
     }
+  }
 `

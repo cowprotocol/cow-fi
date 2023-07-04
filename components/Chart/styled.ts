@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { ArrowDownRight, ArrowUpRight } from 'react-feather'
-import { Color, TransitionDuration } from '@/const/styles/variables'
-import { textFadeIn } from '@/const/styles/variables'
+import { Color, TransitionDuration } from 'styles/variables'
+import { textFadeIn } from 'styles/variables'
 
 export const ChartHeader = styled.div`
   position: absolute;

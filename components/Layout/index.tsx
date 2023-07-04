@@ -2,8 +2,8 @@ import styled from 'styled-components'
 import { PropsWithChildren } from 'react'
 import Header from 'components/Layout/Header'
 import Footer from 'components/Layout/Footer'
-import { Content } from 'const/styles/pages/content'
-import { Color } from 'const/styles/variables'
+import { Content } from './index.styles'
+import { Color } from 'styles/variables'
 
 const Wrapper = styled.div`
   margin: 0 auto;

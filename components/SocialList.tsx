@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { transparentize } from 'polished'
-import { Color, Font, Media } from 'const/styles/variables'
+import { Color, Font, Media } from 'styles/variables'
 
 const Wrapper = styled.ol<Pick<SocialListProps, 'iconSize' | 'gap' | 'innerPadding' | 'alignItems' | 'labels'>>`
   display: flex;

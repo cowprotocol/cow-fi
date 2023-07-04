@@ -1,4 +1,4 @@
-import { SwapCard } from '@/const/styles/pages/tokens'
+import { SwapCard } from '@/components/TokenDetails/index.styles'
 
 type SwapLinkCardProps = {
   contractAddress: string

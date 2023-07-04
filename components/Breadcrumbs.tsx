@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Color, Media } from 'const/styles/variables'
+import { Color, Media } from 'styles/variables'
 import { transparentize } from 'polished'
 import Link from 'next/link'
 
@@ -54,5 +54,4 @@ export const Breadcrumbs = ({ crumbs }) => (
       </React.Fragment>
     ))}
   </StyledBreadcrumbs>
-);
-
+)

@@ -1,4 +1,4 @@
-import { Color } from '@/const/styles/variables'
+import { Color } from 'styles/variables'
 
 export function getPriceChangeColor(value) {
   if (!value) return Color.text1

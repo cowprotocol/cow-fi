@@ -14,7 +14,7 @@ import { Line } from '@visx/shape'
 import { GlyphCircle } from '@visx/glyph'
 import { localPoint } from '@visx/event'
 import { EventType } from '@visx/event/lib/types'
-import { Color } from '@/const/styles/variables'
+import { Color } from 'styles/variables'
 import { getPriceChangeColor } from 'util/getPriceChangeColor'
 import { MissingPriceChart } from './MissingChart'
 import {

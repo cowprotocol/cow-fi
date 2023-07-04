@@ -28,3 +28,11 @@ export interface TokenDetails extends TokenInfo {
   allTimeHigh: string | null
   allTimeLow: string | null
 }
+
+export interface MetricsData {
+  totalVolume: string
+  tradesCount: string
+  tradesCountLastModified: string
+  totalSurplus: string
+  totalSurplusLastModified: string
+}
