@@ -30,6 +30,7 @@ import { TokenDetails } from 'types'
 import { GetStaticProps } from 'next'
 import { ParsedUrlQuery } from 'querystring'
 
+const DATA_CACHE_TIME_SECONDS = 10 * 60 // 10 minutes
 export interface TokenDetailProps {
   token: TokenDetails
 }
@@ -161,7 +162,7 @@ export default function TokenDetail({ token }: TokenDetailProps) {
 }
 
 export async function getStaticPaths() {
-  const tokenIds = getTokensIds()
+  const tokenIds = await getTokensIds()
 
   return {
     fallback: false,
@@ -182,5 +183,6 @@ export const getStaticProps: GetStaticProps<TokenDetailProps> = async ({ params 
     props: {
       token: token,
     },
+    revalidate: DATA_CACHE_TIME_SECONDS,
   }
 }

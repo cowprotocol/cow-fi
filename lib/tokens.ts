@@ -1,29 +1,30 @@
 import fs from 'fs'
 import path from 'path'
 import { PlatformData, Platforms, TokenDetails, TokenInfo } from 'types'
+import { backOff } from 'exponential-backoff'
 
 const NETWORKS = ['ethereum', 'xdai']
 const COW_TOKEN_ID = 'cow-protocol'
 
-const TOKENS_PATH = path.join(process.cwd(), 'data', 'tokens.json')
+// const TOKENS_PATH = path.join(process.cwd(), 'data', 'tokens.json')
 const DESCRIPTIONS_DIR_PATH = path.join(process.cwd(), 'data', 'descriptions')
-
-const ALL_TOKENS = _getAllTokensData()
 
 /**
  *
  * @returns All token ids
  */
-export function getTokensIds(): string[] {
-  return ALL_TOKENS.map(({ id }) => id)
+export async function getTokensIds(): Promise<string[]> {
+  const tokensRaw = await _getAllTokensData()
+  return tokensRaw.map(({ id }) => id)
 }
 
 /**
  *
  * @returns All token info sorted by market cap, with COW at the top
  */
-export function getTokensInfo(): TokenInfo[] {
-  const tokens = ALL_TOKENS.map(_toTokenInfo)
+export async function getTokensInfo(): Promise<TokenInfo[]> {
+  const tokensRaw = await _getAllTokensData()
+  const tokens = tokensRaw.map(_toTokenInfo)
 
   let sortedTokens = tokens.sort(_sortTokensInfoByMarketCap)
 
@@ -46,22 +47,45 @@ export function getTokensInfo(): TokenInfo[] {
  */
 export async function getTokenDetails(coingeckoId: string): Promise<TokenDetails> {
   const id = coingeckoId.toLowerCase()
-  return ALL_TOKENS.find(({ id: _id }) => _id === id)
+  const tokensRaw = await _getAllTokensData()
+  return tokensRaw.find(({ id: _id }) => _id === id)
 }
 
 function _getDescriptionFilePaths(): string[] {
   return fs.readdirSync(DESCRIPTIONS_DIR_PATH, 'utf-8')
 }
 
-function _getTokensRawInfo(): any[] {
-  const tokenJson = fs.readFileSync(TOKENS_PATH, 'utf-8')
-  const tokenData = JSON.parse(tokenJson)
+async function fetchWithBackoff(url) {
+  return backOff(
+    () => {
+      console.log(`Fetching ${url}`)
+      return fetch(url).then((res) => {
+        if (!res.ok) {
+          throw new Error(`Error fetching list ${url}: Error ${res.status}, ${res.statusText}`)
+        }
 
-  return tokenData
+        return res.json()
+      })
+    },
+    {
+      retry: (e, attemptNum) => {
+        console.log(`Error fetching ${url}, attempt ${attemptNum}. Retrying soon...`, e)
+        return true
+      },
+    }
+  )
 }
 
-function _getAllTokensData(): TokenDetails[] {
-  const tokenRawData = _getTokensRawInfo()
+function _getTokensRawInfo(): Promise<any[]> {
+  // const tokenJson = fs.readFileSync(TOKENS_PATH, 'utf-8')
+  // const tokenData = JSON.parse(tokenJson)
+
+  // return tokenData
+  return fetchWithBackoff('https://raw.githubusercontent.com/cowprotocol/cow-fi/develop/data/tokens.json')
+}
+
+async function _getAllTokensData(): Promise<TokenDetails[]> {
+  const tokenRawData = await _getTokensRawInfo()
 
   // Get manual descriptions
   const descriptionFilePaths = _getDescriptionFilePaths()
