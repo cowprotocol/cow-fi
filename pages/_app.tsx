@@ -1,11 +1,11 @@
 import { AppProps } from 'next/app'
-import GlobalStyles from 'const/styles/global'
+import GlobalStyles from 'styles/global.styles'
 import Head from 'next/head'
 
 import { CONFIG } from '@/const/meta'
 import { Analytics } from '@/components/Analytics'
 import { ApolloProvider } from '@apollo/client'
-import { apolloClient } from 'services/graphql/apollo-client'
+import { apolloClient } from 'services/uniswap-price/apollo-client'
 
 // import { i18n } from '@lingui/core'
 // import { I18nProvider } from "@lingui/react";

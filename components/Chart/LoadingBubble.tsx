@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 import { lighten } from 'polished'
-import { Color } from '@/const/styles/variables'
+import { Color } from 'styles/variables'
 
 export const loadingAnimation = keyframes`
   0% {

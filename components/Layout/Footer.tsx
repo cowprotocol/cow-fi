@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import Link from 'next/link'
-import { Color, Font, Media } from 'const/styles/variables'
+import { Color, Font, Media } from 'styles/variables'
 import SocialList from 'components/SocialList'
 import { CustomLink } from '../CustomLink'
 import { FOOTER_LINK_GROUPS } from '@/const/menu'
@@ -211,7 +211,11 @@ export default function Footer({ noMargin }: FooterProps) {
     <Wrapper noMargin={noMargin}>
       <FooterMenu />
       <Social />
-      {showDisclaimer && <FooterDisclaimer><p>{CONFIG.tokenDisclaimer}</p></FooterDisclaimer>}
+      {showDisclaimer && (
+        <FooterDisclaimer>
+          <p>{CONFIG.tokenDisclaimer}</p>
+        </FooterDisclaimer>
+      )}
     </Wrapper>
   )
 }

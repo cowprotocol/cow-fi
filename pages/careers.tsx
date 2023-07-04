@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { GetStaticProps } from 'next'
 import { CONFIG } from '@/const/meta'
 import Layout from '@/components/Layout'
-import { Section, Title, SubTitle, TitleSmall, LinkContainer } from 'const/styles/pages/content'
-import { DropDown, ExternalLink } from '@/const/styles/global'
+import { Section, Title, SubTitle, TitleSmall, LinkContainer } from '@/components/Layout/index.styles'
+import { DropDown, ExternalLink } from 'styles/global.styles'
 import SVG from 'react-inlinesvg'
 
 async function getJobs() {
@@ -14,9 +14,9 @@ async function getJobs() {
   try {
     const response = await fetch(api)
     const data = await response.json()
-    data.jobs.forEach(job => {
+    data.jobs.forEach((job) => {
       const deptName = job.departments[0].name
-      deptName && jobsData[deptName] ? jobsData[deptName].push(job) : jobsData[deptName] = [job]
+      deptName && jobsData[deptName] ? jobsData[deptName].push(job) : (jobsData[deptName] = [job])
     })
   } catch (error) {
     console.log(error)
@@ -39,59 +39,80 @@ export default function Jobs({ jobsData, siteConfigData }) {
 
   return (
     <>
-    <Head>
-      <title>Careers - {title}</title>
-    </Head>
-    <Layout>
-      <Section>
-        <Title>Want to build the future of decentralized trading?</Title>
-        <SubTitle>We are an ambitious, fast growing and international team working at the forefront of DeFi. We believe that we can make markets both more efficient and fair, by building the ultimate batch auction settlement layer across EVM compatible blockchains.</SubTitle>
-      </Section>
-
-      {jobsCount > 0 && <TitleSmall>We&apos;re currently hiring for {jobsCountForDepartment} position{jobsCountForDepartment > 1 && 's'}{department !== 'All' && ` in ${department}`}:</TitleSmall>}
-      {jobsCount < 1 && <TitleSmall>There are currently no open positions.</TitleSmall>}
-
-      {jobsCount > 0 && department.length > 0 && (
-        <>
-          <DropDown>
-            <select onChange={handleDepartmentChange}>
-            <option value="All" selected>All ({jobsCount})</option>
-            {departments.map(department => <option key={department} value={department}>{department} ({jobsData[department].length})</option>)}
-            </select>
-          </DropDown>
-        </>
-      )}
-
-      {jobsCount > 0 && department === 'All' ?
-        Object.keys(jobsData).map((deptName: string) => (
-          <Section key={deptName} margin={'0 0 1.6rem'}>
-            <SubTitle>{deptName}</SubTitle>
-            {jobsData[deptName].map(({ absolute_url, title, location }, index) => (
-              <LinkContainer key={index} href={absolute_url} target="_blank" rel="noopener nofollow noreferrer">
-                <b>{title}</b>
-                <i>{location.name}</i>
-                <SVG src="images/icons/arrowRight.svg" cacheRequests={true} />
-              </LinkContainer>
-            ))}
-          </Section>
-        )) :
-        jobsCount > 0 && <Section margin={'0 0 1.6rem'}>
-          <SubTitle>{department}</SubTitle>
-          {jobsData[department].map(({ absolute_url, title, location }, index) => (
-            <LinkContainer key={index} href={absolute_url} target="_blank" rel="noopener nofollow noreferrer">
-              <b>{title}</b>
-              <i>{location.name}</i>
-              <SVG src="images/icons/arrowRight.svg" cacheRequests={true} />
-            </LinkContainer>
-          ))}
+      <Head>
+        <title>Careers - {title}</title>
+      </Head>
+      <Layout>
+        <Section>
+          <Title>Want to build the future of decentralized trading?</Title>
+          <SubTitle>
+            We are an ambitious, fast growing and international team working at the forefront of DeFi. We believe that
+            we can make markets both more efficient and fair, by building the ultimate batch auction settlement layer
+            across EVM compatible blockchains.
+          </SubTitle>
         </Section>
-      }
 
-      <Section>
-        <p>{jobsCount < 1 && 'Currently there are no open positions. Convinced you can contribute to Cow Protocol?'}{jobsCount > 0 && "Can't find the position you're looking for?"} <ExternalLink href={discordURL} target="_blank" rel="noopener nofollow">Get in touch</ExternalLink></p>
-      </Section>
+        {jobsCount > 0 && (
+          <TitleSmall>
+            We&apos;re currently hiring for {jobsCountForDepartment} position{jobsCountForDepartment > 1 && 's'}
+            {department !== 'All' && ` in ${department}`}:
+          </TitleSmall>
+        )}
+        {jobsCount < 1 && <TitleSmall>There are currently no open positions.</TitleSmall>}
 
-    </Layout>
+        {jobsCount > 0 && department.length > 0 && (
+          <>
+            <DropDown>
+              <select onChange={handleDepartmentChange}>
+                <option value="All" selected>
+                  All ({jobsCount})
+                </option>
+                {departments.map((department) => (
+                  <option key={department} value={department}>
+                    {department} ({jobsData[department].length})
+                  </option>
+                ))}
+              </select>
+            </DropDown>
+          </>
+        )}
+
+        {jobsCount > 0 && department === 'All'
+          ? Object.keys(jobsData).map((deptName: string) => (
+              <Section key={deptName} margin={'0 0 1.6rem'}>
+                <SubTitle>{deptName}</SubTitle>
+                {jobsData[deptName].map(({ absolute_url, title, location }, index) => (
+                  <LinkContainer key={index} href={absolute_url} target="_blank" rel="noopener nofollow noreferrer">
+                    <b>{title}</b>
+                    <i>{location.name}</i>
+                    <SVG src="images/icons/arrowRight.svg" cacheRequests={true} />
+                  </LinkContainer>
+                ))}
+              </Section>
+            ))
+          : jobsCount > 0 && (
+              <Section margin={'0 0 1.6rem'}>
+                <SubTitle>{department}</SubTitle>
+                {jobsData[department].map(({ absolute_url, title, location }, index) => (
+                  <LinkContainer key={index} href={absolute_url} target="_blank" rel="noopener nofollow noreferrer">
+                    <b>{title}</b>
+                    <i>{location.name}</i>
+                    <SVG src="images/icons/arrowRight.svg" cacheRequests={true} />
+                  </LinkContainer>
+                ))}
+              </Section>
+            )}
+
+        <Section>
+          <p>
+            {jobsCount < 1 && 'Currently there are no open positions. Convinced you can contribute to Cow Protocol?'}
+            {jobsCount > 0 && "Can't find the position you're looking for?"}{' '}
+            <ExternalLink href={discordURL} target="_blank" rel="noopener nofollow">
+              Get in touch
+            </ExternalLink>
+          </p>
+        </Section>
+      </Layout>
     </>
   )
 }

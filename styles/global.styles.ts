@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components'
-import { Color, Font, Media } from 'const/styles/variables'
+import { Color, Font, Media } from 'styles/variables'
 import { transparentize } from 'polished'
 
 const GlobalStyles = createGlobalStyle`

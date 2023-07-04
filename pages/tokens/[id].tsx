@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import Layout from '@/components/Layout'
-import { getTokensIds as getTokensIds, getTokenDetails as getTokenDetails } from 'lib/tokens'
+import { getTokensIds as getTokensIds, getTokenDetails as getTokenDetails } from 'services/tokens'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import {
   Wrapper,
@@ -18,7 +18,7 @@ import {
   StatItem,
   StatTitle,
   StatValue,
-} from '@/const/styles/pages/tokens'
+} from '@/pages/tokens/index.styles'
 import { SwapWidget } from '@/components/SwapWidget'
 import { SwapLinkCard } from '@/components/SwapLinkCard'
 import { NetworkHeaderItem } from '@/components/NetworkItem/styles'

@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 import { PropsWithChildren } from 'react'
 
 import Header from 'components/Layout/Header'
 import Footer from 'components/Layout/Footer'
-import { Content } from 'const/styles/pages/content'
+import { Content } from '@/components/Layout/index.styles'
 
 export type LayoutProps = PropsWithChildren<{
   siteConfigData?: any // needs fix

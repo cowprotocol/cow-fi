@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Color } from '@/const/styles/variables'
+import { Color } from 'styles/variables'
 import Button from '@/components/Button'
 import { transparentize } from 'polished'
 

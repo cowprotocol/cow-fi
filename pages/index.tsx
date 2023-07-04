@@ -3,7 +3,7 @@ import { GetStaticProps } from 'next'
 import { useRef } from 'react'
 
 import { CONFIG } from '@/const/meta'
-import { Color } from 'const/styles/variables'
+import { Color } from 'styles/variables'
 
 import Layout from '@/components/Layout'
 import { ButtonWrapper } from '@/components/Button'
@@ -18,12 +18,12 @@ import {
   IntegrationList,
   StepWrapper,
   StepContainer,
-} from '../const/styles/pages/index'
+} from './index.styles'
 import SocialList from '@/components/SocialList'
 import Button from '@/components/Button'
 
 import { CowSdk } from '@cowprotocol/cow-sdk'
-import { getCowStats } from 'services/config'
+import { getCowStats } from 'services/cow'
 const cowSdk = new CowSdk(1)
 const numberFormatter = Intl.NumberFormat('en', { notation: 'compact' })
 const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min

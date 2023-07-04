@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import styled from 'styled-components'
-import { Color } from '@/const/styles/variables'
+import { Color } from 'styles/variables'
 import { TrendingUp } from 'react-feather'
 
 const StyledMissingChart = styled.svg`
