@@ -1,6 +1,6 @@
 <h2>What is EdenChain (EDN)?</h2>
 
-<p>Moo-tivate your cryptocurrency portfolio with EdenChain (EDN)! EdenChain is a dynamic priority transaction network that strives to protect traders from frontrunning, align incentives for block producers, and redistribute Miner Extractable Value (MEV). As with a pasture full of industrious cows working in harmony, EdenChain is a blockchain platform designed with enterprise solutions in mind. It's all about replacing traditional assets with blockchain-based tokens through smart contracts, ensuring that your assets graze freely in the most innovative financial pasture.</p>
+<p>Moo-tivate your cryptocurrency portfolio with EdenChain (EDN)! EdenChain is a dynamic priority transaction network that strives to protect traders from frontrunning, align incentives for block producers, and redistribute Maximal Extractable Value (MEV). As with a pasture full of industrious cows working in harmony, EdenChain is a blockchain platform designed with enterprise solutions in mind. It's all about replacing traditional assets with blockchain-based tokens through smart contracts, ensuring that your assets graze freely in the most innovative financial pasture.</p>
 
 <h2>What Makes EdenChain (EDN) Special?</h2>
 
