@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import Layout from '@/components/Layout'
 import { getTokensInfo } from 'services/tokens'
 import { TokenInfo } from 'types'
