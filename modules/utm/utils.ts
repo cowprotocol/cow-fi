@@ -73,7 +73,9 @@ export function addUtmToUrl(href: string, utm: UtmParams): string {
     url.searchParams.set(UTM_TERM_PARAM, utm.utmTerm)
   }
 
-  console.log('UTM addUtmToUrl', url)
+  const [hash = '', params = ''] = url.hash.split('?')
+  const searchParams = (url.search && url.search.slice(1)) || ''
+  const urlParams = params || searchParams ? `?${params}&${searchParams}` : ''
 
-  return url.origin + url.hash + url.search
+  return url.origin + hash + urlParams
 }
