@@ -213,11 +213,23 @@ export const SwapWidget = ({ tokenSymbol, tokenImage, platforms }: SwapWidgetPro
   }
 
   useEffect(() => {
-    console.log('platforms:', platforms)
     // set initial network based on the available platforms
     if (platforms.ethereum.contractAddress) setNetwork(Networks.ETHEREUM)
     else if (platforms.xdai.contractAddress) setNetwork(Networks.XDAI)
   }, [platforms])
+
+  const handleInputChange = (event) => {
+    let value = event.target.value
+
+    // Remove leading minus sign if present
+    if (value.startsWith('-')) {
+      value = value.slice(1)
+    }
+
+    if (value === '' || (parseFloat(value) >= 0 && !isNaN(value))) {
+      setAmount(value)
+    }
+  }
 
   const onSwap = () => {
     if (network && platforms[network]) {
@@ -301,7 +313,7 @@ export const SwapWidget = ({ tokenSymbol, tokenImage, platforms }: SwapWidgetPro
             <img src={tokenImage} alt={tokenSymbol} />
             <span>{tokenSymbol}</span>
           </TokenLabel>
-          <Input type="number" onChange={(e) => setAmount(parseFloat(e.target.value))} placeholder="0" />
+          <Input min={0} value={amount} type="text" onChange={handleInputChange} placeholder="0" />
         </div>
       </InputLabel>
 

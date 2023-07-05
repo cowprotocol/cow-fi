@@ -343,8 +343,19 @@ export const CopyIcon = styled.img`
   opacity: 0.6;
   transition: opacity 0.2s ease-in-out;
   padding: 0.2rem;
+  margin-left: 5px;
+  max-width: 20px;
 
   &:hover {
     opacity: 1;
   }
+`
+
+export const CopyWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  width: auto;
+  min-width: 100px;
+  text-align: right;
+  justify-content: flex-end;
 `
