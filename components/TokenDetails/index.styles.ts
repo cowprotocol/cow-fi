@@ -29,6 +29,10 @@ export const Wrapper = styled.div`
     line-height: 1.2;
     margin: 0 0 1.2rem;
   }
+
+  li {
+    padding: 0.8rem;
+  }
 `
 
 export const MainContent = styled.div`
