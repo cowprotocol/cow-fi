@@ -18,6 +18,9 @@ module.exports = withTM({
       },
     ]
   },
+  compiler: {
+    styledComponents: true,
+  },
   webpack5: true,
   webpack: (config) => {
     config.resolve.fallback = {
