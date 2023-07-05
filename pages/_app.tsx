@@ -6,9 +6,12 @@ import { CONFIG } from '@/const/meta'
 import { Analytics } from '@/components/Analytics'
 import { ApolloProvider } from '@apollo/client'
 import { apolloClient } from 'services/uniswap-price/apollo-client'
+import { useInitializeUtm } from 'modules/utm'
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props
+  useInitializeUtm()
+
   return (
     <>
       <Head>

@@ -20,6 +20,7 @@ import SocialList from '@/components/SocialList'
 import Button from '@/components/Button'
 
 import { MetricsData } from 'types'
+import { useUtm } from 'modules/utm'
 
 export interface HomeProps {
   metricsData: MetricsData
@@ -27,7 +28,8 @@ export interface HomeProps {
 }
 
 export default function Home({ metricsData, siteConfigData }: HomeProps) {
-  const { title, descriptionShort, social, url } = siteConfigData
+  const { social, url } = siteConfigData
+  const utm = useUtm() || {}
 
   const scrollToElRef = useRef(null)
 
@@ -38,6 +40,19 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         <SectionContent>
           <div>
             <h1>Better than the best prices</h1>
+            <pre
+              style={{
+                border: '2px solid black',
+                background: 'white',
+                color: 'black',
+                width: '100%',
+                minHeight: '100px',
+                fontSize: '16px',
+                padding: '20px',
+              }}
+            >
+              {JSON.stringify(utm, null, 2)}
+            </pre>
             <SubTitle align={'left'} color={Color.text1} lineHeight={1.4}>
               CoW Protocol finds the lowest price for your trade across all exchanges and aggregators, such as Uniswap
               and 1inch – and protects you from MEV, unlike the others.
