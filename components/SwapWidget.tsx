@@ -3,7 +3,10 @@ import styled from 'styled-components'
 import { Color } from 'styles/variables'
 import Button from '@/components/Button'
 import { transparentize } from 'polished'
+import { CONFIG } from '@/const/meta'
 
+const UTM_CONTENT = 'swap-widget-token-pages'
+const UTM_PARMS = `utm_source=${CONFIG.utm.source}&utm_medium=${CONFIG.utm.medium}&utm_content=${UTM_CONTENT}`
 type TabProps = {
   active: boolean
 }
@@ -261,7 +264,7 @@ export const SwapWidget = ({ tokenSymbol, tokenImage, platforms }: SwapWidgetPro
         }
       }
 
-      const url = `https://swap.cow.fi/#/${networkId}/swap/${sellToken}/${buyToken}?${activeTab.toLowerCase()}Amount=${amount}`
+      const url = `https://swap.cow.fi/#/${networkId}/swap/${sellToken}/${buyToken}?${activeTab.toLowerCase()}Amount=${amount}&${UTM_PARMS}`
       return url
     } else {
       return '#'
