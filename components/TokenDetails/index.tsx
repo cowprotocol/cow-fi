@@ -1,7 +1,4 @@
 import React from 'react'
-import Head from 'next/head'
-import Layout from '@/components/Layout'
-import { getTokensIds as getTokensIds, getTokenDetails as getTokenDetails } from 'services/tokens'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 import {
   Wrapper,
