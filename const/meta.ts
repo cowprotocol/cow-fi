@@ -7,7 +7,7 @@ export const CONFIG = {
   descriptionShort: 'The smartest way to trade',
   url: {
     root: 'https://cow.fi',
-    swap: 'https://swap.cow.fi',
+    swap: 'https://swap.cow.fi/#/1/swap/WETH/DAI?sellAmount=1',
     docs: 'https://docs.cow.fi',
     api: API_BASE_URL + '/mainnet',
     apiDocs: API_BASE_URL + '/docs',
