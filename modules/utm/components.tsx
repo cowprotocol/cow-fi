@@ -13,8 +13,8 @@ export function LinkWithUtm(p: LinkWithUtmProps): JSX.Element {
   const utm = useUtm()
 
   const newHref = useMemo(() => {
-    const utmAux = utm || defaultUtm
-    if (hasUtmCodes(utmAux) && typeof href === 'string') {
+    const utmAux = getUtm(utm, defaultUtm)
+    if (utmAux && typeof href === 'string') {
       return addUtmToUrl(href, utmAux)
     }
     return href
@@ -25,4 +25,14 @@ export function LinkWithUtm(p: LinkWithUtmProps): JSX.Element {
       {children}
     </Link>
   )
+}
+
+function getUtm(...utms: UtmParams[]): UtmParams | null {
+  for (const utm of utms) {
+    if (hasUtmCodes(utm)) {
+      return utm
+    }
+  }
+
+  return null
 }
