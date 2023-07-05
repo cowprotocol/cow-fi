@@ -23,10 +23,10 @@ import { NetworkItem } from '@/components/NetworkItem'
 
 import { ChartSection } from '@/components/ChartSection'
 import { formatUSDPrice } from 'util/formatUSDPrice'
-import { TokenDetails } from 'types'
+import type { TokenDetails as TokenDetailsType } from 'types'
 
 export interface TokenDetailProps {
-  token: TokenDetails
+  token: TokenDetailsType
 }
 
 export function TokenDetails({ token }: TokenDetailProps) {
