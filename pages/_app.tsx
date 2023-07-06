@@ -1,7 +1,7 @@
 import { AppProps } from 'next/app'
 import GlobalStyles from 'styles/global.styles'
 import Head from 'next/head'
-
+import { useRouter } from 'next/router'
 import { CONFIG } from '@/const/meta'
 import { Analytics } from '@/components/Analytics'
 import { ApolloProvider } from '@apollo/client'
@@ -12,6 +12,9 @@ export default function App(props: AppProps) {
   const { Component, pageProps } = props
   useInitializeUtm()
 
+  const router = useRouter()
+  const CURRENT_URL = `${CONFIG.url.root}${router.asPath}`
+
   return (
     <>
       <Head>
@@ -21,12 +24,12 @@ export default function App(props: AppProps) {
         <link rel="shortcut icon" type="image/png" href="/favicon.png" key="shortcut-icon" />
         <link rel="apple-touch-icon" sizes="192x192" href="/favicon.png" key="apple-touch-icon-192" />
         <link rel="apple-touch-icon" sizes="512x512" href="/favicon.png" key="apple-touch-icon-512" />
-        <link rel="canonical" href={CONFIG.url.root} key="canonical" />
+        <link rel="canonical" href={CURRENT_URL} key="canonical" />
         <meta property="og:type" content="website" key="og-type" />
         <meta property="og:title" content={CONFIG.title} key="og-title" />
         <meta property="og:description" content={CONFIG.description} key="og-description" />
         <meta property="og:image" content={CONFIG.url.root + '/images/og-meta-cowprotocol.png'} key="og-image" />
-        <meta property="og:url" content={CONFIG.url.root} key="og-url" />
+        <meta property="og:url" content={CURRENT_URL} key="og-url" />
         <meta name="twitter:card" content="summary_large_image" key="twitter-card" />
         <meta name="twitter:site" content={CONFIG.social.twitter.account} key="twitter-site" />
         <meta name="twitter:title" content={CONFIG.title} key="twitter-title" />
