@@ -2,7 +2,6 @@ import fs from 'fs'
 import path from 'path'
 import { PlatformData, Platforms, TokenDetails, TokenInfo } from 'types'
 import { backOff } from 'exponential-backoff'
-import { CONFIG } from '@/const/meta'
 
 const NETWORKS = ['ethereum', 'xdai']
 const COW_TOKEN_ID = 'cow-protocol'

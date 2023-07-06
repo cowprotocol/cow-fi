@@ -5,7 +5,6 @@ import { getTokensIds as getTokensIds, getTokenDetails as getTokenDetails } from
 import { TokenDetails as TokenDetailsPure, TokenDetailProps } from '@/components/TokenDetails'
 import { GetStaticProps } from 'next'
 import { CONFIG } from '@/const/meta'
-import { is } from 'make-plural'
 
 const DATA_CACHE_TIME_SECONDS = 10 * 60 // 10 minutes
 
