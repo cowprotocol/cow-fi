@@ -8,11 +8,9 @@ import { CONFIG } from '@/const/meta'
 
 const DATA_CACHE_TIME_SECONDS = 10 * 60 // 10 minutes
 
-export type TokenDetailPageProps = TokenDetailProps & {
-  currentUrl: string;
-}
+export type TokenDetailPageProps = TokenDetailProps
 
-export default function TokenDetailsPage({ token, currentUrl }: TokenDetailPageProps) {
+export default function TokenDetailsPage({ token }: TokenDetailPageProps) {
   const { name, symbol, metaDescription, change24h, priceUsd } = token
   const change24 = parseFloat(change24h)
   const change24hFormatted = change24.toFixed(2)
@@ -28,8 +26,6 @@ export default function TokenDetailsPage({ token, currentUrl }: TokenDetailPageP
         <meta name="description" content={metaDescription} key="description" />
         <meta property="og:title" content={metaTitle} key="og-title" />
         <meta property="og:description" content={metaDescription} key="og-description" />
-        <link rel="canonical" href={currentUrl} key="canonical" />
-        <meta property="og:url" content={currentUrl} key="og-url" /> 
         <meta name="twitter:title" content={CONFIG.title} key="twitter-title" />
       </Head>
 
@@ -58,12 +54,9 @@ export const getStaticProps: GetStaticProps<TokenDetailProps> = async ({ params 
     }
   }
 
-  const currentUrl = `${CONFIG.url.root}/tokens/${token.id}`;
-
   return {
     props: {
       token: token,
-      currentUrl: currentUrl,
     },
     revalidate: DATA_CACHE_TIME_SECONDS,
   }
