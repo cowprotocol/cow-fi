@@ -104,7 +104,7 @@ async function _getAllTokensData(): Promise<TokenDetails[]> {
         return undefined
       }
 
-      // Add hand-made descriptions
+      // Add generated descriptions
       const description = _getTokenDescription(tokenRaw.id)
 
       return _toTokenDetails(tokenRaw, description)
@@ -120,22 +120,34 @@ function _getTokenDescription(id: string): string {
 }
 
 function _getTokenMetaDescription(token: TokenDetails): string {
-  const { id, name, symbol, description, priceUsd, allTimeHigh, allTimeLow, change24h, marketCap, marketCapRank } =
-    token
+  if (!token) {
+    throw new Error("Token details are required.");
+  }
 
-  const match = description.match(/<p>([\S\s]*?)<\/p>/)
-  if (!match) console.warn('No match for token description', id, symbol, description)
-  const metaSummary =
-    match && match.length > 0
-      ? shortenString(match[1], 42)
-      : `${name} is traded at best prices in CoW Protocol DEX aggregator.`
+  const { name, symbol, priceUsd, volume, change24h, marketCap } = token;
 
-  // Just an experiemen
-  // const metaSummary = await getTokenSummaryUsingIA(token.description)
-  const quickStats = `Price $${priceUsd} (${change24h}$), ATH $${allTimeHigh}, ATL $${allTimeLow}. Market Cap $${marketCap} (🏆 #${marketCapRank})`
-
-  return `${name} (${symbol}) info. ${metaSummary}. ${quickStats}`
+  const change24hTrimmed = parseFloat(change24h).toFixed(2);
+  const isIncrease = parseFloat(change24h) >= 0;
+  const changeDirection = isIncrease ? 'increase ▲' : 'decrease ▼';
+  
+  const templates = [
+    `Moo-ve over to ${name} (${symbol})! Grazing at $${priceUsd} with ${changeDirection} of ${change24hTrimmed}% in 24h. Trading volume: $${volume}. Their market cap: $${marketCap}. Learn about ${symbol}'s pasture.`,
+    `The grass is greener with ${name} (${symbol})! At $${priceUsd}, with ${changeDirection} of ${change24hTrimmed}% in 24h. Trading volume: $${volume}. Their market cap: $${marketCap}. Discover more about ${symbol}.`,
+    `Interested in ${name} (${symbol})? Priced at $${priceUsd}, with ${changeDirection} of ${change24hTrimmed}% in 24h. Trading volume: $${volume}. Their market cap: $${marketCap}. Learn more about ${symbol}!`,
+    `Graze on this: ${name} (${symbol}) at $${priceUsd}, with ${changeDirection} of ${change24hTrimmed}% in 24h. Trading volume: $${volume}. They boast a market cap of $${marketCap}. Learn about ${symbol}.`,
+    `Ever heard of ${name} (${symbol})? At $${priceUsd}, they've marked a ${changeDirection} of ${change24hTrimmed}% in 24h. Trading volume: $${volume}. Their market cap: $${marketCap}. Get to know them.`,
+    `Check out ${name} (${symbol})! Grazing at $${priceUsd}, with ${changeDirection} of ${change24hTrimmed}% in 24h. Trading volume: $${volume}. Their market cap: $${marketCap}. Discover ${symbol}'s secrets.`,
+    `Latest on ${name} (${symbol}): priced at $${priceUsd}. Experienced a ${changeDirection} of ${change24hTrimmed}% in 24h. Trading volume: $${volume}. Their market cap: $${marketCap}. Learn more.`,
+  ];  
+  
+  const randomIndex = Math.floor(Math.random() * templates.length);
+  
+  return templates[randomIndex];
 }
+
+
+
+
 
 function _toTokenDetails(tokenRaw: any, description: string): TokenDetails {
   // Add platform information

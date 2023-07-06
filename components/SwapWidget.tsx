@@ -31,6 +31,7 @@ const Tab = styled.div<TabProps>`
 `
 
 const TabContainer = styled.div`
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-content: space-between;

@@ -2,6 +2,7 @@ const API_BASE_URL = 'https://api.cow.fi'
 
 export const CONFIG = {
   title: 'CoW Protocol',
+  metatitle_tokenDetail: 'Live Token Price Chart & Metrics',
   description:
     'CoW Protocol finds the lowest prices from all decentralized exchanges and DEX aggregators & saves you more with p2p trading and protection from MEV ',
   descriptionShort: 'The smartest way to trade',
