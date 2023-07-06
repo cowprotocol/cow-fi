@@ -9,9 +9,11 @@ import { is } from 'make-plural'
 
 const DATA_CACHE_TIME_SECONDS = 10 * 60 // 10 minutes
 
-export type TokenDetailPageProps = TokenDetailProps
+export type TokenDetailPageProps = TokenDetailProps & {
+  currentUrl: string;
+}
 
-export default function TokenDetailsPage({ token }: TokenDetailPageProps) {
+export default function TokenDetailsPage({ token, currentUrl }: TokenDetailPageProps) {
   const { name, symbol, metaDescription, change24h, priceUsd } = token
   const change24 = parseFloat(change24h)
   const change24hFormatted = change24.toFixed(2)
@@ -28,8 +30,8 @@ export default function TokenDetailsPage({ token }: TokenDetailPageProps) {
         <meta name="description" content={metaDescription} />
         <meta property="og:title" content={metaTitle} />
         <meta property="og:description" content={metaDescription} />
-        <link rel="canonical" href={CONFIG.url.root} />
-        <meta property="og:url" content={CONFIG.url.root} /> 
+        <link rel="canonical" href={currentUrl} />
+        <meta property="og:url" content={currentUrl} /> 
         <meta name="twitter:title" content={CONFIG.title} />
       </Head>
 
@@ -58,9 +60,12 @@ export const getStaticProps: GetStaticProps<TokenDetailProps> = async ({ params 
     }
   }
 
+  const currentUrl = `${CONFIG.url.root}/tokens/${token.id}`;
+
   return {
     props: {
       token: token,
+      currentUrl: currentUrl,
     },
     revalidate: DATA_CACHE_TIME_SECONDS,
   }
