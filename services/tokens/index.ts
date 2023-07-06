@@ -51,6 +51,20 @@ export async function getTokenDetails(coingeckoId: string): Promise<TokenDetails
   return tokensRaw.find(({ id: _id }) => _id === id)
 }
 
+// Just a quick experiment. Not using for now
+// function getTokenSummaryUsingIA(description: string): Promise<string> {
+//   const options = {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       Authorization: `Bearer ${process.env.OPEN_IA_API_KEY}`,
+//     },
+//     body: JSON.stringify({ description }),
+//   }
+
+//   return fetch('https://api.openai.com/v1/engines/davinci/completions', options).then((response) => response.json())
+// }
+
 function _getDescriptionFilePaths(): string[] {
   return fs.readdirSync(DESCRIPTIONS_DIR_PATH, 'utf-8')
 }
@@ -85,14 +99,15 @@ async function _getAllTokensData(): Promise<TokenDetails[]> {
 
   // Enhance description and transform to token details
   const tokens = tokenRawData
-    .map((token) => {
-      if (!descriptionFiles.includes(token.id)) {
+    .map((tokenRaw) => {
+      if (!descriptionFiles.includes(tokenRaw.id)) {
         return undefined
       }
 
-      const description = _getTokenDescription(token.id)
+      // Add hand-made descriptions
+      const description = _getTokenDescription(tokenRaw.id)
 
-      return _toTokenDetails(token, description)
+      return _toTokenDetails(tokenRaw, description)
     })
     .filter(Boolean) // Not falsy
 
@@ -104,9 +119,27 @@ function _getTokenDescription(id: string): string {
   return fs.readFileSync(filePath, 'utf-8')
 }
 
-function _toTokenDetails(token: any, description: string): TokenDetails {
+function _getTokenMetaDescription(token: TokenDetails): string {
+  const { id, name, symbol, description, priceUsd, allTimeHigh, allTimeLow, change24h, marketCap, marketCapRank } =
+    token
+
+  const match = description.match(/<p>([\S\s]*?)<\/p>/)
+  if (!match) console.warn('No match for token description', id, symbol, description)
+  const metaSummary =
+    match && match.length > 0
+      ? shortenString(match[1], 42)
+      : `${name} is traded at best prices in CoW Protocol DEX aggregator.`
+
+  // Just an experiemen
+  // const metaSummary = await getTokenSummaryUsingIA(token.description)
+  const quickStats = `Price $${priceUsd} (${change24h}$), ATH $${allTimeHigh}, ATL $${allTimeLow}. Market Cap $${marketCap} (🏆 #${marketCapRank})`
+
+  return `${name} (${symbol}) info. ${metaSummary}. ${quickStats}`
+}
+
+function _toTokenDetails(tokenRaw: any, description: string): TokenDetails {
   // Add platform information
-  const detailPlatforms = token.detail_platforms
+  const detailPlatforms = tokenRaw.detail_platforms
 
   const platforms = NETWORKS.reduce<Platforms>((acc, network) => {
     const platformRaw = detailPlatforms[network]
@@ -118,14 +151,15 @@ function _toTokenDetails(token: any, description: string): TokenDetails {
   }, {})
 
   // Return the details
-  const marketData = token.market_data
-  return {
-    id: token.id,
-    name: token.name,
-    symbol: token.symbol?.toUpperCase(),
+  const marketData = tokenRaw.market_data
+  const token = {
+    id: tokenRaw.id,
+    name: tokenRaw.name,
+    symbol: tokenRaw.symbol?.toUpperCase(),
     description,
+    metaDescription: '',
     // description: description || token?.description?.en || token?.ico_data?.desc || '-', // Replicate old behavior (but not needed, since manual description is always required, leaving for now to double check with Nenad)
-    marketCapRank: token.market_cap_rank,
+    marketCapRank: tokenRaw.market_cap_rank,
     marketCap: marketData?.market_cap?.usd ?? null,
     allTimeHigh: marketData?.ath.usd ?? null,
     allTimeLow: marketData?.atl.usd ?? null,
@@ -133,10 +167,14 @@ function _toTokenDetails(token: any, description: string): TokenDetails {
     priceUsd: marketData?.current_price?.usd ?? null,
     change24h: marketData?.price_change_percentage_24h ?? null,
     image: {
-      large: token?.image?.large ?? null,
+      large: tokenRaw?.image?.large ?? null,
     },
     platforms,
   }
+
+  const metaDescription = _getTokenMetaDescription(token)
+
+  return { ...token, metaDescription }
 }
 
 function _toTokenInfo(token: TokenDetails): TokenInfo {
@@ -160,4 +198,10 @@ function _sortTokensInfoByMarketCap(a: TokenInfo, b: TokenInfo): number {
     return -1 // always place nulls last
   }
   return a.marketCapRank - b.marketCapRank // usual comparison
+}
+function shortenString(text: string, size: number) {
+  if (text.length <= size) {
+    return text
+  }
+  return text.slice(0, size) + '...'
 }

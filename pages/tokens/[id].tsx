@@ -8,8 +8,10 @@ import { CONFIG } from '@/const/meta'
 
 const DATA_CACHE_TIME_SECONDS = 10 * 60 // 10 minutes
 
-export default function TokenDetailsPage({ token }: TokenDetailProps) {
-  const { name, symbol, platforms } = token
+export type TokenDetailPageProps = TokenDetailProps
+
+export default function TokenDetailsPage({ token }: TokenDetailPageProps) {
+  const { name, symbol, metaDescription } = token
 
   return (
     <>
@@ -17,6 +19,7 @@ export default function TokenDetailsPage({ token }: TokenDetailProps) {
         <title>
           {name} ({symbol}) - {CONFIG.title}
         </title>
+        <meta name="description" content={metaDescription} />
       </Head>
 
       <Layout tokensPages={true}>
