@@ -10,6 +10,7 @@ const ALL_UTM_PARAMS = [UTM_SOURCE_PARAM, UTM_MEDIUM_PARAM, UTM_CAMPAIGN_PARAM, 
 import { NextRouter } from 'next/router'
 import { UtmParams } from './types'
 import { ParsedUrlQuery } from 'querystring'
+import { CONFIG } from '@/const/meta'
 
 export function getUtmParams(query: ParsedUrlQuery): UtmParams {
   const utmSource = (query[UTM_SOURCE_PARAM] as string) || undefined
@@ -49,7 +50,8 @@ export function hasUtmCodes(utm: UtmParams | undefined): boolean {
 }
 
 export function addUtmToUrl(href: string, utm: UtmParams): string {
-  const url = new URL(href)
+  const origin = typeof window !== 'undefined' ? window.location.origin : CONFIG.url.root
+  const url = new URL(href, origin)
 
   if (utm.utmCampaign) {
     url.searchParams.set(UTM_CAMPAIGN_PARAM, utm.utmCampaign)
