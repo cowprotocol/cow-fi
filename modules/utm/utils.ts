@@ -49,11 +49,7 @@ export function hasUtmCodes(utm: UtmParams | undefined): boolean {
 }
 
 export function addUtmToUrl(href: string, utm: UtmParams): string {
-  if (typeof window === 'undefined') {
-    return href
-  }
-
-  const url = new URL(href, window.location.origin)
+  const url = new URL(href)
 
   if (utm.utmCampaign) {
     url.searchParams.set(UTM_CAMPAIGN_PARAM, utm.utmCampaign)
