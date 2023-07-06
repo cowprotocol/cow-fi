@@ -12,23 +12,23 @@ export default function App(props: AppProps) {
   return (
     <>
       <Head>
-        <meta name="description" content={CONFIG.description} />
-        <meta name="theme-color" media="(prefers-color-scheme: light)" content="black" />
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
-        <link rel="shortcut icon" type="image/png" href="/favicon.png" />
-        <link rel="apple-touch-icon" sizes="192x192" href="/favicon.png" />
-        <link rel="apple-touch-icon" sizes="512x512" href="/favicon.png" />
-        <link rel="canonical" href={CONFIG.url.root} />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={CONFIG.title} />
-        <meta property="og:description" content={CONFIG.description} />
-        <meta property="og:image" content={CONFIG.url.root + '/images/og-meta-cowprotocol.png'} />
-        <meta property="og:url" content={CONFIG.url.root} /> {/* TODO: Add URL */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content={CONFIG.social.twitter.account} />
-        <meta name="twitter:title" content={CONFIG.title} />
-        <meta name="twitter:image" content={CONFIG.url.root + '/images/og-meta-cowprotocol.png'} />
-        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"></meta>
+        <meta name="description" content={CONFIG.description} key="description" />
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="black" key="theme-color-light" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" key="theme-color-dark" />
+        <link rel="shortcut icon" type="image/png" href="/favicon.png" key="shortcut-icon" />
+        <link rel="apple-touch-icon" sizes="192x192" href="/favicon.png" key="apple-touch-icon-192" />
+        <link rel="apple-touch-icon" sizes="512x512" href="/favicon.png" key="apple-touch-icon-512" />
+        <link rel="canonical" href={CONFIG.url.root} key="canonical" />
+        <meta property="og:type" content="website" key="og-type" />
+        <meta property="og:title" content={CONFIG.title} key="og-title" />
+        <meta property="og:description" content={CONFIG.description} key="og-description" />
+        <meta property="og:image" content={CONFIG.url.root + '/images/og-meta-cowprotocol.png'} key="og-image" />
+        <meta property="og:url" content={CONFIG.url.root} key="og-url" />
+        <meta name="twitter:card" content="summary_large_image" key="twitter-card" />
+        <meta name="twitter:site" content={CONFIG.social.twitter.account} key="twitter-site" />
+        <meta name="twitter:title" content={CONFIG.title} key="twitter-title" />
+        <meta name="twitter:image" content={CONFIG.url.root + '/images/og-meta-cowprotocol.png'} key="twitter-image" />
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" key="viewport" />
       </Head>
 
       <GlobalStyles />
