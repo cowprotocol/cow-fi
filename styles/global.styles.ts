@@ -1,12 +1,12 @@
 import styled, { createGlobalStyle } from 'styled-components'
-import { Color, Font, Media } from 'const/styles/variables'
-import { transparentize } from "polished";
+import { Color, Font, Media } from 'styles/variables'
+import { transparentize } from 'polished'
 
 const GlobalStyles = createGlobalStyle`
 
 @font-face {
       font-family: 'Averta';
-      src: url('fonts/averta-regular-webfont.woff2') format('woff2');
+      src: url('/fonts/averta-regular-webfont.woff2') format('woff2');
       font-weight: normal;
       font-style: normal;
       font-display: swap;
@@ -14,7 +14,7 @@ const GlobalStyles = createGlobalStyle`
 
   @font-face {
       font-family: 'Averta';
-      src: url('fonts/averta-semibold-webfont.woff2') format('woff2');
+      src: url('/fonts/averta-semibold-webfont.woff2') format('woff2');
       font-weight: 500;
       font-style: normal;
       font-display: swap;
@@ -22,7 +22,7 @@ const GlobalStyles = createGlobalStyle`
 
   @font-face {
       font-family: 'Averta';
-      src: url('fonts/averta-bold-webfont.woff2') format('woff2');
+      src: url('/fonts/averta-bold-webfont.woff2') format('woff2');
       font-weight: bold;
       font-style: normal;
       font-display: swap;
@@ -30,7 +30,7 @@ const GlobalStyles = createGlobalStyle`
 
   @font-face {
       font-family: 'Averta';
-      src: url('fonts/averta-extrabold-webfont.woff2') format('woff2');
+      src: url('/fonts/averta-extrabold-webfont.woff2') format('woff2');
       font-weight: 900;
       font-style: normal;
       font-display: swap;
@@ -54,7 +54,7 @@ const GlobalStyles = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     font-feature-settings: 'ss01' on, 'ss02' on, 'cv01' on, 'cv03' on;
-    scrollbar-color: ${Color.darkBlue} ${Color.lightBlue};
+    /* scrollbar-color: ${Color.text1} ${Color.white}; */
 
     html,
     input,
@@ -64,18 +64,18 @@ const GlobalStyles = createGlobalStyle`
       font-display: fallback;
   }
 
-    &::-webkit-scrollbar {
-      width: 2.4rem;
-    }
+    /* &::-webkit-scrollbar {
+      width: 4rem;
+    } */
 
-    &::-webkit-scrollbar-track {
+    /* &::-webkit-scrollbar-track {
       background-color: ${Color.lightBlue};
-    }
+    } */
 
-    &::-webkit-scrollbar-thumb {
-      background-color: ${Color.darkBlue};
+    /* &::-webkit-scrollbar-thumb {
+      background-color: ${Color.text1};
       border-radius: 10rem;
-    }
+    } */
   }
 
   *::selection {
@@ -95,18 +95,18 @@ const GlobalStyles = createGlobalStyle`
     line-height: revert;
   }
 
-  ::-webkit-scrollbar {
-    width: 0.6rem !important;
-    height: 0.6rem !important;
-  }
+  /* ::-webkit-scrollbar {
+    width: 1rem !important;
+    height: 1rem !important;
+  } */
 
-  ::-webkit-scrollbar-thumb {
+  /* ::-webkit-scrollbar-thumb {
       background-color: rgba(0,0,0,.2);
-  }
+  } */
 
-  ::-webkit-scrollbar-track {
+  /* ::-webkit-scrollbar-track {
       background: hsla(0,0%,100%,.1);
-  }
+  } */
 
   *, *:before, *:after {
     box-sizing: inherit;
@@ -198,7 +198,7 @@ export const ExternalLink = styled.a`
   white-space: nowrap;
 
   &::after {
-    content: "↗";
+    content: '↗';
     color: inherit;
     font-size: ${Font.sizeDefault};
     display: inline-block;
@@ -221,7 +221,7 @@ export const DropDown = styled.div`
   font-family: ${Font.default};
 
   &::after {
-    content: "▼";
+    content: '▼';
     position: absolute;
     border: 0;
     color: inherit;
@@ -251,14 +251,14 @@ export const DropDown = styled.div`
     border-radius: inherit;
     background: ${transparentize(0.9, Color.darkBlue)};
 
-      &:focus {
-        outline: none;
-      }
+    &:focus {
+      outline: none;
+    }
 
-      > option {
-        background-color: ${Color.black};
-        color: ${Color.darkBlue};
-      }
+    > option {
+      background-color: ${Color.black};
+      color: ${Color.darkBlue};
+    }
   }
 `
 

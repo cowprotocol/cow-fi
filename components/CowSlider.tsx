@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import styled from 'styled-components';
+import { useState } from 'react'
+import styled from 'styled-components'
 import { batches } from 'const/batches'
-import { ExternalLink } from 'const/styles/global'
-import { Color, Font, Media } from 'const/styles/variables'
+import { ExternalLink } from 'styles/global.styles'
+import { Color, Font, Media } from 'styles/variables'
 import { transparentize } from 'polished'
 
 export const Wrapper = styled.div`
@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   flex-flow: column wrap;
   width: 100%;
   height: 100%;
-  background: ${transparentize(0.90, Color.black)};
+  background: ${transparentize(0.9, Color.black)};
   backdrop-filter: blur(5rem);
   border: 0.1rem solid ${transparentize(0.9, Color.white)};
   backdrop-filter: blur(6rem);
@@ -82,7 +82,6 @@ export const CowTop = styled.div`
   }
 
   > span > span > ol > li {
-
   }
 
   > span > span > ol > li > i {
@@ -121,15 +120,15 @@ export const CowTabs = styled.div`
   }
 `
 
-export const CowTabItem = styled.div<{ active?: boolean, position?: number }>`
+export const CowTabItem = styled.div<{ active?: boolean; position?: number }>`
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   border-radius: 4rem;
-  background: ${({ active }) => active ? transparentize(0.8, Color.orange) : 'transparent'};
-  color: ${({ active }) => active ? Color.orange : 'inherit'};
-  order: ${({ position }) => position ? position : '0'};
+  background: ${({ active }) => (active ? transparentize(0.8, Color.orange) : 'transparent')};
+  color: ${({ active }) => (active ? Color.orange : 'inherit')};
+  order: ${({ position }) => (position ? position : '0')};
   line-height: 1;
   transition: background 0.2 ease-in-out, color 0.2 ease-in-out;
   flex: 1 1 auto;
@@ -188,22 +187,22 @@ export const CowBarWrapper = styled.div`
 `
 
 interface TCowBar {
-  position?: number,
-  percent?: number,
+  position?: number
+  percent?: number
   network: {
-    label: string,
+    label: string
     color: string
   }
 }
 
 export const CowBar = styled.div<TCowBar>`
   display: flex;
-  width: ${({ percent }) => percent ? `${percent}%` : '0%'};
+  width: ${({ percent }) => (percent ? `${percent}%` : '0%')};
   height: 0.5rem;
-  order: ${({ position }) => position ? position : '0'};
+  order: ${({ position }) => (position ? position : '0')};
   background: ${({ network }) => network.color};
   transition: background 0.5s ease-in-out, width 0.5s ease-in-out;
-  
+
   &::after {
     content: attr(data-label);
     display: block;
@@ -212,7 +211,7 @@ export const CowBar = styled.div<TCowBar>`
     white-space: pre;
 
     ${Media.mobile} {
-      content: attr(data-label) " (${({ percent }) => percent}%)";
+      content: attr(data-label) ' (${({ percent }) => percent}%)';
     }
   }
 `
@@ -220,44 +219,44 @@ export const CowBar = styled.div<TCowBar>`
 function getNetworkConfig(networkID) {
   switch (networkID) {
     case 'UNIV3':
-      return { label: 'Uniswap V3', color: "#FF008A" }
-      break;
+      return { label: 'Uniswap V3', color: '#FF008A' }
+      break
     case 'UNIV2':
-      return { label: 'Uniswap V2', color: "#FF008A" }
-      break;
+      return { label: 'Uniswap V2', color: '#FF008A' }
+      break
     case '0X':
-      return { label: '0x', color: "#4DAA98" }
-      break;
+      return { label: '0x', color: '#4DAA98' }
+      break
     case 'PSP':
-      return { label: 'Paraswap', color: "blue" }
-      break;
+      return { label: 'Paraswap', color: 'blue' }
+      break
     case 'BAL':
-      return { label: 'Balancer', color: "#772CF5" }
-      break;
+      return { label: 'Balancer', color: '#772CF5' }
+      break
     case 'CURVE':
       // https://logotyp.us/logo/curve-dao/
-      return { label: 'Curve', color: "#c40000" }
-      break;
+      return { label: 'Curve', color: '#c40000' }
+      break
     case 'SUSHI':
       // https://logotyp.us/logo/sushiswap/
-      return { label: 'Sushiswap', color: "#03b8ff" }
-      break;
+      return { label: 'Sushiswap', color: '#03b8ff' }
+      break
     case 'PARASWAP':
       // https://logotyp.us/logo/sushiswap/
-      return { label: 'ParaSwap', color: "#025dde" }
-      break;
+      return { label: 'ParaSwap', color: '#025dde' }
+      break
 
     case 'COW':
       return { label: 'CoW Protocol (P2P)', color: Color.orange }
-      break;
+      break
     default:
       return { label: 'Unkown Source', color: Color.text1 }
   }
 }
 
 export default function CowSlider() {
-  const [activeBatch, setActiveBatch] = useState(1);
-  const { summary, description, metrics, visual, link, bars } = batches.find(b => b.id === activeBatch)
+  const [activeBatch, setActiveBatch] = useState(1)
+  const { summary, description, metrics, visual, link, bars } = batches.find((b) => b.id === activeBatch)
 
   return (
     <Wrapper>
@@ -265,9 +264,11 @@ export default function CowSlider() {
         <span>
           <b>Batch Settlement Example</b>
           <span key={activeBatch}>
-            <ol >
+            <ol>
               {metrics.map(({ label, value }, index) => (
-                <li key={index}>{label}: <i>{value}</i></li>
+                <li key={index}>
+                  {label}: <i>{value}</i>
+                </li>
               ))}
             </ol>
             <ExternalLink href={link.url} target="_blank" rel="noopener nofollow">
@@ -277,21 +278,25 @@ export default function CowSlider() {
         </span>
 
         <CowTabs>
-          {batches.map((item) =>
+          {batches.map((item) => (
             <CowTabItem
               key={item.id || 0}
               position={item.id || 0}
               active={item.id === activeBatch || false}
-              onClick={() => { setActiveBatch(item.id) }}
+              onClick={() => {
+                setActiveBatch(item.id)
+              }}
             >
               {item.label}
             </CowTabItem>
-          )}
+          ))}
         </CowTabs>
       </CowTop>
 
       <CowSliderDescription>
-        <p><strong>{summary}</strong></p>
+        <p>
+          <strong>{summary}</strong>
+        </p>
         <p>{description}</p>
       </CowSliderDescription>
 
@@ -301,16 +306,19 @@ export default function CowSlider() {
 
       <CowBarWrapper>
         {bars.map(({ id, network, percent }) => {
-          return network && <CowBar
-            key={id || 0}
-            position={id}
-            percent={percent}
-            network={getNetworkConfig(network)}
-            data-label={getNetworkConfig(network).label}
-          />
+          return (
+            network && (
+              <CowBar
+                key={id || 0}
+                position={id}
+                percent={percent}
+                network={getNetworkConfig(network)}
+                data-label={getNetworkConfig(network).label}
+              />
+            )
+          )
         })}
       </CowBarWrapper>
-
-    </Wrapper >
+    </Wrapper>
   )
 }

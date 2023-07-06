@@ -1,21 +1,23 @@
-import styled from 'styled-components';
+import { useRouter } from 'next/router'
+import styled from 'styled-components'
 import Link from 'next/link'
-import { Color, Font, Media } from 'const/styles/variables'
+import { Color, Font, Media } from 'styles/variables'
 import SocialList from 'components/SocialList'
-import { CustomLink } from '../CustomLink';
-import { FooterLinkGroup, FOOTER_LINK_GROUPS } from '@/const/menu';
-import { CONFIG } from '@/const/meta';
+import { CustomLink } from '../CustomLink'
+import { FOOTER_LINK_GROUPS } from '@/const/menu'
+import { CONFIG } from '@/const/meta'
 
-const LogoImage = 'images/logo-light.svg'
+const LogoImage = '/images/logo-light.svg'
 const CURRENT_YEAR = new Date().getFullYear()
 
-const Wrapper = styled.footer`
+const Wrapper = styled.footer<{ noMargin?: boolean }>`
   display: flex;
   justify-content: space-between;
+  flex-flow: row wrap;
   z-index: 1;
   width: 100%;
   padding: 5.6rem;
-  margin: 16rem auto 0;
+  margin: ${({ noMargin }) => (noMargin ? '0' : '16rem auto 0')};
   position: relative;
 
   ${Media.mediumDown} {
@@ -24,7 +26,7 @@ const Wrapper = styled.footer`
   }
 
   &::before {
-    content: "";
+    content: '';
     width: 100%;
     display: block;
     height: 0.1rem;
@@ -41,11 +43,9 @@ const MenuSection = styled.div`
   flex-flow: row;
   gap: 4.8rem;
 
-  
   ${Media.mediumDown} {
     justify-content: space-around;
   }
-  
 
   ${Media.mobile} {
     flex: 1 1 100%;
@@ -149,18 +149,34 @@ const CopyrightLinks = styled.ol`
   }
 `
 
+const FooterDisclaimer = styled.div`
+  width: 100%;
+  color: ${Color.text2};
+  margin: 5.6rem auto 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+
+  > p {
+    line-height: 1.4;
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
+`
+
 function FooterMenu() {
   return (
     <MenuSection>
-      { FOOTER_LINK_GROUPS.map(({ label: title, links }, index) => (
+      {FOOTER_LINK_GROUPS.map(({ label: title, links }, index) => (
         <MenuWrapper key={index}>
           <b>{title}</b>
           <Menu>
-            {links.map((link, index) =>
+            {links.map((link, index) => (
               <li key={index}>
                 <CustomLink {...link} />
               </li>
-            )}
+            ))}
           </Menu>
         </MenuWrapper>
       ))}
@@ -169,10 +185,10 @@ function FooterMenu() {
 }
 
 function Social() {
-  const { social } = CONFIG    
+  const { social } = CONFIG
   return (
     <LogoSection>
-      <Link passHref href='/'>
+      <Link passHref href="/">
         <Logo />
       </Link>
       <SocialList social={social} labels={false} iconSize={2.8} gap={0.7} innerPadding={1} alignItems={'right'} />
@@ -183,11 +199,23 @@ function Social() {
   )
 }
 
-export default function Footer() {
+type FooterProps = {
+  noMargin?: boolean
+}
+
+export default function Footer({ noMargin }: FooterProps) {
+  const router = useRouter()
+  const showDisclaimer = router.asPath.startsWith('/tokens')
+
   return (
-    <Wrapper>
+    <Wrapper noMargin={noMargin}>
       <FooterMenu />
       <Social />
-    </Wrapper >
+      {showDisclaimer && (
+        <FooterDisclaimer>
+          <p>{CONFIG.tokenDisclaimer}</p>
+        </FooterDisclaimer>
+      )}
+    </Wrapper>
   )
 }
