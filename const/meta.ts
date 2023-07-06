@@ -8,7 +8,7 @@ export const CONFIG = {
   descriptionShort: 'The smartest way to trade',
   url: {
     root: 'https://cow.fi',
-    swap: 'https://swap.cow.fi',
+    swap: 'https://swap.cow.fi/#/1/swap/WETH/DAI?sellAmount=1',
     docs: 'https://docs.cow.fi',
     api: API_BASE_URL + '/mainnet',
     apiDocs: API_BASE_URL + '/docs',
@@ -25,6 +25,10 @@ export const CONFIG = {
     discord: { label: 'Discord', url: 'https://discord.com/invite/cowprotocol' },
     github: { label: 'GitHub', url: 'https://github.com/cowprotocol/' },
     forum: { label: 'Forum', url: 'https://forum.cow.fi/' },
+  },
+  utm: {
+    source: 'cow.fi',
+    medium: 'web',
   },
   tokenDisclaimer:
     'IMPORTANT DISCLAIMER: The information presented on the Interface, including hyperlinked sites, associated applications, forums, blogs, social media accounts, and other platforms, serves as general information sourced from third-party providers. We want to emphasise that we do not provide any warranties regarding the accuracy or up-to-dateness of the content. None of the content should be interpreted as financial, tax, legal, or any other type of advice. Your use or reliance on the content is entirely at your own discretion and risk. Before making any decisions, it is crucial that you undertake your own research, review, analysis, and verification of our content. Trading carries significant risks and can result in substantial losses, so it is advisable to consult your own legal, financial, tax, or other professional advisors prior to making any decisions. None of the content on the Interface is intended as a solicitation or offer.',

@@ -30,7 +30,7 @@ export interface TokenDetailProps {
 }
 
 export function TokenDetails({ token }: TokenDetailProps) {
-  const { name, symbol, image, marketCap, allTimeHigh, allTimeLow, volume, description, platforms } = token
+  const { id, name, symbol, image, marketCap, allTimeHigh, allTimeLow, volume, description, platforms } = token
   const contractAddressEthereum = platforms?.ethereum?.contractAddress
   const contractAddressGnosis = platforms?.xdai?.contractAddress
 
@@ -138,7 +138,7 @@ export function TokenDetails({ token }: TokenDetailProps) {
 
       <StickyContent>
         <SwapWidgetWrapper>
-          <SwapWidget tokenSymbol={symbol} tokenImage={image.large} platforms={platforms} />
+          <SwapWidget tokenSymbol={symbol} tokenImage={image.large} platforms={platforms} tokenId={id} />
         </SwapWidgetWrapper>
       </StickyContent>
     </Wrapper>

@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import { CustomLink as CustomLink } from '../CustomLink'
 import { CONFIG } from '@/const/meta'
 import { HEADER_LINKS } from '@/const/menu'
+import { LinkWithUtm } from 'modules/utm'
 
 const LogoImage = '/images/logo.svg'
 const LogoLightImage = '/images/logo-light.svg'
@@ -299,15 +300,24 @@ export default function Header() {
                 <CloseIcon onClick={handleClick} />
               </Menu>
 
-              <Button
-                variant={!inView ? 'small' : 'outline'}
-                minHeight={4.8}
-                fontSize={1.6}
+              <LinkWithUtm
+                defaultUtm={{
+                  utmSource: CONFIG.utm.source,
+                  utmMedium: CONFIG.utm.medium,
+                  utmContent: 'trade-on-cow-swap-button',
+                }}
                 href={swapURL}
-                label={'Trade on CoW Swap'}
-                target="_blank"
-                rel="noopener nofollow"
-              />
+                passHref
+              >
+                <Button
+                  variant={!inView ? 'small' : 'outline'}
+                  minHeight={4.8}
+                  fontSize={1.6}
+                  label={'Trade on CoW Swap'}
+                  target="_blank"
+                  rel="noopener nofollow"
+                />
+              </LinkWithUtm>
               <MenuToggle isLight={isLight} onClick={handleClick} />
             </Content>
           </Wrapper>
