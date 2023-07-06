@@ -20,7 +20,7 @@ import SocialList from '@/components/SocialList'
 import Button from '@/components/Button'
 
 import { MetricsData } from 'types'
-import { useUtm } from 'modules/utm'
+import { LinkWithUtm } from 'modules/utm'
 
 export interface HomeProps {
   metricsData: MetricsData
@@ -45,7 +45,9 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
             </SubTitle>
 
             <ButtonWrapper>
-              <Button paddingLR={4.2} href={url.swap} target="_blank" rel="noopener nofollow" label="Start trading" />
+              <LinkWithUtm href={url.swap} defaultUtm={{ ...CONFIG.utm, utmContent: 'landing-cta-button' }} passHref>
+                <Button paddingLR={4.2} target="_blank" rel="noopener nofollow" label="Start trading" />
+              </LinkWithUtm>
               <Button paddingLR={4.2} variant="text" href={'/#developers'} label="Start building" />
             </ButtonWrapper>
           </div>
