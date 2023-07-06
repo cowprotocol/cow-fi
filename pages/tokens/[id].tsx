@@ -17,7 +17,7 @@ export default function TokenDetailsPage({ token }: TokenDetailPageProps) {
     <>
       <Head>
         <title>
-          {name} ({symbol}) - {CONFIG.title}
+        🟢 {name} ({symbol}) - {CONFIG.metatitle_tokenDetail}
         </title>
         <meta name="description" content={metaDescription} />
       </Head>

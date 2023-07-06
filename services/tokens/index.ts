@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { PlatformData, Platforms, TokenDetails, TokenInfo } from 'types'
 import { backOff } from 'exponential-backoff'
+import { CONFIG } from '@/const/meta'
 
 const NETWORKS = ['ethereum', 'xdai']
 const COW_TOKEN_ID = 'cow-protocol'
@@ -104,7 +105,7 @@ async function _getAllTokensData(): Promise<TokenDetails[]> {
         return undefined
       }
 
-      // Add hand-made descriptions
+      // Add generated descriptions
       const description = _getTokenDescription(tokenRaw.id)
 
       return _toTokenDetails(tokenRaw, description)
@@ -120,21 +121,26 @@ function _getTokenDescription(id: string): string {
 }
 
 function _getTokenMetaDescription(token: TokenDetails): string {
-  const { id, name, symbol, description, priceUsd, allTimeHigh, allTimeLow, change24h, marketCap, marketCapRank } =
-    token
+  if (!token) {
+    throw new Error("Token details are required.");
+  }
 
-  const match = description.match(/<p>([\S\s]*?)<\/p>/)
-  if (!match) console.warn('No match for token description', id, symbol, description)
-  const metaSummary =
-    match && match.length > 0
-      ? shortenString(match[1], 42)
-      : `${name} is traded at best prices in CoW Protocol DEX aggregator.`
+  const { id, name, symbol, description, priceUsd, volume, change24h } = token;
 
-  // Just an experiemen
-  // const metaSummary = await getTokenSummaryUsingIA(token.description)
-  const quickStats = `Price $${priceUsd} (${change24h}$), ATH $${allTimeHigh}, ATL $${allTimeLow}. Market Cap $${marketCap} (🏆 #${marketCapRank})`
+  const change24hParsed = parseFloat(change24h);
+  const change24hTrimmed = !isNaN(change24hParsed) ? change24hParsed.toFixed(2) : '0.00';
 
-  return `${name} (${symbol}) info. ${metaSummary}. ${quickStats}`
+  const match = description.match(/<p>([\S\s]*?)<\/p>/);
+
+  if (!match) {
+    console.warn('No match for token description', id, symbol, description);
+  }
+
+  const metaDescription = match 
+    ? `The live price of ${name} is $${priceUsd} per ${symbol} with a 24-hour trading volume of $${volume} and a price change of ${change24hTrimmed}%`
+    : CONFIG.description;
+
+  return metaDescription;
 }
 
 function _toTokenDetails(tokenRaw: any, description: string): TokenDetails {
