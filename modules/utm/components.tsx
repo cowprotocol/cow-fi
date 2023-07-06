@@ -3,9 +3,10 @@ import Link, { LinkProps } from 'next/link'
 import { useRouter } from 'next/router'
 import { UtmParams, useUtm } from 'modules/utm'
 import { addUtmToUrl, hasUtmCodes } from 'modules/utm/utils'
+import { CONFIG } from '@/const/meta'
 
 interface LinkWithUtmProps extends React.PropsWithChildren<LinkProps> {
-  defaultUtm?: UtmParams
+  defaultUtm: UtmParams
 }
 
 export function LinkWithUtm(p: LinkWithUtmProps): JSX.Element {

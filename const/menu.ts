@@ -14,6 +14,8 @@ export const HEADER_LINKS: CustomLinkProps[] = [
   { label: 'Careers', url: '/careers' },
 ]
 
+const utmContent = 'footer-link'
+
 export const FOOTER_LINK_GROUPS: FooterLinkGroup[] = [
   {
     label: 'CoW Protocol',
@@ -24,29 +26,34 @@ export const FOOTER_LINK_GROUPS: FooterLinkGroup[] = [
       { label: 'Analytics', url: url.analytics, type: 'external' },
       { label: 'Careers', url: '/careers' },
       { label: 'Grants', url: url.grants, type: 'external' },
-      { label: 'Explorer', url: url.explorer, type: 'external', utm: true },
+      { label: 'Explorer', url: url.explorer, type: 'external', utmContent },
     ],
   },
   {
     label: 'About',
     links: [
       { label: 'CoW Protocol', url: '/#about' },
-      { label: 'CoW Swap', url: 'https://swap.cow.fi/#/about', type: 'external', utm: true },
-      { label: 'CoW Swap FAQ', url: 'https://swap.cow.fi/#/faq', type: 'external', utm: true },
+      { label: 'CoW Swap', url: 'https://swap.cow.fi/#/about', type: 'external', utmContent },
+      { label: 'CoW Swap FAQ', url: 'https://swap.cow.fi/#/faq', type: 'external', utmContent },
       {
         label: 'Brand Kit',
         url: 'https://cownation.notion.site/CoW-DAO-Brand-Kit-fe70d51a39df4229b7912cb7af3eb320',
         type: 'external',
       },
-      { label: 'Terms and Conditions', url: 'https://swap.cow.fi/#/terms-and-conditions', type: 'external', utm: true },
-      { label: 'Privacy Policy', url: 'https://swap.cow.fi/#/privacy-policy', type: 'external', utm: true },
-      { label: 'Cookie Policy', url: 'https://swap.cow.fi/#/cookie-policy', type: 'external', utm: true },
+      {
+        label: 'Terms and Conditions',
+        url: 'https://swap.cow.fi/#/terms-and-conditions',
+        type: 'external',
+        utmContent,
+      },
+      { label: 'Privacy Policy', url: 'https://swap.cow.fi/#/privacy-policy', type: 'external', utmContent },
+      { label: 'Cookie Policy', url: 'https://swap.cow.fi/#/cookie-policy', type: 'external', utmContent },
     ],
   },
   {
     label: 'Developers',
     links: [
-      { label: 'Documentation', url: url.docs, type: 'external', utm: true },
+      { label: 'Documentation', url: url.docs, type: 'external', utmContent },
       { label: 'API Documentation', url: url.apiDocs, type: 'external' },
       { label: 'GitHub', url: social.github.url, type: 'external' },
       {
