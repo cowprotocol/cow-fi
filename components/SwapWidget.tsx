@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Color } from 'styles/variables'
 import Button from '@/components/Button'
 import { transparentize } from 'polished'
+import { CONFIG } from '@/const/meta'
 
 type TabProps = {
   active: boolean
@@ -183,6 +184,7 @@ type Platforms = {
 }
 
 type SwapWidgetProps = {
+  tokenId: string
   tokenSymbol: string
   tokenImage: string
   platforms: Platforms
@@ -201,7 +203,10 @@ const NETWORK_MAP: { [key: string]: string } = {
 const WXDAI = '0xe91d153e0b41518a2ce8dd3d7944fa863463a97d'
 const WETH = ['0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2', '0x6a023ccd1ff6f2045c3309768ead9e68f978f6e1']
 
-export const SwapWidget = ({ tokenSymbol, tokenImage, platforms }: SwapWidgetProps) => {
+const toUtmParams = (tokenId: string) =>
+  `utm_source=${CONFIG.utm.source}&utm_medium=${CONFIG.utm.medium}&utm_content=swap-widget-token__${encodeURI(tokenId)}`
+
+export const SwapWidget = ({ tokenId, tokenSymbol, tokenImage, platforms }: SwapWidgetProps) => {
   const [activeTab, setActiveTab] = useState('Buy')
   const [network, setNetwork] = useState<string | null>(null)
   const [amount, setAmount] = useState(0)
@@ -261,7 +266,8 @@ export const SwapWidget = ({ tokenSymbol, tokenImage, platforms }: SwapWidgetPro
         }
       }
 
-      const url = `https://swap.cow.fi/#/${networkId}/swap/${sellToken}/${buyToken}?${activeTab.toLowerCase()}Amount=${amount}`
+      const utmParams = toUtmParams(tokenId)
+      const url = `https://swap.cow.fi/#/${networkId}/swap/${sellToken}/${buyToken}?${activeTab.toLowerCase()}Amount=${amount}&${utmParams}`
       return url
     } else {
       return '#'
