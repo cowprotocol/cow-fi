@@ -302,8 +302,7 @@ export default function Header() {
 
               <LinkWithUtm
                 defaultUtm={{
-                  utmSource: CONFIG.utm.source,
-                  utmMedium: CONFIG.utm.medium,
+                  ...CONFIG.utm,
                   utmContent: 'trade-on-cow-swap-button',
                 }}
                 href={swapURL}

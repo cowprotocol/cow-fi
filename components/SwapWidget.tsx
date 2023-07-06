@@ -322,8 +322,7 @@ export const SwapWidget = ({ tokenId, tokenSymbol, tokenImage, platforms }: Swap
 
       <LinkWithUtm
         defaultUtm={{
-          utmSource: CONFIG.utm.source,
-          utmMedium: CONFIG.utm.medium,
+          ...CONFIG.utm,
           utmContent: 'utm_content=swap-widget-token__' + encodeURI(tokenId),
         }}
         href={onSwap()}
