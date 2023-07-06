@@ -6,6 +6,14 @@ import { transparentize } from 'polished'
 import { CONFIG } from '@/const/meta'
 import { LinkWithUtm } from 'modules/utm'
 
+const NETWORK_PRIORITY = ['ethereum', 'xdai']
+export type PlatformMapping = Record<typeof NETWORK_PRIORITY[number], number>
+
+const PLATFORM_MAPPING: PlatformMapping = {
+  ethereum: 1,
+  xdai: 100,
+}
+
 type TabProps = {
   active: boolean
 }
@@ -271,6 +279,17 @@ export const SwapWidget = ({ tokenId, tokenSymbol, tokenImage, platforms }: Swap
     }
   }
 
+  function getTokenUtmId(platforms: Platforms, tokenId: string): string {
+    for (const network of NETWORK_PRIORITY) {
+      const platform = platforms[network]
+      if (platform?.contractAddress) {
+        return `${PLATFORM_MAPPING[network]}__${platform.contractAddress}`
+      }
+    }
+
+    return tokenId
+  }
+
   return (
     <Wrapper>
       <TabContainer>
@@ -323,7 +342,7 @@ export const SwapWidget = ({ tokenId, tokenSymbol, tokenImage, platforms }: Swap
       <LinkWithUtm
         defaultUtm={{
           ...CONFIG.utm,
-          utmContent: 'utm_content=swap-widget-token__' + encodeURI(tokenId),
+          utmContent: 'utm_content=swap-widget-token__' + encodeURI(getTokenUtmId(platforms, tokenId)),
         }}
         href={onSwap()}
         passHref
