@@ -38,8 +38,6 @@ export function cleanUpParams(router: NextRouter) {
   })
 
   if (cleanedParams) {
-    // navigate({ pathname, search: searchParams.toString() }, { replace: true })
-    console.log('UTM init replace', query)
     router.replace({ pathname: router.pathname, query })
   }
 }
