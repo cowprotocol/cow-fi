@@ -6,15 +6,15 @@
 
 <p>The formula that MVI follows is:</p>
 <pre>TW = 75%RMCW + 25%LW</pre>
-<p>Where,
+<p>Where,</p>
 
 <ul>
-<li>TW – token weight in the $MVI</li>
-<li>RMCW – square root of market cap weighted allocation</li>
-<li>LW – liquidity weighted allocation</li>
+  <li>TW – token weight in the $MVI</li>
+  <li>RMCW – square root of market cap weighted allocation</li>
+  <li>LW – liquidity weighted allocation</li>
 </ul>
-This equation represents the essence of MVI, combining the power of market cap and liquidity into one synergistic token.
-</p>
+
+<p>This equation represents the essence of MVI, combining the power of market cap and liquidity into one synergistic token.</p>
 
 <h3>Where can you swap or trade Metaverse Index (MVI)?</h3>
 <p>So, where can you swap or trade your MVI tokens? Mooo-ve on to <a href="https://swap.cow.fi/" rel="noopener" target="_blank">CoW Swap</a>! CoW Swap is a Meta DEX aggregator that offers a perfect pasture for buying, selling, and swapping tokens like MVI. By aggregating all DEXes where MVI is available, CoW Swap ensures the best prices for your trades. Moreover, with MEV (Maximal Extractable Value) protection, you can trade knowing your transactions are safe from any potential manipulation by MEV bots. So why wait? Join the herd and start swapping on CoW Swap today!</p>

@@ -85,10 +85,27 @@ export const Section = styled.div`
   }
 
   > p,
-  > div > p {
+  > div > p,
+  > div > pre,
+  > div > ul {
     line-height: 1.6;
     color: ${Color.text1};
     margin: 0 0 2.8rem;
+  }
+
+  > div > ul {
+    padding: 0 0 0 1.6rem;
+  }
+
+  > div > ul > li {
+    padding: 0;
+  }
+
+  > div > pre {
+    margin: 0 0 1.6rem;
+    padding: 1.6rem;
+    background: ${transparentize(0.92, Color.darkBlue)};
+    border-radius: 1rem;
   }
 
   > div > h4 {
