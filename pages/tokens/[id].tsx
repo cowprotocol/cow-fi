@@ -11,13 +11,17 @@ const DATA_CACHE_TIME_SECONDS = 10 * 60 // 10 minutes
 export type TokenDetailPageProps = TokenDetailProps
 
 export default function TokenDetailsPage({ token }: TokenDetailPageProps) {
-  const { name, symbol, metaDescription } = token
+  const { name, symbol, metaDescription, change24h, priceUsd } = token
+  const change24 = parseFloat(change24h)
+  const change24hFormatted = change24.toFixed(2)
+  const priceChangeEmoji = change24 >= 0 ? '🟢' : '🔴';
+  const changeDirection = change24 >= 0 ? '↑' : '↓';
 
   return (
     <>
       <Head>
         <title>
-        🟢 {name} ({symbol}) - {CONFIG.metatitle_tokenDetail}
+        {priceChangeEmoji} {name} ({symbol}) ${priceUsd} ({change24hFormatted}% {changeDirection}) - {CONFIG.metatitle_tokenDetail}
         </title>
         <meta name="description" content={metaDescription} />
       </Head>
