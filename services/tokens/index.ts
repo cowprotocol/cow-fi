@@ -128,7 +128,7 @@ function _getTokenMetaDescription(token: TokenDetails): string {
   const { name, symbol, priceUsd, volume, change24h, marketCap } = token;
 
   const change24hTrimmed = parseFloat(change24h).toFixed(2);
-  const changeDirection = parseFloat(change24h) > 0 ? 'increase &#x2191;' : 'decrease &#x2193;';
+  const changeDirection = parseFloat(change24h) > 0 ? 'increase ▲' : 'decrease ▼';
   
   const templates = [
     `Moo-ve over to ${name} (${symbol})! Grazing at $${priceUsd} with ${changeDirection} of ${change24hTrimmed}% in 24h. Trading volume: $${volume}. Their market cap: $${marketCap}. Learn about ${symbol}'s pasture.`,

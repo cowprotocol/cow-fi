@@ -18,6 +18,7 @@ export default function App(props: AppProps) {
         <link rel="shortcut icon" type="image/png" href="/favicon.png" />
         <link rel="apple-touch-icon" sizes="192x192" href="/favicon.png" />
         <link rel="apple-touch-icon" sizes="512x512" href="/favicon.png" />
+        <link rel="canonical" href={CONFIG.url.root} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={CONFIG.title} />
         <meta property="og:description" content={CONFIG.description} />

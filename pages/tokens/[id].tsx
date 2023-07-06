@@ -15,15 +15,19 @@ export default function TokenDetailsPage({ token }: TokenDetailPageProps) {
   const change24 = parseFloat(change24h)
   const change24hFormatted = change24.toFixed(2)
   const priceChangeEmoji = change24 >= 0 ? '🟢' : '🔴';
-  const changeDirection = change24 >= 0 ? '↑' : '↓';
+  const changeDirection = change24 >= 0 ? '▲' : '▼';
+  const metaTitle = `${priceChangeEmoji} ${name} (${symbol}) $${priceUsd} (${change24hFormatted}% ${changeDirection}) - ${CONFIG.metatitle_tokenDetail}`
 
   return (
     <>
       <Head>
-        <title>
-        {priceChangeEmoji} {name} ({symbol}) ${priceUsd} ({change24hFormatted}% {changeDirection}) - {CONFIG.metatitle_tokenDetail}
-        </title>
+        <title>{metaTitle}</title>
         <meta name="description" content={metaDescription} />
+        <meta property="og:title" content={metaTitle} />
+        <meta property="og:description" content={metaDescription} />
+        <link rel="canonical" href={CONFIG.url.root} />
+        <meta property="og:url" content={CONFIG.url.root} /> 
+        <meta name="twitter:title" content={CONFIG.title} />
       </Head>
 
       <Layout tokensPages={true}>
