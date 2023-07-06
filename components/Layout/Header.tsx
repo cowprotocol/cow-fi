@@ -300,7 +300,15 @@ export default function Header() {
                 <CloseIcon onClick={handleClick} />
               </Menu>
 
-              <LinkWithUtm href={swapURL} passHref>
+              <LinkWithUtm
+                defaultUtm={{
+                  utmSource: CONFIG.utm.source,
+                  utmMedium: CONFIG.utm.medium,
+                  utmContent: 'trade-on-cow-swap-button',
+                }}
+                href={swapURL}
+                passHref
+              >
                 <Button
                   variant={!inView ? 'small' : 'outline'}
                   minHeight={4.8}
