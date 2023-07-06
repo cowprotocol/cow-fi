@@ -125,24 +125,24 @@ function _getTokenMetaDescription(token: TokenDetails): string {
   }
 
   const { name, symbol, priceUsd, volume, change24h, marketCap } = token;
-
   const change24hTrimmed = parseFloat(change24h).toFixed(2);
   const isIncrease = parseFloat(change24h) >= 0;
   const changeDirection = isIncrease ? 'increase ▲' : 'decrease ▼';
-  
+
   const templates = [
-    `Moo-ve over to ${name} (${symbol})! Grazing at $${priceUsd} with ${changeDirection} of ${change24hTrimmed}% in 24h. Trading volume: $${volume}. Their market cap: $${marketCap}. Learn about ${symbol}'s pasture.`,
-    `The grass is greener with ${name} (${symbol})! At $${priceUsd}, with ${changeDirection} of ${change24hTrimmed}% in 24h. Trading volume: $${volume}. Their market cap: $${marketCap}. Discover more about ${symbol}.`,
-    `Interested in ${name} (${symbol})? Priced at $${priceUsd}, with ${changeDirection} of ${change24hTrimmed}% in 24h. Trading volume: $${volume}. Their market cap: $${marketCap}. Learn more about ${symbol}!`,
-    `Graze on this: ${name} (${symbol}) at $${priceUsd}, with ${changeDirection} of ${change24hTrimmed}% in 24h. Trading volume: $${volume}. They boast a market cap of $${marketCap}. Learn about ${symbol}.`,
-    `Ever heard of ${name} (${symbol})? At $${priceUsd}, they've marked a ${changeDirection} of ${change24hTrimmed}% in 24h. Trading volume: $${volume}. Their market cap: $${marketCap}. Get to know them.`,
-    `Check out ${name} (${symbol})! Grazing at $${priceUsd}, with ${changeDirection} of ${change24hTrimmed}% in 24h. Trading volume: $${volume}. Their market cap: $${marketCap}. Discover ${symbol}'s secrets.`,
-    `Latest on ${name} (${symbol}): priced at $${priceUsd}. Experienced a ${changeDirection} of ${change24hTrimmed}% in 24h. Trading volume: $${volume}. Their market cap: $${marketCap}. Learn more.`,
-  ];  
+    (n, s, p, d, v, m) => `Moo-ve over to ${n} (${s})! Grazing at $${p} with ${d} of ${change24hTrimmed}% in 24h. Trading volume: $${v}. Their market cap: $${m}. Learn about ${s}'s pasture.`,
+    (n, s, p, d, v, m) => `The grass is greener with ${n} (${s})! At $${p}, with ${d} of ${change24hTrimmed}% in 24h. Trading volume: $${v}. Their market cap: $${m}. Discover more about ${s}.`,
+    (n, s, p, d, v, m) => `Interested in ${n} (${s})? Priced at $${p}, with ${d} of ${change24hTrimmed}% in 24h. Trading volume: $${v}. Their market cap: $${m}. Learn more about ${s}!`,
+    (n, s, p, d, v, m) => `Graze on this: ${n} (${s}) at $${p}, with ${d} of ${change24hTrimmed}% in 24h. Trading volume: $${v}. They boast a market cap of $${m}. Learn about ${s}.`,
+    (n, s, p, d, v, m) => `Ever heard of ${n} (${s})? At $${p}, they've marked a ${d} of ${change24hTrimmed}% in 24h. Trading volume: $${v}. Their market cap: $${m}. Get to know them.`,
+    (n, s, p, d, v, m) => `Check out ${n} (${s})! Grazing at $${p}, with ${d} of ${change24hTrimmed}% in 24h. Trading volume: $${v}. Their market cap: $${m}. Discover ${s}'s secrets.`,
+    (n, s, p, d, v, m) => `Latest on ${n} (${s}): priced at $${p}. Experienced a ${d} of ${change24hTrimmed}% in 24h. Trading volume: $${v}. Their market cap: $${m}. Learn more.`,
+  ];
   
+
   const randomIndex = Math.floor(Math.random() * templates.length);
   
-  return templates[randomIndex];
+  return templates[randomIndex](name, symbol, priceUsd, changeDirection, volume, marketCap);
 }
 
 
