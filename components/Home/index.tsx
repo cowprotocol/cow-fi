@@ -20,6 +20,7 @@ import SocialList from '@/components/SocialList'
 import Button from '@/components/Button'
 
 import { MetricsData } from 'types'
+import { useUtm } from 'modules/utm'
 
 export interface HomeProps {
   metricsData: MetricsData
@@ -27,7 +28,7 @@ export interface HomeProps {
 }
 
 export default function Home({ metricsData, siteConfigData }: HomeProps) {
-  const { title, descriptionShort, social, url } = siteConfigData
+  const { social, url } = siteConfigData
 
   const scrollToElRef = useRef(null)
 

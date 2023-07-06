@@ -28,6 +28,7 @@
     "exponential-backoff": "^3.1.1",
     "graphql": "^16.7.1",
     "gray-matter": "^4.0.3",
+    "jotai": "^2.2.2",
     "make-plural": "^7.0.0",
     "markdown-to-jsx": "^7.1.5",
     "next": "latest",
