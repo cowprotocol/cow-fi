@@ -24,9 +24,9 @@ export default function TokenDetailsPage({ token }: TokenDetailPageProps) {
       <Head>
         <title>{metaTitle}</title>
         <meta name="description" content={metaDescription} key="description" />
-        <meta property="og:title" content={metaTitle} key="og:title" />
-        <meta property="og:description" content={metaDescription} key="og:description" />
-        <meta name="twitter:title" content={CONFIG.title} key="twitter:title" />
+        <meta property="og:title" content={metaTitle} key="og-title" />
+        <meta property="og:description" content={metaDescription} key="og-description" />
+        <meta name="twitter:title" content={CONFIG.title} key="twitter-title" />
       </Head>
 
       <Layout tokensPages={true}>
