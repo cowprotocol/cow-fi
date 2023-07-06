@@ -26,11 +26,11 @@ export default function TokenDetailsPage({ token, currentUrl }: TokenDetailPageP
       <Head>
         <title>{metaTitle}</title>
         <meta name="description" content={metaDescription} key="description" />
-        <meta property="og:title" content={metaTitle} key="og:title" />
-        <meta property="og:description" content={metaDescription} key="og:description" />
+        <meta property="og:title" content={metaTitle} key="og-title" />
+        <meta property="og:description" content={metaDescription} key="og-description" />
         <link rel="canonical" href={currentUrl} key="canonical" />
-        <meta property="og:url" content={currentUrl} key="og:url" /> 
-        <meta name="twitter:title" content={CONFIG.title} key="twitter:title" />
+        <meta property="og:url" content={currentUrl} key="og-url" /> 
+        <meta name="twitter:title" content={CONFIG.title} key="twitter-title" />
       </Head>
 
       <Layout tokensPages={true}>
