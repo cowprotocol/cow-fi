@@ -2,7 +2,7 @@ const withTM = require('next-transpile-modules')(['react-syntax-highlighter']) /
 
 module.exports = withTM({
   i18n: {
-    locales: ['en', 'es', 'pseudo'],
+    locales: ['en'],
     defaultLocale: 'en',
   },
   experimental: {
