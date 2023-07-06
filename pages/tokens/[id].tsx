@@ -18,10 +18,9 @@ export default function TokenDetailsPage({ token, currentUrl }: TokenDetailPageP
   const change24 = parseFloat(change24h)
   const change24hFormatted = change24.toFixed(2)
   const isIncrease = parseFloat(change24h) >= 0;
-  const changePlusMinus = isIncrease ? '+' : '-';
   const priceChangeEmoji = isIncrease ? '🟢' : '🔴';
   const changeDirection = isIncrease ? '▲' : '▼';
-  const metaTitle = `${priceChangeEmoji} ${name} (${symbol}) $${priceUsd} (${changePlusMinus}${change24hFormatted}% ${changeDirection}) - ${CONFIG.metatitle_tokenDetail}`
+  const metaTitle = `${priceChangeEmoji} ${name} (${symbol}) $${priceUsd} (${change24hFormatted}% ${changeDirection}) - ${CONFIG.metatitle_tokenDetail}`
 
   return (
     <>
