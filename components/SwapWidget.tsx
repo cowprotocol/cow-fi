@@ -292,13 +292,13 @@ export const SwapWidget = ({ tokenId, tokenSymbol, tokenImage, platforms }: Swap
         </DropdownHeader>
         {isOpen && (
           <DropdownBody>
-            {platforms.ethereum && platforms.ethereum.contractAddress && (
+            {platforms?.ethereum?.contractAddress && (
               <DropdownOption onClick={() => handleSelect('ethereum')}>
                 <img src="/images/ethereum.svg" alt="Ethereum" />
                 Ethereum
               </DropdownOption>
             )}
-            {platforms.xdai && platforms.xdai.contractAddress && (
+            {platforms?.xdai?.contractAddress && (
               <DropdownOption onClick={() => handleSelect('xdai')}>
                 <img src="/images/gnosis-chain.svg" alt="Gnosis Chain" />
                 Gnosis Chain
