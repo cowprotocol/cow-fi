@@ -11,6 +11,7 @@ export const NetworkHeaderItem = styled.div`
   border-bottom: 0.1rem solid ${transparentize(0.9, Color.darkBlue)};
   color: ${Color.text1};
   gap: 0.8rem;
+  width: 100%;
 
   ${Media.mobile} {
     padding: 2.4rem 0;

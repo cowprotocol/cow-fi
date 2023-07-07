@@ -18,6 +18,12 @@ export default function App(props: AppProps) {
   return (
     <>
       <Head>
+        {/* Prevent indexing of development and preview environments */}
+        {
+          (process.env.NEXT_PUBLIC_ENVIRONMENT === 'DEVELOPMENT' || process.env.NEXT_PUBLIC_ENVIRONMENT === 'PREVIEW') && 
+          <meta name="robots" content="noindex" key="robots" />
+        }
+        
         <meta name="description" content={CONFIG.description} key="description" />
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="black" key="theme-color-light" />
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" key="theme-color-dark" />

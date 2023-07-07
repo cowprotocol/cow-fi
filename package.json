@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "i18n:extract": "NODE_ENV=test npx lingui extract",
     "i18n:compile": "npx lingui compile",
@@ -32,6 +33,7 @@
     "make-plural": "^7.0.0",
     "markdown-to-jsx": "^7.1.5",
     "next": "latest",
+    "next-sitemap": "^4.1.8",
     "next-transpile-modules": "^9.0.0",
     "os": "^0.1.2",
     "polished": "^4.1.3",
