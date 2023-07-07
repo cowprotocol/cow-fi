@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import { PlatformData, Platforms, TokenDetails, TokenInfo } from 'types'
 import { backOff } from 'exponential-backoff'
+import { META_DESCRIPTION_TEMPLATES } from '@/const/meta'
 
 const NETWORKS = ['ethereum', 'xdai']
 const COW_TOKEN_ID = 'cow-protocol'
@@ -128,26 +129,11 @@ function _getTokenMetaDescription(token: TokenDetails): string {
   const change24hTrimmed = parseFloat(change24h).toFixed(2);
   const isIncrease = parseFloat(change24h) >= 0;
   const changeDirection = isIncrease ? 'increase ▲' : 'decrease ▼';
+  const randomIndex = Math.floor(Math.random() * META_DESCRIPTION_TEMPLATES.length);
+  const chosenTemplate = META_DESCRIPTION_TEMPLATES[randomIndex];
 
-  const templates = [
-    (n, s, p, d, v, m) => `Moo-ve over to ${n} (${s})! Grazing at $${p} with ${d} of ${change24hTrimmed}% in 24h. Trading volume: $${v}. Their market cap: $${m}. Learn about ${s}'s pasture.`,
-    (n, s, p, d, v, m) => `The grass is greener with ${n} (${s})! At $${p}, with ${d} of ${change24hTrimmed}% in 24h. Trading volume: $${v}. Their market cap: $${m}. Discover more about ${s}.`,
-    (n, s, p, d, v, m) => `Interested in ${n} (${s})? Priced at $${p}, with ${d} of ${change24hTrimmed}% in 24h. Trading volume: $${v}. Their market cap: $${m}. Learn more about ${s}!`,
-    (n, s, p, d, v, m) => `Graze on this: ${n} (${s}) at $${p}, with ${d} of ${change24hTrimmed}% in 24h. Trading volume: $${v}. They boast a market cap of $${m}. Learn about ${s}.`,
-    (n, s, p, d, v, m) => `Ever heard of ${n} (${s})? At $${p}, they've marked a ${d} of ${change24hTrimmed}% in 24h. Trading volume: $${v}. Their market cap: $${m}. Get to know them.`,
-    (n, s, p, d, v, m) => `Check out ${n} (${s})! Grazing at $${p}, with ${d} of ${change24hTrimmed}% in 24h. Trading volume: $${v}. Their market cap: $${m}. Discover ${s}'s secrets.`,
-    (n, s, p, d, v, m) => `Latest on ${n} (${s}): priced at $${p}. Experienced a ${d} of ${change24hTrimmed}% in 24h. Trading volume: $${v}. Their market cap: $${m}. Learn more.`,
-  ];
-  
-
-  const randomIndex = Math.floor(Math.random() * templates.length);
-  
-  return templates[randomIndex](name, symbol, priceUsd, changeDirection, volume, marketCap);
+  return chosenTemplate({ name, symbol, changeDirection, priceUsd, change24hTrimmed, volume, marketCap });
 }
-
-
-
-
 
 function _toTokenDetails(tokenRaw: any, description: string): TokenDetails {
   // Add platform information
