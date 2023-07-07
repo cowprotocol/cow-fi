@@ -38,6 +38,7 @@ export const SearchTokens = styled.input`
 export const TokenTable = styled.div`
   display: flex;
   flex-flow: column wrap;
+  width: 100%;
 `
 
 export const HeaderItem = styled.div`
@@ -49,9 +50,11 @@ export const HeaderItem = styled.div`
   padding: 1rem 0;
   border-bottom: 1px solid ${transparentize(0.9, Color.darkBlue)};
   gap: 1.4rem;
+  width: 100%;
 
   ${Media.mobile} {
     grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    padding: 2.4rem 0;
   }
 
   > div {
