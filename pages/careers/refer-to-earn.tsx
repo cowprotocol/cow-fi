@@ -2,16 +2,16 @@ import Head from 'next/head'
 import { GetStaticProps } from 'next'
 import { CONFIG } from '@/const/meta'
 import Layout from '@/components/Layout'
-import { ReferralProgram } from '@/components/Careers/ReferralProgram'
+import { ReferToEarn } from '@/components/Careers/ReferToEarn'
 
-export default function Referral() {
+export default function ReferToEarnPage() {
   return (
     <>
       <Head>
         <title>Career Referral Program - {CONFIG.title}</title>
       </Head>
       <Layout>
-        <ReferralProgram />
+        <ReferToEarn />
       </Layout>
     </>
   )
