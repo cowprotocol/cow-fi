@@ -25,6 +25,7 @@ export const FOOTER_LINK_GROUPS: FooterLinkGroup[] = [
       { label: 'Blog', url: 'https://medium.com/@cow-protocol', type: 'external' },
       { label: 'Analytics', url: url.analytics, type: 'external' },
       { label: 'Careers', url: '/careers' },
+      { label: 'Job Referral Program', url: '/careers/referral-program' },
       { label: 'Grants', url: url.grants, type: 'external' },
       { label: 'Explorer', url: url.explorer, type: 'external', utmContent },
     ],
