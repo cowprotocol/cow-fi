@@ -379,4 +379,8 @@ export const CopyWrapper = styled.div`
   min-width: 100px;
   text-align: right;
   justify-content: flex-end;
+
+  ${Media.mobile} {
+    justify-content: flex-start;
+  }
 `
