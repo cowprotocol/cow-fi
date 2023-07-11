@@ -7,6 +7,7 @@ type ButtonProps = {
   borderRadius?: number
   fontSize?: number
   paddingLR?: number
+  marginTB?: number
   variant?: string
   href?: string
   label: string
@@ -20,8 +21,9 @@ const Wrapper = styled.a<Omit<ButtonProps, 'href' | 'label' | 'target' | 'rel'>>
   background: ${Color.darkBlue};
   flex-flow: row;
   border: 0.1rem solid transparent;
-  color: ${Color.white};
-  padding: ${({ paddingLR }) => (paddingLR ? `0 ${paddingLR}rem` : '0 2.4rem')};
+  color: ${Color.lightBlue};
+  padding: ${({ paddingLR }) => paddingLR ? `0 ${paddingLR}rem` : '0 2.4rem'};
+  margin: ${({ marginTB }) => marginTB ? `${marginTB}rem 0` : '0'};
   box-sizing: border-box;
   border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : Defaults.borderRadius)};
   min-height: ${({ minHeight }) => (minHeight ? `${minHeight}rem` : '5.6rem')};
@@ -74,9 +76,8 @@ ${({ variant }) =>
     color: ${Color.darkBlue};
   `}
 
-  ${({ variant }) =>
-    variant === 'outlineLight' &&
-    `
+  ${({ variant }) => (variant === 'outlineLight') && `
+    background: transparent;
     border: 0.1rem solid ${Color.lightBlue};
   `}
 
@@ -114,6 +115,7 @@ export default function Button({
   borderRadius,
   fontSize,
   paddingLR,
+  marginTB,
   variant,
   href = '#',
   label,
@@ -122,12 +124,7 @@ export default function Button({
   minHeight,
 }: ButtonProps) {
   return (
-    <Wrapper
-      {...{ wrapText, borderRadius, fontSize, paddingLR, variant, minHeight }}
-      href={href}
-      target={target}
-      rel={rel}
-    >
+    <Wrapper {...{ wrapText, borderRadius, fontSize, paddingLR, marginTB, variant, minHeight }} href={href} target={target} rel={rel}>
       {label}
     </Wrapper>
   )
