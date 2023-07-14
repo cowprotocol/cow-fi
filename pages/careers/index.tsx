@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { useState } from 'react'
 import { GetStaticProps } from 'next'
 import { CONFIG } from '@/const/meta'
 import Layout from '@/components/Layout'
