@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { transparentize } from 'polished'
 import { Defaults, Color, Font, Media } from 'styles/variables'
 
 export const Section = styled.section<{
@@ -21,6 +20,8 @@ export const Section = styled.section<{
   z-index: 1;
   align-items: ${({ hero }) => (hero ? 'center' : 'normal')};
   padding: 0;
+  background: ${({ colorVariant }) => (colorVariant === 'dark' ? Color.darkBlue : 'transparent')};
+  color: ${({ colorVariant }) => (colorVariant === 'dark' ? Color.lightBlue : 'inherit')};
 
   ${Media.desktopDown} {
     padding: 0 3.2rem;
@@ -98,6 +99,7 @@ export const Section = styled.section<{
   `}
 
   h1, h2, h3 {
+    color: ${({ colorVariant }) => (colorVariant === 'dark' ? Color.lightBlue : Color.darkBlue)};
     font-size: 5rem;
     line-height: 1.2;
     font-weight: ${Font.weightNormal};
@@ -117,7 +119,6 @@ export const Section = styled.section<{
     ${({ hero, breakMedium }) =>
       (hero || breakMedium) &&
       `
-      color: ${Color.darkBlue};
       font-size: 7rem;
       font-weight: 600;
       text-align: left;
@@ -132,9 +133,14 @@ export const Section = styled.section<{
   h3 {
     font-size: 6rem;
     font-weight: ${Font.weightMedium};
-    background: ${Color.gradient};
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: ${({ colorVariant }) => (colorVariant === 'dark' ? `
+        font-weight: ${Font.weightMedium};
+        background: ${Color.gradient};
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    `: Color.darkBlue)};
+
+
 
     &::selection {
       -webkit-background-clip: initial;
@@ -155,7 +161,6 @@ export const SectionContent = styled.div<{
   reverseOrderMobile?: string
 }>`
   display: flex;
-  /* margin: 0 auto; */
   width: 100%;
   max-width: ${Defaults.pageMaxWidth};
   margin: ${({ hero }) => (hero ? '0 auto' : '16rem auto 0')};
@@ -300,6 +305,52 @@ export const StepContainer = styled.div<{ imageWidth?: number }>`
       -webkit-text-fill-color: initial;
     }
   }
+`
+
+export const CardWrapper = styled.div`
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+  margin: 2.6rem auto 0;
+
+  ${Media.mediumDown} {
+    display: flex;
+    flex-flow: column wrap;
+  }
+`
+
+export const CardItem = styled.div<{ variant?: string }>`
+  display: flex;
+  flex-flow: column wrap;
+  background: ${({ variant }) => (variant === 'outlined-dark' ? 'transparent' : Color.white)};
+  box-shadow: ${({ variant }) => (variant === 'outlined-dark' ? 'none' : '0px 1px 50px rgba(5, 43, 101, 0.1)')};
+  border: ${({ variant }) => (variant === 'outlined-dark' ? `0.1rem solid ${Color.border}` : 'none')};
+  color: ${({ variant }) => (variant === 'outlined-dark' ? Color.text2 : Color.text1)};
+  border-radius: 1.6rem;
+  gap: 1.6rem;
+  padding: 3.4rem;
+
+    > img {
+      --size: 7.6rem;
+      width: var(--size);
+      height: var(--size);
+      background-color: ${Color.darkBlue};
+      border-radius: var(--size);
+      object-fit: contain;
+      margin: 0 0 1.6rem;
+    }
+
+    > h4 {
+      font-size: 2.4rem;
+      font-weight: ${Font.weightBold};
+      margin: 0;
+      color: ${({ variant }) => (variant === 'outlined-dark' ? Color.lightBlue : Color.darkBlue)};
+    }
+
+    > p {
+      line-height: 1.3;
+    }
 `
 
 export const TopGradient = styled.div`
