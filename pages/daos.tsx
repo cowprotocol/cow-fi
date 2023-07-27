@@ -157,7 +157,7 @@ const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
 export default function ForDAOs({ siteConfigData }) {
   return (
-    <Layout fullWidthGradient={true}>
+    <Layout FullWidthGradientVariant={true}>
       <Head>
         <title>
           {siteConfigData.title} - {siteConfigData.descriptionShort}
@@ -191,7 +191,7 @@ export default function ForDAOs({ siteConfigData }) {
               }}
               autoplay={{
                 delay: 5000,
-                disableOnInteraction: true,
+                // disableOnInteraction: true,
               }}
               navigation={true}
               spaceBetween={50}

@@ -14,7 +14,7 @@ export default function TokenListPage({ tokens }: { tokens: TokenInfo[] }) {
       <Head>
         <title>Tokens - {CONFIG.title}</title>
       </Head>
-      <Layout tokensPages={true}>
+      <Layout FullWidthGradientVariant={true}>
         <TokenList tokens={tokens} />
       </Layout>
     </>

@@ -264,7 +264,11 @@ const Logo = styled.div<{ isLight?: boolean }>`
   }
 `
 
-export default function Header() {
+interface Props {
+  isLight?: boolean
+}
+
+export default function Header({isLight = false}: Props) {
   const swapURL = CONFIG.url.swap
   const isTouch = useMediaQuery(`(max-width: ${Media.mediumEnd})`)
   const [menuVisible, setIsMenuVisible] = useState(false)
@@ -278,8 +282,6 @@ export default function Header() {
     }
   }
 
-  const router = useRouter()
-  const isLight = router.pathname === '/' || router.pathname.startsWith('/tokens')
   return (
     <InView threshold={1} delay={500}>
       {({ inView, ref }) => (
