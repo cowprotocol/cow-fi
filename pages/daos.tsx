@@ -11,29 +11,35 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper/modules';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 const CONTENT = {
   slides: [
-    { image: '/images/dao-surplus.svg', title: 'Enjoy more price surplus than anywhere else', description: "Every DEX aggregator will tell you they have the best prices, but when it’s down to the wire, CoW Swap does everything they do and then some. Whether it's peer-to-peer order matching, gas optimizations, or MEV protection — we'll improve your quoted price and forward the surplus back to you." },
-    { image: '/images/dao-timing.svg', title: 'Forget about timing trades', description: "Tired of scrambling to sign the multi-sig? Eyes glazed over from staring at candlesticks? CoW Swap automatically adjusts your trade’s execution path and your slippage tolerance to fill your order at the best possible price, every time." },
-    { image: '/images/dao-surplus-2.svg', title: 'Enjoy more price surplus than anywhere else', description: "Every DEX aggregator will tell you they have the best prices, but when it’s down to the wire, CoW Swap does everything they do and then some. Whether it's peer-to-peer order matching, gas optimizations, or MEV protection — we'll improve your quoted price and forward the surplus back to you." },
-    { image: '/images/dao-custom-tailor.svg', title: 'Custom-tailor every order', description: "CoW Swap’s conditional order framework allows you to set rules for your order execution that go beyond traditional order settings. Want to trigger a trade only when your wallet has a certain amount of funds in it? Want to schedule recurring trades? On CoW Swap you can do all that and more in just a few clicks." },
-    { image: '/images/dao-do-more.svg', title: 'Do more...', description: "The benefits don’t end there: initiate trades from one wallet and route the funds to another wallet post-trade, batch multiple trades together to cut down on governance votes, and much more. All on CoW Swap." },
+    { image: '/images/dao-surplus.svg', title: 'Enjoy more price surplus than anywhere else', description: "Every DEX aggregator will tell you they have the best prices, but when it's down to the wire, CoW Swap does everything they do and then some. Whether it's peer-to-peer order matching, gas optimizations, or MEV protection — we'll improve your quoted price and forward the surplus back to you." },
+    { image: '/images/dao-timing.svg', title: 'Forget about timing trades', description: "Tired of scrambling to sign the multi-sig? Eyes glazed over from staring at candlesticks? CoW Swap automatically adjusts your trade's execution path and your slippage tolerance to fill your order at the best possible price, every time." },
+    { image: '/images/dao-surplus-2.svg', title: 'Enjoy more price surplus than anywhere else', description: "Every DEX aggregator will tell you they have the best prices, but when it's down to the wire, CoW Swap does everything they do and then some. Whether it's peer-to-peer order matching, gas optimizations, or MEV protection — we'll improve your quoted price and forward the surplus back to you." },
+    { image: '/images/dao-custom-tailor.svg', title: 'Custom-tailor every order', description: "CoW Swap's conditional order framework allows you to set rules for your order execution that go beyond traditional order settings. Want to trigger a trade only when your wallet has a certain amount of funds in it? Want to schedule recurring trades? On CoW Swap you can do all that and more in just a few clicks." },
+    { image: '/images/dao-do-more.svg', title: 'Do more...', description: "The benefits don't end there: initiate trades from one wallet and route the funds to another wallet post-trade, batch multiple trades together to cut down on governance votes, and much more. All on CoW Swap." },
   ],
   orderTypes: [
-    { icon: '/images/dao-surplus.svg', title: 'Milkman Orders', description: "Ensure your trades are always close to the real-time market price thanks to our Milkman bot. Set the maximum deviation you'll accept, and Milkman will do the rest" },
-    { icon: '/images/dao-surplus.svg', title: 'TWAP Orders', description: "Time-weighted average price orders allow you to spread your trade out over time, averaging out your trading price, minimizing price impact, and allowing for lower slippage" },
-    { icon: '/images/dao-surplus.svg', title: 'Limit Orders', description: "CoW Swap’s surplus-capturing limit orders allow you to set a price and just sit back while your order gets filled over time" },
-    { icon: '/images/dao-surplus.svg', title: 'Token Buybacks', description: "Buy back tokens from retail traders and large investors alike by opening a partially fillable limit order for your token " },
-    { icon: '/images/dao-surplus.svg', title: 'Price Walls', description: "Pick an asset, define a threshold price, and CoW Swap will automatically sell above the threshold, and buy below — making for a perfect continuous trade" },
-    { icon: '/images/dao-surplus.svg', title: 'Basket Sells', description: "CoW Swap and Yearn.fi recently launched Dump.services to help DAOs and traders sell multiple tokens in a single transaction" },
+    { icon: '/images/icon-twap-orders.svg', title: 'Milkman Orders', description: "Ensure your trades are always close to the real-time market price thanks to our Milkman bot. Set the maximum deviation you'll accept, and Milkman will do the rest" },
+    { icon: '/images/icon-twap-orders.svg', title: 'TWAP Orders', description: "Time-weighted average price orders allow you to spread your trade out over time, averaging out your trading price, minimizing price impact, and allowing for lower slippage" },
+    { icon: '/images/icon-limit-orders.svg', title: 'Limit Orders', description: "CoW Swap's surplus-capturing limit orders allow you to set a price and just sit back while your order gets filled over time" },
+    { icon: '/images/icon-buybacks.svg', title: 'Token Buybacks', description: "Buy back tokens from retail traders and large investors alike by opening a partially fillable limit order for your token" },
+    { icon: '/images/icon-buybacks.svg', title: 'Price Walls', description: "Pick an asset, define a threshold price, and CoW Swap will automatically sell above the threshold, and buy below — making for a perfect continuous trade" },
+    { icon: '/images/icon-basket-sells.svg', title: 'Basket Sells', description: "CoW Swap and Yearn.fi recently launched Dump.services to help DAOs and traders sell multiple tokens in a single transaction" },
   ],
   trustedDAOs: [
-    { icon: '/images/dao-surplus.svg', title: 'Yearn', description: "Yearn is a decentralized ecosystem of aggregators that utilize lending services such as Aave, Compound, Dydx, and Fulcrum to optimize your token lending", link: 'https://yearn.finance/' },
-    { icon: '/images/dao-surplus.svg', title: 'Yearn', description: "Yearn is a decentralized ecosystem of aggregators that utilize lending services such as Aave, Compound, Dydx, and Fulcrum to optimize your token lending", link: 'https://yearn.finance/' },
-    { icon: '/images/dao-surplus.svg', title: 'Yearn', description: "Yearn is a decentralized ecosystem of aggregators that utilize lending services such as Aave, Compound, Dydx, and Fulcrum to optimize your token lending", link: 'https://yearn.finance/' },
-  ]
+    { icon: '/images/logo-aave.svg', link: '#' },
+    { icon: '/images/logo-nexus.svg', link: '#' },
+    { icon: '/images/logo-ens.svg', link: '#' },
+    { icon: '/images/logo-aave.svg', title: 'Aave', description: "Aave DAO used CoW Swap to swap over $2 million directly into Balancer 80/20 liquidity pool", link: '#' },
+    { icon: '/images/logo-nexus.svg', title: 'Nexus Mutual', description: "In the largest DAO trade ever, Nexus Mutual relied on CoW Swap to trade 14,400 ETH for the rETH liquid staking token", link: '#' },
+    { icon: '/images/logo-ens.svg', title: 'ENS', description: "ENS DAO traded a whopping $16.5 million dollars of ETH for USDC through CoW Swap", link: '#' },
+    { icon: '/images/logo-aave.svg', link: '#' },
+    { icon: '/images/logo-nexus.svg', link: '#' },
+    { icon: '/images/logo-ens.svg', link: '#' },
+    ]
 }
 
 const SwiperSlideWrapper = styled.div`
@@ -195,7 +201,7 @@ export default function ForDAOs({ siteConfigData }) {
               }}
               navigation={true}
               spaceBetween={50}
-              modules={[Pagination, Navigation]}
+              modules={[Autoplay, Pagination, Navigation]}
               className="daoSwiper"
             >
               {CONTENT.slides.map((slide, index) => (
@@ -221,7 +227,7 @@ export default function ForDAOs({ siteConfigData }) {
 
             <CardWrapper>
               {CONTENT.orderTypes.map((orderType, index) => (
-                <CardItem key={index}>
+                <CardItem key={index} imageHeight={8}>
                   <img src={orderType.icon} alt="image" />
                   <h4>{orderType.title}</h4>
                   <p>{orderType.description}</p>
@@ -243,11 +249,14 @@ export default function ForDAOs({ siteConfigData }) {
 
             <CardWrapper>
               {CONTENT.trustedDAOs.map((DAO, index) => (
-                <CardItem key={index} variant="outlined-dark">
-                  <img src={DAO.icon} alt="image" />
-                  <h4>{DAO.title}</h4>
-                  <p>{DAO.description}</p>
-                  <a href={DAO.link} target="_blank" rel="noreferrer">Case study</a>
+                <CardItem key={index} variant="outlined-dark" gap={3.6} textCentered className={!DAO.description ? 'iconOnly' : ''}>
+                  <a href={DAO.link} target="_blank" rel="noreferrer"><img src={DAO.icon} alt={DAO.title} /></a>
+                  {DAO.description && <span>
+                    <p>{DAO.description}</p>
+                    <a href={DAO.link} target="_blank" rel="noreferrer">Case study</a>
+                  </span>
+                  }
+                  
                 </CardItem>
               ))}
             </CardWrapper>

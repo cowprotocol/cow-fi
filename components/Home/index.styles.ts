@@ -320,7 +320,7 @@ export const CardWrapper = styled.div`
   }
 `
 
-export const CardItem = styled.div<{ variant?: string }>`
+export const CardItem = styled.div<{ variant?: string; imageHeight?: number; textCentered?: boolean; gap?: number }>`
   display: flex;
   flex-flow: column wrap;
   background: ${({ variant }) => (variant === 'outlined-dark' ? 'transparent' : Color.white)};
@@ -328,28 +328,63 @@ export const CardItem = styled.div<{ variant?: string }>`
   border: ${({ variant }) => (variant === 'outlined-dark' ? `0.1rem solid ${Color.border}` : 'none')};
   color: ${({ variant }) => (variant === 'outlined-dark' ? Color.text2 : Color.text1)};
   border-radius: 1.6rem;
-  gap: 1.6rem;
   padding: 3.4rem;
+  font-size: 1.6rem;
+  gap: ${({ gap }) => (gap ? `${gap}rem` : '1.6rem')};
 
+    > a {
+      display: flex;
+      flex-flow: column wrap;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+
+    > a > img,
     > img {
-      --size: 7.6rem;
-      width: var(--size);
-      height: var(--size);
-      background-color: ${Color.darkBlue};
-      border-radius: var(--size);
+      --width: auto;
+      --height: ${({ imageHeight }) => (imageHeight ? `${imageHeight}rem` : '5rem')};
+      width: var(--width);
+      height: var(--height);
+      max-width: 100%;
+      background: transparent;
       object-fit: contain;
-      margin: 0 0 1.6rem;
+      margin: 0 auto 0 0;
+    }
+
+    &.iconOnly > a > img,
+    &.iconOnly > img {
+      --width: auto;
+      --height: ${({ imageHeight }) => (imageHeight ? `${imageHeight}rem` : '3rem')};
+      width: var(--width);
+      height: var(--height);
+      margin: auto;
     }
 
     > h4 {
       font-size: 2.4rem;
+      line-height: 1.2;
       font-weight: ${Font.weightBold};
       margin: 0;
       color: ${({ variant }) => (variant === 'outlined-dark' ? Color.lightBlue : Color.darkBlue)};
     }
 
-    > p {
+    > span {
+      display: flex;
+      flex-flow: column wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1.6rem;
+    }
+
+    > p,
+    > span > p {
       line-height: 1.3;
+      text-align: ${({ textCentered }) => (textCentered ? 'center' : 'left')};
+    }
+
+    > span > a {
+      color: ${Color.lightBlue};
     }
 `
 
