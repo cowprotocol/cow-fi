@@ -163,7 +163,7 @@ export const SectionContent = styled.div<{
   display: flex;
   width: 100%;
   max-width: ${Defaults.pageMaxWidth};
-  margin: ${({ hero }) => (hero ? '0 auto' : '16rem auto 0')};
+  margin: ${({ hero }) => (hero ? '0 auto' : '16rem auto')};
 
   ${Media.mobile} {
     flex-flow: row wrap;
