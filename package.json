@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.17",
-    "@cowprotocol/cow-sdk": "^2.2.1",
+    "@cowprotocol/cow-sdk": "^0.0.15-RC.1",
     "@lingui/macro": "^4.3.0",
     "@lingui/react": "^4.3.0",
     "@visx/axis": "^3.3.0",
