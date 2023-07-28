@@ -84,9 +84,28 @@ const SwiperSlideWrapper = styled.div`
     }
   }
 
+  .daoSwiper {
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .daoSwiper > .swiper-wrapper {
+    max-width: 80%;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    ${Media.mobile} { 
+      max-width: 100%;
+      align-items: stretch;
+    }
+  }
+
   .daoSwiper > .swiper-wrapper > .swiper-slide {
     height: 49rem;
-    max-width: 80%;
+    width: 100%;
+    max-width: 100%;
     margin: 0 auto;
     border-radius: 6rem;
     border: 0.1rem solid ${Color.border};
@@ -95,7 +114,7 @@ const SwiperSlideWrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     overflow: hidden;
 
     ${Media.mobile} {
