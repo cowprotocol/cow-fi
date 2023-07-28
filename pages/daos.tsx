@@ -202,7 +202,7 @@ export default function ForDAOs({ siteConfigData }) {
               }}
               autoplay={{
                 delay: 5000,
-                // disableOnInteraction: true,
+                disableOnInteraction: true,
               }}
               navigation={true}
               spaceBetween={50}
