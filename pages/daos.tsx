@@ -230,7 +230,7 @@ export default function ForDAOs({ siteConfigData }) {
             <h3>Advanced order types</h3>
             <SubTitle color={Color.text1} lineHeight={1.4} maxWidth={70}>CoW Swap&apos;s order types help you get better prices for your trades, manage token launches, facilitate buybacks, and much more.</SubTitle>
 
-            <CardWrapper>
+            <CardWrapper maxWidth={100}>
               {CONTENT.orderTypes.map((orderType, index) => (
                 <CardItem key={index} imageHeight={8}>
                   <img src={orderType.icon} alt="image" />

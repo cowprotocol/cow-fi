@@ -194,6 +194,7 @@ export const SectionContent = styled.div<{
     align-content: center;
     gap: 5rem;
     z-index: 1;
+    max-width: 100%;
 
     ${Media.mobile} {
       flex: 1 1 auto;
@@ -309,7 +310,7 @@ export const StepContainer = styled.div<{ imageWidth?: number }>`
 
 export const CardWrapper = styled.div<{ maxWidth?: number}>`
   width: 100%;
-  max-width: ${({ maxWidth }) => maxWidth && `${maxWidth}rem`};
+  max-width: ${({ maxWidth }) => maxWidth ? `${maxWidth}rem` : '100%'};
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.8rem;
@@ -318,6 +319,7 @@ export const CardWrapper = styled.div<{ maxWidth?: number}>`
   ${Media.mediumDown} {
     display: flex;
     flex-flow: column wrap;
+    max-width: 100%;
   }
 `
 
@@ -332,6 +334,7 @@ export const CardItem = styled.div<{ variant?: string; imageHeight?: number; tex
   padding: 3.4rem;
   font-size: 1.6rem;
   gap: ${({ gap }) => (gap ? `${gap}rem` : '1.6rem')};
+  max-width: 100%;
 
     > a {
       display: flex;
