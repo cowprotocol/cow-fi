@@ -189,8 +189,8 @@ export default function ForDAOs({ siteConfigData }) {
           <SwiperSlideWrapper>
             <h3>On CoW Swap, your DAO can</h3>
             <Swiper
-              slidesPerView={1}
-              centeredSlides={true}
+                          slidesPerView={'auto'}
+                          centeredSlides={true}
               grabCursor={true}
               loop={true}
               keyboard={{
