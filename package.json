@@ -55,7 +55,6 @@
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@lingui/cli": "^3.12.1",
-    "@types/swiper": "^6.0.0",
     "@lingui/loader": "^3.12.1",
     "@types/node": "^16.11.7",
     "@types/react": "^17.0.34",
