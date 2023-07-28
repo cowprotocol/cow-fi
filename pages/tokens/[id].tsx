@@ -29,7 +29,7 @@ export default function TokenDetailsPage({ token }: TokenDetailPageProps) {
         <meta name="twitter:title" content={CONFIG.title} key="twitter-title" />
       </Head>
 
-      <Layout FullWidthGradientVariant={true}>
+      <Layout fullWidthGradientVariant={true}>
         <TokenDetailsPure token={token} />
       </Layout>
     </>

@@ -6,6 +6,7 @@ import { CONFIG } from '@/const/meta'
 import { Media, Color, Font } from 'styles/variables'
 import { Section, SectionContent, SubTitle, CardWrapper, CardItem } from '@/components/Home/index.styles'
 import Layout from '@/components/Layout'
+import SocialList from '@/components/SocialList'
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -162,8 +163,10 @@ const SwiperSlideWrapper = styled.div`
 const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
 export default function ForDAOs({ siteConfigData }) {
+  const { social } = siteConfigData
+
   return (
-    <Layout FullWidthGradientVariant={true}>
+    <Layout fullWidthGradientVariant={true}>
       <Head>
         <title>
           {siteConfigData.title} - {siteConfigData.descriptionShort}
@@ -223,7 +226,7 @@ export default function ForDAOs({ siteConfigData }) {
         <SectionContent flow={'column'}>
           <div className="container">
             <h3>Advanced order types</h3>
-            <SubTitle color={Color.text1} lineHeight={1.4}>CoW Swap&apos;s order types help you get better prices for your trades, <br/> manage token launches, facilitate buybacks, and much more.</SubTitle>
+            <SubTitle color={Color.text1} lineHeight={1.4} maxWidth={60}>CoW Swap&apos;s order types help you get better prices for your trades, manage token launches, facilitate buybacks, and much more.</SubTitle>
 
             <CardWrapper>
               {CONTENT.orderTypes.map((orderType, index) => (
@@ -264,12 +267,14 @@ export default function ForDAOs({ siteConfigData }) {
         </SectionContent>
       </Section>
 
-      <Section fullWidth>
-        <SectionContent flow={'column'}>
-          <div className="container">
+      <Section flow={'column'}>
+        <SectionContent>
+          <div>
             <h3>Get in touch</h3>
-            
-            <a href="#" target="_blank" rel="noopener">Learn more</a> 
+            <SubTitle maxWidth={60} color={Color.text1} lineHeight={1.4}>
+              Learn more about CoW Protocol, get support, and have your say in shaping the future of decentralized finance.
+            </SubTitle>
+            <SocialList social={social} colorDark />
           </div>
         </SectionContent>
       </Section>

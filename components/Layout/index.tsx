@@ -39,16 +39,16 @@ const FullWidthGradient = styled.main`
   background-attachment: fixed;
 `
 
-type LayoutProps = PropsWithChildren<{ fullWidth?: boolean; fullWidthGradient?: boolean; FullWidthGradientVariant?: boolean }>
+type LayoutProps = PropsWithChildren<{ fullWidth?: boolean; fullWidthGradient?: boolean; fullWidthGradientVariant?: boolean }>
 
-export default function Layout({ children, fullWidth = false, FullWidthGradientVariant = false }: LayoutProps) {
-  const ContentComponent = fullWidth ? FullWidthContent : FullWidthGradientVariant ? FullWidthGradient : Content
-  const FooterNoMargin = FullWidthGradientVariant ? true : false
+export default function Layout({ children, fullWidth = false, fullWidthGradientVariant = false }: LayoutProps) {
+  const ContentComponent = fullWidth ? FullWidthContent : fullWidthGradientVariant ? FullWidthGradient : Content
+  const FooterNoMargin = fullWidthGradientVariant ? true : false
 
   return (
     <>
       <Wrapper>
-        <Header isLight={FullWidthGradientVariant} />
+        <Header isLight={fullWidth || fullWidthGradientVariant} />
         <ContentComponent>{children || 'No content found'}</ContentComponent>
         <Footer noMargin={FooterNoMargin} />
       </Wrapper>

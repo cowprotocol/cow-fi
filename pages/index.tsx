@@ -14,7 +14,7 @@ const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
 export default function HomePage({ metricsData, siteConfigData }: HomeProps) {
   return (
-    <Layout fullWidth={true}>
+    <Layout fullWidth>
       <Head>
         <title>
           {siteConfigData.title} - {siteConfigData.descriptionShort}
