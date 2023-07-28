@@ -14,6 +14,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { SwiperOptions } from 'swiper/types';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 const CONTENT = {
@@ -164,6 +165,27 @@ const SwiperSlideWrapper = styled.div`
 
 const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
+const SWIPER_PARAMS: SwiperOptions = {
+  slidesPerView: "auto",
+  centeredSlides: true,
+  grabCursor: true,
+  loop: true,
+  keyboard: {
+    enabled: true,
+  },
+  pagination: {
+    dynamicBullets: true,
+    clickable: true,
+  },
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: true,
+  },
+  navigation: true,
+  spaceBetween: 50,
+  modules: [Autoplay, Pagination, Navigation]
+};
+
 export default function ForDAOs({ siteConfigData }) {
   const { social } = siteConfigData
 
@@ -188,27 +210,7 @@ export default function ForDAOs({ siteConfigData }) {
         <SectionContent>
           <SwiperSlideWrapper>
             <h3>On CoW Swap, your DAO can</h3>
-            <Swiper
-              slidesPerView={"auto"}
-              centeredSlides={true}
-              grabCursor={true}
-              loop={true}
-              keyboard={{
-                enabled: true,
-              }}
-              pagination={{
-                dynamicBullets: true,
-                clickable: true,
-              }}
-              autoplay={{
-                delay: 5000,
-                disableOnInteraction: true,
-              }}
-              navigation={true}
-              spaceBetween={50}
-              modules={[Autoplay, Pagination, Navigation]}
-              className="daoSwiper"
-            >
+            <Swiper className={'daoSwiper'} {...SWIPER_PARAMS}>
               {CONTENT.slides.map((slide, index) => (
                 <SwiperSlide key={index}>
                   <img src={slide.image} alt={slide.title} />
