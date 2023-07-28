@@ -307,8 +307,9 @@ export const StepContainer = styled.div<{ imageWidth?: number }>`
   }
 `
 
-export const CardWrapper = styled.div`
+export const CardWrapper = styled.div<{ maxWidth?: number}>`
   width: 100%;
+  max-width: ${({ maxWidth }) => maxWidth && `${maxWidth}rem`};
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.8rem;

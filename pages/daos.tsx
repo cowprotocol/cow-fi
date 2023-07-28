@@ -7,6 +7,8 @@ import { Media, Color, Font } from 'styles/variables'
 import { Section, SectionContent, SubTitle, CardWrapper, CardItem } from '@/components/Home/index.styles'
 import Layout from '@/components/Layout'
 import SocialList from '@/components/SocialList'
+import { LinkWithUtm } from 'modules/utm'
+import Button from '@/components/Button'
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -31,16 +33,16 @@ const CONTENT = {
     { icon: '/images/icon-basket-sells.svg', title: 'Basket Sells', description: "CoW Swap and Yearn.fi recently launched Dump.services to help DAOs and traders sell multiple tokens in a single transaction" },
   ],
   trustedDAOs: [
-    { icon: '/images/logo-aave.svg', link: '#' },
-    { icon: '/images/logo-nexus.svg', link: '#' },
-    { icon: '/images/logo-ens.svg', link: '#' },
     { icon: '/images/logo-aave.svg', title: 'Aave', description: "Aave DAO used CoW Swap to swap over $2 million directly into Balancer 80/20 liquidity pool", link: '#' },
     { icon: '/images/logo-nexus.svg', title: 'Nexus Mutual', description: "In the largest DAO trade ever, Nexus Mutual relied on CoW Swap to trade 14,400 ETH for the rETH liquid staking token", link: '#' },
     { icon: '/images/logo-ens.svg', title: 'ENS', description: "ENS DAO traded a whopping $16.5 million dollars of ETH for USDC through CoW Swap", link: '#' },
     { icon: '/images/logo-aave.svg', link: '#' },
     { icon: '/images/logo-nexus.svg', link: '#' },
     { icon: '/images/logo-ens.svg', link: '#' },
-    ]
+    { icon: '/images/logo-aave.svg', link: '#' },
+    { icon: '/images/logo-nexus.svg', link: '#' },
+    { icon: '/images/logo-ens.svg', link: '#' },
+  ]
 }
 
 const SwiperSlideWrapper = styled.div`
@@ -226,7 +228,7 @@ export default function ForDAOs({ siteConfigData }) {
         <SectionContent flow={'column'}>
           <div className="container">
             <h3>Advanced order types</h3>
-            <SubTitle color={Color.text1} lineHeight={1.4} maxWidth={60}>CoW Swap&apos;s order types help you get better prices for your trades, manage token launches, facilitate buybacks, and much more.</SubTitle>
+            <SubTitle color={Color.text1} lineHeight={1.4} maxWidth={70}>CoW Swap&apos;s order types help you get better prices for your trades, manage token launches, facilitate buybacks, and much more.</SubTitle>
 
             <CardWrapper>
               {CONTENT.orderTypes.map((orderType, index) => (
@@ -238,7 +240,9 @@ export default function ForDAOs({ siteConfigData }) {
               ))}
             </CardWrapper>
 
-            <a href="#" target="_blank" rel="noopener">Learn more</a>
+            <LinkWithUtm href={'#'} defaultUtm={{ ...CONFIG.utm, utmContent: 'daos-page' }} passHref>
+              <Button paddingLR={4.2} target="_blank" rel="noopener nofollow" label="Explore Advanced Order Types" />
+            </LinkWithUtm>
 
           </div>
         </SectionContent>
@@ -250,7 +254,7 @@ export default function ForDAOs({ siteConfigData }) {
             <h3>Trusted by the experts</h3>
             <SubTitle lineHeight={1.4}>The smartest DAOs use CoW Swap to execute their trades</SubTitle>
 
-            <CardWrapper>
+            <CardWrapper maxWidth={85}>
               {CONTENT.trustedDAOs.map((DAO, index) => (
                 <CardItem key={index} variant="outlined-dark" gap={3.6} textCentered className={!DAO.description ? 'iconOnly' : ''}>
                   <a href={DAO.link} target="_blank" rel="noreferrer"><img src={DAO.icon} alt={DAO.title} /></a>
@@ -259,7 +263,7 @@ export default function ForDAOs({ siteConfigData }) {
                     <a href={DAO.link} target="_blank" rel="noreferrer">Case study</a>
                   </span>
                   }
-                  
+
                 </CardItem>
               ))}
             </CardWrapper>
