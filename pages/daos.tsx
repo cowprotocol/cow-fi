@@ -117,7 +117,7 @@ const SwiperSlideWrapper = styled.div`
     justify-content: flex-start;
     overflow: hidden;
 
-    ${Media.mobile} {
+    ${Media.mediumDown} {
       height: auto;
       max-width: 95%;
       display: flex;
@@ -129,7 +129,7 @@ const SwiperSlideWrapper = styled.div`
       height: 100%;
       object-fit: cover;
 
-      ${Media.mobile} {
+      ${Media.mediumDown} {
         height: 12rem;
         width: 100%;
         margin: 0 auto 2.4rem;
@@ -142,7 +142,7 @@ const SwiperSlideWrapper = styled.div`
       padding: 5.6rem;
       gap: 2.4rem;
 
-      ${Media.mobile} {
+      ${Media.mediumDown} {
         padding: 0 3.2rem 4.6rem;
       }
     }
