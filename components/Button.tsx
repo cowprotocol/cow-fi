@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-// import { transparentize } from 'polished'
 import { Defaults, Color, Font, Media } from 'styles/variables'
 
 type ButtonProps = {
@@ -14,7 +13,7 @@ type ButtonProps = {
   target?: string
   rel?: string
   minHeight?: number
-  onClick?: () => void
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void
 }
 
 const Wrapper = styled.a<Omit<ButtonProps, 'href' | 'label' | 'target' | 'rel'>>`
@@ -63,7 +62,7 @@ const Wrapper = styled.a<Omit<ButtonProps, 'href' | 'label' | 'target' | 'rel'>>
     color: ${Color.darkBlue};
   `}
 
-${({ variant }) =>
+  ${({ variant }) =>
     variant === 'textLight' &&
     `
     background: transparent;

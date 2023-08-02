@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, forwardRef, Ref } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 import { transparentize, lighten } from 'polished'
@@ -18,7 +18,11 @@ const LogoIconLightImage = '/images/logo-icon-light.svg'
 const MenuImage = '/images/icons/menu.svg'
 const MenuImageLight = '/images/icons/menu-light.svg'
 
-const Pixel = styled.div`
+interface PixelProps {
+  children?: React.ReactNode;
+}
+
+const StyledPixel = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -27,6 +31,12 @@ const Pixel = styled.div`
   display: block;
   background: transparent;
 `
+
+const Pixel = forwardRef<HTMLDivElement, PixelProps>((props, ref) => (
+  <StyledPixel ref={ref}>{props.children}</StyledPixel>
+));
+
+Pixel.displayName = "Pixel";
 
 const Wrapper = styled.header`
   z-index: 10;

@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { useRef } from 'react'
 import { GetStaticProps } from 'next'
 import styled from 'styled-components'
 import { transparentize } from 'polished'
@@ -187,10 +186,13 @@ const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
 export default function ForDAOs({ siteConfigData }) {
   const { social } = siteConfigData
-  const scrollToElRef = useRef(null)
-  const handleCTAClick = () => {
-    scrollToElRef.current?.scrollIntoView({behavior: 'smooth'});
-  };
+  const handleCTAClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault();
+    const href = e.currentTarget.href;
+    const targetId = href.replace(/.*\#/, "");
+    const elem = document.getElementById(targetId);
+    elem?.scrollIntoView({ behavior: "smooth" });
+  }
 
   return (
     <Layout fullWidthGradientVariant={true}>
@@ -205,7 +207,7 @@ export default function ForDAOs({ siteConfigData }) {
           <div>
             <SectionH1 fontSize={7}><b><i>Superpower</i></b> <span className="text-weight-light">your DAO</span></SectionH1>
             <SubTitle color={Color.text1} fontSize={3} lineHeight={1.4} maxWidth={60}>CoW Swap is the only DEX built to solve the unique challenges faced by DAOs</SubTitle>
-            <Button paddingLR={4.2} label="Learn how" onClick={handleCTAClick} />
+            <Button href="#benefits" onClick={handleCTAClick} paddingLR={4.2} label="Learn how" />
           </div>
         </SectionContent>
       </Section>
@@ -226,7 +228,7 @@ export default function ForDAOs({ siteConfigData }) {
         </TrustedBy>
       </Section>
 
-      <Section ref={scrollToElRef} fullWidth colorVariant={'dark'}>
+      <Section fullWidth colorVariant={'dark'} id="benefits">
         <SectionContent>
           <SwiperSlideWrapper>
             <h3>On CoW Swap, your DAO can</h3>
