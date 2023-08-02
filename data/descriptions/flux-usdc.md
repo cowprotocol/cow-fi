@@ -1,8 +1,8 @@
-<h2>What is fUSDC (fUSDC)?</h2>
+<h3>What is fUSDC (fUSDC)?</h3>
 
 <p>Hey there, moo-velous reader! Ever wondered about the fascinating world of fTokens in cryptocurrency? Well, let's introduce you to fUSDC, a unique token provided by the Flux Finance Protocol. Each fToken, including fUSDC, is a representation of the balances supplied to the protocol, acting as an exciting offshoot of Compound V2's cTokens. Now, the fun part is these tokens come with added features to support permissioned assets. Imagine them as power-boosted tokens that facilitate permissioned and permissionless cryptoassets. How cool is that!</p>
 
-<h2>Digging Deeper into fUSDC</h2>
+<h3>Digging Deeper into fUSDC</h3>
 
 <p>But what's so special about fUSDC, you ask? fUSDC is minted when users deposit USDC on Flux Finance. When you do this, your USDC becomes a beneficial source for borrowers and you start earning the USDC supply rate. Now, picture your fUSDC token growing in value relative to the underlying USDC. This means as time goes by and interest accrues, you can redeem even more assets! It's like watching your digital garden grow. Remember, the interest rate you earn fluctuates and depends on the market's utilization. That's the digital world for you - always dynamic!</p>
 

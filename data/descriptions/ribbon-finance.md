@@ -1,7 +1,7 @@
-<h2>What is Ribbon Finance (RBN)?</h2>
+<h3>What is Ribbon Finance (RBN)?</h3>
 <p>Meet Ribbon Finance (RBN), a novel protocol that paves the way for users to interact with structured crypto products in the world of DeFi. Picture it as a well-orchestrated harmony of options, futures, and fixed income all together enhancing the risk-return profile of your portfolio. Let's dive in and discover what makes RBN such a fascinating part of the DeFi landscape.</p>
 
-<h2>The Magic Behind Ribbon Finance</h2>
+<h3>The Magic Behind Ribbon Finance</h3>
 <p>Ribbon Finance is like a financial wizard, engineering structured products that yield sustainable returns. Its first product concentrates on yield through automated options strategies, transforming the sometimes-bewildering world of DeFi derivatives into more accessible forms. Imagine, if you will, these structured products as boxes of assorted chocolates; each box uniquely arranged with a combination of different financial instruments to reach a particular risk-return goal. And among the Ribbon's confectionery of offerings is Theta Vault, a product that employs a covered call strategy to earn high yield on ETH. Just like how a cow grazes on rich pastures for nutritious milk, Theta Vault weekly sells out-of-the-money call options to produce yield.</p>
 
 <h3>Where can you swap or trade Ribbon Finance (RBN)?</h3>

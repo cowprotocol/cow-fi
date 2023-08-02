@@ -1,4 +1,4 @@
-<h2>What is Manifold Finance (FOLD)?</h2>
+<h3>What is Manifold Finance (FOLD)?</h3>
 
 <p>Moo-ve over traditional finance, it's time to make way for the revolution of decentralized finance, better known as DeFi! Allow us to introduce <a href="https://manifoldfinance.com" rel="nofollow noopener noreferrer" target="_blank">Manifold Finance</a> (FOLD), a unique token residing comfortably on the Ethereum platform. Manifold Finance aims to enhance the middleware market of DeFi applications and protocols, focusing on scalability and usability. This innovative system works similarly to an APY strategy, like you'd find with Yearn Finance, except instead of you providing capital, Manifold Finance develops applications that generate revenue.</p>
 

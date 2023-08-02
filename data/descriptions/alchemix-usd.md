@@ -1,4 +1,4 @@
-<h2>What is alUSD (ALUSD)?</h2>
+<h3>What is alUSD (ALUSD)?</h3>
 
 <p>Imagine a magical universe where alchemy and finance blend seamlessly. Welcome to the world of alUSD (ALUSD), a <a href="https://en.wikipedia.org/wiki/Stablecoin" rel="nofollow noreferrer noopener" target="_blank">stablecoin</a> but not your typical one! It's yield-backed and synthetic, supercharged by the enchanting powers of the Alchemix protocol. Picture a stablecoin that maintains its value relative to the US Dollar while being backed by yield, like an alchemical cauldron transforming base metals into gold!</p>
 

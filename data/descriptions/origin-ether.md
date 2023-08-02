@@ -1,7 +1,7 @@
-<h2>What is Origin Ether (OETH)?</h2>
+<h3>What is Origin Ether (OETH)?</h3>
 <p>Introducing Origin Ether (OETH), your gateway to hassle-free staking yield on Ethereum! OETH has made waves in the pasture of cryptocurrency as a unique liquid staking yield aggregator. You may ask, "What does that mean?". In simple terms, OETH brings together yield-generating functions from the largest liquid staking derivatives (LSDs), including the likes of Lido, Coinbase, Rocket Pool, and Frax, under one simple token. It's permissionless, fully collateralized, self-custodial, passive, and fully transparent. What's more? You don’t need to wait for your yields; they're distributed daily and automatically straight into your wallets. The genius minds at the Origin Protocol have designed OETH with a user-friendly approach that enables you to earn yields without any lock-ups or conditions. </p>
 
-<h2>Why Choose Origin Ether (OETH)?</h2>
+<h3>Why Choose Origin Ether (OETH)?</h3>
 <p>In the world of LSDs, OETH stands out from the herd with its unique LSD aggregator feature. Think of it as an automated yield maximizer that combines the best features of the biggest players in the field. So, whether you're a beginner looking to dip your toes into the world of cryptocurrency or a seasoned trader wanting to simplify your yield generation, OETH can be your trusted companion in the wild, wild west of crypto. Remember, it's not just a token; it's a new way of maximizing your yield with minimal fuss.</p>
 
 <h3>Where can you swap or trade Origin Ether (OETH)?</h3>

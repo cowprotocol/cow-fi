@@ -7,6 +7,7 @@ import { ButtonWrapper } from '@/components/Button'
 import {
   Section,
   SectionContent,
+  SectionH1,
   SubTitle,
   SectionImage,
   IconList,
@@ -22,47 +23,42 @@ import Button from '@/components/Button'
 import { MetricsData } from 'types'
 import { LinkWithUtm } from 'modules/utm'
 
-export interface HomeProps {
-  metricsData: MetricsData
-  siteConfigData: typeof CONFIG
-}
-
-export default function Home({ metricsData, siteConfigData }: HomeProps) {
-  const { social, url } = siteConfigData
+export default function Home({ $metricsData, $siteConfigData }: { $metricsData: MetricsData; $siteConfigData: typeof CONFIG }) {
+  const { social, url } = $siteConfigData
 
   const scrollToElRef = useRef(null)
 
   return (
     <>
       {/* Hero */}
-      <Section className="container" hero>
-        <SectionContent margin={'0 auto'}>
+      <Section className="container">
+      <SectionContent $flow="column" $margin={'12rem auto'} $marginMobile={'6rem auto'}>
           <div>
-            <h1>Better than the best prices</h1>
-            <SubTitle align={'left'} color={Color.text1} lineHeight={1.4}>
+            <SectionH1 $fontSize={7} $textAlign='left' $maxWidth={60} $alignSelf={'flex-start'}><b>Better than the best prices</b></SectionH1>
+            <SubTitle $align={'left'} $color={Color.text1} $lineHeight={1.4}>
               CoW Protocol finds the lowest price for your trade across all exchanges and aggregators, such as Uniswap
               and 1inch – and protects you from MEV, unlike the others.
             </SubTitle>
 
             <ButtonWrapper>
               <LinkWithUtm href={url.swap} defaultUtm={{ ...CONFIG.utm, utmContent: 'landing-cta-button' }} passHref>
-                <Button paddingLR={4.2} target="_blank" rel="noopener nofollow" label="Start trading" />
+                <Button $paddingLR={4.2} target="_blank" rel="noopener nofollow" $label="Start trading" />
               </LinkWithUtm>
-              <Button paddingLR={4.2} variant="text" href={'/#developers'} label="Start building" />
+              <Button $paddingLR={4.2} $variant="text" href={'/#developers'} $label="Start building" />
             </ButtonWrapper>
           </div>
-          <SectionImage hero>
+          <SectionImage $hero>
             <img src="images/hero-image.svg" alt="CoW Protocol" />
           </SectionImage>
         </SectionContent>
       </Section>
 
-      <Section fullWidth id="about" colorVariant="dark">
-        <SectionContent flow={'column'}>
+      <Section $fullWidth id="about" $colorVariant="dark">
+        <SectionContent $flow={'column'}>
           <div className="container">
             <h3>The smartest way to trade.</h3>
             <IconList>
-              <IconListItem icon="images/icons/lowPrice.svg">
+              <IconListItem $icon="images/icons/lowPrice.svg">
                 <span>
                   <b>Lower prices thanks to CoWs.</b>
                   <p>
@@ -72,7 +68,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
                 </span>
               </IconListItem>
 
-              <IconListItem icon="images/icons/liquidity.svg">
+              <IconListItem $icon="images/icons/liquidity.svg">
                 <span>
                   <b>Never pay more than the cheapest alternative.</b>
                   <p>
@@ -82,7 +78,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
                 </span>
               </IconListItem>
 
-              <IconListItem icon="images/icons/mev.svg">
+              <IconListItem $icon="images/icons/mev.svg">
                 <span>
                   <b>Protection from MEV.</b>
                   <p>
@@ -93,7 +89,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
                 </span>
               </IconListItem>
 
-              <IconListItem icon="images/icons/savings.svg">
+              <IconListItem $icon="images/icons/savings.svg">
                 <span>
                   <b>Keep your surplus.</b>
                   <p>
@@ -103,7 +99,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
                 </span>
               </IconListItem>
 
-              <IconListItem icon="images/icons/sun.svg">
+              <IconListItem $icon="images/icons/sun.svg">
                 <span>
                   <b>Never pay for failed transactions.</b>
                   <p>
@@ -112,21 +108,21 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
                 </span>
               </IconListItem>
 
-              <IconListItem icon="images/icons/gas.svg">
+              <IconListItem $icon="images/icons/gas.svg">
                 <span>
                   <b>ETH-less trading.</b>
                   <p>CoW Protocol takes its fees in the sell token, so you can save your precious ETH.</p>
                 </span>
               </IconListItem>
 
-              <IconListItem icon="images/icons/list.svg">
+              <IconListItem $icon="images/icons/list.svg">
                 <span>
                   <b>Execute many orders at once.</b>
                   <p>Never wait for one trade to finish before placing another.</p>
                 </span>
               </IconListItem>
 
-              <IconListItem icon="images/icons/shield.svg">
+              <IconListItem $icon="images/icons/shield.svg">
                 <span>
                   <b>Safe and reliable.</b>
                   <p>
@@ -140,11 +136,11 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         </SectionContent>
       </Section>
 
-      <Section className="container" flow={'column'} colorVariant="dark">
+      <Section className="container" $flow={'column'} $colorVariant="dark">
         <SectionContent>
           <div>
             <h3>Cutting-edge technology</h3>
-            <SubTitle align="center">
+            <SubTitle $align="center" color={Color.text2}>
               CoW Protocol batches orders, matches Coincidences of Wants (
               <a href="https://docs.cow.fi/overview-1/coincidence-of-wants" target="_blank" rel="noreferrer">
                 CoWs
@@ -190,7 +186,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
                 </p>
               </StepContainer>
 
-              <StepContainer imageWidth={6}>
+              <StepContainer $imageWidth={6}>
                 <span>4</span>
 
                 <img src="images/icons/shield2.svg" alt="On-chain MEV protection" />
@@ -205,26 +201,26 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         </SectionContent>
       </Section>
 
-      <Section ref={scrollToElRef} flow={'column'} colorVariant="dark">
+      <Section ref={scrollToElRef} $flow={'column'} $colorVariant="dark">
         <SectionContent>
           <div>
             <h3>Serious volume, serious savings.</h3>
-            <SubTitle maxWidth={80} align="center">
+            <SubTitle $maxWidth={80} $align="center" color={Color.text2}>
               Whether you are a whale, a dolphin or a prawn, you can always trust CoW Protocol to find the lowest prices
               possible and protect you from MEV.
             </SubTitle>
             <Metrics>
               <>
                 <div>
-                  <b>${metricsData.totalVolume}</b>
+                  <b>${$metricsData.totalVolume}</b>
                   <i>Total volume traded (USD)</i>
                 </div>
                 <div>
-                  <b data-last-modified={metricsData.tradesCountLastModified}>{metricsData.tradesCount}</b>
+                  <b data-last-modified={$metricsData.tradesCountLastModified}>{$metricsData.tradesCount}</b>
                   <i>All time trades</i>
                 </div>
                 <div>
-                  <b data-last-modified={metricsData.totalSurplusLastModified}>${metricsData.totalSurplus}</b>
+                  <b data-last-modified={$metricsData.totalSurplusLastModified}>${$metricsData.totalSurplus}</b>
                   <i>Surplus saved for users</i>
                 </div>
               </>
@@ -233,8 +229,8 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         </SectionContent>
       </Section>
 
-      <Section className="container" id="developers" colorVariant="dark">
-        <SectionContent variant="banner" reverseOrderMobile={'column-reverse'}>
+      <Section className="container" id="developers" $colorVariant="dark">
+        <SectionContent $variant="banner" $reverseOrderMobile={'column-reverse'}>
           <IntegrationList>
             <ol>
               <li>
@@ -271,34 +267,34 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
           </IntegrationList>
           <div>
             <h3>Quick and simple integration</h3>
-            <SubTitle>
+            <SubTitle color={Color.text2}>
               Join a growing list of partners that have built a better experience for their users by integrating CoW
               Protocol.
             </SubTitle>
 
-            <ButtonWrapper center>
-              <Button href={url.docs} label="Explore docs" target="_blank" rel="noopener nofollow" variant="light" />
+            <ButtonWrapper $center>
+              <Button href={url.docs} $label="Explore docs" target="_blank" rel="noopener nofollow" $variant="light" />
               <Button
                 href={'https://calendly.com/d/zxg-m2m-54p'}
-                label="Talk to us"
+                $label="Talk to us"
                 target="_blank"
                 rel="noopener nofollow"
-                variant="textLight"
+                $variant="textLight"
               />
             </ButtonWrapper>
           </div>
         </SectionContent>
       </Section>
 
-      <Section flow={'column'} id="community" colorVariant="dark">
+      <Section $flow={'column'} id="community"$colorVariant="dark">
         <SectionContent>
           <div>
             <h3>Join the CoWmunity</h3>
-            <SubTitle maxWidth={60}>
+            <SubTitle $maxWidth={60} color={Color.text2}>
               Learn more about CoW Protocol, get support, and have your say in shaping the future of decentralized
               finance.
             </SubTitle>
-            <SocialList social={social} />
+            <SocialList $social={social} />
           </div>
         </SectionContent>
       </Section>

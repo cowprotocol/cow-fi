@@ -1,4 +1,4 @@
-<h2>What is Aura BAL (AURABAL)?</h2>
+<h3>What is Aura BAL (AURABAL)?</h3>
 
 <p>Welcome to the barnyard of crypto wonders, dear herd! Today, we're grazing on a token named Aura BAL (AURABAL). Here's a quick moo-cap: Aura BAL is a distinctive token that serves as a liquid wrapper for Balancer's veBAL. Wondering what this means? Hold your hooves! Simply put, Aura enables users to deposit their 80/20 BAL/WETH BPT and receive liquid auraBAL instead of non-transferrable veBAL. The protocol then locks up this BPT for an extended period in Balancer Voting Escrow, boosting rewards and voting for gauges. Users receive tokenised auraBAL at a 1:1 rate for veBAL, enhancing the utility and tradability of their assets.</p>
 

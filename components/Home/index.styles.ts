@@ -1,38 +1,42 @@
 import styled from 'styled-components'
 import { Defaults, Color, Font, Media } from 'styles/variables'
 
-export const SectionH1 = styled.h1<{ fontSize?: number }>`
-  && {
-    ${({ fontSize }) => fontSize && `font-size: ${fontSize}rem;`}
+export const SectionH1 = styled.h1<{ $fontSize?: number; $maxWidth?: number; $textAlign?: string; $alignSelf?: string }>`
+  & {
+    ${({ $fontSize }) => $fontSize && `font-size: ${$fontSize}rem;`}
+    color: inherit;
+    text-align: ${({ $textAlign }) => $textAlign || 'center'};
+    max-width: ${({ $maxWidth }) => `${$maxWidth}rem` || '100%'};
+    ${({ $alignSelf }) => $alignSelf && `align-self: ${$alignSelf};`}
 
     ${Media.mobile} {
       // get the font size from the parent and divide by 1.5 to get the mobile size
-      font-size: calc(${({ fontSize }) => fontSize}rem / 1.5);
+      font-size: calc(${({ $fontSize }) => $fontSize}rem / 1.5);
     }
   }
 `
 
 export const Section = styled.section<{
-  hero?: boolean
-  breakMedium?: boolean
-  colorVariant?: string
-  flow?: string
-  fullWidth?: boolean
-  mediumSwitchOrder?: boolean
-  mobileSwitchOrder?: boolean
+  $hero?: boolean
+  $breakMedium?: boolean
+  $colorVariant?: string
+  $flow?: string
+  $fullWidth?: boolean
+  $mediumSwitchOrder?: boolean
+  $mobileSwitchOrder?: boolean
 }>`
   display: flex;
   width: 100%;
   min-height: 100%;
-  flex-flow: ${({ flow }) => (flow === 'column' ? 'column wrap' : 'row')};
+  flex-flow: ${({ $flow }) => ($flow === 'column' ? 'column wrap' : 'row')};
   gap: 8rem;
   margin: 0 auto;
   position: relative;
   z-index: 1;
-  align-items: ${({ hero }) => (hero ? 'center' : 'normal')};
+  align-items: ${({ $hero }) => ($hero ? 'center' : 'normal')};
   padding: 0;
-  background: ${({ colorVariant }) => (colorVariant === 'dark' ? Color.darkBlue : 'transparent')};
-  color: ${({ colorVariant }) => (colorVariant === 'dark' ? Color.lightBlue : 'inherit')};
+  background: ${({ $colorVariant }) => ($colorVariant === 'dark' ? Color.darkBlue : 'transparent')};
+  color: ${({ $colorVariant }) => ($colorVariant === 'dark' ? Color.lightBlue : Color.darkBlue)};
 
   ${Media.desktopDown} {
     padding: 0 3.2rem;
@@ -50,8 +54,8 @@ export const Section = styled.section<{
   }
 
   // Hero specific styling
-  ${({ hero, breakMedium }) =>
-    (hero || breakMedium) &&
+  ${({ $hero, $breakMedium }) =>
+    ($hero || $breakMedium) &&
     `
     margin: 0 auto;
     min-height: 90rem;
@@ -73,8 +77,8 @@ export const Section = styled.section<{
   `}
   }
 
-  ${({ mobileSwitchOrder }) =>
-    mobileSwitchOrder &&
+  ${({ $mobileSwitchOrder }) =>
+    $mobileSwitchOrder &&
     `
     > div:first-child {
       ${Media.mobile} {
@@ -83,8 +87,8 @@ export const Section = styled.section<{
     }
   `}
 
-  ${({ mobileSwitchOrder }) =>
-    mobileSwitchOrder &&
+  ${({ $mobileSwitchOrder }) =>
+    $mobileSwitchOrder &&
     `
     > div:last-child {
       ${Media.mobile} {
@@ -93,8 +97,8 @@ export const Section = styled.section<{
     }
   `}
 
-  ${({ mediumSwitchOrder }) =>
-    mediumSwitchOrder &&
+  ${({ $mediumSwitchOrder }) =>
+    $mediumSwitchOrder &&
     `
     > div:first-child {
       ${Media.mediumDown} {
@@ -103,8 +107,8 @@ export const Section = styled.section<{
     }
   `}
 
-  ${({ mediumSwitchOrder }) =>
-    mediumSwitchOrder &&
+  ${({ $mediumSwitchOrder }) =>
+    $mediumSwitchOrder &&
     `
     > div:last-child {
       ${Media.mediumDown} {
@@ -114,7 +118,7 @@ export const Section = styled.section<{
   `}
 
   h1, h2, h3 {
-    color: ${({ colorVariant }) => (colorVariant === 'dark' ? Color.lightBlue : Color.darkBlue)};
+    color: ${({ $colorVariant }) => ($colorVariant === 'dark' ? Color.lightBlue : Color.darkBlue)};
     font-size: 5rem;
     line-height: 1.2;
     font-weight: ${Font.weightNormal};
@@ -131,9 +135,9 @@ export const Section = styled.section<{
 
   h1 {
     // Hero specific styling
-    ${({ hero, breakMedium }) =>
-      (hero || breakMedium) &&
-      `
+    ${({ $hero, $breakMedium }) =>
+    ($hero || $breakMedium) &&
+    `
       font-size: 7rem;
       font-weight: 600;
       text-align: left;
@@ -148,64 +152,65 @@ export const Section = styled.section<{
   h3 {
     font-size: 6rem;
     font-weight: ${Font.weightMedium};
-    color: ${({ colorVariant }) => (colorVariant === 'dark' ? `
-        font-weight: ${Font.weightMedium};
-        background: ${Color.gradient};
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    `: Color.darkBlue)};
-
-
-
-    &::selection {
-      -webkit-background-clip: initial;
-      -webkit-text-fill-color: initial;
-    }
+    color: ${Color.darkBlue};
 
     ${Media.desktopDown} {
       font-size: 3.8rem;
     }
+
+    ${({ $colorVariant }) => ($colorVariant === 'dark' && `
+      background: ${Color.gradient};
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      &::selection {
+        -webkit-background-clip: initial;
+        -webkit-text-fill-color: initial;
+      }
+  `)}
   }
 `
 
 export const SectionContent = styled.div<{
-  flow?: string
-  hero?: boolean
-  breakMedium?: boolean
-  variant?: string
-  reverseOrderMobile?: string
-  margin?: string
+  $flow?: string
+  $hero?: boolean
+  $breakMedium?: boolean
+  $variant?: string
+  $reverseOrderMobile?: string
+  $margin?: string
+  $marginMobile?: string
 }>`
   display: flex;
   width: 100%;
   max-width: ${Defaults.pageMaxWidth};
-  margin: ${({ margin }) => margin ? `${margin}` : '16rem auto'};
+  margin: ${({ $margin }) => $margin ? `${$margin}` : '16rem auto'};
 
   ${Media.mobile} {
     flex-flow: row wrap;
+    margin: ${({ $marginMobile }) => $marginMobile ? `${$marginMobile}` : '16rem auto'};
   }
 
-  ${({ hero }) =>
-    hero &&
+  ${({ $hero }) =>
+    $hero &&
     `
     ${Media.mediumDown} {
       margin: 16rem 2.4rem 0;
     }
   `}
 
-  ${({ reverseOrderMobile }) =>
-    reverseOrderMobile &&
+  ${({ $reverseOrderMobile }) =>
+    $reverseOrderMobile &&
     `
       ${Media.mobile} {
-        flex-flow: ${reverseOrderMobile};
+        flex-flow: ${$reverseOrderMobile};
       }
   `};
 
   > div {
     display: flex;
-    flex-flow: ${({ flow }) => (flow === 'column' ? 'column wrap' : 'row wrap')};
-    flex: ${({ flow }) => (flow === 'column' ? '1 1 auto' : '1 1 50%')};
-    justify-content: ${({ flow }) => (flow === 'column' ? 'center' : 'flex-start')};
+    flex-flow: ${({ $flow }) => ($flow === 'column' ? 'column wrap' : 'row wrap')};
+    flex: ${({ $flow }) => ($flow === 'column' ? '1 1 auto' : '1 1 50%')};
+    justify-content: ${({ $flow }) => ($flow === 'column' ? 'center' : 'flex-start')};
     align-items: center;
     align-content: center;
     gap: 5rem;
@@ -222,8 +227,8 @@ export const SectionContent = styled.div<{
     }
   }
 
-  ${({ variant }) =>
-    variant === 'banner' &&
+  ${({ $variant }) =>
+    $variant === 'banner' &&
     `
     border-radius: 1.6rem;
     background: ${Color.darkBlue4};
@@ -254,7 +259,7 @@ export const StepWrapper = styled.div`
   }
 `
 
-export const StepContainer = styled.div<{ imageWidth?: number }>`
+export const StepContainer = styled.div<{ $imageWidth?: number }>`
   display: flex;
   flex-flow: column wrap;
   background: ${Color.darkBlue2};
@@ -284,7 +289,7 @@ export const StepContainer = styled.div<{ imageWidth?: number }>`
   > img {
     width: 100%;
     height: 100%;
-    max-width: ${({ imageWidth }) => (imageWidth ? `${imageWidth}rem` : '10rem')};
+    max-width: ${({ $imageWidth }) => ($imageWidth ? `${$imageWidth}rem` : '10rem')};
     max-height: 10rem;
     object-fit: contain;
     margin: 0 auto 1.6rem;
@@ -324,9 +329,9 @@ export const StepContainer = styled.div<{ imageWidth?: number }>`
   }
 `
 
-export const CardWrapper = styled.div<{ maxWidth?: number}>`
+export const CardWrapper = styled.div<{ $maxWidth?: number }>`
   width: 100%;
-  max-width: ${({ maxWidth }) => maxWidth ? `${maxWidth}rem` : '100%'};
+  max-width: ${({ $maxWidth }) => $maxWidth ? `${$maxWidth}rem` : '100%'};
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.8rem;
@@ -339,17 +344,17 @@ export const CardWrapper = styled.div<{ maxWidth?: number}>`
   }
 `
 
-export const CardItem = styled.div<{ variant?: string; imageHeight?: number; textCentered?: boolean; gap?: number }>`
+export const CardItem = styled.div<{ $variant?: string; $imageHeight?: number; $textCentered?: boolean; $gap?: number }>`
   display: flex;
   flex-flow: column wrap;
-  background: ${({ variant }) => (variant === 'outlined-dark' ? 'transparent' : Color.white)};
-  box-shadow: ${({ variant }) => (variant === 'outlined-dark' ? 'none' : '0px 1px 50px rgba(5, 43, 101, 0.1)')};
-  border: ${({ variant }) => (variant === 'outlined-dark' ? `0.1rem solid ${Color.border}` : 'none')};
-  color: ${({ variant }) => (variant === 'outlined-dark' ? Color.text2 : Color.text1)};
+  background: ${({ $variant }) => ($variant === 'outlined-dark' ? 'transparent' : Color.white)};
+  box-shadow: ${({ $variant }) => ($variant === 'outlined-dark' ? 'none' : '0px 1px 50px rgba(5, 43, 101, 0.1)')};
+  border: ${({ $variant }) => ($variant === 'outlined-dark' ? `0.1rem solid ${Color.border}` : 'none')};
+  color: ${({ $variant }) => ($variant === 'outlined-dark' ? Color.text2 : Color.text1)};
   border-radius: 1.6rem;
   padding: 3.4rem;
   font-size: 1.6rem;
-  gap: ${({ gap }) => (gap ? `${gap}rem` : '1.6rem')};
+  gap: ${({ $gap }) => ($gap ? `${$gap}rem` : '1.6rem')};
   max-width: 100%;
 
     > a {
@@ -363,7 +368,7 @@ export const CardItem = styled.div<{ variant?: string; imageHeight?: number; tex
     > a > img,
     > img {
       --width: auto;
-      --height: ${({ imageHeight }) => (imageHeight ? `${imageHeight}rem` : '5rem')};
+      --height: ${({ $imageHeight }) => ($imageHeight ? `${$imageHeight}rem` : '5rem')};
       width: var(--width);
       height: var(--height);
       max-width: 100%;
@@ -375,7 +380,7 @@ export const CardItem = styled.div<{ variant?: string; imageHeight?: number; tex
     &.iconOnly > a > img,
     &.iconOnly > img {
       --width: auto;
-      --height: ${({ imageHeight }) => (imageHeight ? `${imageHeight}rem` : '3rem')};
+      --height: ${({ $imageHeight }) => ($imageHeight ? `${$imageHeight}rem` : '3rem')};
       width: var(--width);
       height: var(--height);
       margin: auto;
@@ -386,7 +391,7 @@ export const CardItem = styled.div<{ variant?: string; imageHeight?: number; tex
       line-height: 1.2;
       font-weight: ${Font.weightBold};
       margin: 0;
-      color: ${({ variant }) => (variant === 'outlined-dark' ? Color.lightBlue : Color.darkBlue)};
+      color: ${({ $variant }) => ($variant === 'outlined-dark' ? Color.lightBlue : Color.darkBlue)};
     }
 
     > span {
@@ -400,7 +405,7 @@ export const CardItem = styled.div<{ variant?: string; imageHeight?: number; tex
     > p,
     > span > p {
       line-height: 1.3;
-      text-align: ${({ textCentered }) => (textCentered ? 'center' : 'left')};
+      text-align: ${({ $textCentered }) => ($textCentered ? 'center' : 'left')};
     }
 
     > span > a {
@@ -421,34 +426,34 @@ export const TopGradient = styled.div`
   opacity: 0.5;
 `
 
-export const SubTitle = styled.p<{ color?: string; maxWidth?: number; align?: string; lineHeight?: number; fontSize?: number; }>`
+export const SubTitle = styled.p<{ $color?: string; $maxWidth?: number; $align?: string; $lineHeight?: number; $fontSize?: number; }>`
   display: inline-block;
-  font-size: ${({ fontSize }) => (fontSize ? `${fontSize}rem` : '2.2rem')};
-  color: ${({ color }) => (color ? color : Color.text2)};
+  font-size: ${({ $fontSize }) => ($fontSize ? `${$fontSize}rem` : '2.2rem')};
+  color: ${({ color }) => (color ? color : Color.text1)};
   font-weight: ${Font.weightNormal};
-  line-height: ${({ lineHeight }) => (lineHeight ? lineHeight : 1.6)};
-  text-align: ${({ align }) => (align ? align : 'center')};
-  max-width: ${({ maxWidth }) => maxWidth && `${maxWidth}rem`};
+  line-height: ${({ $lineHeight }) => ($lineHeight ? $lineHeight : 1.6)};
+  text-align: ${({ $align }) => ($align ? $align : 'center')};
+  max-width: ${({ $maxWidth }) => ($maxWidth ? `${$maxWidth}rem` : '100%')};
   margin: 0 auto;
   width: 100%;
   z-index: 1;
 
   ${Media.mediumDown} {
     font-size: 1.8rem;
-    text-align: ${({ align }) => (align ? align : 'center')};
+    text-align: ${({ $align }) => ($align ? $align : 'center')};
   }
 `
 
 export const SectionImage = styled.div<{
-  hero?: boolean
-  centerMobile?: boolean
-  margin?: string
-  height?: string
-  width?: string
+  $hero?: boolean
+  $centerMobile?: boolean
+  $margin?: string
+  $height?: string
+  $width?: string
 }>`
-  width: ${({ width }) => (width ? width : '100%')};
-  height: ${({ height }) => (height ? height : '100%')};
-  margin: ${({ margin }) => (margin ? margin : '0')};
+  width: ${({ $width }) => ($width ? $width : '100%')};
+  height: ${({ $height }) => ($height ? $height : '100%')};
+  margin: ${({ $margin }) => ($margin ? $margin : '0')};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -456,8 +461,8 @@ export const SectionImage = styled.div<{
   position: relative;
   z-index: 0;
 
-  ${({ hero }) =>
-    hero &&
+  ${({ $hero }) =>
+    $hero &&
     `
     margin: 0 0 0 9.6rem;
 
@@ -469,9 +474,9 @@ export const SectionImage = styled.div<{
   ${Media.mediumDown} {
     /* height: initial; */
 
-    ${({ centerMobile }) =>
-      centerMobile &&
-      `
+    ${({ $centerMobile }) =>
+    $centerMobile &&
+    `
       margin-left: auto;
       margin-right: auto;
     `}
@@ -559,7 +564,7 @@ export const IconList = styled.ol`
   }
 `
 
-export const IconListItem = styled.li<{ icon?: string }>`
+export const IconListItem = styled.li<{ $icon?: string }>`
   display: grid;
   grid-template-columns: 5.4rem 1fr;
   flex-flow: row wrap;
@@ -573,15 +578,15 @@ export const IconListItem = styled.li<{ icon?: string }>`
   }
 
   &::before {
-    ${({ icon }) =>
-      icon &&
-      `
+    ${({ $icon }) =>
+    $icon &&
+    `
       content: "";
       height: 3.6rem;
       width: 3.6rem;
       display: block;
       margin: -0.1rem 0 0;
-      background: url(${icon}) no-repeat top/contain;
+      background: url(${$icon}) no-repeat top/contain;
 
       ${Media.mobile} {
         margin: 0 auto 2.4rem;
@@ -769,109 +774,7 @@ export const TrustedBy = styled.div`
         opacity: 0;
     }
 }
-
-
-
 `
-
-// export const ApiWrapper = styled.div`
-//   overflow: hidden;
-//   max-width: 100%;
-// `
-
-// export const ApiTool = styled.div`
-//   display: flex;
-//   width: 100%;
-//   flex-flow: column wrap;
-//   background: black;
-//   border: 0.1rem solid ${Color.border};
-//   backdrop-filter: blur(6rem);
-//   border-radius: 7rem;
-//   padding: 2.4rem 4.8rem;
-//   font-size: ${Font.sizeDefault};
-
-//   ${Media.desktopOnly} {
-//     border-radius: 3rem;
-//     padding: 0 2.4rem 2.4rem;
-//   }
-
-//   ${Media.mobile} {
-//     border-radius: 2rem;
-//     padding: 0 2.4rem 2.4rem;
-//   }
-
-//   > h4 {
-//     font-weight: ${Font.weightNormal};
-//     font-size: 2.4rem;
-//     line-height: 1;
-//     color: ${Color.white}
-//   }
-
-//   > p {
-//     line-height: 1.4;
-//   }
-
-//   pre {
-//     max-width: 100%;
-//   }
-// `
-
-// export const ApiParams = styled.div`
-//   display: flex;
-//   flex-flow: row wrap;
-//   gap: 4rem;
-//   margin: 1.6rem 0 4rem;
-
-//   > span {
-//     display: flex;
-//     flex-flow: column wrap;
-//   }
-
-//   > span > b {
-//     font-size: 2.8rem;
-//     line-height: 1;
-//     margin: 0 0 1rem;
-//   }
-
-//   > span > small {
-//     font-size: 1.8rem;
-//     line-height: 1;
-//     color: ${transparentize(0.3, Color.text1)};
-//   }
-// `
-
-// export const ApiCurlCommand = styled.div`
-//   display: flex;
-//   align-items: center;
-//   justify-content: flex-start;
-//   width: 100%;
-//   border: 0.1rem solid ${Color.border};
-//   padding: 0;
-//   border-radius: 1.2rem;
-//   gap: 0;
-//   margin: 0 0 2.4rem;
-
-//   ${Media.mobile} {
-//     flex-flow: column wrap;
-//     align-items: flex-start;
-//     border: none;
-//     padding: 0;
-//     gap: 1rem;
-
-//     pre {
-//       margin: 0 !important;
-//     }
-//   }
-
-//   > p {
-//     display: inline-block;
-//     line-height: 1.2;
-//   }
-
-//   > p > span {
-//     color: ${Color.darkBlue};
-//   }
-// `
 
 export const IntegrationList = styled.span`
   display: flex;

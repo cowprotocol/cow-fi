@@ -53,7 +53,7 @@ export function Careers({ jobsData }) {
 
       {jobsCount > 0 && department === 'All'
         ? Object.keys(jobsData).map((deptName: string) => (
-            <Section key={deptName} margin={'0 0 1.6rem'}>
+            <Section key={deptName} $margin={'0 0 1.6rem'}>
               <SubTitle>{deptName}</SubTitle>
               {jobsData[deptName].map(({ absolute_url, title, location }, index) => (
                 <LinkContainer key={index} href={absolute_url} target="_blank" rel="noopener nofollow noreferrer">
@@ -65,7 +65,7 @@ export function Careers({ jobsData }) {
             </Section>
           ))
         : jobsCount > 0 && (
-            <Section margin={'0 0 1.6rem'}>
+            <Section $margin={'0 0 1.6rem'}>
               <SubTitle>{department}</SubTitle>
               {jobsData[department].map(({ absolute_url, title, location }, index) => (
                 <LinkContainer key={index} href={absolute_url} target="_blank" rel="noopener nofollow noreferrer">
@@ -90,7 +90,7 @@ export function Careers({ jobsData }) {
       <Section>
           <Card>
             <h3><span>💸</span> Refer a friend and earn 5000 in USDC or USD!</h3>
-            <p>Know someone who is not just looking for a job but for a great opportunity to grow? Refer them to us to earn $5.000 in USDC or USD. <Button variant="outlineLight" paddingLR={4.2} marginTB={2.4} fontSize={1.8} href='/careers/refer-to-earn' label="Refer-to-Earn details" /></p>
+            <p>Know someone who is not just looking for a job but for a great opportunity to grow? Refer them to us to earn $5.000 in USDC or USD. <Button $variant="outlineLight" $paddingLR={4.2} $marginTB={2.4} $fontSize={1.8} href='/careers/refer-to-earn' $label="Refer-to-Earn details" /></p>
           </Card>
         </Section>
     </>

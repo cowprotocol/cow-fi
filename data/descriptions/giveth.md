@@ -1,4 +1,4 @@
-<h2>What is Giveth (GIV)?</h2>
+<h3>What is Giveth (GIV)?</h3>
 
 <p>Moo-ving forward in the world of digital giving, blockchain technology meets philanthropy in Giveth (GIV), an innovative platform dedicated to building the future of giving. Focused on promoting transparent, open and cost-free access to fundraising opportunities within the Ethereum ecosystem, Giveth encourages a global culture of altruism. Giveth is more than just a platform; it's a community with a mission: making giving effortless and rewarding those who contribute positively to the world.</p>
 

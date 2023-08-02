@@ -27,11 +27,11 @@ export const Content = styled.main`
   }
 `
 
-export const Section = styled.section<{ margin?: string }>`
+export const Section = styled.section<{ $margin?: string }>`
   display: flex;
   flex-flow: row wrap;
   width: 100%;
-  margin: ${({ margin }) => margin ? margin : '0 0 4rem'};
+  margin: ${({ $margin }) => $margin ? $margin : '0 0 4rem'};
   position: relative;
   z-index: 1;
 
@@ -80,21 +80,21 @@ export const Title = styled.h1`
   margin: 0 0 4rem;
   text-align: center;
   word-break: break-word;
-      font-weight: ${Font.weightMedium};
-      background: ${Color.gradient};
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+  font-weight: ${Font.weightMedium};
+  background: ${Color.gradient};
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 
-      > span {
-        background: none;
-        -webkit-background-clip: initial;
-        -webkit-text-fill-color: initial;
-      }
+  > span {
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+  }
 
-      &::selection {
-        -webkit-background-clip: initial;
-        -webkit-text-fill-color: initial;
-      }
+  &::selection {
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: initial;
+  }
     
 
   ${Media.mobile} {
@@ -108,6 +108,7 @@ export const SubTitle = styled.h2`
   font-weight: ${Font.weightNormal};
   opacity: 0.75;
   text-align: center;
+  color: inherit;
   margin: 0 0 1.2rem;
 
   ${Media.mobile} {
@@ -158,7 +159,6 @@ export const TitleSmall = styled.h3`
         border: 0.1rem solid ${Color.darkBlue};
 
         > svg { transform: translateX(0.6rem) }
-        /* > svg > path { fill: ${Color.darkBlue}} } */
       }
 
       > b {
@@ -224,10 +224,10 @@ export const TitleSmall = styled.h3`
       text-align: center;
       font-size: 4.5rem;
       line-height: 1.2;
-      font-weight: ${Font.weightMedium};
+      /* font-weight: ${Font.weightMedium};
       background: ${Color.gradient};
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-text-fill-color: transparent; */
 
       ${Media.mobile} {
         font-size: 2.4rem;

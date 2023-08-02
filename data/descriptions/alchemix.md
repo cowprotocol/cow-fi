@@ -1,4 +1,4 @@
-<h2>What is Alchemix (ALCX)?</h2>
+<h3>What is Alchemix (ALCX)?</h3>
 
 <p>Picture yourself standing at the crossroads of finance and alchemy. Here, you'll find Alchemix, symbolized as ALCX. It's not just another token, it's a governance token for the <a href="https://en.wikipedia.org/wiki/Decentralized_finance" rel="nofollow noreferrer noopener" target="_blank">DeFi</a> magic that is the Alchemix protocol. What makes it fascinating is the power it hands over to you - as an ALCX holder, you become part of the governing body that steers the protocol's direction. That’s right, no top hats or secretive boardrooms. Here, every token holder has a say!</p>
 

@@ -1,4 +1,4 @@
-<h2>What is Frax Share (FXS)?</h2>
+<h3>What is Frax Share (FXS)?</h3>
 
 <p>Moo-ve over traditional stablecoins! Introducing Frax Share (FXS), the governance and value accrual token of the innovative Frax Stablecoin Protocol. Unlike previous stablecoin systems, Frax is the first-ever fractional-algorithmic stablecoin protocol, with its robust system design being open-source, permissionless, and completely on-chain. Frax was engineered to be a highly scalable, decentralized, algorithmic money substitute for fixed-supply digital assets, such as BTC. The token that makes this possible is none other than the Frax Share (FXS).</p>
 

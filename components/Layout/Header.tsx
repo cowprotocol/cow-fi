@@ -76,11 +76,11 @@ const Content = styled.div`
   align-items: center;
 `
 
-const Menu = styled.ol<{ isLight?: boolean }>`
+const Menu = styled.ol<{ $isLight?: boolean }>`
   display: flex;
   list-style: none;
   font-size: 1.5rem;
-  color: ${({ isLight }) => (isLight ? Color.text1 : Color.lightBlue)};
+  color: ${({ $isLight }) => ($isLight ? Color.text1 : Color.lightBlue)};
   padding: 0;
   margin: 0;
 
@@ -118,8 +118,8 @@ const Menu = styled.ol<{ isLight?: boolean }>`
   // any buttons or links right after menu
   + a {
     background: transparent;
-    border: 0.1rem solid ${({ isLight }) => (isLight ? Color.darkBlue : Color.lightBlue)};
-    color: ${({ isLight }) => (isLight ? Color.darkBlue : Color.lightBlue)};
+    border: 0.1rem solid ${({ $isLight }) => ($isLight ? Color.darkBlue : Color.lightBlue)};
+    color: ${({ $isLight }) => ($isLight ? Color.darkBlue : Color.lightBlue)};
 
     .sticky & {
       background: transparent;
@@ -162,7 +162,7 @@ const Menu = styled.ol<{ isLight?: boolean }>`
     text-decoration: none;
 
     &:hover {
-      color: ${({ isLight }) => (isLight ? Color.darkBlue : Color.lightBlue)};
+      color: ${({ $isLight }) => ($isLight ? Color.darkBlue : Color.lightBlue)};
     }
 
     ${Media.mobile} {
@@ -213,7 +213,7 @@ const SubMenu = styled.ol`
   list-style: none;
 `
 
-const MenuToggle = styled.button<{ isLight?: boolean }>`
+const MenuToggle = styled.button<{ $isLight?: boolean }>`
   display: none;
   background: transparent;
   flex-flow: row;
@@ -230,7 +230,7 @@ const MenuToggle = styled.button<{ isLight?: boolean }>`
     display: flex;
     content: '';
     background: url(${MenuImage}) no-repeat center/contain;
-    ${({ isLight }) => !isLight && `background: url(${MenuImageLight}) no-repeat center/contain`};
+    ${({ $isLight }) => !$isLight && `background: url(${MenuImageLight}) no-repeat center/contain`};
     width: 62%;
     height: 100%;
 
@@ -244,11 +244,11 @@ const MenuToggle = styled.button<{ isLight?: boolean }>`
   }
 `
 
-const Logo = styled.div<{ isLight?: boolean }>`
+const Logo = styled.div<{ $isLight?: boolean }>`
   width: 12.2rem;
   height: 3.8rem;
   background: url(${LogoImage}) no-repeat center/contain;
-  ${({ isLight }) => !isLight && `background: url(${LogoLightImage}) no-repeat center/contain`};
+  ${({ $isLight }) => !$isLight && `background: url(${LogoLightImage}) no-repeat center/contain`};
   cursor: pointer;
 
   .sticky & {
@@ -259,7 +259,7 @@ const Logo = styled.div<{ isLight?: boolean }>`
 
   ${Media.mediumDown} {
     background: url(${LogoIconImage}) no-repeat center/contain;
-    ${({ isLight }) => !isLight && `background: url(${LogoIconLightImage}) no-repeat center/contain`};
+    ${({ $isLight }) => !$isLight && `background: url(${LogoIconLightImage}) no-repeat center/contain`};
     width: 3.6rem;
     height: 3.2rem;
     background-size: contain;
@@ -274,10 +274,10 @@ const Logo = styled.div<{ isLight?: boolean }>`
 `
 
 interface Props {
-  isLight?: boolean
+  $isLight?: boolean
 }
 
-export default function Header({isLight = false}: Props) {
+export default function Header({$isLight = false}: Props) {
   const swapURL = CONFIG.url.swap
   const isTouch = useMediaQuery(`(max-width: ${Media.mediumEnd})`)
   const [menuVisible, setIsMenuVisible] = useState(false)
@@ -299,10 +299,10 @@ export default function Header({isLight = false}: Props) {
           <Wrapper className={!inView && 'sticky'}>
             <Content>
               <Link passHref href="/">
-                <Logo isLight={isLight} />
+                <Logo $isLight={$isLight} />
               </Link>
 
-              <Menu className={menuVisible ? 'visible' : ''} isLight={isLight}>
+              <Menu className={menuVisible ? 'visible' : ''} $isLight={$isLight}>
                 {HEADER_LINKS.map((link, index) => (
                   <li key={index}>
                     <CustomLink {...link} />
@@ -320,15 +320,15 @@ export default function Header({isLight = false}: Props) {
                 passHref
               >
                 <Button
-                  variant={!inView ? 'small' : 'outline'}
-                  minHeight={4.8}
-                  fontSize={1.6}
-                  label={'Trade on CoW Swap'}
+                  $variant={!inView ? 'small' : 'outline'}
+                  $minHeight={4.8}
+                  $fontSize={1.6}
+                  $label={'Trade on CoW Swap'}
                   target="_blank"
                   rel="noopener nofollow"
                 />
               </LinkWithUtm>
-              <MenuToggle isLight={isLight} onClick={handleClick} />
+              <MenuToggle $isLight={$isLight} onClick={handleClick} />
             </Content>
           </Wrapper>
         </>

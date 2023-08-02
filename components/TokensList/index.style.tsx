@@ -11,15 +11,25 @@ export const Wrapper = styled.div`
   margin: 0 auto;
   color: ${Color.darkBlue};
 
+  ${Media.desktopDown} {
+    padding: 0 2.4rem;
+  }
+
   h1 {
     display: flex;
     align-items: center;
-    gap: 1rem;
+  }
+
+  h1 > b {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     margin: 0 0 1.6rem;
   }
 
-  h1 > span {
+  h1 > b > span {
     font-size: 1.3rem;
+    margin: auto;
   }
 `
 

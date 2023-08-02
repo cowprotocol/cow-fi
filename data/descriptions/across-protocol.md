@@ -1,4 +1,4 @@
-<h2>What is Across (ACROSS)?</h2>
+<h3>What is Across (ACROSS)?</h3>
 
 <p>Ever dreamed of a bridge connecting diverse crypto landscapes? That's precisely what Across offers - an optimistic cross-chain bridge secured by UMA’s optimistic oracle. Designed to improve capital efficiency, Across emphasizes a competitive relayer landscape, a single liquidity pool, and a no-slippage fee model, making it stand out in the pasture of crypto. Moo-ve over, traditional bridging methods!</p>
 

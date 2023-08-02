@@ -1,7 +1,7 @@
-<h2>What is Reflexer Ungovernance Token (FLX)?</h2>
+<h3>What is Reflexer Ungovernance Token (FLX)?</h3>
 <p>Welcome to the world of Reflexer Ungovernance Token (FLX), a unique digital asset with a strong focus on community and system autonomy. Here's the gist of it: FLX performs two pivotal roles. Firstly, it steps in as a 'lender of last resort' - think of it as the hardworking farmhand ensuring the <a href="https://en.wikipedia.org/wiki/Stablecoin" rel="nofollow noreferrer noopener" target="_blank">stablecoin</a> system isn't underwater. It does this by conducting debt auctions, independently minting, and auctioning new FLX when necessary, reminiscent of models like the Maker protocol. </p>
 
-<h2>FLX: A New Era of Decentralization</h2>
+<h3>FLX: A New Era of Decentralization</h3>
 <p>Secondly, FLX is the driving force behind 'ungoverning' the RAI system. Once the governance capabilities are mostly eliminated, it's over to the community to decide the how, when, and if of securely minimizing any remaining components. Much like how cows wander freely in open pastures, FLX enables the community to make decisions on stepping back from protocol discretion. So, if you fancy a role in this ungoverned landscape where community decisions are paramount, FLX could be your perfect choice!</p>
 
 <h3>Where can you swap or trade Reflexer Ungovernance Token (FLX)?</h3>

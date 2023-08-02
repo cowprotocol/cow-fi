@@ -1,4 +1,4 @@
-<h2>What is Gitcoin (GTC)?</h2>
+<h3>What is Gitcoin (GTC)?</h3>
 
 <p>Moo! Welcome to the world of Gitcoin (GTC), an innovative platform designed to support builders and creators engaged in meaningful open-source work. Positioned as a breeding ground for the future of the open internet, Gitcoin fosters the growth of Web3 tools, technologies, and networks, creating a thriving ecosystem for open-source projects. With GTC, Gitcoin's governance token, the community gets to drive and shape the platform's direction. This is decentralization at its best, making sure everyone has a say in the project's future! GTC was launched in May 2021 to create and fund a DAO (Decentralized Autonomous Organization) that would govern Gitcoin.</p>
 

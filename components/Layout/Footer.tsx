@@ -10,14 +10,14 @@ import { CONFIG } from '@/const/meta'
 const LogoImage = '/images/logo-light.svg'
 const CURRENT_YEAR = new Date().getFullYear()
 
-const Wrapper = styled.footer<{ noMargin?: boolean }>`
+const Wrapper = styled.footer<{ $noMargin?: boolean }>`
   display: flex;
   justify-content: space-between;
   flex-flow: row wrap;
   z-index: 1;
   width: 100%;
   padding: 5.6rem;
-  margin: ${({ noMargin }) => (noMargin ? '0 auto' : '16rem auto 0')};
+  margin: ${({ $noMargin }) => ($noMargin ? '0 auto' : '16rem auto 0')};
   position: relative;
 
   ${Media.mediumDown} {
@@ -191,7 +191,7 @@ function Social() {
       <Link passHref href="/">
         <Logo />
       </Link>
-      <SocialList social={social} labels={false} iconSize={2.8} gap={0.7} innerPadding={1} alignItems={'right'} />
+      <SocialList $social={social} $labels={false} $iconSize={2.8} $gap={0.7} $innerPadding={1} $alignItems={'right'} />
       <CopyrightLinks>
         <li>©CoW Protocol - {CURRENT_YEAR}</li>
       </CopyrightLinks>
@@ -200,15 +200,15 @@ function Social() {
 }
 
 type FooterProps = {
-  noMargin?: boolean
+  $noMargin?: boolean
 }
 
-export default function Footer({ noMargin }: FooterProps) {
+export default function Footer({ $noMargin }: FooterProps) {
   const router = useRouter()
   const showDisclaimer = router.asPath.startsWith('/tokens')
 
   return (
-    <Wrapper noMargin={noMargin}>
+    <Wrapper $noMargin={$noMargin}>
       <FooterMenu />
       <Social />
       {showDisclaimer && (

@@ -1,8 +1,8 @@
-<h2>What is Magic Internet Money (MIM)?</h2>
+<h3>What is Magic Internet Money (MIM)?</h3>
 
 <p>Just as a wizard uses their wand to perform feats of magic, <a href="https://abracadabra.money/" rel="nofollow noopener noreferrer" target="_blank">Abracadabra.money</a> uses interest-bearing tokens to conjure up Magic Internet Money (MIM). This innovative stablecoin puts a new twist on cryptocurrency lending, allowing users to mint MIM using interest-bearing tokens as collateral. No need for magical incantations or complex spells - the platform has simplified the process to empower all users, regardless of their crypto experience! So whether you're a wise old wizard or a fledgling apprentice, you can delve into the enchanting world of MIM and explore the magic it has to offer.</p>
 
-<h2>How Does Magic Internet Money (MIM) Work?</h2>
+<h3>How Does Magic Internet Money (MIM) Work?</h3>
 
 <p>In the mystical realm of Abracadabra.money, you can deposit a variety of Interest-Bearing Assets, and use them as collateral to borrow the stable coin MIM. These assets keep working for you, accruing interest while they're stashed away. It's like having a flock of golden geese in your backyard that constantly lay golden eggs! And don't worry about those pesky protocol fees, they're part of the magic. Composed of interest, borrowing fees, and a portion of liquidation fees, they ensure the platform remains spellbindingly efficient and secure.</p>
 

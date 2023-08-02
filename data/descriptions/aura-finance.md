@@ -1,4 +1,4 @@
-<h2>What is Aura Finance (AURA)?</h2>
+<h3>What is Aura Finance (AURA)?</h3>
 
 <p>Moo-ve over traditional finance, here comes <a href="https://en.wikipedia.org/wiki/Decentralized_finance" rel="nofollow noreferrer noopener" target="_blank">DeFi</a> with a twist! Aura Finance (AURA) is a unique protocol constructed atop the innovative Balancer system. This savvy bovine tech not only coordinates incentives around vote-escrowed tokens, but also gives a hoof up to the yield potential and governance power of DeFi liquidity providers and governance token stakers. Aura Finance, with its native AURA token, focuses on maximizing rewards for Balancer liquidity providers and BAL stakers, through the clever concept of social aggregation of BAL deposits.</p>
 

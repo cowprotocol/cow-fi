@@ -7,26 +7,28 @@ import Layout from '@/components/Layout'
 
 import { CowSdk } from '@cowprotocol/cow-sdk'
 import { getCowStats } from 'services/cow'
-import Home, { HomeProps } from '@/components/Home'
+import Home from '@/components/Home'
+import { MetricsData } from 'types'
+
 const cowSdk = new CowSdk(1)
 const numberFormatter = Intl.NumberFormat('en', { notation: 'compact' })
 const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
-export default function HomePage({ metricsData, siteConfigData }: HomeProps) {
+export default function HomePage({ metricsData, siteConfigData }: { metricsData: MetricsData; siteConfigData: typeof CONFIG }) {
   return (
-    <Layout fullWidth>
+    <Layout $fullWidthGradientVariant={true}>
       <Head>
         <title>
           {siteConfigData.title} - {siteConfigData.descriptionShort}
         </title>
       </Head>
 
-      <Home metricsData={metricsData} siteConfigData={siteConfigData} />
+      <Home $metricsData={metricsData} $siteConfigData={siteConfigData} />
     </Layout>
   )
 }
 
-export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const siteConfigData = CONFIG
   const { volumeUsd, volumeEth } = await cowSdk.cowSubgraphApi.getTotals()
   const { surplus, totalTrades, lastModified } = await getCowStats()

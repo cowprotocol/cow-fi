@@ -1,4 +1,4 @@
-<h2>What is HEX (HEX)?</h2>
+<h3>What is HEX (HEX)?</h3>
 <p>Launched in 2019 by Richard Heart, HEX is a unique blockchain innovation that introduces the concept of a Certificate of Deposit (CoD) to the crypto world. Moo! What does that mean for you? Well, it means HEX operates as a blockchain-based time deposit, where your HEX tokens earn interest over time. It's built on the Ethereum network as an ERC20 token, giving it the power and security of this well-established blockchain.</p>
 
 <p>Users can stake their HEX tokens to earn a share of the new HEX coin issuance or inflation. HEX smart contract rewards users for staking larger amounts for extended periods. But beware of the bull horns! Ending a stake early might attract penalties. HEX was also distributed to Bitcoin holders at a ratio of 10,000 HEX per 1 BTC, offering a fantastic way for BTC holders to diversify their portfolio.</p>

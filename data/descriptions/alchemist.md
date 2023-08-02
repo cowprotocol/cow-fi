@@ -1,4 +1,4 @@
-<h2>What is Alchemist (MIST)?</h2>
+<h3>What is Alchemist (MIST)?</h3>
 
 <p>Alchemist, symbolized as MIST, invites you to an enchanting crypto journey with a twist of mystery. It's no Hogwarts, but a little bit of magic is undoubtedly at work here. Alchemist’s singular purpose is akin to discovering the <a href="https://en.wikipedia.org/wiki/Philosopher%27s_stone" rel="nofollow noreferrer noopener" target="_blank">philosopher's stone</a> and utilizing it to navigate the galaxy of cryptocurrency. Its goal isn’t set by a centralized team or organization. Instead, it is a collective of crypto wizards, or alchemists, who continuously decipher the ever-evolving cryptoverse.</p>
 

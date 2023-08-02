@@ -8,9 +8,13 @@ export const Wrapper = styled.div`
   grid-gap: 3.2rem;
   width: 100%;
   max-width: 126rem;
-  margin: 0 auto;
+  margin: 0 auto 10rem;
   position: relative;
   color: ${Color.darkBlue};
+
+  ${Media.desktopDown} {
+    padding: 0 2.4rem;
+  }
 
   ${Media.mobile} {
     display: flex;
@@ -21,13 +25,17 @@ export const Wrapper = styled.div`
   h3 {
     font-size: 2.2rem;
     line-height: 1.2;
-    margin: 1.2rem 0 0.8rem;
+    margin: 0;
+    text-align: left;
+    color: inherit;
   }
 
   h4 {
     font-size: 2.2rem;
     line-height: 1.2;
     margin: 0 0 1.2rem;
+    text-align: left;
+    color: inherit;
   }
 
   li {
@@ -77,11 +85,12 @@ export const Section = styled.div`
   font-size: 1.6rem;
   display: flex;
   flex-direction: column;
-  padding: 2rem 0;
+  padding: 2.4rem 0;
   width: 100%;
 
   h1 {
     margin-bottom: 25px;
+    color: ${Color.darkBlue};
   }
 
   > p,
@@ -113,8 +122,9 @@ export const Section = styled.div`
   }
 
   h2 {
-    font-size: 2.2rem;
-    margin: 1.2rem 0 0.8rem;
+    font-size: 3rem;
+    font-weight: 400;
+    margin: 0 0 2.4rem;
   }
 
   a {
@@ -162,6 +172,7 @@ export const TokenTitle = styled.div`
     font-size: 2.4rem;
     font-weight: inherit;
     margin: 0;
+    color: ${Color.darkBlue};
   }
 
   > span {
@@ -175,7 +186,7 @@ export const TokenTitle = styled.div`
   }
 `
 
-export const TokenPrice = styled.div<{ changeColor?: string }>`
+export const TokenPrice = styled.div<{ $changeColor?: string }>`
   font-size: 3.8rem;
   display: flex;
   align-items: center;
@@ -196,7 +207,7 @@ export const TokenPrice = styled.div<{ changeColor?: string }>`
 
   > span > b {
     font-weight: normal;
-    color: ${({ changeColor }) => changeColor || Color.text1};
+    color: ${({ $changeColor }) => $changeColor || Color.text1};
   }
 
   > span > i {

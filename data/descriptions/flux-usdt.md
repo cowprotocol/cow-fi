@@ -1,4 +1,4 @@
-<h2>What is fUSDT (fUSDT)?</h2>
+<h3>What is fUSDT (fUSDT)?</h3>
 <p>Welcome to the world of fUSDT, an exciting asset supported by the Flux Finance Protocol. Let me tell you a fun little secret: fUSDT isn't just your typical token, it's a fork of Compound V2's cTokens with a "moo-re" to offer! This clever token is part of the fToken family, which are all about representing balances supplied to the protocol, with some extra features to support permissioned assets. When a user deposits their USDT on Flux Finance, voila, fUSDT is minted!</p>
 
 <p>The beauty of fUSDT lies in its dynamics. When deposited, your USDT doesn't just sit around; it becomes available to borrowers and in return, you earn the USDT supply rate. Here's where it gets even "moo-re" exciting: fUSDT increases in value relative to the underlying USDT, meaning over time you can redeem more assets as interest is earned. However, keep in mind that the interest rate you earn depends on the market's utilization—aka how much of the deposited assets have been borrowed. We all love a token that works hard, don't we?</p>

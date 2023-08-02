@@ -1,3 +1,5 @@
+'use client';
+
 import Head from 'next/head'
 import { GetStaticProps } from 'next'
 import styled from 'styled-components'
@@ -195,24 +197,24 @@ export default function ForDAOs({ siteConfigData }) {
   }
 
   return (
-    <Layout fullWidthGradientVariant={true}>
+    <Layout $fullWidthGradientVariant={true}>
       <Head>
         <title>
           {siteConfigData.title} - {siteConfigData.descriptionShort}
         </title>
       </Head>
 
-      <Section fullWidth>
-        <SectionContent flow="column" margin={'8rem auto 0'}>
+      <Section $fullWidth>
+        <SectionContent $flow="column" $margin={'8rem auto 0'} $marginMobile={'4rem auto 0'}>
           <div>
-            <SectionH1 fontSize={7}><b><i>Superpower</i></b> <span className="text-weight-light">your DAO</span></SectionH1>
-            <SubTitle color={Color.text1} fontSize={3} lineHeight={1.4} maxWidth={60}>CoW Swap is the only DEX built to solve the unique challenges faced by DAOs</SubTitle>
-            <Button href="#benefits" onClick={handleCTAClick} paddingLR={4.2} label="Learn how" />
+            <SectionH1 $fontSize={7}><b><i>Superpower</i></b> <span className="text-weight-light">your DAO</span></SectionH1>
+            <SubTitle $color={Color.text1} $fontSize={3} $lineHeight={1.4} $maxWidth={60}>CoW Swap is the only DEX built to solve the unique challenges faced by DAOs</SubTitle>
+            <Button href="#benefits" onClick={handleCTAClick} $paddingLR={4.2} $label="Learn how" />
           </div>
         </SectionContent>
       </Section>
 
-      <Section fullWidth>
+      <Section $fullWidth>
         <TrustedBy>
           <p>Trusted by</p>
           <ul>
@@ -228,7 +230,7 @@ export default function ForDAOs({ siteConfigData }) {
         </TrustedBy>
       </Section>
 
-      <Section fullWidth colorVariant={'dark'} id="benefits">
+      <Section $fullWidth $colorVariant={'dark'} id="benefits">
         <SectionContent>
           <SwiperSlideWrapper>
             <h3>On CoW Swap, your DAO can</h3>
@@ -268,15 +270,15 @@ export default function ForDAOs({ siteConfigData }) {
         </SectionContent>
       </Section>
 
-      <Section fullWidth>
-        <SectionContent flow={'column'}>
+      <Section $fullWidth>
+        <SectionContent $flow={'column'}>
           <div className="container">
             <h3>Advanced order types</h3>
-            <SubTitle color={Color.text1} lineHeight={1.4} maxWidth={70}>CoW Swap&apos;s order types help you get better prices for your trades, manage token launches, facilitate buybacks, and much more.</SubTitle>
+            <SubTitle color={Color.text1} $lineHeight={1.4} $maxWidth={70}>CoW Swap&apos;s order types help you get better prices for your trades, manage token launches, facilitate buybacks, and much more.</SubTitle>
 
-            <CardWrapper maxWidth={100}>
+            <CardWrapper $maxWidth={100}>
               {CONTENT.orderTypes.map((orderType, index) => (
-                <CardItem key={index} imageHeight={8}>
+                <CardItem key={index} $imageHeight={8}>
                   <img src={orderType.icon} alt="image" />
                   <h4>{orderType.title}</h4>
                   <p>{orderType.description}</p>
@@ -285,22 +287,22 @@ export default function ForDAOs({ siteConfigData }) {
             </CardWrapper>
 
             <LinkWithUtm href={'#'} defaultUtm={{ ...CONFIG.utm, utmContent: 'daos-page' }} passHref>
-              <Button paddingLR={4.2} target="_blank" rel="noopener nofollow" label="Explore Advanced Order Types" />
+              <Button $paddingLR={4.2} target="_blank" rel="noopener nofollow" $label="Explore Advanced Order Types" />
             </LinkWithUtm>
 
           </div>
         </SectionContent>
       </Section>
 
-      <Section fullWidth colorVariant={'dark'}>
+      <Section $fullWidth $colorVariant={'dark'}>
         <SectionContent>
           <div>
             <h3>Trusted by the experts</h3>
-            <SubTitle lineHeight={1.4}>The smartest DAOs use CoW Swap to execute their trades</SubTitle>
+            <SubTitle $lineHeight={1.4}>The smartest DAOs use CoW Swap to execute their trades</SubTitle>
 
-            <CardWrapper maxWidth={85}>
+            <CardWrapper $maxWidth={85}>
               {CONTENT.trustedDAOs.map((DAO, index) => (
-                <CardItem key={index} variant="outlined-dark" gap={3.6} textCentered className={!DAO.description ? 'iconOnly' : ''}>
+                <CardItem key={index} $variant="outlined-dark" $gap={3.6} $textCentered className={!DAO.description ? 'iconOnly' : ''}>
                   <a href={DAO.link} target="_blank" rel="noreferrer"><img src={DAO.icon} alt={DAO.title} /></a>
                   {DAO.description && <span>
                     <p>{DAO.description}</p>
@@ -315,14 +317,14 @@ export default function ForDAOs({ siteConfigData }) {
         </SectionContent>
       </Section>
 
-      <Section flow={'column'}>
+      <Section $flow={'column'}>
         <SectionContent>
           <div>
             <h3>Get in touch</h3>
-            <SubTitle maxWidth={60} color={Color.text1} lineHeight={1.4}>
+            <SubTitle $maxWidth={60} $color={Color.text1} $lineHeight={1.4}>
               Learn more about CoW Protocol, get support, and have your say in shaping the future of decentralized finance.
             </SubTitle>
-            <SocialList social={social} colorDark />
+            <SocialList $social={social} $colorDark />
           </div>
         </SectionContent>
       </Section>

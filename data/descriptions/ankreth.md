@@ -1,4 +1,4 @@
-<h2>What is Ankr Staked ETH (ankrETH)?</h2>
+<h3>What is Ankr Staked ETH (ankrETH)?</h3>
 
 <p>Allow me to moo-ve you into the world of Ankr Staked ETH, also known as <a href="https://www.ankr.com/" rel="nofollow noreferrer noopener" target="_blank">ankrETH</a>. It's a reward-bearing token, designed to milk every drop of potential out of your Ethereum (ETH) staking experience. Ankr Staking provides the opportunity for ETH holders to stake their tokens and receive ankrETH in return. What makes ankrETH udderly fascinating is its intrinsic liquidity feature, enabling holders to connect with decentralized finance (DeFi) platforms and earn additional layers of rewards. Moreover, the fair value of ankrETH against ETH tends to grow over time, accumulating staking rewards within the token.</p>
 

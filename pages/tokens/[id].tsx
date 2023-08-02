@@ -2,15 +2,14 @@ import React from 'react'
 import Head from 'next/head'
 import Layout from '@/components/Layout'
 import { getTokensIds as getTokensIds, getTokenDetails as getTokenDetails } from 'services/tokens'
-import { TokenDetails as TokenDetailsPure, TokenDetailProps } from '@/components/TokenDetails'
+import { TokenDetails as TokenDetailsPure } from '@/components/TokenDetails'
 import { GetStaticProps } from 'next'
 import { CONFIG } from '@/const/meta'
+import type { TokenDetails as TokenDetailsType } from 'types'
 
 const DATA_CACHE_TIME_SECONDS = 10 * 60 // 10 minutes
 
-export type TokenDetailPageProps = TokenDetailProps
-
-export default function TokenDetailsPage({ token }: TokenDetailPageProps) {
+export default function TokenDetailsPage({ token }: { token: TokenDetailsType }) {
   const { name, symbol, metaDescription, change24h, priceUsd } = token
   const change24 = parseFloat(change24h)
   const change24hFormatted = change24.toFixed(2)
@@ -29,8 +28,8 @@ export default function TokenDetailsPage({ token }: TokenDetailPageProps) {
         <meta name="twitter:title" content={CONFIG.title} key="twitter-title" />
       </Head>
 
-      <Layout fullWidthGradientVariant={true}>
-        <TokenDetailsPure token={token} />
+      <Layout $fullWidthGradientVariant={true}>
+        <TokenDetailsPure $token={token} />
       </Layout>
     </>
   )
@@ -45,7 +44,7 @@ export async function getStaticPaths() {
   }
 }
 
-export const getStaticProps: GetStaticProps<TokenDetailProps> = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const token = await getTokenDetails(params.id as string)
 
   if (!token) {

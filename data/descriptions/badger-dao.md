@@ -1,4 +1,4 @@
-<h2>What is Badger DAO (BADGER)?</h2>
+<h3>What is Badger DAO (BADGER)?</h3>
 
 <p>Greetin's, folks! Have you ever heard of the Badger DAO, and it’s BADGER token? It's a neat little cattle in the cryptocurrency world that's aiming to bring Bitcoin into the Ethereum fold. The Badger DAO was created with a mission to develop an entire <a href="https://en.wikipedia.org/wiki/Decentralized_finance" rel="nofollow noreferrer noopener" target="_blank">DeFi</a> product ecosystem, with the unique twist of focusing on BTC as the main reserve asset, rather than ETH. In simple terms, it's looking to connect Bitcoin and Ethereum in ways never done before. Yeehaw!</p>
 

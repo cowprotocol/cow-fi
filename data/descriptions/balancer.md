@@ -1,4 +1,4 @@
-<h2>What is Balancer (BAL)?</h2>
+<h3>What is Balancer (BAL)?</h3>
 
 <p>Moo-ve over to Balancer, a cryptocurrency titan redefining the terrain of decentralized finance (DeFi)! Balancer (BAL) operates as a non-custodial portfolio manager, liquidity provider, and price sensor. Born on the Ethereum blockchain, Balancer makes it feasible for users to manage their portfolios, contribute to liquidity pools, and track prices of various tokens. But what truly sets Balancer apart? It's the governance token BAL, decentralizing the protocol and ensuring its long-term resilience. As a BAL holder, you have the power to shape the future of this exciting project!</p>
 

@@ -1,4 +1,4 @@
-<h2>What is Chainlink (LINK)?</h2>
+<h3>What is Chainlink (LINK)?</h3>
 
 <p>
 Chainlink (LINK) is a groundbreaking framework for constructing Decentralized Oracle Networks (DONs), bridging the gap between real-world data and blockchain networks. These DONs lay the foundation for hybrid smart contracts, breathing life into decentralized services like Price Feeds, Proof of Reserve, Verifiable Randomness, Keepers, and the capacity to connect to any web API. Like a cow bridging the physical and digital world (moo!), Chainlink ensures that the external information and off-chain computations fed to on-chain smart contracts are reliable and tamper-proof.

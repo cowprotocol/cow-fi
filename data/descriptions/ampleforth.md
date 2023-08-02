@@ -1,4 +1,4 @@
-<h2>What is Ampleforth (AMPL)?</h2>
+<h3>What is Ampleforth (AMPL)?</h3>
 
 <p>Moo-ve over traditional crypto assets! Introducing <a href="https://iq.wiki/wiki/ampleforth" rel="nofollow noreferrer noopener" target="_blank">Ampleforth (AMPL)</a>, a revolutionary digital asset protocol for smart commodity-money with an elastic supply protocol. Think of AMPL as a spring that adjusts its length according to temperature changes. Except here, the supply of AMPL expands and contracts in response to its price deviating from a $1 USD target, creating an innovative, dynamic token economy. This unique counter-cyclical approach means AMPL isn't hitched to the wagon of Bitcoin or any other digital assets, offering uncorrelated trading opportunities.</p>
 

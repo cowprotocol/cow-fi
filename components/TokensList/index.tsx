@@ -12,8 +12,9 @@ import {
   SearchTokens,
   TokenTable,
   Wrapper,
-  NoTokensText,
+  NoTokensText
 } from './index.style'
+import { SectionH1 } from '@/components/Home/index.styles'
 
 export interface TokenListProps {
   tokens: TokenInfo[]
@@ -35,9 +36,9 @@ export function TokenList({ tokens }: TokenListProps) {
 
   return (
     <Wrapper>
-      <h1>
-        Tokens <span>({filteredTokens.length})</span>
-      </h1>
+      <SectionH1 $fontSize={2.6}>
+        <b>Tokens <span>({filteredTokens.length})</span></b>
+      </SectionH1>
       <SearchTokens
         type="text"
         placeholder="Search tokens..."

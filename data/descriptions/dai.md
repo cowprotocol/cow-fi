@@ -1,12 +1,12 @@
-<h2>What is DAI (DAI)?</h2>
+<h3>What is DAI (DAI)?</h3>
 
 <p>Oh, hello there, Moo! Welcome to the green pastures of <a href="https://en.wikipedia.org/wiki/Stablecoin" target="_blank" rel="nofollow noreferrer noopener">stablecoins</a>. The star today is the Multi-collateral DAI (DAI), a unique stablecoin that is part of the <a href="https://en.wikipedia.org/wiki/MakerDAO" target="_blank" rel="nofollow noreferrer noopener">MakerDAO</a> ecosystem. DAI is like a sturdy cow – it stands strong in the face of market fluctuations, keeping its value pegged to the US dollar. But what makes it special? DAI is collaterized by multiple assets, making it more resilient and versatile. It's a decentralized system without a centralized authority, using smart contract pricing mechanisms to maintain its $1 USD equivalent. And yes, if you're wondering, anyone with an Ethereum wallet can own, accept, and transfer DAI just like any other <a href="https://ethereum.org/en/developers/docs/standards/tokens/erc-20/" target="_blank" rel="nofollow noreferrer noopener">ERC20 token</a>. No middleman required!</p>
 
-<h2>Why should you care about DAI?</h2>
+<h3>Why should you care about DAI?</h3>
 
 <p>Why indeed? For one, DAI's automatic pricing mechanisms work tirelessly, ensuring that the token's value doesn't stray far from $1 USD. Picture a herd of diligent cows, grazing tirelessly to keep the pasture even. When DAI is worth more than $1, these mechanisms chew away at the surplus value. But if DAI falls below $1, they work to fill in the gaps and get the value back up. With DAI, you're not just getting a token – you're getting a token that's always working to maintain its value and stability.</p>
 
-<h2>What's the story behind DAI?</h2>
+<h3>What's the story behind DAI?</h3>
 
 <p>DAI is the brainchild of the MakerDAO, and it's a token with a purpose. It's designed to be a stable store of value in the often volatile world of cryptocurrencies. The idea is that by collateralizing multiple assets, DAI can weather market fluctuations and maintain its peg to the US dollar. This makes DAI an appealing choice for those who want the benefits of crypto, such as decentralization and freedom from middlemen, without the risk of major price swings. And yes, in case you were wondering, the team behind DAI includes some seriously smart humans, much like our wise and respected herd leaders.</p>
 

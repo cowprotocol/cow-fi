@@ -25,12 +25,8 @@ import { ChartSection } from '@/components/ChartSection'
 import { formatUSDPrice } from 'util/formatUSDPrice'
 import type { TokenDetails as TokenDetailsType } from 'types'
 
-export interface TokenDetailProps {
-  token: TokenDetailsType
-}
-
-export function TokenDetails({ token }: TokenDetailProps) {
-  const { id, name, symbol, image, marketCap, allTimeHigh, allTimeLow, volume, description, platforms } = token
+export function TokenDetails({ $token }: { $token: TokenDetailsType }) {
+  const { id, name, symbol, image, marketCap, allTimeHigh, allTimeLow, volume, description, platforms } = $token
   const contractAddressEthereum = platforms?.ethereum?.contractAddress
   const contractAddressGnosis = platforms?.xdai?.contractAddress
 
@@ -78,11 +74,10 @@ export function TokenDetails({ token }: TokenDetailProps) {
         </Section>
 
         <Section>
-          <h1>
+          <h2>
             About {name} ({symbol}) token
-          </h1>
+          </h2>
           <div dangerouslySetInnerHTML={{ __html: description }}></div>
-
           <br />
           <br />
 

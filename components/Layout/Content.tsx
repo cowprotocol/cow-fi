@@ -4,12 +4,13 @@ import { PropsWithChildren } from 'react'
 import Header from 'components/Layout/Header'
 import Footer from 'components/Layout/Footer'
 import { Content } from '@/components/Layout/index.styles'
+import StyledComponentsRegistry from 'lib/registry';
 
 export type LayoutProps = PropsWithChildren<{
-  siteConfigData?: any // needs fix
-  metrics?: any // needs fix
-  mainMenuData?: any // needs fix
-  footerMenuData?: any // needs fix
+  $siteConfigData?: any // needs fix
+  $metrics?: any // needs fix
+  $mainMenuData?: any // needs fix
+  $footerMenuData?: any // needs fix
 }>
 
 const Wrapper = styled.div`
@@ -21,12 +22,12 @@ const Wrapper = styled.div`
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <>
+    <StyledComponentsRegistry>
       <Wrapper>
         <Header />
         <Content>{children ? children : 'No content found'}</Content>
         <Footer />
       </Wrapper>
-    </>
+    </StyledComponentsRegistry>
   )
 }
