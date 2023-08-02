@@ -1,14 +1,16 @@
 import Head from 'next/head'
+import { useRef } from 'react'
 import { GetStaticProps } from 'next'
 import styled from 'styled-components'
 import { transparentize } from 'polished'
 import { CONFIG } from '@/const/meta'
 import { Media, Color, Font } from 'styles/variables'
-import { Section, SectionContent, SubTitle, CardWrapper, CardItem } from '@/components/Home/index.styles'
+import { Section, SectionH1, SectionContent, SubTitle, CardWrapper, CardItem, TrustedBy } from '@/components/Home/index.styles'
 import Layout from '@/components/Layout'
 import SocialList from '@/components/SocialList'
 import { LinkWithUtm } from 'modules/utm'
 import Button from '@/components/Button'
+import SVG from 'react-inlinesvg'
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -33,9 +35,9 @@ const CONTENT = {
     { icon: '/images/icon-basket-sells.svg', title: 'Basket Sells', description: "CoW Swap and Yearn.fi recently launched Dump.services to help DAOs and traders sell multiple tokens in a single transaction" },
   ],
   trustedDAOs: [
-    { icon: '/images/logo-aave.svg', title: 'Aave', description: "Aave DAO used CoW Swap to swap over $2 million directly into Balancer 80/20 liquidity pool", link: '#' },
-    { icon: '/images/logo-nexus.svg', title: 'Nexus Mutual', description: "In the largest DAO trade ever, Nexus Mutual relied on CoW Swap to trade 14,400 ETH for the rETH liquid staking token", link: '#' },
-    { icon: '/images/logo-ens.svg', title: 'ENS', description: "ENS DAO traded a whopping $16.5 million dollars of ETH for USDC through CoW Swap", link: '#' },
+    { icon: '/images/logo-aave.svg', title: 'Aave', description: "Aave DAO used CoW Swap to swap over $2 million directly into Balancer 80/20 liquidity pool", link: '#', volume: '$2 million' },
+    { icon: '/images/logo-nexus.svg', title: 'Nexus Mutual', description: "In the largest DAO trade ever, Nexus Mutual relied on CoW Swap to trade 14,400 ETH for the rETH liquid staking token", link: '#', volume: '$27.3 million' },
+    { icon: '/images/logo-ens.svg', title: 'ENS', description: "ENS DAO traded a whopping $16.5 million dollars of ETH for USDC through CoW Swap", link: '#', volume: '$16.5 million' },
     { icon: '/images/logo-aave.svg', link: '#' },
     { icon: '/images/logo-nexus.svg', link: '#' },
     { icon: '/images/logo-ens.svg', link: '#' },
@@ -185,6 +187,10 @@ const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
 export default function ForDAOs({ siteConfigData }) {
   const { social } = siteConfigData
+  const scrollToElRef = useRef(null)
+  const handleCTAClick = () => {
+    scrollToElRef.current?.scrollIntoView({behavior: 'smooth'});
+  };
 
   return (
     <Layout fullWidthGradientVariant={true}>
@@ -195,15 +201,32 @@ export default function ForDAOs({ siteConfigData }) {
       </Head>
 
       <Section fullWidth>
-        <SectionContent>
+        <SectionContent flow="column" margin={'8rem auto 0'}>
           <div>
-            <h1>CoW Swap for DAOs</h1>
-            <SubTitle color={Color.text1} lineHeight={1.4}>The only DEX built to solve the unique challenges faced by DAOs</SubTitle>
+            <SectionH1 fontSize={7}><b><i>Superpower</i></b> <span className="text-weight-light">your DAO</span></SectionH1>
+            <SubTitle color={Color.text1} fontSize={3} lineHeight={1.4} maxWidth={60}>CoW Swap is the only DEX built to solve the unique challenges faced by DAOs</SubTitle>
+            <Button paddingLR={4.2} label="Learn how" onClick={handleCTAClick} />
           </div>
         </SectionContent>
       </Section>
 
-      <Section fullWidth colorVariant={'dark'}>
+      <Section fullWidth>
+        <TrustedBy>
+          <p>Trusted by</p>
+          <ul>
+          {CONTENT.trustedDAOs.map(({icon, title, volume}, index) => (
+            volume &&
+            <li key={index}>
+              <SVG src={icon} title={title} /> 
+              <small>with</small>
+              <strong>{volume}</strong>
+            </li>
+          ))}
+          </ul>
+        </TrustedBy>
+      </Section>
+
+      <Section ref={scrollToElRef} fullWidth colorVariant={'dark'}>
         <SectionContent>
           <SwiperSlideWrapper>
             <h3>On CoW Swap, your DAO can</h3>

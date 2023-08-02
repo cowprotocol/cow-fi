@@ -14,6 +14,7 @@ type ButtonProps = {
   target?: string
   rel?: string
   minHeight?: number
+  onClick?: () => void
 }
 
 const Wrapper = styled.a<Omit<ButtonProps, 'href' | 'label' | 'target' | 'rel'>>`
@@ -122,9 +123,10 @@ export default function Button({
   target,
   rel,
   minHeight,
+  onClick,
 }: ButtonProps) {
   return (
-    <Wrapper {...{ wrapText, borderRadius, fontSize, paddingLR, marginTB, variant, minHeight }} href={href} target={target} rel={rel}>
+    <Wrapper {...{ wrapText, borderRadius, fontSize, paddingLR, marginTB, variant, minHeight }} href={href} target={target} rel={rel} onClick={onClick}>
       {label}
     </Wrapper>
   )

@@ -1,6 +1,17 @@
 import styled from 'styled-components'
 import { Defaults, Color, Font, Media } from 'styles/variables'
 
+export const SectionH1 = styled.h1<{ fontSize?: number }>`
+  && {
+    ${({ fontSize }) => fontSize && `font-size: ${fontSize}rem;`}
+
+    ${Media.mobile} {
+      // get the font size from the parent and divide by 1.5 to get the mobile size
+      font-size: calc(${({ fontSize }) => fontSize}rem / 1.5);
+    }
+  }
+`
+
 export const Section = styled.section<{
   hero?: boolean
   breakMedium?: boolean
@@ -32,6 +43,10 @@ export const Section = styled.section<{
     max-width: 100%;
     min-height: initial;
     flex-flow: column wrap;
+  }
+
+  .text-weight-light {
+    font-weight: ${Font.weightLight};
   }
 
   // Hero specific styling
@@ -159,11 +174,12 @@ export const SectionContent = styled.div<{
   breakMedium?: boolean
   variant?: string
   reverseOrderMobile?: string
+  margin?: string
 }>`
   display: flex;
   width: 100%;
   max-width: ${Defaults.pageMaxWidth};
-  margin: ${({ hero }) => (hero ? '0 auto' : '16rem auto')};
+  margin: ${({ margin }) => margin ? `${margin}` : '16rem auto'};
 
   ${Media.mobile} {
     flex-flow: row wrap;
@@ -405,9 +421,9 @@ export const TopGradient = styled.div`
   opacity: 0.5;
 `
 
-export const SubTitle = styled.p<{ color?: string; maxWidth?: number; align?: string; lineHeight?: number }>`
+export const SubTitle = styled.p<{ color?: string; maxWidth?: number; align?: string; lineHeight?: number; fontSize?: number; }>`
   display: inline-block;
-  font-size: 2.2rem;
+  font-size: ${({ fontSize }) => (fontSize ? `${fontSize}rem` : '2.2rem')};
   color: ${({ color }) => (color ? color : Color.text2)};
   font-weight: ${Font.weightNormal};
   line-height: ${({ lineHeight }) => (lineHeight ? lineHeight : 1.6)};
@@ -629,6 +645,133 @@ export const CheckList = styled.ol`
     background: url('/images/icons/check.svg') no-repeat center/contain;
     margin: 0 1rem 0 0;
   }
+`
+
+export const TrustedBy = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin: 5rem auto 3rem;
+  border-top: 0.1rem solid ${Color.border};
+  padding: 5rem 0 0;
+  width: 100%;
+  font-size: 3.2rem;
+  color: ${Color.text1};
+  font-weight: ${Font.weightNormal};
+
+  ${Media.mobile} {
+    flex-flow: column wrap;
+    gap: 1.6rem;
+    font-size: 2.6rem;
+    text-align: center;
+  }
+
+  > p {
+  }
+
+  > ul {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 0;
+    height: 5rem;
+    width: 34rem;
+    overflow: hidden;
+    gap: 3rem;
+    position: relative;
+
+    ${Media.mobile} {
+      width: 100%;
+    }
+  }
+
+  > ul > li {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    font-size: 2.6rem;
+    color: ${Color.text1};
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transform: translateY(-100%);
+    animation: slide 9s ease 0s infinite normal forwards;
+    opacity: 0;
+    gap: 1.2rem;
+
+    ${Media.mobile} {
+      font-size: 1.8rem;
+    }
+
+  }
+
+  > ul > li:nth-child(1) {
+    animation-delay: 0s;
+  }
+
+  > ul > li:nth-child(2) {
+    animation-delay: 3s;
+  }
+
+  > ul > li:nth-child(3) {
+    animation-delay: 6s;
+  }
+
+  > ul > li > svg {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+
+      ${Media.mobile} {
+        height: 70%;
+        width: auto;
+      }
+
+      > g {
+        fill: ${Color.darkBlue};
+      }
+  }
+
+  > ul > li > strong {
+    font-weight: ${Font.weightBold};
+    white-space: nowrap;
+    color: ${Color.darkBlue};
+  }
+
+  @keyframes slide {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    10% {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+    30% {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+    40% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+
+
 `
 
 // export const ApiWrapper = styled.div`

@@ -36,7 +36,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
     <>
       {/* Hero */}
       <Section className="container" hero>
-        <SectionContent>
+        <SectionContent margin={'0 auto'}>
           <div>
             <h1>Better than the best prices</h1>
             <SubTitle align={'left'} color={Color.text1} lineHeight={1.4}>
