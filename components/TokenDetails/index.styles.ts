@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
   width: 100%;
   max-width: 126rem;
   margin: 0 auto;
+  padding: 0 1.6rem;
   position: relative;
   color: ${Color.darkBlue};
 
@@ -16,6 +17,7 @@ export const Wrapper = styled.div`
     display: flex;
     max-width: 100%;
     flex-flow: column wrap;
+    padding: 0 2.4rem;
   }
 
   h3 {

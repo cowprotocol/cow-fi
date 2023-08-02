@@ -1,5 +1,3 @@
-import { useRef } from 'react'
-
 import { CONFIG } from '@/const/meta'
 import { Color } from 'styles/variables'
 
@@ -30,13 +28,19 @@ export interface HomeProps {
 export default function Home({ metricsData, siteConfigData }: HomeProps) {
   const { social, url } = siteConfigData
 
-  const scrollToElRef = useRef(null)
+  const handleCTAClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault();
+    const href = e.currentTarget.href;
+    const targetId = href.replace(/.*\#/, "");
+    const elem = document.getElementById(targetId);
+    elem?.scrollIntoView({ behavior: "smooth" });
+  }
 
   return (
     <>
       {/* Hero */}
       <Section className="container" hero>
-        <SectionContent margin={'0 auto'}>
+        <SectionContent margin={'12rem auto'}>
           <div>
             <h1>Better than the best prices</h1>
             <SubTitle align={'left'} color={Color.text1} lineHeight={1.4}>
@@ -48,7 +52,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
               <LinkWithUtm href={url.swap} defaultUtm={{ ...CONFIG.utm, utmContent: 'landing-cta-button' }} passHref>
                 <Button paddingLR={4.2} target="_blank" rel="noopener nofollow" label="Start trading" />
               </LinkWithUtm>
-              <Button paddingLR={4.2} variant="text" href={'/#developers'} label="Start building" />
+              <Button paddingLR={4.2} variant="text" href="#developers" onClick={handleCTAClick} label="Start building" />
             </ButtonWrapper>
           </div>
           <SectionImage hero>
@@ -205,7 +209,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         </SectionContent>
       </Section>
 
-      <Section ref={scrollToElRef} flow={'column'} colorVariant="dark">
+      <Section flow={'column'} colorVariant="dark">
         <SectionContent>
           <div>
             <h3>Serious volume, serious savings.</h3>
