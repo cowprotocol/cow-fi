@@ -35,7 +35,7 @@ const FullWidthGradient = styled.main`
   width: 100%;
   min-height: 80rem;
   ${Color.gradientMesh};
-  background-size: 100vw 100vh;
+  background-size: 100% 100%;
   background-attachment: fixed;
 `
 
