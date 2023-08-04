@@ -97,6 +97,10 @@ const SwiperSlideWrapper = styled.div`
     overflow-y: visible; // Fix for swiper pagination
     padding: 0 0 5rem; // Fix for swiper pagination
 
+    ${Media.mobile} {
+      overflow-x: visible;
+    }
+
     &::before,
     &::after {
       content: '';
@@ -194,6 +198,11 @@ const SwiperSlideWrapper = styled.div`
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
 
+      &::selection {
+        -webkit-background-clip: initial;
+        -webkit-text-fill-color: initial;
+      }
+
       ${Media.mobile} {
         font-size: 2.4rem;
       }
@@ -209,11 +218,20 @@ const SwiperSlideWrapper = styled.div`
     }
   }
 
-  .swiper-button-prev, .swiper-button-next {
+  .swiper-button-next {
     z-index: 20;
 
     ${Media.mobile} {
-      display: none;
+      left: 100%;
+    }
+  }
+
+  .swiper-button-prev {
+    z-index: 20;
+
+    ${Media.mobile} {
+      left: auto;
+      right: 100%;
     }
   }
 `
@@ -308,7 +326,7 @@ export default function ForDAOs({ siteConfigData }) {
         <SectionContent flow={'column'}>
           <div className="container">
             <h3>Advanced order types</h3>
-            <SubTitle color={Color.text1} lineHeight={1.4} maxWidth={70}>CoW Swap&apos;s order types help you get better prices for your trades, manage token launches, facilitate buybacks, and much more.</SubTitle>
+            <SubTitle color={Color.text1} lineHeight={1.4} maxWidth={70}>CoW Swap&apos;s order types help you get better prices for your trades, manage token launches, facilitate buybacks, and much more</SubTitle>
 
             <CardWrapper maxWidth={100}>
               {CONTENT.orderTypes.map((orderType, index) => (
@@ -352,12 +370,12 @@ export default function ForDAOs({ siteConfigData }) {
             {/* DAOs without a description text (only logo) */}
             <CardWrapper maxWidth={85} horizontalGrid={8} horizontalGridMobile={3}>
               {CONTENT.trustedDAOs
-                .filter(({description}) => !description)
-                .map(({icon, title, link}, index) => (
+                .filter(({ description }) => !description)
+                .map(({ icon, title, link }, index) => (
                   <CardItem key={index} padding={1.2} imageFullSize variant="outlined-dark" gap={3.6} textCentered className='iconOnly'>
                     <a href={link} target="_blank" rel="noreferrer"><img src={icon} alt={title} /></a>
                   </CardItem>
-              ))}
+                ))}
             </CardWrapper>
 
           </div>
@@ -369,7 +387,7 @@ export default function ForDAOs({ siteConfigData }) {
           <div>
             <h3>Get in touch</h3>
             <SubTitle maxWidth={60} color={Color.text1} lineHeight={1.4}>
-              Learn more about CoW Protocol, get support, and have your say in shaping the future of decentralized finance.
+              Learn more about CoW Protocol, get support, and have your say in shaping the future of decentralized finance
             </SubTitle>
             <SocialList social={social} colorDark />
           </div>

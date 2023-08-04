@@ -132,8 +132,8 @@ export const Section = styled.section<{
   h1 {
     // Hero specific styling
     ${({ hero, breakMedium }) =>
-      (hero || breakMedium) &&
-      `
+    (hero || breakMedium) &&
+    `
       font-size: 7rem;
       font-weight: 600;
       text-align: left;
@@ -154,8 +154,6 @@ export const Section = styled.section<{
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     `: Color.darkBlue)};
-
-
 
     &::selection {
       -webkit-background-clip: initial;
@@ -324,7 +322,7 @@ export const StepContainer = styled.div<{ imageWidth?: number }>`
   }
 `
 
-export const CardWrapper = styled.div<{ maxWidth?: number; horizontalGrid?: number; horizontalGridMobile?: number; margin?: string}>`
+export const CardWrapper = styled.div<{ maxWidth?: number; horizontalGrid?: number; horizontalGridMobile?: number; margin?: string }>`
   width: 100%;
   max-width: 100%;
   max-width: ${({ maxWidth }) => maxWidth ? `${maxWidth}rem` : '100%'};
@@ -471,8 +469,8 @@ export const SectionImage = styled.div<{
     /* height: initial; */
 
     ${({ centerMobile }) =>
-      centerMobile &&
-      `
+    centerMobile &&
+    `
       margin-left: auto;
       margin-right: auto;
     `}
@@ -575,8 +573,8 @@ export const IconListItem = styled.li<{ icon?: string }>`
 
   &::before {
     ${({ icon }) =>
-      icon &&
-      `
+    icon &&
+    `
       content: "";
       height: 3.6rem;
       width: 3.6rem;
