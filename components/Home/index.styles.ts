@@ -324,32 +324,32 @@ export const StepContainer = styled.div<{ imageWidth?: number }>`
   }
 `
 
-export const CardWrapper = styled.div<{ maxWidth?: number}>`
+export const CardWrapper = styled.div<{ maxWidth?: number; horizontalGrid?: number; horizontalGridMobile?: number; margin?: string}>`
   width: 100%;
+  max-width: 100%;
   max-width: ${({ maxWidth }) => maxWidth ? `${maxWidth}rem` : '100%'};
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: ${({ horizontalGrid }) => horizontalGrid ? `repeat(${horizontalGrid}, 1fr)` : 'repeat(3, 1fr)'};
   gap: 1.8rem;
-  margin: 2.6rem auto 0;
+  margin: ${({ margin }) => margin ? `${margin}` : '0 auto'};
+  justify-content: center;
 
   ${Media.mediumDown} {
-    display: flex;
-    flex-flow: column wrap;
-    max-width: 100%;
+    grid-template-columns: ${({ horizontalGridMobile }) => horizontalGridMobile ? `repeat(${horizontalGridMobile}, 1fr)` : 'repeat(1, 1fr)'};
   }
 `
 
-export const CardItem = styled.div<{ variant?: string; imageHeight?: number; textCentered?: boolean; gap?: number }>`
+export const CardItem = styled.div<{ padding?: number; variant?: string; imageFullSize?: boolean; imageHeight?: number; textCentered?: boolean; gap?: number; imageRounded?: boolean; borderRadius?: number }>`
   display: flex;
   flex-flow: column wrap;
   background: ${({ variant }) => (variant === 'outlined-dark' ? 'transparent' : Color.white)};
   box-shadow: ${({ variant }) => (variant === 'outlined-dark' ? 'none' : '0px 1px 50px rgba(5, 43, 101, 0.1)')};
   border: ${({ variant }) => (variant === 'outlined-dark' ? `0.1rem solid ${Color.border}` : 'none')};
   color: ${({ variant }) => (variant === 'outlined-dark' ? Color.text2 : Color.text1)};
-  border-radius: 1.6rem;
-  padding: 3.4rem;
-  font-size: 1.6rem;
+  border-radius: ${({ borderRadius }) => borderRadius ? `${borderRadius}rem` : '1.6rem'};
+  padding: ${({ padding }) => padding ? `${padding}rem` : '3.4rem'};
   gap: ${({ gap }) => (gap ? `${gap}rem` : '1.6rem')};
+  font-size: 1.6rem;
   max-width: 100%;
 
     > a {
@@ -362,10 +362,11 @@ export const CardItem = styled.div<{ variant?: string; imageHeight?: number; tex
 
     > a > img,
     > img {
-      --width: auto;
-      --height: ${({ imageHeight }) => (imageHeight ? `${imageHeight}rem` : '5rem')};
+      --width: ${({ imageFullSize }) => (imageFullSize ? '100%' : 'auto')};
+      --height: ${({ imageFullSize, imageHeight }) => (imageFullSize ? '100%' : imageHeight ? `${imageHeight}rem` : '5rem')};
       width: var(--width);
       height: var(--height);
+      ${({ imageRounded }) => imageRounded && 'border-radius: var(--height);'}
       max-width: 100%;
       background: transparent;
       object-fit: contain;
@@ -374,8 +375,8 @@ export const CardItem = styled.div<{ variant?: string; imageHeight?: number; tex
 
     &.iconOnly > a > img,
     &.iconOnly > img {
-      --width: auto;
-      --height: ${({ imageHeight }) => (imageHeight ? `${imageHeight}rem` : '3rem')};
+      --width: ${({ imageFullSize }) => (imageFullSize ? '100%' : 'auto')};
+      --height: ${({ imageFullSize, imageHeight }) => (imageFullSize ? '100%' : imageHeight ? `${imageHeight}rem` : '3rem')};
       width: var(--width);
       height: var(--height);
       margin: auto;
