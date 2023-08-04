@@ -337,9 +337,11 @@ export const CardWrapper = styled.div<{ maxWidth?: number; horizontalGrid?: numb
   }
 `
 
-export const CardItem = styled.div<{ padding?: number; variant?: string; imageFullSize?: boolean; imageHeight?: number; textCentered?: boolean; gap?: number; imageRounded?: boolean; borderRadius?: number }>`
+export const CardItem = styled.div<{ contentCentered?: boolean; padding?: number; variant?: string; imageFullSize?: boolean; imageHeight?: number; textCentered?: boolean; gap?: number; imageRounded?: boolean; borderRadius?: number }>`
   display: flex;
   flex-flow: column wrap;
+  align-items: ${({ contentCentered }) => contentCentered && 'center'};
+  justify-content: ${({ contentCentered }) => contentCentered && 'center'};
   background: ${({ variant }) => (variant === 'outlined-dark' ? 'transparent' : Color.white)};
   box-shadow: ${({ variant }) => (variant === 'outlined-dark' ? 'none' : '0px 1px 50px rgba(5, 43, 101, 0.1)')};
   border: ${({ variant }) => (variant === 'outlined-dark' ? `0.1rem solid ${Color.border}` : 'none')};

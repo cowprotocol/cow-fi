@@ -372,7 +372,7 @@ export default function ForDAOs({ siteConfigData }) {
               {CONTENT.trustedDAOs
                 .filter(({ description }) => !description)
                 .map(({ icon, title, link }, index) => (
-                  <CardItem key={index} padding={1.2} imageFullSize variant="outlined-dark" gap={3.6} textCentered className='iconOnly'>
+                  <CardItem key={index} padding={1.2} imageFullSize variant="outlined-dark" gap={3.6} textCentered contentCentered className='iconOnly'>
                     <a href={link} target="_blank" rel="noreferrer"><img src={icon} alt={title} /></a>
                   </CardItem>
                 ))}
