@@ -100,7 +100,7 @@ const Menu = styled.ol<{ isLight?: boolean }>`
     align-items: flex-start;
     align-content: flex-start;
     flex-flow: row wrap;
-    gap: 5rem;
+    gap: 3rem;
     overflow-y: auto;
 
     &.visible {
