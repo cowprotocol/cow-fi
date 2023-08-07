@@ -165,7 +165,7 @@ const Menu = styled.ol<{ isLight?: boolean }>`
       color: ${({ isLight }) => (isLight ? Color.darkBlue : Color.lightBlue)};
     }
 
-    ${Media.mobile} {
+    ${Media.mediumDown} {
       color: ${Color.lightBlue};
 
       &:hover {
@@ -244,12 +244,13 @@ const MenuToggle = styled.button<{ isLight?: boolean }>`
   }
 `
 
-const Logo = styled.div<{ isLight?: boolean }>`
+const Logo = styled.div<{ isLight?: boolean; menuVisible?: boolean }>`
   width: 12.2rem;
   height: 3.8rem;
   background: url(${LogoImage}) no-repeat center/contain;
   ${({ isLight }) => !isLight && `background: url(${LogoLightImage}) no-repeat center/contain`};
   cursor: pointer;
+  z-index: 10;
 
   .sticky & {
     width: 10.1rem;
@@ -260,6 +261,7 @@ const Logo = styled.div<{ isLight?: boolean }>`
   ${Media.mediumDown} {
     background: url(${LogoIconImage}) no-repeat center/contain;
     ${({ isLight }) => !isLight && `background: url(${LogoIconLightImage}) no-repeat center/contain`};
+    ${({ menuVisible }) => menuVisible && `background: url(${LogoIconLightImage}) no-repeat center/contain`};
     width: 3.6rem;
     height: 3.2rem;
     background-size: contain;
@@ -268,7 +270,7 @@ const Logo = styled.div<{ isLight?: boolean }>`
     .sticky & {
       width: 3.6rem;
       height: 3.2rem;
-      background: url(${LogoIconImage}) no-repeat center/contain;
+      background: url(${LogoImage}) no-repeat center/contain;
     }
   }
 `
@@ -299,7 +301,7 @@ export default function Header({isLight = false}: Props) {
           <Wrapper className={!inView && 'sticky'}>
             <Content>
               <Link passHref href="/">
-                <Logo isLight={isLight} />
+                <Logo isLight={isLight} menuVisible={menuVisible} />
               </Link>
 
               <Menu className={menuVisible ? 'visible' : ''} isLight={isLight}>

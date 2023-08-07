@@ -91,10 +91,10 @@ const SwiperSlideWrapper = styled.div`
   display: flex;
   flex-flow: column wrap;
   width: 100%;
+  overflow: hidden;
 
   .daoSwiper {
     position: relative;
-    overflow-y: visible; // Fix for swiper pagination
     padding: 0 0 5rem; // Fix for swiper pagination
 
     ${Media.mobile} {
@@ -222,7 +222,8 @@ const SwiperSlideWrapper = styled.div`
     z-index: 20;
 
     ${Media.mobile} {
-      left: 100%;
+      left: initial;
+      right: 5px;
     }
   }
 
@@ -230,8 +231,8 @@ const SwiperSlideWrapper = styled.div`
     z-index: 20;
 
     ${Media.mobile} {
-      left: auto;
-      right: 100%;
+      left: 5px;
+      right: initial;
     }
   }
 `
@@ -302,7 +303,12 @@ export default function ForDAOs({ siteConfigData }) {
                 delay: 5000,
                 disableOnInteraction: true,
               }}
-              navigation={true}
+              navigation={
+                {
+                  nextEl: '.swiper-button-next',
+                  prevEl: '.swiper-button-prev',
+                }
+              }
               spaceBetween={50}
               modules={[Autoplay, Pagination, Navigation]}
               className="daoSwiper"
@@ -318,6 +324,9 @@ export default function ForDAOs({ siteConfigData }) {
               ))}
 
             </Swiper>
+
+            <div className="swiper-button-prev"></div>
+            <div className="swiper-button-next"></div>
           </SwiperSlideWrapper>
         </SectionContent>
       </Section>
