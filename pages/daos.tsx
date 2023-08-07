@@ -241,6 +241,15 @@ const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
 export default function ForDAOs({ siteConfigData }) {
   const { social } = siteConfigData
+  
+  // Filter out Discord/Forum social links
+  let socialFiltered = {};
+  Object.entries(social).forEach(([key, value]) => {
+    if (key !== 'forum' && key !== 'discord') {
+      socialFiltered[key] = value;
+    }
+  });
+
   const handleCTAClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
     const href = e.currentTarget.href;
@@ -398,7 +407,7 @@ export default function ForDAOs({ siteConfigData }) {
             <SubTitle maxWidth={60} color={Color.text1} lineHeight={1.4}>
               Learn more about CoW Protocol, get support, and have your say in shaping the future of decentralized finance
             </SubTitle>
-            <SocialList social={social} colorDark />
+            <SocialList social={socialFiltered} colorDark />
           </div>
         </SectionContent>
       </Section>
