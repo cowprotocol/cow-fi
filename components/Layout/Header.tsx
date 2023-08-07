@@ -270,7 +270,7 @@ const Logo = styled.div<{ isLight?: boolean; menuVisible?: boolean }>`
     .sticky & {
       width: 3.6rem;
       height: 3.2rem;
-      background: url(${LogoImage}) no-repeat center/contain;
+      background: url(${LogoIconImage}) no-repeat center/contain;
     }
   }
 `
@@ -307,7 +307,7 @@ export default function Header({isLight = false}: Props) {
               <Menu className={menuVisible ? 'visible' : ''} isLight={isLight}>
                 {HEADER_LINKS.map((link, index) => (
                   <li key={index}>
-                    <CustomLink {...link} />
+                    <CustomLink {...link} onClick={handleClick} />
                   </li>
                 ))}
                 <CloseIcon onClick={handleClick} />
