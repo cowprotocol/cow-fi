@@ -32,7 +32,7 @@ const CONTENT = {
   orderTypes: [
     { icon: `${IMAGE_PATH}icon-milkman.svg`, title: 'Milkman Orders', description: "Ensure your trades are always close to the real-time market price thanks to our Milkman bot. Set the maximum deviation you'll accept, and Milkman will do the rest" },
     { icon: `${IMAGE_PATH}icon-twap-orders.svg`, title: 'TWAP Orders', description: "Time-weighted average price orders allow you to spread your trade out over time, averaging out your trading price, minimizing price impact, and allowing for lower slippage" },
-    { icon: `${IMAGE_PATH}icon-limit-orders.svg`, title: 'Limit Orders', description: "CoW Swap's surplus-capturing limit orders allow you to set a price and just sit back while your order gets filled over time" },
+    { icon: `${IMAGE_PATH}icon-limit-orders.svg`, title: 'Limit Orders', description: "CoW Swap’s surplus-capturing limit orders allow you to set a price and just sit back while your order gets filled over time" },
     { icon: `${IMAGE_PATH}icon-buybacks.svg`, title: 'Token Buybacks', description: "Buy back tokens from retail traders and large investors alike by opening a partially fillable limit order for your token" },
     { icon: `${IMAGE_PATH}icon-price-walls.svg`, title: 'Price Walls', description: "Pick an asset, define a threshold price, and CoW Swap will automatically sell above the threshold, and buy below — making for a perfect continuous trade" },
     { icon: `${IMAGE_PATH}icon-basket-sells.svg`, title: 'Basket Sells', description: "CoW Swap and Yearn.fi recently launched Dump.services to help DAOs and traders sell multiple tokens in a single transaction" },
