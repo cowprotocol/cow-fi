@@ -216,7 +216,7 @@ export const SectionContent = styled.div<{
     }
 
     p > a {
-      color: ${Color.lightBlue};
+      color: ${Color.darkBlue};
     }
   }
 
@@ -351,6 +351,7 @@ export const CardItem = styled.div<{ contentCentered?: boolean; padding?: number
   gap: ${({ gap }) => (gap ? `${gap}rem` : '1.6rem')};
   font-size: 1.6rem;
   max-width: 100%;
+  position: relative;
 
     > a {
       display: flex;
