@@ -273,7 +273,7 @@ export default function ForDAOs({ siteConfigData }) {
           <div>
             <SectionH1 fontSize={7}><b><i>Savvy DAOs</i></b> <span className="text-weight-light"><br />Choose CoW Swap</span></SectionH1>
             <SubTitle color={Color.text1} fontSize={3} lineHeight={1.4} maxWidth={60}>The smartest DAOs trust CoW Swap with their most-important trades</SubTitle>
-            <Button href="#benefits" onClick={handleCTAClick} paddingLR={4.2} label="Learn how" />
+            <Button href="#benefits" onClick={handleCTAClick} paddingLR={4.2} label="Learn why" />
           </div>
         </SectionContent>
       </Section>
@@ -297,7 +297,8 @@ export default function ForDAOs({ siteConfigData }) {
       <Section fullWidth colorVariant={'dark'} id="benefits">
         <SectionContent>
           <SwiperSlideWrapper>
-            <h3>On CoW Swap, your DAO can</h3>
+            <h3>Expert trading for expert DAOs</h3>
+            <SubTitle color={Color.lightBlue} lineHeight={1.4} maxWidth={80}>CoW Swap is the only DEX built to solve the unique challenges faced by DAOs</SubTitle>
             <Swiper
               slidesPerView={'auto'}
               centeredSlides={true}
@@ -370,7 +371,6 @@ export default function ForDAOs({ siteConfigData }) {
         <SectionContent>
           <div>
             <h3>Trusted by the best</h3>
-            <SubTitle lineHeight={1.4}>The smartest DAOs use CoW Swap to execute their trades</SubTitle>
 
             {/* Only DAOs with a description text */}
             <CardWrapper maxWidth={85}>
@@ -388,7 +388,7 @@ export default function ForDAOs({ siteConfigData }) {
             </CardWrapper>
 
             {/* DAOs without a description text (only logo) */}
-            <CardWrapper maxWidth={85} horizontalGrid={8} horizontalGridMobile={3}>
+            <CardWrapper maxWidth={85} horizontalGrid={8} horizontalGridMobile={4}>
               {CONTENT.trustedDAOs
                 .filter(({ description }) => !description)
                 .map(({ icon, title, link }, index) => (
@@ -407,7 +407,7 @@ export default function ForDAOs({ siteConfigData }) {
           <div>
             <h3>Get in touch</h3>
             <SubTitle maxWidth={60} color={Color.text1} lineHeight={1.4}>
-              Learn more about how CoW Protocol can help your DAO by reaching out on Twitter/X or Discord
+              Learn more about how CoW Protocol can help your DAO by reaching out on Twitter or Discord
             </SubTitle>
             <SocialList social={socialFiltered} colorDark />
           </div>
