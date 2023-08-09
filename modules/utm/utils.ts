@@ -77,5 +77,5 @@ export function addUtmToUrl(href: string, utm: UtmParams): string {
   const searchParams = (url.search && url.search.slice(1)) || '';
   const urlParams = params || searchParams ? `?${params}&${searchParams}` : '';
 
-  return url.origin + url.pathname + urlParams + hash; // Corrected order
+  return url.origin + url.pathname + urlParams + hash;
 }
