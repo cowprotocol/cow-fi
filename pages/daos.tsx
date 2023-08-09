@@ -31,11 +31,11 @@ const CONTENT = {
   ],
 
   orderTypes: [
-    { icon: `${IMAGE_PATH}icon-milkman.svg`, title: 'Milkman Orders', description: <>Ensure your trades are always close to the real-time market price thanks to the <a href="https://github.com/charlesndalton/milkman" target="_blank" rel="nofollow noreferrer">Milkman bot</a>. Set the maximum deviation you&apos;ll accept, and Milkman will do the rest.</> },
+    { icon: `${IMAGE_PATH}icon-milkman.svg`, title: 'Milkman Orders', description: <>Ensure your trades are always close to the real-time market price thanks to the <LinkWithUtm href="https://github.com/charlesndalton/milkman" defaultUtm={{ ...CONFIG.utm, utmContent: 'daos-page' }} passHref><a target="_blank" rel="nofollow noreferrer">Milkman bot</a></LinkWithUtm>. Set the maximum deviation you&apos;ll accept, and Milkman will do the rest.</> },
     { icon: `${IMAGE_PATH}icon-twap-orders.svg`, title: 'TWAP Orders', description: "Time-weighted average price orders allow you to spread your trade out over time, averaging out your trading price, minimizing price impact, and allowing for lower slippage." },
     { icon: `${IMAGE_PATH}icon-limit-orders.svg`, title: 'Limit Orders', description: "CoW Swap's surplus-capturing limit orders allow you to set a price and sit back while your order gets filled over time - perfect for token buybacks and other large trades." },
     { icon: `${IMAGE_PATH}icon-price-walls.svg`, title: 'Price Walls', description: "Pick an asset, define a threshold price, and CoW Swap will automatically sell above the threshold, and buy below it." },
-    { icon: `${IMAGE_PATH}icon-basket-sells.svg`, title: 'Basket Sells', description: <><a href="https://dump.services/" target="_blank" rel="nofollow noreferrer">Dump.services</a>, a collaboration between CoW Swap and Yearn, allows DAOs and traders to sell multiple tokens in a single transaction.</> },
+    { icon: `${IMAGE_PATH}icon-basket-sells.svg`, title: 'Basket Sells', description: <><LinkWithUtm href="https://dump.services/"  defaultUtm={{ ...CONFIG.utm, utmContent: 'daos-page' }} passHref><a target="_blank" rel="nofollow noreferrer">Dump.services</a></LinkWithUtm>, a collaboration between CoW Swap and Yearn, allows DAOs and traders to sell multiple tokens in a single transaction.</> },
     { icon: `${IMAGE_PATH}icon-logic.svg`, title: 'Place Your Logic Here', description: "ERC-1271 Smart Orders and CoW Hooks allow you to define your own complex trading logic; if you can think it, you can trade it." },
   ],
   trustedDAOs: [
@@ -360,7 +360,7 @@ export default function ForDAOs({ siteConfigData }) {
             </CardWrapper>
 
             <LinkWithUtm href={'https://blog.cow.fi/list/advanced-order-types-b391bd4390cb'} defaultUtm={{ ...CONFIG.utm, utmContent: 'daos-page' }} passHref>
-              <Button paddingLR={4.2} target="_blank" rel="noopener nofollow" label="Explore Advanced Order Types" />
+              <Button paddingLR={4.2} label="Explore Advanced Order Types" target="_blank" rel="noopener nofollow" />
             </LinkWithUtm>
 
           </div>
@@ -378,10 +378,14 @@ export default function ForDAOs({ siteConfigData }) {
                 .filter(({ description }) => description)
                 .map(({ description, icon, title, link }, index) => (
                   <CardItem key={index} variant="outlined-dark" gap={3.6} imageHeight={8} textCentered>
-                    <a href={link} target="_blank" rel="nofollow noreferrer"><img src={icon} alt={title} /></a>
+                    <LinkWithUtm href={link} defaultUtm={{ ...CONFIG.utm, utmContent: 'daos-page' }} passHref>
+                      <a target="_blank" rel="nofollow noreferrer"><img src={icon} alt={title} /></a>
+                    </LinkWithUtm>
                     <span>
                       <p>{description}</p>
-                      <a href={link} target="_blank" rel="nofollow noreferrer">Case study</a>
+                      <LinkWithUtm href={link} defaultUtm={{ ...CONFIG.utm, utmContent: 'daos-page' }} passHref>
+                        <a href={link} target="_blank" rel="nofollow noreferrer">Case study</a>
+                      </LinkWithUtm>
                     </span>
                   </CardItem>
                 ))}
@@ -393,7 +397,9 @@ export default function ForDAOs({ siteConfigData }) {
                 .filter(({ description }) => !description)
                 .map(({ icon, title, link }, index) => (
                   <CardItem key={index} padding={1.2} imageFullSize variant="outlined-dark" gap={3.6} textCentered contentCentered className='iconOnly'>
-                    <a href={link} target="_blank" rel="nofollow noreferrer" title={title}><img src={icon} alt={title} /></a>
+                    <LinkWithUtm href={link} defaultUtm={{ ...CONFIG.utm, utmContent: 'daos-page' }} passHref>
+                      <a href={link} target="_blank" rel="nofollow noreferrer" title={title}><img src={icon} alt={title} /></a>
+                    </LinkWithUtm>
                   </CardItem>
                 ))}
             </CardWrapper>

@@ -50,32 +50,32 @@ export function hasUtmCodes(utm: UtmParams | undefined): boolean {
 }
 
 export function addUtmToUrl(href: string, utm: UtmParams): string {
-  const origin = typeof window !== 'undefined' ? window.location.origin : CONFIG.url.root
-  const url = new URL(href, origin)
+  const origin = typeof window !== 'undefined' ? window.location.origin : CONFIG.url.root;
+  const url = new URL(href, origin);
 
   if (utm.utmCampaign) {
-    url.searchParams.set(UTM_CAMPAIGN_PARAM, utm.utmCampaign)
+    url.searchParams.set(UTM_CAMPAIGN_PARAM, utm.utmCampaign);
   }
 
   if (utm.utmContent) {
-    url.searchParams.set(UTM_CONTENT_PARAM, utm.utmContent)
+    url.searchParams.set(UTM_CONTENT_PARAM, utm.utmContent);
   }
 
   if (utm.utmMedium) {
-    url.searchParams.set(UTM_MEDIUM_PARAM, utm.utmMedium)
+    url.searchParams.set(UTM_MEDIUM_PARAM, utm.utmMedium);
   }
 
   if (utm.utmSource) {
-    url.searchParams.set(UTM_SOURCE_PARAM, utm.utmSource)
+    url.searchParams.set(UTM_SOURCE_PARAM, utm.utmSource);
   }
 
   if (utm.utmTerm) {
-    url.searchParams.set(UTM_TERM_PARAM, utm.utmTerm)
+    url.searchParams.set(UTM_TERM_PARAM, utm.utmTerm);
   }
 
-  const [hash = '', params = ''] = url.hash.split('?')
-  const searchParams = (url.search && url.search.slice(1)) || ''
-  const urlParams = params || searchParams ? `?${params}&${searchParams}` : ''
+  const [hash = '', params = ''] = url.hash.split('?');
+  const searchParams = (url.search && url.search.slice(1)) || '';
+  const urlParams = params || searchParams ? `?${params}&${searchParams}` : '';
 
-  return url.origin + hash + urlParams
+  return url.origin + url.pathname + urlParams + hash; // Corrected order
 }
