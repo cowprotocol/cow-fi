@@ -144,7 +144,7 @@ export const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
         target={target}
         rel={rel}
         onClick={onClick}
-        ref={ref}  // Pass the ref here
+        ref={ref}
       >
         {label}
       </Wrapper>
