@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Defaults, Color, Font, Media } from 'styles/variables'
+import React, { forwardRef } from 'react';
 
 type ButtonProps = {
   wrapText?: boolean
@@ -110,23 +111,45 @@ export const ButtonWrapper = styled.div<{ center?: boolean }>`
   }
 `
 
-export default function Button({
-  wrapText,
-  borderRadius,
-  fontSize,
-  paddingLR,
-  marginTB,
-  variant,
-  href = '#',
-  label,
-  target,
-  rel,
-  minHeight,
-  onClick,
-}: ButtonProps) {
-  return (
-    <Wrapper {...{ wrapText, borderRadius, fontSize, paddingLR, marginTB, variant, minHeight }} href={href} target={target} rel={rel} onClick={onClick}>
-      {label}
-    </Wrapper>
-  )
-}
+export const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
+  (
+    {
+      wrapText,
+      borderRadius,
+      fontSize,
+      paddingLR,
+      marginTB,
+      variant,
+      href = '#',
+      label,
+      target,
+      rel,
+      minHeight,
+      onClick,
+    },
+    ref
+  ) => {
+    return (
+      <Wrapper
+        {...{
+          wrapText,
+          borderRadius,
+          fontSize,
+          paddingLR,
+          marginTB,
+          variant,
+          minHeight,
+        }}
+        href={href}
+        target={target}
+        rel={rel}
+        onClick={onClick}
+        ref={ref}  // Pass the ref here
+      >
+        {label}
+      </Wrapper>
+    );
+  }
+);
+
+Button.displayName = 'Button';

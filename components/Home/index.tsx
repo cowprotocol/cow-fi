@@ -15,7 +15,7 @@ import {
   StepContainer,
 } from './index.styles'
 import SocialList from '@/components/SocialList'
-import Button from '@/components/Button'
+import { Button } from '@/components/Button'
 
 import { MetricsData } from 'types'
 import { LinkWithUtm } from 'modules/utm'

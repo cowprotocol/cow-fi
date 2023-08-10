@@ -216,7 +216,7 @@ export const SectionContent = styled.div<{
     }
 
     p > a {
-      color: ${Color.darkBlue};
+      color: inherit;
     }
   }
 

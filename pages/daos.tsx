@@ -8,7 +8,7 @@ import { Section, SectionH1, SectionContent, SubTitle, CardWrapper, CardItem, Tr
 import Layout from '@/components/Layout'
 import SocialList from '@/components/SocialList'
 import { LinkWithUtm } from 'modules/utm'
-import Button from '@/components/Button'
+import { Button } from '@/components/Button'
 import SVG from 'react-inlinesvg'
 
 import 'swiper/css';
