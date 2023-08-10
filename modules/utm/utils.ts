@@ -53,29 +53,37 @@ export function addUtmToUrl(href: string, utm: UtmParams): string {
   const origin = typeof window !== 'undefined' ? window.location.origin : CONFIG.url.root;
   const url = new URL(href, origin);
 
+  // Extract the hash and its associated query parameters
+  const [hashPath, hashQuery] = url.hash.split('?');
+
+  // Create a new URLSearchParams object for the hash's query parameters
+  const hashParams = new URLSearchParams(hashQuery);
+
+  // Add UTM parameters to the hash's query parameters
   if (utm.utmCampaign) {
-    url.searchParams.set(UTM_CAMPAIGN_PARAM, utm.utmCampaign);
+    hashParams.set(UTM_CAMPAIGN_PARAM, utm.utmCampaign);
   }
 
   if (utm.utmContent) {
-    url.searchParams.set(UTM_CONTENT_PARAM, utm.utmContent);
+    hashParams.set(UTM_CONTENT_PARAM, utm.utmContent);
   }
 
   if (utm.utmMedium) {
-    url.searchParams.set(UTM_MEDIUM_PARAM, utm.utmMedium);
+    hashParams.set(UTM_MEDIUM_PARAM, utm.utmMedium);
   }
 
   if (utm.utmSource) {
-    url.searchParams.set(UTM_SOURCE_PARAM, utm.utmSource);
+    hashParams.set(UTM_SOURCE_PARAM, utm.utmSource);
   }
 
   if (utm.utmTerm) {
-    url.searchParams.set(UTM_TERM_PARAM, utm.utmTerm);
+    hashParams.set(UTM_TERM_PARAM, utm.utmTerm);
   }
 
-  const [hash = '', params = ''] = url.hash.split('?');
-  const searchParams = (url.search && url.search.slice(1)) || '';
-  const urlParams = params || searchParams ? `?${params}&${searchParams}` : '';
-
-  return url.origin + url.pathname + urlParams + hash;
+  // Construct the final URL
+  const baseUrl = url.origin + url.pathname + url.search;
+  const finalHash = `${hashPath}?${hashParams.toString()}`;
+  return baseUrl + finalHash;
 }
+
+
