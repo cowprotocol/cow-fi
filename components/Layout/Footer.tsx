@@ -17,7 +17,7 @@ const Wrapper = styled.footer<{ noMargin?: boolean }>`
   z-index: 1;
   width: 100%;
   padding: 5.6rem;
-  margin: ${({ noMargin }) => (noMargin ? '0' : '16rem auto 0')};
+  margin: ${({ noMargin }) => (noMargin ? '0 auto' : '16rem auto 0')};
   position: relative;
 
   ${Media.mediumDown} {

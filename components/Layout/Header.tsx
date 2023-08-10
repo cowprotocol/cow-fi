@@ -1,12 +1,11 @@
-import { useState } from 'react'
+import { useState, forwardRef, Ref } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 import { transparentize, lighten } from 'polished'
-import Button from 'components/Button'
+import { Button } from 'components/Button'
 import { Defaults, Color, Font, Media } from 'styles/variables'
 import { InView } from 'react-intersection-observer'
 import useMediaQuery from 'lib/hooks/useMediaQuery'
-import { useRouter } from 'next/router'
 import { CustomLink as CustomLink } from '../CustomLink'
 import { CONFIG } from '@/const/meta'
 import { HEADER_LINKS } from '@/const/menu'
@@ -19,7 +18,11 @@ const LogoIconLightImage = '/images/logo-icon-light.svg'
 const MenuImage = '/images/icons/menu.svg'
 const MenuImageLight = '/images/icons/menu-light.svg'
 
-const Pixel = styled.div`
+interface PixelProps {
+  children?: React.ReactNode;
+}
+
+const StyledPixel = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -28,6 +31,12 @@ const Pixel = styled.div`
   display: block;
   background: transparent;
 `
+
+const Pixel = forwardRef<HTMLDivElement, PixelProps>((props, ref) => (
+  <StyledPixel ref={ref}>{props.children}</StyledPixel>
+));
+
+Pixel.displayName = "Pixel";
 
 const Wrapper = styled.header`
   z-index: 10;
@@ -91,7 +100,7 @@ const Menu = styled.ol<{ isLight?: boolean }>`
     align-items: flex-start;
     align-content: flex-start;
     flex-flow: row wrap;
-    gap: 5rem;
+    gap: 3rem;
     overflow-y: auto;
 
     &.visible {
@@ -156,7 +165,7 @@ const Menu = styled.ol<{ isLight?: boolean }>`
       color: ${({ isLight }) => (isLight ? Color.darkBlue : Color.lightBlue)};
     }
 
-    ${Media.mobile} {
+    ${Media.mediumDown} {
       color: ${Color.lightBlue};
 
       &:hover {
@@ -235,12 +244,13 @@ const MenuToggle = styled.button<{ isLight?: boolean }>`
   }
 `
 
-const Logo = styled.div<{ isLight?: boolean }>`
+const Logo = styled.div<{ isLight?: boolean; menuVisible?: boolean }>`
   width: 12.2rem;
   height: 3.8rem;
   background: url(${LogoImage}) no-repeat center/contain;
   ${({ isLight }) => !isLight && `background: url(${LogoLightImage}) no-repeat center/contain`};
   cursor: pointer;
+  z-index: 10;
 
   .sticky & {
     width: 10.1rem;
@@ -251,6 +261,7 @@ const Logo = styled.div<{ isLight?: boolean }>`
   ${Media.mediumDown} {
     background: url(${LogoIconImage}) no-repeat center/contain;
     ${({ isLight }) => !isLight && `background: url(${LogoIconLightImage}) no-repeat center/contain`};
+    ${({ menuVisible }) => menuVisible && `background: url(${LogoIconLightImage}) no-repeat center/contain`};
     width: 3.6rem;
     height: 3.2rem;
     background-size: contain;
@@ -264,7 +275,11 @@ const Logo = styled.div<{ isLight?: boolean }>`
   }
 `
 
-export default function Header() {
+interface Props {
+  isLight?: boolean
+}
+
+export default function Header({isLight = false}: Props) {
   const swapURL = CONFIG.url.swap
   const isTouch = useMediaQuery(`(max-width: ${Media.mediumEnd})`)
   const [menuVisible, setIsMenuVisible] = useState(false)
@@ -278,8 +293,6 @@ export default function Header() {
     }
   }
 
-  const router = useRouter()
-  const isLight = router.pathname === '/' || router.pathname.startsWith('/tokens')
   return (
     <InView threshold={1} delay={500}>
       {({ inView, ref }) => (
@@ -288,13 +301,13 @@ export default function Header() {
           <Wrapper className={!inView && 'sticky'}>
             <Content>
               <Link passHref href="/">
-                <Logo isLight={isLight} />
+                <Logo isLight={isLight} menuVisible={menuVisible} />
               </Link>
 
               <Menu className={menuVisible ? 'visible' : ''} isLight={isLight}>
                 {HEADER_LINKS.map((link, index) => (
                   <li key={index}>
-                    <CustomLink {...link} />
+                    <CustomLink {...link} onClick={handleClick} />
                   </li>
                 ))}
                 <CloseIcon onClick={handleClick} />

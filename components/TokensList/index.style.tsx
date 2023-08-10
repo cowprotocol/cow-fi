@@ -9,7 +9,13 @@ export const Wrapper = styled.div`
   width: 100%;
   max-width: 126rem;
   margin: 0 auto;
+  padding: 0 1.6rem;
   color: ${Color.darkBlue};
+
+  ${Media.mobile} {
+    max-width: 100%;
+    padding: 0 2.4rem;
+  }
 
   h1 {
     display: flex;

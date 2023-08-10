@@ -169,7 +169,9 @@ const GlobalStyles = createGlobalStyle`
   }
   
   .noScroll {
-    overflow: hidden;
+    overflow: hidden!important;
+    position: fixed!important;
+    top: 0;
   }
 
   .mobileOnly {

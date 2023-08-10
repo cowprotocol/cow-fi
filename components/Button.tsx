@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-// import { transparentize } from 'polished'
 import { Defaults, Color, Font, Media } from 'styles/variables'
+import React, { forwardRef } from 'react';
 
 type ButtonProps = {
   wrapText?: boolean
@@ -14,6 +14,7 @@ type ButtonProps = {
   target?: string
   rel?: string
   minHeight?: number
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void
 }
 
 const Wrapper = styled.a<Omit<ButtonProps, 'href' | 'label' | 'target' | 'rel'>>`
@@ -62,7 +63,7 @@ const Wrapper = styled.a<Omit<ButtonProps, 'href' | 'label' | 'target' | 'rel'>>
     color: ${Color.darkBlue};
   `}
 
-${({ variant }) =>
+  ${({ variant }) =>
     variant === 'textLight' &&
     `
     background: transparent;
@@ -110,22 +111,45 @@ export const ButtonWrapper = styled.div<{ center?: boolean }>`
   }
 `
 
-export default function Button({
-  wrapText,
-  borderRadius,
-  fontSize,
-  paddingLR,
-  marginTB,
-  variant,
-  href = '#',
-  label,
-  target,
-  rel,
-  minHeight,
-}: ButtonProps) {
-  return (
-    <Wrapper {...{ wrapText, borderRadius, fontSize, paddingLR, marginTB, variant, minHeight }} href={href} target={target} rel={rel}>
-      {label}
-    </Wrapper>
-  )
-}
+export const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
+  (
+    {
+      wrapText,
+      borderRadius,
+      fontSize,
+      paddingLR,
+      marginTB,
+      variant,
+      href = '#',
+      label,
+      target,
+      rel,
+      minHeight,
+      onClick,
+    },
+    ref
+  ) => {
+    return (
+      <Wrapper
+        {...{
+          wrapText,
+          borderRadius,
+          fontSize,
+          paddingLR,
+          marginTB,
+          variant,
+          minHeight,
+        }}
+        href={href}
+        target={target}
+        rel={rel}
+        onClick={onClick}
+        ref={ref}
+      >
+        {label}
+      </Wrapper>
+    );
+  }
+);
+
+Button.displayName = 'Button';

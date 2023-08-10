@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Color } from 'styles/variables'
-import Button from '@/components/Button'
+import { Button } from '@/components/Button'
 import { transparentize } from 'polished'
 import { CONFIG } from '@/const/meta'
 import { LinkWithUtm } from 'modules/utm'
