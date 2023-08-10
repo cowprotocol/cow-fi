@@ -8,6 +8,7 @@ export interface FooterLinkGroup {
 }
 
 export const HEADER_LINKS: CustomLinkProps[] = [
+  { label: 'DAOs', url: url.daos },
   { label: 'Developers', url: '/#developers' },
   { label: 'Tokens', url: '/tokens' },
   { label: 'Governance', url: social.forum.url, type: 'external_untrusted' },
@@ -18,11 +19,9 @@ const utmContent = 'footer-link'
 
 export const FOOTER_LINK_GROUPS: FooterLinkGroup[] = [
   {
-    label: 'CoW Protocol',
+    label: 'Overview',
     links: [
-      { label: 'Governance', url: 'https://snapshot.org/#/cow.eth', type: 'external' },
-      { label: 'Forum', url: 'https://forum.cow.fi', type: 'external' },
-      { label: 'Blog', url: 'https://medium.com/@cow-protocol', type: 'external' },
+      { label: 'For DAOs', url: url.daos },
       { label: 'Analytics', url: url.analytics, type: 'external' },
       { label: 'Careers', url: '/careers' },
       { label: 'Refer-to-Earn', url: '/careers/refer-to-earn' },
@@ -31,9 +30,9 @@ export const FOOTER_LINK_GROUPS: FooterLinkGroup[] = [
     ],
   },
   {
-    label: 'About',
+    label: 'CoW Protocol',
     links: [
-      { label: 'CoW Protocol', url: '/#about' },
+      { label: 'About', url: '/#about' },
       { label: 'CoW Swap', url: 'https://swap.cow.fi/#/about', type: 'external', utmContent },
       { label: 'CoW Swap FAQ', url: 'https://swap.cow.fi/#/faq', type: 'external', utmContent },
       {
@@ -67,17 +66,16 @@ export const FOOTER_LINK_GROUPS: FooterLinkGroup[] = [
         url: 'https://github.com/gnosis/gp-v2-contracts/raw/main/audits/%5BCowswap_10122021%5DSCAudit_Report_2.pdf',
         type: 'external_untrusted',
       },
-      // { title: 'Bug bounty', url: '/' },
     ],
   },
   {
-    label: 'Support',
+    label: 'CoWmunity',
     links: [
+      { label: 'Governance', url: 'https://snapshot.org/#/cow.eth', type: 'external' },
+      { label: 'Forum', url: 'https://forum.cow.fi', type: 'external' },
+      { label: 'Blog', url: 'https://medium.com/@cow-protocol', type: 'external' },
       { label: 'Discord', url: social.discord.url, type: 'external_untrusted' },
       { label: 'Security portal', url: url.securityPortal, type: 'external_untrusted' },
-      // TODO:
-      // { title: 'Terms of service', url: '/' },
-      // { title: 'Privacy Policy', url: '/' },
     ],
   },
 ]

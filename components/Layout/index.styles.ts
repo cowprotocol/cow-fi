@@ -121,7 +121,7 @@ export const TitleSmall = styled.h3`
   margin: 0 0 2.4rem;
  `
 
- export const LinkContainer = styled.a`
+export const LinkContainer = styled.a`
     display: flex;
     flex-flow: column wrap;
     box-sizing: border-box;
@@ -196,7 +196,7 @@ export const TitleSmall = styled.h3`
       }
  `
 
- export const Card = styled.div`
+export const Card = styled.div`
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
