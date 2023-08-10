@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { CONFIG } from '@/const/meta'
-import Button from '@/components/Button'
+import { Button } from '@/components/Button'
 import { Section, Title, SubTitle, TitleSmall, LinkContainer, Card } from '@/components/Layout/index.styles'
 import { DropDown, ExternalLink } from 'styles/global.styles'
 import SVG from 'react-inlinesvg'
