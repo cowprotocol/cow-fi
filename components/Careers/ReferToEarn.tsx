@@ -15,8 +15,8 @@ export function ReferToEarn() {
         </p>
 
         <p>
-          Sounds like a long time to wait? Allow us to explain! 😊 At CoW, we prioritize quality and make substantial investments in our people. We consider this our utmost priority and exercise great caution when onboarding new individuals. We genuinely care about ensuring that we bring on board the right people who align with our values and goals. 
-          <br/><br/> 
+          Sounds like a long time to wait? Allow us to explain! 😊 At CoW, we prioritize quality and make substantial investments in our people. We consider this our utmost priority and exercise great caution when onboarding new individuals. We genuinely care about ensuring that we bring on board the right people who align with our values and goals.
+          <br /><br />
           <b>Have Questions? Ask us at <a href="mailto:people@cow.fi" target="_blank" rel="noreferrer">people@cow.fi</a></b>
         </p>
 
@@ -54,6 +54,13 @@ export function ReferToEarn() {
           <li>The Referrer assumes full responsibility for any tax obligations arising from the referral bonus.</li>
         </ul>
 
+        <h4>Miscellaneous Rules</h4>
+        <ul>
+          <li>Contracting to CoW includes a number of routes, including EORs. Grants (other than core contributors) are not counted into these routes and Grant recipients are eligible to make referrals.</li>
+          <li>The decision regarding the Candidate&apos;s submission order is based solely on our judgment.</li>
+          <li>We can terminate this program at any point in time and at our sole discretion, without notice. Of course, presently referred Candidates remain part of the program.</li>
+          <li>The conditions of the referral program will be shared via email with the Referrer, and we will require confirmation by responding to the email once a Candidate accepts a Job Offer. Unfortunately, the Referrer will not qualify for a bonus if we do not receive this confirmation.</li>
+        </ul>
       </Section>
     </>
   )
