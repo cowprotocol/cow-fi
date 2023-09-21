@@ -57,7 +57,7 @@ export function ReferToEarn() {
         <h4>Miscellaneous Rules</h4>
         <ul>
           <li>Contracting to CoW includes a number of routes, including EORs. Grants (other than core contributors) are not counted into these routes and Grant recipients are eligible to make referrals.</li>
-          <li>The decision regarding the Candidate's submission order is based solely on our judgment.</li>
+          <li>The decision regarding the Candidate&apos;s submission order is based solely on our judgment.</li>
           <li>We can terminate this program at any point in time and at our sole discretion, without notice. Of course, presently referred Candidates remain part of the program.</li>
           <li>The conditions of the referral program will be shared via email with the Referrer, and we will require confirmation by responding to the email once a Candidate accepts a Job Offer. Unfortunately, the Referrer will not qualify for a bonus if we do not receive this confirmation.</li>
         </ul>
