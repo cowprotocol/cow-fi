@@ -54,6 +54,14 @@ export function ReferToEarn() {
           <li>The Referrer assumes full responsibility for any tax obligations arising from the referral bonus.</li>
         </ul>
 
+        <h4>Miscellaneous Rules</h4>
+        <ul>
+          <li>Contracting to CoW includes several routes, among them EORs. Grants (excluding core contributors) are not included in these routes, and Grant recipients are eligible to make referrals.</li>
+          <li>The sequence of Candidate submissions is solely based on our judgment.</li>
+          <li>We have the right to end this program at any given moment and at our sole discretion, without any prior notice. Referred Candidates currently in the program will still be eligible.</li>
+          <li>The terms and conditions of the referral program will be shared via email with the Referrer. A response to the email confirming a Candidate&apos;s Job Offer acceptance is necessary. Unfortunately, the Referrer will not be eligible for a bonus if this confirmation isn&apos;t received by us.</li>
+        </ul>
+
       </Section>
     </>
   )
