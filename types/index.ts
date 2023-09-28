@@ -1,3 +1,5 @@
+export * from './gen'
+
 export interface PlatformData {
   contractAddress: string
   decimalPlace: number

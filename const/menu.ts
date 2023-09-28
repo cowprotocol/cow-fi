@@ -9,6 +9,7 @@ export interface FooterLinkGroup {
 
 export const HEADER_LINKS: CustomLinkProps[] = [
   { label: 'DAOs', url: url.daos },
+  { label: 'Blog', url: '/blog' },
   { label: 'Developers', url: '/#developers' },
   { label: 'Tokens', url: '/tokens' },
   { label: 'Governance', url: social.forum.url, type: 'external_untrusted' },
