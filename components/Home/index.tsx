@@ -15,7 +15,7 @@ import {
   StepContainer,
 } from './index.styles'
 import SocialList from '@/components/SocialList'
-import { Button } from '@/components/Button'
+import { Button, ButtonVariant } from '@/components/Button'
 
 import { MetricsData } from 'types'
 import { LinkWithUtm } from 'modules/utm'
@@ -29,11 +29,11 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
   const { social, url } = siteConfigData
 
   const handleCTAClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    e.preventDefault();
-    const href = e.currentTarget.href;
-    const targetId = href.replace(/.*\#/, "");
-    const elem = document.getElementById(targetId);
-    elem?.scrollIntoView({ behavior: "smooth" });
+    e.preventDefault()
+    const href = e.currentTarget.href
+    const targetId = href.replace(/.*\#/, '')
+    const elem = document.getElementById(targetId)
+    elem?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
@@ -43,7 +43,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         <SectionContent margin={'12rem auto'}>
           <div>
             <h1>Better than the best prices</h1>
-            <SubTitle align={'left'} color={Color.text1} lineHeight={1.4}>
+            <SubTitle textAlign={'left'} color={Color.text1} lineHeight={1.4}>
               CoW Protocol finds the lowest price for your trade across all exchanges and aggregators, such as Uniswap
               and 1inch – and protects you from MEV, unlike the others.
             </SubTitle>
@@ -52,7 +52,13 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
               <LinkWithUtm href={url.swap} defaultUtm={{ ...CONFIG.utm, utmContent: 'landing-cta-button' }} passHref>
                 <Button paddingLR={4.2} target="_blank" rel="noopener nofollow" label="Start trading" />
               </LinkWithUtm>
-              <Button paddingLR={4.2} variant="text" href="#developers" onClick={handleCTAClick} label="Start building" />
+              <Button
+                paddingLR={4.2}
+                variant={ButtonVariant.TEXT}
+                href="#developers"
+                onClick={handleCTAClick}
+                label="Start building"
+              />
             </ButtonWrapper>
           </div>
           <SectionImage hero>
@@ -148,7 +154,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         <SectionContent>
           <div>
             <h3>Cutting-edge technology</h3>
-            <SubTitle align="center">
+            <SubTitle textAlign="center">
               CoW Protocol batches orders, matches Coincidences of Wants (
               <a href="https://docs.cow.fi/overview-1/coincidence-of-wants" target="_blank" rel="noreferrer">
                 CoWs
@@ -213,7 +219,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         <SectionContent>
           <div>
             <h3>Serious volume, serious savings.</h3>
-            <SubTitle maxWidth={80} align="center">
+            <SubTitle maxWidth={80} textAlign="center">
               Whether you are a whale, a dolphin or a prawn, you can always trust CoW Protocol to find the lowest prices
               possible and protect you from MEV.
             </SubTitle>
@@ -281,13 +287,19 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
             </SubTitle>
 
             <ButtonWrapper center>
-              <Button href={url.docs} label="Explore docs" target="_blank" rel="noopener nofollow" variant="light" />
+              <Button
+                href={url.docs}
+                label="Explore docs"
+                target="_blank"
+                rel="noopener nofollow"
+                variant={ButtonVariant.LIGHT}
+              />
               <Button
                 href={'https://calendly.com/d/zxg-m2m-54p'}
                 label="Talk to us"
                 target="_blank"
                 rel="noopener nofollow"
-                variant="textLight"
+                variant={ButtonVariant.LIGHT}
               />
             </ButtonWrapper>
           </div>
