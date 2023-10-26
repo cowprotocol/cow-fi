@@ -4,7 +4,6 @@ import Header from 'components/Layout/Header'
 import Footer from 'components/Layout/Footer'
 import { Content } from './index.styles'
 import { Color } from 'styles/variables'
-import { SubTitle } from '@/components/Home/index.styles'
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -29,9 +28,9 @@ const FullWidthGradient = styled.main`
   justify-content: flex-start;
   align-items: flex-start;
   gap: 2.4rem;
-  padding: 14.6rem 0 5.6rem;
+  padding: 10.5rem 0 5.6rem;
   box-sizing: border-box;
-  margin: -10.4rem auto 0;
+  margin: 0 auto;
   width: 100%;
   min-height: 80rem;
   ${Color.gradientMesh};
@@ -39,7 +38,11 @@ const FullWidthGradient = styled.main`
   background-attachment: fixed;
 `
 
-type LayoutProps = PropsWithChildren<{ fullWidth?: boolean; fullWidthGradient?: boolean; fullWidthGradientVariant?: boolean }>
+type LayoutProps = PropsWithChildren<{
+  fullWidth?: boolean
+  fullWidthGradient?: boolean
+  fullWidthGradientVariant?: boolean
+}>
 
 export default function Layout({ children, fullWidth = false, fullWidthGradientVariant = false }: LayoutProps) {
   const ContentComponent = fullWidth ? FullWidthContent : fullWidthGradientVariant ? FullWidthGradient : Content

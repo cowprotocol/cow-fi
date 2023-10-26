@@ -2,7 +2,7 @@ import { useState, forwardRef, Ref } from 'react'
 import styled from 'styled-components'
 import Link from 'next/link'
 import { transparentize, lighten } from 'polished'
-import { Button } from 'components/Button'
+import { Button, ButtonVariant } from 'components/Button'
 import { Defaults, Color, Font, Media } from 'styles/variables'
 import { InView } from 'react-intersection-observer'
 import useMediaQuery from 'lib/hooks/useMediaQuery'
@@ -19,7 +19,7 @@ const MenuImage = '/images/icons/menu.svg'
 const MenuImageLight = '/images/icons/menu-light.svg'
 
 interface PixelProps {
-  children?: React.ReactNode;
+  children?: React.ReactNode
 }
 
 const StyledPixel = styled.div`
@@ -34,15 +34,17 @@ const StyledPixel = styled.div`
 
 const Pixel = forwardRef<HTMLDivElement, PixelProps>((props, ref) => (
   <StyledPixel ref={ref}>{props.children}</StyledPixel>
-));
+))
 
-Pixel.displayName = "Pixel";
+Pixel.displayName = 'Pixel'
 
 const Wrapper = styled.header`
   z-index: 10;
   width: 100%;
   height: 7.2rem;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   flex-flow: row;
   justify-content: space-between;
@@ -60,16 +62,17 @@ const Wrapper = styled.header`
   }
 
   &.sticky {
-    background: ${transparentize(0.1, Color.lightBlue)};
-    backdrop-filter: blur(5px);
-    position: sticky;
+    background: ${transparentize(0.2, Color.white)};
+    backdrop-filter: blur(1rem);
+    box-shadow: 0 0.4rem 0.6rem 0 rgba(51, 57, 75, 0.1);
+    position: fixed;
     top: 0;
   }
 `
 
 const Content = styled.div`
   width: 100%;
-  max-width: ${Defaults.pageMaxWidth};
+  max-width: ${Defaults.pageMaxWidth}rem;
   display: flex;
   margin: 0 auto;
   justify-content: space-between;
@@ -80,12 +83,13 @@ const Menu = styled.ol<{ isLight?: boolean }>`
   display: flex;
   list-style: none;
   font-size: 1.5rem;
-  color: ${({ isLight }) => (isLight ? Color.text1 : Color.lightBlue)};
+  font-weight: ${Font.weightMedium};
+  color: ${({ isLight }) => (isLight ? Color.darkBlue : Color.lightBlue)};
   padding: 0;
   margin: 0;
 
   .sticky & {
-    color: ${Color.text1};
+    color: ${Color.darkBlue};
   }
 
   ${Media.mediumDown} {
@@ -253,15 +257,13 @@ const Logo = styled.div<{ isLight?: boolean; menuVisible?: boolean }>`
   z-index: 10;
 
   .sticky & {
-    width: 10.1rem;
-    height: 3.2rem;
-    background: url(${LogoImage}) no-repeat center/contain;
+    ${({ isLight }) => !isLight && `background: url(${LogoImage}) no-repeat center/contain`};
   }
 
   ${Media.mediumDown} {
     background: url(${LogoIconImage}) no-repeat center/contain;
-    ${({ isLight }) => !isLight && `background: url(${LogoIconLightImage}) no-repeat center/contain`};
-    ${({ menuVisible }) => menuVisible && `background: url(${LogoIconLightImage}) no-repeat center/contain`};
+    ${({ isLight, menuVisible }) =>
+      (!isLight || menuVisible) && `background: url(${LogoIconLightImage}) no-repeat center/contain`};
     width: 3.6rem;
     height: 3.2rem;
     background-size: contain;
@@ -279,7 +281,7 @@ interface Props {
   isLight?: boolean
 }
 
-export default function Header({isLight = false}: Props) {
+export default function Header({ isLight = false }: Props) {
   const swapURL = CONFIG.url.swap
   const isTouch = useMediaQuery(`(max-width: ${Media.mediumEnd})`)
   const [menuVisible, setIsMenuVisible] = useState(false)
@@ -322,7 +324,7 @@ export default function Header({isLight = false}: Props) {
                 passHref
               >
                 <Button
-                  variant={!inView ? 'small' : 'outline'}
+                  variant={!inView ? ButtonVariant.SMALL : ButtonVariant.OUTLINE}
                   minHeight={4.8}
                   fontSize={1.6}
                   label={'Trade on CoW Swap'}

@@ -40,7 +40,7 @@ export const Color = {
 
 export const Defaults = {
   borderRadius: '1.6rem',
-  pageMaxWidth: '126rem',
+  pageMaxWidth: 126,
   boxShadow: `0 2.4rem 2.4rem ${Color.darkBlue3}`,
 }
 

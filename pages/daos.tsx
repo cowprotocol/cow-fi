@@ -4,44 +4,153 @@ import styled from 'styled-components'
 import { transparentize } from 'polished'
 import { CONFIG } from '@/const/meta'
 import { Media, Color, Font } from 'styles/variables'
-import { Section, SectionH1, SectionContent, SubTitle, CardWrapper, CardItem, TrustedBy } from '@/components/Home/index.styles'
+import {
+  Section,
+  SectionH1,
+  SectionContent,
+  SubTitle,
+  CardWrapper,
+  CardItem,
+  TrustedBy,
+} from '@/components/Home/index.styles'
 import Layout from '@/components/Layout'
 import SocialList from '@/components/SocialList'
 import { LinkWithUtm } from 'modules/utm'
 import { Button } from '@/components/Button'
 import SVG from 'react-inlinesvg'
 
-import 'swiper/css';
-import 'swiper/css/pagination';
-import "swiper/css/navigation";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import 'swiper/css'
+import 'swiper/css/pagination'
+import 'swiper/css/navigation'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay, Pagination, Navigation } from 'swiper/modules'
 
 const IMAGE_PATH = '/images/'
 const DAO_LOGOS_PATH = '/images/dao-logos/'
 
 const CONTENT = {
   slides: [
-    { image: `${IMAGE_PATH}dao-enjoy-surplus.svg`, title: 'Enjoy more price surplus than anywhere else', description: "Every DEX aggregator will tell you they have the best prices, but at the end of the day, CoW Swap does everything they do and then some. With peer-to-peer order matching, gas optimization, and MEV protection, CoW Swap improves your quoted price and forwards the surplus back to you." },
-    { image: `${IMAGE_PATH}dao-custom-tailor-orders.svg`, title: 'Stop scrambling for signatures', description: "Tired of rushing to sign the multi-sig? Eyes glazed over from staring at candlesticks? CoW Swap automatically adjusts your trade's execution path to fill your order at the best possible price, every time." },
-    { image: `${IMAGE_PATH}dao-vote-once.svg`, title: 'Forget about voting twice ', description: "Milkman orders from CoW Swap let your DAO approve trades based on dynamic price feeds rather than fixed prices, so you don't have to re-vote if the market moves significantly." },
-    { image: `${IMAGE_PATH}dao-outsmart-bots.svg`, title: 'Outsmart the bots', description: "CoW Swap offers MEV protection that is one order of magnitude better than any other exchange. Solvers execute trades on your behalf so you're never exposed to on-chain attacks – and even when trade details are announced weeks in advance, CoW Swap stands between you and the MEV bots." },
-    { image: `${IMAGE_PATH}dao-manage-price-impact.svg`, title: 'Manage price impact', description: "Your trades move markets… but being the biggest isn't always the best. CoW Swap spreads your order across multiple liquidity pools so you make as little of a splash as possible." },
-    { image: `${IMAGE_PATH}dao-do-more.svg`, title: 'Do anything you can imagine', description: "With CoW Swap you can customize rules for your orders above and beyond traditional settings. Want to trigger a trade only when a wallet has n funds in it? Want to schedule recurring trades? CoW Swap lets you do all that and more in just a few clicks." },
+    {
+      image: `${IMAGE_PATH}dao-enjoy-surplus.svg`,
+      title: 'Enjoy more price surplus than anywhere else',
+      description:
+        'Every DEX aggregator will tell you they have the best prices, but at the end of the day, CoW Swap does everything they do and then some. With peer-to-peer order matching, gas optimization, and MEV protection, CoW Swap improves your quoted price and forwards the surplus back to you.',
+    },
+    {
+      image: `${IMAGE_PATH}dao-custom-tailor-orders.svg`,
+      title: 'Stop scrambling for signatures',
+      description:
+        "Tired of rushing to sign the multi-sig? Eyes glazed over from staring at candlesticks? CoW Swap automatically adjusts your trade's execution path to fill your order at the best possible price, every time.",
+    },
+    {
+      image: `${IMAGE_PATH}dao-vote-once.svg`,
+      title: 'Forget about voting twice ',
+      description:
+        "Milkman orders from CoW Swap let your DAO approve trades based on dynamic price feeds rather than fixed prices, so you don't have to re-vote if the market moves significantly.",
+    },
+    {
+      image: `${IMAGE_PATH}dao-outsmart-bots.svg`,
+      title: 'Outsmart the bots',
+      description:
+        "CoW Swap offers MEV protection that is one order of magnitude better than any other exchange. Solvers execute trades on your behalf so you're never exposed to on-chain attacks – and even when trade details are announced weeks in advance, CoW Swap stands between you and the MEV bots.",
+    },
+    {
+      image: `${IMAGE_PATH}dao-manage-price-impact.svg`,
+      title: 'Manage price impact',
+      description:
+        "Your trades move markets… but being the biggest isn't always the best. CoW Swap spreads your order across multiple liquidity pools so you make as little of a splash as possible.",
+    },
+    {
+      image: `${IMAGE_PATH}dao-do-more.svg`,
+      title: 'Do anything you can imagine',
+      description:
+        'With CoW Swap you can customize rules for your orders above and beyond traditional settings. Want to trigger a trade only when a wallet has n funds in it? Want to schedule recurring trades? CoW Swap lets you do all that and more in just a few clicks.',
+    },
   ],
 
   orderTypes: [
-    { icon: `${IMAGE_PATH}icon-milkman.svg`, title: 'Milkman Orders', description: <>Ensure your trades are always close to the real-time market price thanks to the <LinkWithUtm href="https://github.com/charlesndalton/milkman" defaultUtm={{ ...CONFIG.utm, utmContent: 'daos-page' }} passHref><a target="_blank" rel="nofollow noreferrer">Milkman bot</a></LinkWithUtm>. Set the maximum deviation you&apos;ll accept, and Milkman will do the rest.</> },
-    { icon: `${IMAGE_PATH}icon-twap-orders.svg`, title: 'TWAP Orders', description: "Time-weighted average price orders allow you to spread your trade out over time, averaging out your trading price, minimizing price impact, and allowing for lower slippage." },
-    { icon: `${IMAGE_PATH}icon-limit-orders.svg`, title: 'Limit Orders', description: "CoW Swap's surplus-capturing limit orders allow you to set a price and sit back while your order gets filled over time - perfect for token buybacks and other large trades." },
-    { icon: `${IMAGE_PATH}icon-price-walls.svg`, title: 'Price Walls', description: "Pick an asset, define a threshold price, and CoW Swap will automatically sell above the threshold, and buy below it." },
-    { icon: `${IMAGE_PATH}icon-basket-sells.svg`, title: 'Basket Sells', description: <><LinkWithUtm href="https://dump.services/"  defaultUtm={{ ...CONFIG.utm, utmContent: 'daos-page' }} passHref><a target="_blank" rel="nofollow noreferrer">Dump.services</a></LinkWithUtm>, a collaboration between CoW Swap and Yearn, allows DAOs and traders to sell multiple tokens in a single transaction.</> },
-    { icon: `${IMAGE_PATH}icon-logic.svg`, title: 'Place Your Logic Here', description: "ERC-1271 Smart Orders and CoW Hooks allow you to define your own complex trading logic; if you can think it, you can trade it." },
+    {
+      icon: `${IMAGE_PATH}icon-milkman.svg`,
+      title: 'Milkman Orders',
+      description: (
+        <>
+          Ensure your trades are always close to the real-time market price thanks to the{' '}
+          <LinkWithUtm
+            href="https://github.com/charlesndalton/milkman"
+            defaultUtm={{ ...CONFIG.utm, utmContent: 'daos-page' }}
+            passHref
+          >
+            <a target="_blank" rel="nofollow noreferrer">
+              Milkman bot
+            </a>
+          </LinkWithUtm>
+          . Set the maximum deviation you&apos;ll accept, and Milkman will do the rest.
+        </>
+      ),
+    },
+    {
+      icon: `${IMAGE_PATH}icon-twap-orders.svg`,
+      title: 'TWAP Orders',
+      description:
+        'Time-weighted average price orders allow you to spread your trade out over time, averaging out your trading price, minimizing price impact, and allowing for lower slippage.',
+    },
+    {
+      icon: `${IMAGE_PATH}icon-limit-orders.svg`,
+      title: 'Limit Orders',
+      description:
+        "CoW Swap's surplus-capturing limit orders allow you to set a price and sit back while your order gets filled over time - perfect for token buybacks and other large trades.",
+    },
+    {
+      icon: `${IMAGE_PATH}icon-price-walls.svg`,
+      title: 'Price Walls',
+      description:
+        'Pick an asset, define a threshold price, and CoW Swap will automatically sell above the threshold, and buy below it.',
+    },
+    {
+      icon: `${IMAGE_PATH}icon-basket-sells.svg`,
+      title: 'Basket Sells',
+      description: (
+        <>
+          <LinkWithUtm href="https://dump.services/" defaultUtm={{ ...CONFIG.utm, utmContent: 'daos-page' }} passHref>
+            <a target="_blank" rel="nofollow noreferrer">
+              Dump.services
+            </a>
+          </LinkWithUtm>
+          , a collaboration between CoW Swap and Yearn, allows DAOs and traders to sell multiple tokens in a single
+          transaction.
+        </>
+      ),
+    },
+    {
+      icon: `${IMAGE_PATH}icon-logic.svg`,
+      title: 'Place Your Logic Here',
+      description:
+        'ERC-1271 Smart Orders and CoW Hooks allow you to define your own complex trading logic; if you can think it, you can trade it.',
+    },
   ],
   trustedDAOs: [
-    { icon: `${DAO_LOGOS_PATH}aave.svg`, title: 'Aave', description: "Aave DAO used CoW Swap to swap over $4 million directly into Balancer liquidity pool", link: 'https://medium.com/@cow-protocol/aave-trade-breakdown-e17a7563d7ba', volume: '$4 million' },
-    { icon: `${DAO_LOGOS_PATH}nexus.svg`, title: 'Nexus Mutual', description: "In the largest DAO trade ever, Nexus Mutual relied on CoW Swap to trade 14,400 ETH for the rETH liquid staking token", link: 'https://medium.com/@cow-protocol/nexus-mutual-trade-breakdown-4aacc6a94be8', volume: '14,400 ETH' },
-    { icon: `${DAO_LOGOS_PATH}ens.svg`, title: 'ENS', description: "ENS DAO traded a whopping 10,000 of ETH ($16.5 million dollars) for USDC through CoW Swap", link: 'https://medium.com/@cow-protocol/ens-trade-breakdown-a8eb00ddd8c0', volume: '10,000 ETH' },
+    {
+      icon: `${DAO_LOGOS_PATH}aave.svg`,
+      title: 'Aave',
+      description: 'Aave DAO used CoW Swap to swap over $4 million directly into Balancer liquidity pool',
+      link: 'https://medium.com/@cow-protocol/aave-trade-breakdown-e17a7563d7ba',
+      volume: '$4 million',
+    },
+    {
+      icon: `${DAO_LOGOS_PATH}nexus.svg`,
+      title: 'Nexus Mutual',
+      description:
+        'In the largest DAO trade ever, Nexus Mutual relied on CoW Swap to trade 14,400 ETH for the rETH liquid staking token',
+      link: 'https://medium.com/@cow-protocol/nexus-mutual-trade-breakdown-4aacc6a94be8',
+      volume: '14,400 ETH',
+    },
+    {
+      icon: `${DAO_LOGOS_PATH}ens.svg`,
+      title: 'ENS',
+      description: 'ENS DAO traded a whopping 10,000 of ETH ($16.5 million dollars) for USDC through CoW Swap',
+      link: 'https://medium.com/@cow-protocol/ens-trade-breakdown-a8eb00ddd8c0',
+      volume: '10,000 ETH',
+    },
     { icon: `${DAO_LOGOS_PATH}karpatkey.svg`, title: 'Karpatkey', link: 'https://www.karpatkey.com/' },
     { icon: `${DAO_LOGOS_PATH}maker.svg`, title: 'MakerDAO', link: 'https://makerdao.com/' },
     { icon: `${DAO_LOGOS_PATH}lido.svg`, title: 'Lido', link: 'https://lido.fi/' },
@@ -81,8 +190,7 @@ const CONTENT = {
     { icon: `${DAO_LOGOS_PATH}ondo.svg`, title: 'Ondo', link: 'https://ondo.finance/' },
     { icon: `${DAO_LOGOS_PATH}abracadabra.png`, title: 'Abracadabra', link: 'https://abracadabra.money/' },
     { icon: `${DAO_LOGOS_PATH}aragon.svg`, title: 'Aragorn', link: 'https://aragon.org/' },
-
-  ]
+  ],
 }
 
 const SwiperSlideWrapper = styled.div`
@@ -140,7 +248,7 @@ const SwiperSlideWrapper = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
 
-    ${Media.mobile} { 
+    ${Media.mobile} {
       max-width: 100%;
       align-items: stretch;
     }
@@ -198,11 +306,12 @@ const SwiperSlideWrapper = styled.div`
       color: ${Color.lightBlue};
       font-weight: ${Font.weightMedium};
       background: ${Color.gradient};
+      background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
 
       &::selection {
-        -webkit-background-clip: initial;
+        background-clip: initial;
         -webkit-text-fill-color: initial;
       }
 
@@ -246,19 +355,19 @@ export default function ForDAOs({ siteConfigData }) {
   const { social } = siteConfigData
 
   // Filter out Discord/Forum social links
-  let socialFiltered = {};
+  let socialFiltered = {}
   Object.entries(social).forEach(([key, value]) => {
     if (key !== 'forum' && key !== 'github') {
-      socialFiltered[key] = value;
+      socialFiltered[key] = value
     }
-  });
+  })
 
   const handleCTAClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    e.preventDefault();
-    const href = e.currentTarget.href;
-    const targetId = href.replace(/.*\#/, "");
-    const elem = document.getElementById(targetId);
-    elem?.scrollIntoView({ behavior: "smooth" });
+    e.preventDefault()
+    const href = e.currentTarget.href
+    const targetId = href.replace(/.*\#/, '')
+    const elem = document.getElementById(targetId)
+    elem?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
@@ -272,8 +381,18 @@ export default function ForDAOs({ siteConfigData }) {
       <Section fullWidth>
         <SectionContent flow="column" margin={'8rem auto 0'}>
           <div>
-            <SectionH1 fontSize={7}><b><i>Savvy DAOs</i></b> <span className="text-weight-light"><br />Choose CoW Swap</span></SectionH1>
-            <SubTitle color={Color.text1} fontSize={3} lineHeight={1.4} maxWidth={60}>The smartest DAOs trust CoW Swap with their most-important trades</SubTitle>
+            <SectionH1 fontSize={7}>
+              <b>
+                <i>Savvy DAOs</i>
+              </b>{' '}
+              <span className="text-weight-light">
+                <br />
+                Choose CoW Swap
+              </span>
+            </SectionH1>
+            <SubTitle color={Color.text1} fontSize={3} lineHeight={1.4} maxWidth={60}>
+              The smartest DAOs trust CoW Swap with their most-important trades
+            </SubTitle>
             <Button href="#benefits" onClick={handleCTAClick} paddingLR={4.2} label="Learn why" />
           </div>
         </SectionContent>
@@ -283,14 +402,16 @@ export default function ForDAOs({ siteConfigData }) {
         <TrustedBy>
           <p>Trusted by</p>
           <ul>
-            {CONTENT.trustedDAOs.map(({ icon, title, volume }, index) => (
-              volume &&
-              <li key={index}>
-                <SVG src={icon} title={title} />
-                <small>with</small>
-                <strong>{volume}</strong>
-              </li>
-            ))}
+            {CONTENT.trustedDAOs.map(
+              ({ icon, title, volume }, index) =>
+                volume && (
+                  <li key={index}>
+                    <SVG src={icon} title={title} />
+                    <small>with</small>
+                    <strong>{volume}</strong>
+                  </li>
+                )
+            )}
           </ul>
         </TrustedBy>
       </Section>
@@ -299,7 +420,9 @@ export default function ForDAOs({ siteConfigData }) {
         <SectionContent>
           <SwiperSlideWrapper>
             <h3>Expert trading for expert DAOs</h3>
-            <SubTitle color={Color.lightBlue} lineHeight={1.4} maxWidth={80}>CoW Swap is the only DEX built to solve the unique challenges faced by DAOs</SubTitle>
+            <SubTitle color={Color.lightBlue} lineHeight={1.4} maxWidth={80}>
+              CoW Swap is the only DEX built to solve the unique challenges faced by DAOs
+            </SubTitle>
             <Swiper
               slidesPerView={'auto'}
               centeredSlides={true}
@@ -316,12 +439,10 @@ export default function ForDAOs({ siteConfigData }) {
                 delay: 5000,
                 disableOnInteraction: true,
               }}
-              navigation={
-                {
-                  nextEl: '.swiper-button-next',
-                  prevEl: '.swiper-button-prev',
-                }
-              }
+              navigation={{
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+              }}
               spaceBetween={50}
               modules={[Autoplay, Pagination, Navigation]}
               className="daoSwiper"
@@ -335,7 +456,6 @@ export default function ForDAOs({ siteConfigData }) {
                   </span>
                 </SwiperSlide>
               ))}
-
             </Swiper>
 
             <div className="swiper-button-prev"></div>
@@ -348,7 +468,10 @@ export default function ForDAOs({ siteConfigData }) {
         <SectionContent flow={'column'}>
           <div className="container">
             <h3>Advanced order types</h3>
-            <SubTitle color={Color.text1} lineHeight={1.4} maxWidth={70}>CoW Swap&apos;s many order types help you get better prices for your trades, manage token launches, facilitate buybacks, and much more</SubTitle>
+            <SubTitle color={Color.text1} lineHeight={1.4} maxWidth={70}>
+              CoW Swap&apos;s many order types help you get better prices for your trades, manage token launches,
+              facilitate buybacks, and much more
+            </SubTitle>
 
             <CardWrapper maxWidth={100}>
               {CONTENT.orderTypes.map((orderType, index) => (
@@ -360,10 +483,13 @@ export default function ForDAOs({ siteConfigData }) {
               ))}
             </CardWrapper>
 
-            <LinkWithUtm href={'https://blog.cow.fi/list/advanced-order-types-b391bd4390cb'} defaultUtm={{ ...CONFIG.utm, utmContent: 'daos-page' }} passHref>
+            <LinkWithUtm
+              href={'https://blog.cow.fi/list/advanced-order-types-b391bd4390cb'}
+              defaultUtm={{ ...CONFIG.utm, utmContent: 'daos-page' }}
+              passHref
+            >
               <Button paddingLR={4.2} label="Explore Advanced Order Types" target="_blank" rel="noopener nofollow" />
             </LinkWithUtm>
-
           </div>
         </SectionContent>
       </Section>
@@ -380,12 +506,16 @@ export default function ForDAOs({ siteConfigData }) {
                 .map(({ description, icon, title, link }, index) => (
                   <CardItem key={index} variant="outlined-dark" gap={3.6} imageHeight={8} textCentered>
                     <LinkWithUtm href={link} defaultUtm={{ ...CONFIG.utm, utmContent: 'daos-page' }} passHref>
-                      <a target="_blank" rel="nofollow noreferrer"><img src={icon} alt={title} /></a>
+                      <a target="_blank" rel="nofollow noreferrer">
+                        <img src={icon} alt={title} />
+                      </a>
                     </LinkWithUtm>
                     <span>
                       <p>{description}</p>
                       <LinkWithUtm href={link} defaultUtm={{ ...CONFIG.utm, utmContent: 'daos-page' }} passHref>
-                        <a href={link} target="_blank" rel="nofollow noreferrer">Case study</a>
+                        <a href={link} target="_blank" rel="nofollow noreferrer">
+                          Case study
+                        </a>
                       </LinkWithUtm>
                     </span>
                   </CardItem>
@@ -397,20 +527,30 @@ export default function ForDAOs({ siteConfigData }) {
               {CONTENT.trustedDAOs
                 .filter(({ description }) => !description)
                 .map(({ icon, title, link }, index) => (
-                  <CardItem key={index} padding={1.2} imageFullSize variant="outlined-dark" gap={3.6} textCentered contentCentered className='iconOnly'>
+                  <CardItem
+                    key={index}
+                    padding={1.2}
+                    imageFullSize
+                    variant="outlined-dark"
+                    gap={3.6}
+                    textCentered
+                    contentCentered
+                    className="iconOnly"
+                  >
                     <LinkWithUtm href={link} defaultUtm={{ ...CONFIG.utm, utmContent: 'daos-page' }} passHref>
-                      <a href={link} target="_blank" rel="nofollow noreferrer" title={title}><img src={icon} alt={title} /></a>
+                      <a href={link} target="_blank" rel="nofollow noreferrer" title={title}>
+                        <img src={icon} alt={title} />
+                      </a>
                     </LinkWithUtm>
                   </CardItem>
                 ))}
             </CardWrapper>
-
           </div>
         </SectionContent>
       </Section>
 
-      <Section flow={'column'}>
-        <SectionContent>
+      <Section fullWidth>
+        <SectionContent flow={'column'}>
           <div>
             <h3>Get in touch</h3>
             <SubTitle maxWidth={60} color={Color.text1} lineHeight={1.4}>
@@ -420,7 +560,6 @@ export default function ForDAOs({ siteConfigData }) {
           </div>
         </SectionContent>
       </Section>
-
     </Layout>
   )
 }
