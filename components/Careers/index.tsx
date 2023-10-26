@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { CONFIG } from '@/const/meta'
-import { Button } from '@/components/Button'
+import { Button, ButtonVariant } from '@/components/Button'
 import { Section, Title, SubTitle, TitleSmall, LinkContainer, Card } from '@/components/Layout/index.styles'
 import { DropDown, ExternalLink } from 'styles/global.styles'
 import SVG from 'react-inlinesvg'
@@ -88,11 +88,24 @@ export function Careers({ jobsData }) {
       </Section>
 
       <Section>
-          <Card>
-            <h3><span>💸</span> Refer a friend and earn 5000 in USDC or USD!</h3>
-            <p>Know someone who is not just looking for a job but for a great opportunity to grow? Refer them to us to earn $5.000 in USDC or USD. <Button variant="outlineLight" paddingLR={4.2} marginTB={2.4} fontSize={1.8} href='/careers/refer-to-earn' label="Refer-to-Earn details" /></p>
-          </Card>
-        </Section>
+        <Card>
+          <h3>
+            <span>💸</span> Refer a friend and earn 5000 in USDC or USD!
+          </h3>
+          <p>
+            Know someone who is not just looking for a job but for a great opportunity to grow? Refer them to us to earn
+            $5.000 in USDC or USD.{' '}
+            <Button
+              variant={ButtonVariant.OUTLINE_LIGHT}
+              paddingLR={4.2}
+              marginTB={2.4}
+              fontSize={1.8}
+              href="/careers/refer-to-earn"
+              label="Refer-to-Earn details"
+            />
+          </p>
+        </Card>
+      </Section>
     </>
   )
 }
