@@ -206,6 +206,19 @@ export const SectionContent = styled.div<{
   gap: ${({ gap }) => (gap ? `${gap}rem` : '6rem')};
   padding: ${({ padding }) => (padding ? `${padding}` : '0')};
 
+  // variant called 'grid-2' is a 2 column grid
+  ${({ variant }) =>
+    variant === 'grid-2' &&
+    `
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    ${Media.mobile} {
+      flex-flow: row wrap;
+      grid-template-columns: 1fr;
+    }
+  `}
+
   ${Media.mobile} {
     flex-flow: row wrap;
     justify-content: center;

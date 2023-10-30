@@ -246,7 +246,7 @@ export default function WidgetPage({ siteConfigData }) {
       </Section>
 
       <Section fullWidth colorVariant={'white'}>
-        <SectionContent flow="row">
+        <SectionContent flow="row" variant={'grid-2'}>
           <StickySectionTitle>
             <h3>Everything You&apos;d Want in a Widget</h3>
             <SubTitle lineHeight={1.4} maxWidth={70} color={Color.text1}>
