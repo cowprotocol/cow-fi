@@ -265,6 +265,7 @@ export default function WidgetPage({ siteConfigData }) {
                     imageRounded
                     variant="iconWithText"
                     svgColor={Color.darkBlue}
+                    style={{ background: comingSoon ? Color.grey : 'inherit' }}
                   >
                     <SVG
                       style={{ opacity: comingSoon ? 0.5 : 1 }}
