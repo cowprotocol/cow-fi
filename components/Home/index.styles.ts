@@ -22,12 +22,17 @@ export const Section = styled.section<{
   mediumSwitchOrder?: boolean
   mobileSwitchOrder?: boolean
   padding?: string
+  paddingMobile?: string
   margin?: string
   maxWidth?: number
+  borderRadius?: number
+  boxShadow?: boolean
+  firstSection?: boolean
 }>`
   display: flex;
   width: 100%;
-  max-width: ${({ maxWidth }) => (maxWidth ? `${maxWidth}rem` : '100%')};
+  max-width: ${({ maxWidth, fullWidth }) =>
+    fullWidth ? '100%' : maxWidth ? `${maxWidth}rem` : `${Defaults.pageMaxWidth}rem`};
   min-height: 100%;
   flex-flow: ${({ flow }) => (flow === 'column' ? 'column wrap' : 'row')};
   gap: 8rem;
@@ -35,12 +40,18 @@ export const Section = styled.section<{
   position: relative;
   z-index: 1;
   align-items: ${({ hero }) => (hero ? 'center' : 'normal')};
-  padding: ${({ padding }) => (padding ? `${padding}` : '0')};
-  background: ${({ colorVariant }) => (colorVariant === 'dark' ? Color.darkBlue : 'transparent')};
-  color: ${({ colorVariant }) => (colorVariant === 'dark' ? Color.lightBlue : 'inherit')};
+  padding: ${({ padding, colorVariant, firstSection }) =>
+    firstSection ? '0 0 14rem' : colorVariant === 'white' ? '14rem 8rem' : padding ? `${padding}` : '14rem 8rem'};
+  background: ${({ colorVariant }) =>
+    colorVariant === 'dark' ? Color.darkBlue : colorVariant === 'white' ? Color.white : 'transparent'};
+  color: ${({ colorVariant }) =>
+    colorVariant === 'dark' ? Color.lightBlue : colorVariant === 'white' ? Color.darkBlue : 'inherit'};
+  border-radius: ${({ borderRadius }) => (borderRadius ? `${borderRadius}rem` : '0')};
+  box-shadow: ${({ boxShadow }) => (boxShadow ? '0 1rem 2.4rem rgba(0,0,0,.05)' : 'none')};
 
   ${Media.desktopDown} {
-    padding: 0 3.2rem;
+    padding: ${({ paddingMobile, firstSection }) =>
+      firstSection ? '0 2.4rem 14rem' : paddingMobile ? `${paddingMobile}` : '14rem 2.4rem'};
   }
 
   ${Media.mobile} {
@@ -48,6 +59,7 @@ export const Section = styled.section<{
     max-width: 100%;
     min-height: initial;
     flex-flow: column wrap;
+    gap: 4.2rem;
   }
 
   .text-weight-light {
@@ -60,7 +72,6 @@ export const Section = styled.section<{
     `
     margin: 0 auto;
     min-height: 90rem;
-    // padding-top: 10rem;
     ${Color.gradientMesh};
 
     > 
@@ -181,15 +192,23 @@ export const SectionContent = styled.div<{
   variant?: string
   reverseOrderMobile?: string
   margin?: string
+  fullWidth?: boolean
+  maxWidth?: number
+  gap?: number
+  padding?: string
 }>`
   display: flex;
   position: relative;
   width: 100%;
-  max-width: ${Defaults.pageMaxWidth}rem;
-  margin: ${({ margin }) => (margin ? `${margin}` : '12rem auto')};
+  max-width: ${({ maxWidth, fullWidth }) =>
+    fullWidth ? '100%' : maxWidth ? `${maxWidth}rem` : `${Defaults.pageMaxWidth}rem`};
+  margin: ${({ margin }) => (margin ? `${margin}` : '0 auto')};
+  gap: ${({ gap }) => (gap ? `${gap}rem` : '6rem')};
+  padding: ${({ padding }) => (padding ? `${padding}` : '0')};
 
   ${Media.mobile} {
     flex-flow: row wrap;
+    justify-content: center;
   }
 
   ${({ hero }) =>
@@ -362,6 +381,8 @@ export const CardItem = styled.div<{
   variant?: 'outlined-dark' | 'iconWithText'
   imageFullSize?: boolean
   imageHeight?: number
+  imageWidth?: number
+  svgColor?: string
   textCentered?: boolean
   gap?: number
   imageRounded?: boolean
@@ -372,10 +393,10 @@ export const CardItem = styled.div<{
   align-items: ${({ contentCentered }) => (contentCentered ? 'center' : 'flex-start')};
   justify-content: ${({ contentCentered }) => (contentCentered ? 'center' : 'flex-start')};
   background: ${({ variant }) => (variant === 'outlined-dark' ? 'transparent' : Color.white)};
-  box-shadow: ${({ variant }) => (variant === 'outlined-dark' ? 'none' : '0px 1px 50px rgba(5, 43, 101, 0.1)')};
+  box-shadow: ${({ variant }) => (variant === 'outlined-dark' ? 'none' : '0 1rem 2.4rem rgba(0,0,0,.05)')};
   border: ${({ variant }) => (variant === 'outlined-dark' ? `0.1rem solid ${Color.border}` : 'none')};
   color: ${({ variant }) => (variant === 'outlined-dark' ? Color.text2 : Color.text1)};
-  border-radius: ${({ borderRadius }) => (borderRadius ? `${borderRadius}rem` : '1.6rem')};
+  border-radius: ${({ borderRadius }) => (borderRadius ? `${borderRadius}rem` : '2.4rem')};
   padding: ${({ padding }) => (padding ? `${padding}rem` : '3.4rem')};
   gap: ${({ gap }) => (gap ? `${gap}rem` : '1.6rem')};
   font-size: 1.6rem;
@@ -391,17 +412,23 @@ export const CardItem = styled.div<{
   }
 
   > a > img,
-  > img {
-    --width: ${({ imageFullSize }) => (imageFullSize ? '100%' : 'auto')};
+  > a > svg,
+  > img,
+  > svg {
+    --width: ${({ imageFullSize, imageWidth }) => (imageFullSize ? '100%' : imageWidth ? `${imageWidth}rem` : '5rem')};
     --height: ${({ imageFullSize, imageHeight }) =>
       imageFullSize ? '100%' : imageHeight ? `${imageHeight}rem` : '5rem'};
     width: var(--width);
     height: var(--height);
+    min-width: var(--width);
+    min-height: var(--height);
     ${({ imageRounded }) => (imageRounded ? `border-radius: var(--height);` : '')}
     max-width: 100%;
     background: transparent;
     object-fit: contain;
     margin: 0 auto 0 0;
+    fill: ${({ variant, svgColor }) =>
+      svgColor ? svgColor : variant === 'outlined-dark' ? Color.lightBlue : Color.darkBlue};
   }
 
   &.iconOnly > a > img,
@@ -446,13 +473,12 @@ export const CardItem = styled.div<{
       flex-flow: row nowrap;
       background: none;
       border: none;
-      border-bottom: 0.1rem solid ${Color.border};
-      box-shadow: none;
-      border-radius: 0;
       gap: 1.6rem;
 
       > a > img,
-      > img {
+      > a > svg,
+      > img,
+      > svg {
         margin: auto 0;
       }
 
@@ -494,7 +520,7 @@ export const SubTitle = styled.p<{
   line-height: ${({ lineHeight }) => (lineHeight ? lineHeight : 1.6)};
   text-align: ${({ textAlign }) => (textAlign ? textAlign : 'center')};
   max-width: ${({ maxWidth }) => maxWidth && `${maxWidth}rem`};
-  margin: 0;
+  margin: 0 auto;
   width: 100%;
   z-index: 1;
 

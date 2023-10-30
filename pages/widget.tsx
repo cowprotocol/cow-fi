@@ -13,6 +13,11 @@ const StickySectionTitle = styled.div`
   position: sticky;
   top: 12rem;
   margin: 0 auto auto;
+
+  ${Media.mobile} {
+    position: relative;
+    top: initial;
+  }
 `
 
 const IMAGE_PATH = '/images/'
@@ -24,7 +29,7 @@ const CONTENT = {
       icon: `${IMAGE_PATH}icon-milkman.svg`,
       title: 'Full Protection from MEV',
       description:
-        'CoW Swap offers the best MEV protection in the land. Thanks to a delegated trading model that relies on experts to execute swaps, traders can rest assured that they’re safe from the MEV bots.',
+        "CoW Swap offers the best MEV protection in the land. Thanks to a delegated trading model that relies on experts to execute swaps, traders can rest assured that they're safe from the MEV bots.",
     },
     {
       icon: `${IMAGE_PATH}icon-twap-orders.svg`,
@@ -84,34 +89,35 @@ const CONTENT = {
     { icon: `${DAO_LOGOS_PATH}aragon.svg`, title: 'Aragorn', link: 'https://aragon.org/' },
   ],
   featureItems: [
-    { description: 'Live styling configurator', icon: `${IMAGE_PATH}icon-milkman.svg` },
-    { description: 'Easy install - embeddable iFrame or React module', icon: `${IMAGE_PATH}icon-milkman.svg` },
     {
-      description: (
-        <>
-          Configurable token lists <i>(coming soon)</i>
-        </>
-      ),
-      icon: `${IMAGE_PATH}icon-milkman.svg`,
+      description: 'Live styling configurator',
     },
     {
-      description: (
-        <>
-          Custom-tailored fees <i>(coming soon)</i>
-        </>
-      ),
-      icon: `${IMAGE_PATH}icon-milkman.svg`,
+      description: 'Easy install with a snippet of code',
     },
     {
       description: 'External wallet management - use your own wallet connection',
-      icon: `${IMAGE_PATH}icon-milkman.svg`,
     },
     {
-      description: 'Internal wallet management - no wallet connection needed (coming soon)',
-      icon: `${IMAGE_PATH}icon-milkman.svg`,
+      description: 'Configurable token lists',
+      comingSoon: true,
     },
-    { description: 'Fully responsive, from 340px and up (coming soon)', icon: `${IMAGE_PATH}icon-milkman.svg` },
-    { description: 'Feature-adaptive display (coming soon)', icon: `${IMAGE_PATH}icon-milkman.svg` },
+    {
+      description: 'Custom-tailored fees',
+      comingSoon: true,
+    },
+    {
+      description: 'Internal wallet management - no wallet connection needed',
+      comingSoon: true,
+    },
+    {
+      description: 'Fully responsive, from 340px and up',
+      comingSoon: true,
+    },
+    {
+      description: 'Feature-adaptive display',
+      comingSoon: true,
+    },
   ],
 }
 
@@ -144,15 +150,15 @@ export default function WidgetPage({ siteConfigData }) {
         </title>
       </Head>
 
-      <Section maxWidth={126} margin="-8rem auto 0">
+      <Section firstSection>
         <SectionContent>
           <div>
-            <SectionH1 fontSize={6.2} textAlign={'left'}>
-              <b>Earn revenue by adding CoW Swap to your site</b>
+            <SectionH1 fontSize={6.8} textAlign={'left'}>
+              <b>Bring reliable, MEV-protected swaps to your users</b>
             </SectionH1>
             <SubTitle color={Color.text1} fontSize={2} lineHeight={1.6} maxWidth={60} textAlign="left">
-              The CoW Swap widget enables seamless trading directly from your website or dApp. Integrate the widget on
-              any page and bring reliable, MEV-protected swaps to your users through CoW Protocol.
+              Integrate the CoW Swap widget to bring seamless, MEV-protected trading to your website or dApp. Delight
+              your users while adding an extra revenue stream for your project - it&apos;s a win-win.
             </SubTitle>
             <Button href="#configure-widget" onClick={handleCTAClick} paddingLR={4.2} label="Configure widget" />
             <Button
@@ -166,16 +172,10 @@ export default function WidgetPage({ siteConfigData }) {
         </SectionContent>
 
         <SectionContent flow="column">
-          <div>
-            {/* <img
-              style={{ background: 'grey', borderRadius: '12px' }}
-              src={`${IMAGE_PATH}widget.png`}
-              alt="widget"
-              width="100%"
-            /> */}
+          <div id="COW-WIDGET">
             <iframe
               src={
-                'https://swap-dev-git-widget-ui-15-cowswap.vercel.app/#/1/widget/swap/COW/WETH&sellAmount=1?theme=light'
+                'https://swap-dev-git-feat-widget-react-lib-cowswap.vercel.app/#/1/widget/swap/COW/WETH&sellAmount=1000?theme=light'
               }
               width="100%"
               height="100%"
@@ -185,49 +185,41 @@ export default function WidgetPage({ siteConfigData }) {
         </SectionContent>
       </Section>
 
-      <Section maxWidth={126}>
-        <SectionContent flow="column">
-          <div>
-            <img
-              style={{ borderRadius: '30rem' }}
-              src={`${IMAGE_PATH}icon-logic.svg`}
-              alt="easy to integrate"
-              width="300"
-              height="300"
-            />
-          </div>
-        </SectionContent>
-        <SectionContent flow={'column'}>
+      <Section colorVariant={'white'} borderRadius={3.2} boxShadow>
+        <SectionContent flow={'row'}>
+          <img
+            style={{ borderRadius: '30rem' }}
+            src={`${IMAGE_PATH}icon-buybacks.svg`}
+            alt="Make Money with CoW Swap"
+            width="240"
+            height="240"
+          />
           <div className="container">
-            <h3>Easy to Integrate</h3>
-            <SubTitle color={Color.text1} lineHeight={1.4} maxWidth={70}>
-              The CoW Swap widget is quick to install and easy to customize. Add the widget to your site in under 5
-              minutes by copy-pasting a few lines of code.
+            <h3>Make Money with CoW Swap</h3>
+            <SubTitle color={Color.text1} lineHeight={1.4}>
+              Collect revenue when users trade with your widget. The CoW Swap widget allows you to select from a number
+              of fee-taking options. Contact our team for more details.
             </SubTitle>
           </div>
         </SectionContent>
       </Section>
 
-      <Section maxWidth={126}>
-        <SectionContent flow={'column'}>
+      <Section>
+        <SectionContent flow={'row'}>
           <div className="container">
-            <h3>Earn Revenue Through Your dApp</h3>
-            <SubTitle color={Color.text1} lineHeight={1.4} maxWidth={70}>
-              Enable a custom fee switch that allows you to collect revenue every time someone makes a trade through the
-              CoW Swap widget. [more info]
+            <h3>Easy to Integrate</h3>
+            <SubTitle color={Color.text1} lineHeight={1.4}>
+              The CoW Swap widget is quick to install and easy to customize. Add the widget to your site in under 5
+              minutes by copy-pasting a few lines of code.
             </SubTitle>
           </div>
-        </SectionContent>
-        <SectionContent flow="column" margin={'8rem auto 0'}>
-          <div>
-            <img
-              style={{ borderRadius: '30rem' }}
-              src={`${IMAGE_PATH}icon-buybacks.svg`}
-              alt="earn revenue"
-              width="300"
-              height="300"
-            />
-          </div>
+          <img
+            style={{ borderRadius: '30rem' }}
+            src={`${IMAGE_PATH}icon-logic.svg`}
+            alt="Easy to Integrate"
+            width="300"
+            height="300"
+          />
         </SectionContent>
       </Section>
 
@@ -235,17 +227,17 @@ export default function WidgetPage({ siteConfigData }) {
         <SectionContent flow={'column'}>
           <div className="container">
             <h3>Every Bell, Whistle, and Moo</h3>
-            <SubTitle lineHeight={1.4} maxWidth={70}>
+            <SubTitle lineHeight={1.4} maxWidth={85}>
               With the CoW Swap, you can offer your users everything you know and love about CoW Swap, and more. Oh, and
-              yes… it does come with the “moo.”
+              yes… it does come with the “moo”.
             </SubTitle>
 
             <CardWrapper maxWidth={100} gap={3.8}>
-              {CONTENT.everyBell.map((orderType, index) => (
+              {CONTENT.everyBell.map(({ icon, title, description }, index) => (
                 <CardItem key={index} imageHeight={8} imageRounded>
-                  <img src={orderType.icon} alt="image" />
-                  <h4>{orderType.title}</h4>
-                  <p>{orderType.description}</p>
+                  <img src={icon} alt="image" />
+                  <h4>{title}</h4>
+                  <p>{description}</p>
                 </CardItem>
               ))}
             </CardWrapper>
@@ -253,24 +245,35 @@ export default function WidgetPage({ siteConfigData }) {
         </SectionContent>
       </Section>
 
-      <Section maxWidth={126}>
-        <SectionContent flow={'column'}>
+      <Section fullWidth colorVariant={'white'}>
+        <SectionContent flow="row">
           <StickySectionTitle>
             <h3>Everything You&apos;d Want in a Widget</h3>
             <SubTitle lineHeight={1.4} maxWidth={70} color={Color.text1}>
               With the CoW Swap, you can offer your users everything you know and love about CoW Swap, and more.
             </SubTitle>
           </StickySectionTitle>
-        </SectionContent>
-        <SectionContent flow="column">
           <div>
-            <CardWrapper maxWidth={100} gap={1} horizontalGrid={1}>
-              {CONTENT.featureItems.map((orderType, index) => (
-                <CardItem key={index} imageHeight={4.8} imageRounded variant="iconWithText">
-                  <img src={orderType.icon} alt="image" />
-                  <p>{orderType.description}</p>
-                </CardItem>
-              ))}
+            <CardWrapper gap={2.4} horizontalGrid={1}>
+              {CONTENT.featureItems
+                .sort((a, b) => (a.comingSoon ? 1 : 0) - (b.comingSoon ? 1 : 0)) // Show coming soon items last
+                .map(({ description, comingSoon }, index) => (
+                  <CardItem
+                    key={index}
+                    imageHeight={4.8}
+                    imageWidth={4.8}
+                    imageRounded
+                    variant="iconWithText"
+                    svgColor={Color.darkBlue}
+                  >
+                    <SVG
+                      style={{ opacity: comingSoon ? 0.5 : 1 }}
+                      title={description || 'icon'}
+                      src={comingSoon ? `${IMAGE_PATH}icons/coming-soon.svg` : `${IMAGE_PATH}icons/check.svg`}
+                    />
+                    <p>{description}</p>
+                  </CardItem>
+                ))}
             </CardWrapper>
           </div>
         </SectionContent>
@@ -310,12 +313,12 @@ export default function WidgetPage({ siteConfigData }) {
         </SectionContent>
       </Section>
 
-      <Section fullWidth>
-        <SectionContent flow={'column'}>
+      <Section>
+        <SectionContent flow="column">
           <div>
             <h3>Integrate in 5 Minutes or less</h3>
 
-            <SubTitle color={Color.text1} fontSize={2.1} lineHeight={1.4} maxWidth={60} textAlign="left">
+            <SubTitle color={Color.text1} fontSize={2.1} lineHeight={1.4} textAlign="center">
               Learn more about how CoW Protocol can help your [TBD].
             </SubTitle>
 

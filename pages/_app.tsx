@@ -19,14 +19,10 @@ export default function App(props: AppProps) {
     <>
       <Head>
         {/* Prevent indexing of development and preview environments */}
-        {
-          (process.env.NEXT_PUBLIC_ENVIRONMENT === 'DEVELOPMENT' || process.env.NEXT_PUBLIC_ENVIRONMENT === 'PREVIEW') && 
-          <meta name="robots" content="noindex" key="robots" />
-        }
-        
+        {(process.env.NEXT_PUBLIC_ENVIRONMENT === 'DEVELOPMENT' ||
+          process.env.NEXT_PUBLIC_ENVIRONMENT === 'PREVIEW') && <meta name="robots" content="noindex" key="robots" />}
+
         <meta name="description" content={CONFIG.description} key="description" />
-        <meta name="theme-color" media="(prefers-color-scheme: light)" content="black" key="theme-color-light" />
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" key="theme-color-dark" />
         <link rel="shortcut icon" type="image/png" href="/favicon.png" key="shortcut-icon" />
         <link rel="apple-touch-icon" sizes="192x192" href="/favicon.png" key="apple-touch-icon-192" />
         <link rel="apple-touch-icon" sizes="512x512" href="/favicon.png" key="apple-touch-icon-512" />

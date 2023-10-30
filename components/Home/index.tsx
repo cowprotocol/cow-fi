@@ -39,7 +39,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
   return (
     <>
       {/* Hero */}
-      <Section className="container" hero>
+      <Section className="container" hero fullWidth>
         <SectionContent margin={'12rem auto'}>
           <div>
             <h1>Better than the best prices</h1>

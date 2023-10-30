@@ -27,8 +27,8 @@ const FullWidthGradient = styled.main`
   flex-flow: column wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 2.4rem;
-  padding: 10.5rem 0 5.6rem;
+  gap: 0;
+  padding: 14rem 0 5.6rem;
   box-sizing: border-box;
   margin: 0 auto;
   width: 100%;
