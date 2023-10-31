@@ -28,6 +28,7 @@ export const Section = styled.section<{
   borderRadius?: number
   boxShadow?: boolean
   firstSection?: boolean
+  gap?: number
 }>`
   display: flex;
   width: 100%;
@@ -35,7 +36,7 @@ export const Section = styled.section<{
     fullWidth ? '100%' : maxWidth ? `${maxWidth}rem` : `${Defaults.pageMaxWidth}rem`};
   min-height: 100%;
   flex-flow: ${({ flow }) => (flow === 'column' ? 'column wrap' : 'row')};
-  gap: 8rem;
+  gap: ${({ gap }) => (gap ? `${gap}rem` : '8rem')};
   margin: ${({ margin }) => (margin ? `${margin}` : '0 auto')};
   position: relative;
   z-index: 1;
@@ -43,7 +44,15 @@ export const Section = styled.section<{
   padding: ${({ padding, colorVariant, firstSection }) =>
     firstSection ? '0 0 14rem' : colorVariant === 'white' ? '14rem 8rem' : padding ? `${padding}` : '14rem 8rem'};
   background: ${({ colorVariant }) =>
-    colorVariant === 'dark' ? Color.darkBlue : colorVariant === 'white' ? Color.white : 'transparent'};
+    colorVariant === 'dark'
+      ? Color.darkBlue
+      : colorVariant === 'white'
+      ? Color.white
+      : colorVariant === 'grey'
+      ? Color.grey
+      : colorVariant === 'dark-gradient'
+      ? Color.gradient2
+      : 'transparent'};
   color: ${({ colorVariant }) =>
     colorVariant === 'dark' ? Color.lightBlue : colorVariant === 'white' ? Color.darkBlue : 'inherit'};
   border-radius: ${({ borderRadius }) => (borderRadius ? `${borderRadius}rem` : '0')};
@@ -129,60 +138,20 @@ export const Section = styled.section<{
     }
   `}
 
-  h1, h2, h3 {
-    color: ${({ colorVariant }) => (colorVariant === 'dark' ? Color.lightBlue : Color.darkBlue)};
-    font-size: 5rem;
-    line-height: 1.2;
-    font-weight: ${Font.weightNormal};
-    text-align: center;
-    width: 100%;
-    z-index: 1;
-
-    ${Media.mediumDown} {
-      font-size: 4rem;
-      text-align: center;
-    }
-  }
-
-  h1 {
-    // Hero specific styling
-    ${({ hero, breakMedium }) =>
-      (hero || breakMedium) &&
-      `
-      font-size: 7rem;
-      font-weight: 600;
-      text-align: left;
-
-      ${Media.mediumDown} {
-        font-size: 4rem;
-        text-align: center;
-      }
-    `}
-  }
-
-  h3 {
-    font-size: 6rem;
-    font-weight: ${Font.weightMedium};
+h1, h2, h3 {
     color: ${({ colorVariant }) =>
-      colorVariant === 'dark'
-        ? `
-        font-weight: ${Font.weightMedium};
-        background: ${Color.gradient};
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    `
+      colorVariant === 'white'
+        ? Color.darkBlue
+        : colorVariant === 'grey'
+        ? Color.darkBlue
+        : colorVariant === 'dark-gradient'
+        ? Color.lightBlue
+        : colorVariant === 'dark'
+        ? Color.lightBlue
         : Color.darkBlue};
-
-    &::selection {
-      background-clip: initial;
-      -webkit-text-fill-color: initial;
-    }
-
-    ${Media.desktopDown} {
-      font-size: 3.8rem;
-    }
   }
+}
+
 `
 
 export const SectionContent = styled.div<{
@@ -196,6 +165,7 @@ export const SectionContent = styled.div<{
   maxWidth?: number
   gap?: number
   padding?: string
+  textAlign?: string
 }>`
   display: flex;
   position: relative;
@@ -272,6 +242,50 @@ export const SectionContent = styled.div<{
         padding: 6rem;
       }
   `}
+
+  h1, h2, h3 {
+    font-size: 5rem;
+    line-height: 1.2;
+    font-weight: ${Font.weightNormal};
+    text-align: ${({ textAlign }) => (textAlign ? textAlign : 'center')};
+    width: 100%;
+    z-index: 1;
+
+    ${Media.mediumDown} {
+      font-size: 4rem;
+      text-align: center;
+    }
+  }
+
+  h1 {
+    // Hero specific styling
+    ${({ hero, breakMedium }) =>
+      (hero || breakMedium) &&
+      `
+      font-size: 7rem;
+      font-weight: 600;
+      text-align: left;
+
+      ${Media.mediumDown} {
+        font-size: 4rem;
+        text-align: center;
+      }
+    `}
+  }
+
+  h3 {
+    font-size: 6rem;
+    font-weight: ${Font.weightMedium};
+
+    &::selection {
+      background-clip: initial;
+      -webkit-text-fill-color: initial;
+    }
+
+    ${Media.desktopDown} {
+      font-size: 3.8rem;
+    }
+  }
 `
 
 export const Separator = styled.div`
@@ -395,7 +409,6 @@ export const CardItem = styled.div<{
   imageFullSize?: boolean
   imageHeight?: number
   imageWidth?: number
-  svgColor?: string
   textCentered?: boolean
   gap?: number
   imageRounded?: boolean
@@ -440,8 +453,6 @@ export const CardItem = styled.div<{
     background: transparent;
     object-fit: contain;
     margin: 0 auto 0 0;
-    fill: ${({ variant, svgColor }) =>
-      svgColor ? svgColor : variant === 'outlined-dark' ? Color.lightBlue : Color.darkBlue};
   }
 
   &.iconOnly > a > img,
@@ -484,7 +495,6 @@ export const CardItem = styled.div<{
     variant === 'iconWithText' &&
     `
       flex-flow: row nowrap;
-      background: none;
       border: none;
       gap: 1.6rem;
 

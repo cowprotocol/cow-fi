@@ -26,19 +26,19 @@ const DAO_LOGOS_PATH = '/images/dao-logos/'
 const CONTENT = {
   everyBell: [
     {
-      icon: `${IMAGE_PATH}icon-milkman.svg`,
+      icon: `${IMAGE_PATH}protection.svg`,
       title: 'Full Protection from MEV',
       description:
         "CoW Swap offers the best MEV protection in the land. Thanks to a delegated trading model that relies on experts to execute swaps, traders can rest assured that they're safe from the MEV bots.",
     },
     {
-      icon: `${IMAGE_PATH}icon-twap-orders.svg`,
+      icon: `${IMAGE_PATH}surplus.svg`,
       title: 'Surplus-Capturing Orders',
       description:
         'Every order is surplus-capturing and traders usually earn a little extra in their sell token with each swap.',
     },
     {
-      icon: `${IMAGE_PATH}icon-limit-orders.svg`,
+      icon: `${IMAGE_PATH}gasless.svg`,
       title: 'Gasless Trading',
       description:
         'All gas fees are paid in the sell token for swaps and even for token approvals. Users can enjoy ETH-free trading every time, even with brand-new wallets.',
@@ -185,56 +185,42 @@ export default function WidgetPage({ siteConfigData }) {
         </SectionContent>
       </Section>
 
-      <Section colorVariant={'white'} borderRadius={3.2} boxShadow>
-        <SectionContent flow={'row'}>
-          <img
-            style={{ borderRadius: '30rem' }}
-            src={`${IMAGE_PATH}icon-buybacks.svg`}
-            alt="Make Money with CoW Swap"
-            width="240"
-            height="240"
-          />
+      <Section fullWidth colorVariant={'dark-gradient'} flow="column" gap={14}>
+        <SectionContent flow={'row'} maxWidth={100} textAlign={'left'}>
           <div className="container">
             <h3>Make Money with CoW Swap</h3>
-            <SubTitle color={Color.text1} lineHeight={1.4}>
+            <SubTitle lineHeight={1.4} textAlign={'left'}>
               Collect revenue when users trade with your widget. The CoW Swap widget allows you to select from a number
               of fee-taking options. Contact our team for more details.
             </SubTitle>
           </div>
+          <img src={`${IMAGE_PATH}eth-circles.svg`} alt="Make Money with CoW Swap" width="340" height="214" />
         </SectionContent>
-      </Section>
 
-      <Section>
-        <SectionContent flow={'row'}>
+        <SectionContent flow={'row'} maxWidth={100} textAlign={'left'}>
+          <img src={`${IMAGE_PATH}eth-blocks.svg`} alt="Easy to Integrate" width="340" height="214" />
           <div className="container">
             <h3>Easy to Integrate</h3>
-            <SubTitle color={Color.text1} lineHeight={1.4}>
+            <SubTitle lineHeight={1.4} textAlign={'left'}>
               The CoW Swap widget is quick to install and easy to customize. Add the widget to your site in under 5
               minutes by copy-pasting a few lines of code.
             </SubTitle>
           </div>
-          <img
-            style={{ borderRadius: '30rem' }}
-            src={`${IMAGE_PATH}icon-logic.svg`}
-            alt="Easy to Integrate"
-            width="300"
-            height="300"
-          />
         </SectionContent>
       </Section>
 
-      <Section fullWidth colorVariant={'dark'}>
+      <Section fullWidth>
         <SectionContent flow={'column'}>
           <div className="container">
             <h3>Every Bell, Whistle, and Moo</h3>
-            <SubTitle lineHeight={1.4} maxWidth={85}>
+            <SubTitle lineHeight={1.4} maxWidth={85} color={Color.text1}>
               With the CoW Swap, you can offer your users everything you know and love about CoW Swap, and more. Oh, and
               yes… it does come with the “moo”.
             </SubTitle>
 
             <CardWrapper maxWidth={100} gap={3.8}>
               {CONTENT.everyBell.map(({ icon, title, description }, index) => (
-                <CardItem key={index} imageHeight={8} imageRounded>
+                <CardItem key={index} imageHeight={5} imageRounded>
                   <img src={icon} alt="image" />
                   <h4>{title}</h4>
                   <p>{description}</p>
@@ -245,7 +231,7 @@ export default function WidgetPage({ siteConfigData }) {
         </SectionContent>
       </Section>
 
-      <Section fullWidth colorVariant={'white'}>
+      <Section fullWidth colorVariant={'grey'}>
         <SectionContent flow="row" variant={'grid-2'}>
           <StickySectionTitle>
             <h3>Everything You&apos;d Want in a Widget</h3>
@@ -260,17 +246,16 @@ export default function WidgetPage({ siteConfigData }) {
                 .map(({ description, comingSoon }, index) => (
                   <CardItem
                     key={index}
-                    imageHeight={4.8}
-                    imageWidth={4.8}
+                    imageHeight={4}
+                    imageWidth={4}
                     imageRounded
                     variant="iconWithText"
-                    svgColor={Color.darkBlue}
-                    style={{ background: comingSoon ? Color.grey : 'inherit' }}
+                    style={{ background: comingSoon && Color.grey }}
                   >
-                    <SVG
+                    <img
                       style={{ opacity: comingSoon ? 0.5 : 1 }}
-                      title={description || 'icon'}
-                      src={comingSoon ? `${IMAGE_PATH}icons/coming-soon.svg` : `${IMAGE_PATH}icons/check.svg`}
+                      alt={description || 'icon'}
+                      src={comingSoon ? `${IMAGE_PATH}icons/coming-soon.svg` : `${IMAGE_PATH}icons/check-color.svg`}
                     />
                     <p>{description}</p>
                   </CardItem>
