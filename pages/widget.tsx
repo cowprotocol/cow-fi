@@ -3,11 +3,18 @@ import { GetStaticProps } from 'next'
 import styled from 'styled-components'
 import { CONFIG } from '@/const/meta'
 import { Media, Color, Font } from 'styles/variables'
-import { Section, SectionH1, SectionContent, SubTitle, CardWrapper, CardItem } from '@/components/Home/index.styles'
+import {
+  Section,
+  SectionH1,
+  SectionContent,
+  SubTitle,
+  CardWrapper,
+  CardItem,
+  SectionImage,
+} from '@/components/Home/index.styles'
 import Layout from '@/components/Layout'
 import { LinkWithUtm } from 'modules/utm'
-import { Button, ButtonVariant } from '@/components/Button'
-import SVG from 'react-inlinesvg'
+import { Button, ButtonVariant, ButtonWrapper } from '@/components/Button'
 
 const StickySectionTitle = styled.div`
   position: sticky;
@@ -143,7 +150,7 @@ export default function WidgetPage({ siteConfigData }) {
   }
 
   return (
-    <Layout fullWidthGradientVariant={true}>
+    <Layout fullWidthGradientVariant>
       <Head>
         <title>
           {siteConfigData.title} - {siteConfigData.descriptionShort}
@@ -154,20 +161,23 @@ export default function WidgetPage({ siteConfigData }) {
         <SectionContent>
           <div>
             <SectionH1 fontSize={6.8} textAlign={'left'}>
-              <b>Bring reliable, MEV-protected swaps to your users</b>
+              Bring reliable, MEV-protected swaps to your users
             </SectionH1>
             <SubTitle color={Color.text1} fontSize={2} lineHeight={1.6} maxWidth={60} textAlign="left">
               Integrate the CoW Swap widget to bring seamless, MEV-protected trading to your website or dApp. Delight
               your users while adding an extra revenue stream for your project - it&apos;s a win-win.
             </SubTitle>
-            <Button href="#configure-widget" onClick={handleCTAClick} paddingLR={4.2} label="Configure widget" />
-            <Button
-              href="#docs"
-              onClick={handleCTAClick}
-              paddingLR={4.2}
-              label="Read the docs"
-              variant={ButtonVariant.TEXT}
-            />
+
+            <ButtonWrapper>
+              <Button href="#configure-widget" onClick={handleCTAClick} paddingLR={4.2} label="Configure widget" />
+              <Button
+                href="#docs"
+                onClick={handleCTAClick}
+                paddingLR={4.2}
+                label="Read the docs"
+                variant={ButtonVariant.TEXT}
+              />
+            </ButtonWrapper>
           </div>
         </SectionContent>
 
@@ -194,14 +204,18 @@ export default function WidgetPage({ siteConfigData }) {
               of fee-taking options. Contact our team for more details.
             </SubTitle>
           </div>
-          <img src={`${IMAGE_PATH}eth-circles.svg`} alt="Make Money with CoW Swap" width="340" height="214" />
+          <SectionImage>
+            <img src={`${IMAGE_PATH}eth-circles.svg`} alt="Make Money with CoW Swap" width="340" height="214" />
+          </SectionImage>
         </SectionContent>
 
-        <SectionContent flow={'row'} maxWidth={100} textAlign={'left'}>
-          <img src={`${IMAGE_PATH}eth-blocks.svg`} alt="Easy to Integrate" width="340" height="214" />
+        <SectionContent flow={'row'} maxWidth={100} textAlign={'left'} reverseOrderMobile={'column-reverse'}>
+          <SectionImage>
+            <img src={`${IMAGE_PATH}eth-blocks.svg`} alt="Easy to Integrate" width="340" height="214" />
+          </SectionImage>
           <div className="container">
             <h3>Easy to Integrate</h3>
-            <SubTitle lineHeight={1.4} textAlign={'left'}>
+            <SubTitle lineHeight={1.4} textAlign={'left'} textAlignMobile={'center'}>
               The CoW Swap widget is quick to install and easy to customize. Add the widget to your site in under 5
               minutes by copy-pasting a few lines of code.
             </SubTitle>
@@ -301,21 +315,23 @@ export default function WidgetPage({ siteConfigData }) {
 
       <Section>
         <SectionContent flow="column">
-          <div>
+          <div className="container">
             <h3>Integrate in 5 Minutes or less</h3>
 
             <SubTitle color={Color.text1} fontSize={2.1} lineHeight={1.4} textAlign="center">
               Learn more about how CoW Protocol can help your [TBD].
             </SubTitle>
 
-            <Button href="#configure-widget" onClick={handleCTAClick} paddingLR={4.2} label="Configure widget" />
-            <Button
-              href="#docs"
-              onClick={handleCTAClick}
-              paddingLR={4.2}
-              label="Read the docs"
-              variant={ButtonVariant.TEXT}
-            />
+            <ButtonWrapper center>
+              <Button href="#configure-widget" onClick={handleCTAClick} paddingLR={4.2} label="Configure widget" />
+              <Button
+                href="#docs"
+                onClick={handleCTAClick}
+                paddingLR={4.2}
+                label="Read the docs"
+                variant={ButtonVariant.TEXT}
+              />
+            </ButtonWrapper>
           </div>
         </SectionContent>
       </Section>

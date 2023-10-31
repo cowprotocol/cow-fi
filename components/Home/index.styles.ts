@@ -5,6 +5,7 @@ export const SectionH1 = styled.h1<{ fontSize?: number; textAlign?: string }>`
   && {
     ${({ fontSize }) => fontSize && `font-size: ${fontSize}rem;`}
     ${({ textAlign }) => textAlign && `text-align: ${textAlign};`}
+    font-weight: ${Font.weightMedium};
 
     ${Media.mobile} {
       // get the font size from the parent and divide by 1.5 to get the mobile size
@@ -68,7 +69,7 @@ export const Section = styled.section<{
     max-width: 100%;
     min-height: initial;
     flex-flow: column wrap;
-    gap: 4.2rem;
+    gap: ${({ gap }) => (gap ? `${gap}rem` : '8rem')};
   }
 
   .text-weight-light {
@@ -533,6 +534,7 @@ export const SubTitle = styled.p<{
   color?: string
   maxWidth?: number
   textAlign?: string
+  textAlignMobile?: string
   lineHeight?: number
   fontSize?: number
 }>`
@@ -549,7 +551,7 @@ export const SubTitle = styled.p<{
 
   ${Media.mediumDown} {
     font-size: 1.8rem;
-    text-align: ${({ textAlign }) => (textAlign ? textAlign : 'center')};
+    text-align: ${({ textAlignMobile }) => (textAlignMobile ? textAlignMobile : 'center')};
   }
 `
 

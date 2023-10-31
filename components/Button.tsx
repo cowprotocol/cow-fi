@@ -50,6 +50,11 @@ const Wrapper = styled.a<Omit<ButtonProps, 'href' | 'label' | 'target' | 'rel'>>
     min-height: 4.8rem;
   }
 
+  &:hover {
+    background: ${({ variant }) => (variant === ButtonVariant.OUTLINE ? Color.darkBlue : Color.text1)};
+    color: ${Color.lightBlue};
+  }
+
   ${({ variant }) =>
     variant === ButtonVariant.OUTLINE &&
     `
@@ -70,6 +75,11 @@ const Wrapper = styled.a<Omit<ButtonProps, 'href' | 'label' | 'target' | 'rel'>>
     `
     background: transparent;
     color: ${Color.darkBlue};
+
+    &:hover {
+      background: transparent;
+      color: ${Color.darkBlue};
+      text-decoration: underline;
   `}
 
   ${({ variant }) =>
@@ -92,11 +102,6 @@ const Wrapper = styled.a<Omit<ButtonProps, 'href' | 'label' | 'target' | 'rel'>>
     background: transparent;
     border: 0.1rem solid ${Color.lightBlue};
   `}
-
-  &:hover {
-    background: ${({ variant }) => (variant === ButtonVariant.OUTLINE ? Color.darkBlue : Color.text1)};
-    color: ${Color.lightBlue};
-  }
 `
 
 // General purpose multiple button wrapper
