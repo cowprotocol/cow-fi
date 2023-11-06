@@ -31,6 +31,9 @@ const IMAGE_PATH = '/images/'
 const DAO_LOGOS_PATH = '/images/dao-logos/'
 
 const CONTENT = {
+  configuratorURL: 'https://widget.cow.fi/',
+  calendlyURL: 'https://calendly.com/crystal-cow/cow-swap-widget',
+  docsURL: 'https://docs.cow.fi/',
   everyBell: [
     {
       icon: `${IMAGE_PATH}protection.svg`,
@@ -106,15 +109,15 @@ const CONTENT = {
       description: 'External wallet management - use your own wallet connection',
     },
     {
+      description: 'Internal wallet management - no wallet connection needed',
+      comingSoon: true,
+    },
+    {
       description: 'Configurable token lists',
       comingSoon: true,
     },
     {
       description: 'Custom-tailored fees',
-      comingSoon: true,
-    },
-    {
-      description: 'Internal wallet management - no wallet connection needed',
       comingSoon: true,
     },
     {
@@ -169,12 +172,19 @@ export default function WidgetPage({ siteConfigData }) {
             </SubTitle>
 
             <ButtonWrapper>
-              <Button href="#configure-widget" onClick={handleCTAClick} paddingLR={4.2} label="Configure widget" />
               <Button
-                href="#docs"
-                onClick={handleCTAClick}
+                href={CONTENT.configuratorURL}
                 paddingLR={4.2}
-                label="Read the docs"
+                label="Configure widget"
+                target="_blank"
+                rel="noopener nofollow"
+              />
+              <Button
+                href={CONTENT.docsURL}
+                target="_blank"
+                rel="noopener nofollow"
+                paddingLR={4.2}
+                label="Read docs"
                 variant={ButtonVariant.TEXT}
               />
             </ButtonWrapper>
@@ -198,10 +208,9 @@ export default function WidgetPage({ siteConfigData }) {
       <Section fullWidth colorVariant={'dark-gradient'} flow="column" gap={14}>
         <SectionContent flow={'row'} maxWidth={100} textAlign={'left'}>
           <div className="container">
-            <h3>Make Money with CoW Swap</h3>
+            <h3>Earn revenue for your project</h3>
             <SubTitle lineHeight={1.4} textAlign={'left'}>
-              Collect revenue when users trade with your widget. The CoW Swap widget allows you to select from a number
-              of fee-taking options. Contact our team for more details.
+              Collect revenue when users trade with your widget. Contact our team for more details.
             </SubTitle>
           </div>
           <SectionImage>
@@ -211,10 +220,10 @@ export default function WidgetPage({ siteConfigData }) {
 
         <SectionContent flow={'row'} maxWidth={100} textAlign={'left'} reverseOrderMobile={'column-reverse'}>
           <SectionImage>
-            <img src={`${IMAGE_PATH}eth-blocks.svg`} alt="Easy to Integrate" width="340" height="214" />
+            <img src={`${IMAGE_PATH}eth-blocks.svg`} alt="Integrate With Ease" width="340" height="214" />
           </SectionImage>
           <div className="container">
-            <h3>Easy to Integrate</h3>
+            <h3>Integrate With Ease</h3>
             <SubTitle lineHeight={1.4} textAlign={'left'} textAlignMobile={'center'}>
               The CoW Swap widget is quick to install and easy to customize. Add the widget to your site in under 5
               minutes by copy-pasting a few lines of code.
@@ -228,8 +237,8 @@ export default function WidgetPage({ siteConfigData }) {
           <div className="container">
             <h3>Every Bell, Whistle, and Moo</h3>
             <SubTitle lineHeight={1.4} maxWidth={85} color={Color.text1}>
-              With the CoW Swap, you can offer your users everything you know and love about CoW Swap, and more. Oh, and
-              yes… it does come with the “moo”.
+              With the CoW Swap widget, you can offer your users everything you know and love about CoW Swap, and more.
+              Oh, and yes… it does come with the “moo”.
             </SubTitle>
 
             <CardWrapper maxWidth={100} gap={3.8}>
@@ -249,9 +258,6 @@ export default function WidgetPage({ siteConfigData }) {
         <SectionContent flow="row" variant={'grid-2'}>
           <StickySectionTitle>
             <h3>Everything You&apos;d Want in a Widget</h3>
-            <SubTitle lineHeight={1.4} maxWidth={70} color={Color.text1}>
-              With the CoW Swap, you can offer your users everything you know and love about CoW Swap, and more.
-            </SubTitle>
           </StickySectionTitle>
           <div>
             <CardWrapper gap={2.4} horizontalGrid={1}>
@@ -284,9 +290,9 @@ export default function WidgetPage({ siteConfigData }) {
           <div>
             <h3>Trusted by the Best in the Field</h3>
             <SubTitle lineHeight={1.4} maxWidth={80}>
-              As a trusted name in the DeFi ecosystem, CoW Protocol has handled almost $30 billion in trading volume.
-              Whales and DAOs like Aave, ENS, and Gnosis execute their largest treasury swaps on the greener pastures of
-              CoW Swap.
+              As a trusted name in the DeFi ecosystem, CoW Swap has handled almost $30 billion in trading volume. Whales
+              and DAOs like Aave, ENS, and Gnosis execute their largest treasury swaps on the greener pastures of CoW
+              Swap.
             </SubTitle>
 
             <CardWrapper maxWidth={85} horizontalGrid={8} horizontalGridMobile={4}>
@@ -318,17 +324,20 @@ export default function WidgetPage({ siteConfigData }) {
           <div className="container">
             <h3>Integrate in 5 Minutes or less</h3>
 
-            <SubTitle color={Color.text1} fontSize={2.1} lineHeight={1.4} textAlign="center">
-              Learn more about how CoW Protocol can help your [TBD].
-            </SubTitle>
-
             <ButtonWrapper center>
-              <Button href="#configure-widget" onClick={handleCTAClick} paddingLR={4.2} label="Configure widget" />
               <Button
-                href="#docs"
-                onClick={handleCTAClick}
+                href={CONTENT.calendlyURL}
                 paddingLR={4.2}
-                label="Read the docs"
+                label="Talk to us"
+                target="_blank"
+                rel="noopener nofollow"
+              />
+              <Button
+                href={CONTENT.docsURL}
+                target="_blank"
+                rel="noopener nofollow"
+                paddingLR={4.2}
+                label="Read docs"
                 variant={ButtonVariant.TEXT}
               />
             </ButtonWrapper>
