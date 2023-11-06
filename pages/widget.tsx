@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import { GetStaticProps } from 'next'
 import styled from 'styled-components'
+import { useEffect, useRef } from 'react'
+import { cowSwapWidget, CowSwapWidgetParams } from '@cowprotocol/widget-lib'
 import { CONFIG } from '@/const/meta'
 import { Media, Color, Font } from 'styles/variables'
 import {
@@ -130,6 +132,11 @@ const CONTENT = {
 
 const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
+const widgetParams: CowSwapWidgetParams = {
+  appKey: 'CoWSwap landing',
+  env: 'dev' // TODO: remove before deplying on prod
+}
+
 export default function WidgetPage({ siteConfigData }) {
   const { social } = siteConfigData
 
@@ -148,6 +155,15 @@ export default function WidgetPage({ siteConfigData }) {
     const elem = document.getElementById(targetId)
     elem?.scrollIntoView({ behavior: 'smooth' })
   }
+
+  const widgetContainerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    cowSwapWidget(
+        widgetContainerRef.current,
+        widgetParams
+    )
+  }, [])
 
   return (
     <Layout fullWidthGradientVariant>
@@ -182,16 +198,7 @@ export default function WidgetPage({ siteConfigData }) {
         </SectionContent>
 
         <SectionContent flow="column">
-          <div id="COW-WIDGET">
-            <iframe
-              src={
-                'https://swap-dev-git-feat-widget-react-lib-cowswap.vercel.app/#/1/widget/swap/COW/WETH&sellAmount=1000?theme=light'
-              }
-              width="100%"
-              height="100%"
-              style={{ border: 'none' }}
-            />
-          </div>
+          <div id="COW-WIDGET" ref={widgetContainerRef}></div>
         </SectionContent>
       </Section>
 
