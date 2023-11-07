@@ -327,6 +327,11 @@
     loglevel "^1.8.0"
     multiformats "^9.6.4"
 
+"@cowprotocol/widget-lib@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@cowprotocol/widget-lib/-/widget-lib-0.1.4.tgz#ae723031049fae8e6939270bf143b69f86cae873"
+  integrity sha512-OIbRr2n6jxzq0bP36hbWR0JsvWyBlcEv7bwv7/vYiYcLvLE6Zqk38Xg0VIO9JavqisScjyAZ0eff1CFZJEaB6Q==
+
 "@emotion/is-prop-valid@^0.8.8":
   version "0.8.8"
   resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.8.8.tgz#db28b1c4368a259b60a97311d6a952d4fd01ac1a"
