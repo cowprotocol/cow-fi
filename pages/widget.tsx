@@ -172,21 +172,27 @@ export default function WidgetPage({ siteConfigData }) {
             </SubTitle>
 
             <ButtonWrapper>
-              <Button
+              <LinkWithUtm
                 href={CONTENT.configuratorURL}
-                paddingLR={4.2}
-                label="Configure widget"
-                target="_blank"
-                rel="noopener nofollow"
-              />
-              <Button
+                defaultUtm={{ ...CONFIG.utm, utmContent: 'widget-page-configure-widget-cta-hero' }}
+                passHref
+              >
+                <Button paddingLR={4.2} label="Configure widget" target="_blank" rel="noopener nofollow" />
+              </LinkWithUtm>
+
+              <LinkWithUtm
                 href={CONTENT.docsURL}
-                target="_blank"
-                rel="noopener nofollow"
-                paddingLR={4.2}
-                label="Read docs"
-                variant={ButtonVariant.TEXT}
-              />
+                defaultUtm={{ ...CONFIG.utm, utmContent: 'widget-page-readdocs-cta-hero' }}
+                passHref
+              >
+                <Button
+                  target="_blank"
+                  rel="noopener nofollow"
+                  paddingLR={4.2}
+                  label="Read docs"
+                  variant={ButtonVariant.TEXT}
+                />
+              </LinkWithUtm>
             </ButtonWrapper>
           </div>
         </SectionContent>
@@ -307,7 +313,11 @@ export default function WidgetPage({ siteConfigData }) {
                   contentCentered
                   className="iconOnly"
                 >
-                  <LinkWithUtm href={link} defaultUtm={{ ...CONFIG.utm, utmContent: 'daos-page' }} passHref>
+                  <LinkWithUtm
+                    href={link}
+                    defaultUtm={{ ...CONFIG.utm, utmContent: `widget-page-partner-${title}` }}
+                    passHref
+                  >
                     <a href={link} target="_blank" rel="nofollow noreferrer" title={title}>
                       <img src={icon} alt={title} />
                     </a>
@@ -325,21 +335,27 @@ export default function WidgetPage({ siteConfigData }) {
             <h3>Integrate in 5 Minutes or less</h3>
 
             <ButtonWrapper center>
-              <Button
+              <LinkWithUtm
                 href={CONTENT.calendlyURL}
-                paddingLR={4.2}
-                label="Talk to us"
-                target="_blank"
-                rel="noopener nofollow"
-              />
-              <Button
+                defaultUtm={{ ...CONFIG.utm, utmContent: 'widget-page-footerCTA-talk-to-us' }}
+                passHref
+              >
+                <Button paddingLR={4.2} label="Talk to us" target="_blank" rel="noopener nofollow" />
+              </LinkWithUtm>
+
+              <LinkWithUtm
                 href={CONTENT.docsURL}
-                target="_blank"
-                rel="noopener nofollow"
-                paddingLR={4.2}
-                label="Read docs"
-                variant={ButtonVariant.TEXT}
-              />
+                defaultUtm={{ ...CONFIG.utm, utmContent: 'widget-page-footerCTA-read-docs' }}
+                passHref
+              >
+                <Button
+                  target="_blank"
+                  rel="noopener nofollow"
+                  paddingLR={4.2}
+                  label="Read docs"
+                  variant={ButtonVariant.TEXT}
+                />
+              </LinkWithUtm>
             </ButtonWrapper>
           </div>
         </SectionContent>
