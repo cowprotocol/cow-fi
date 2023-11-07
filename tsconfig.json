@@ -6,6 +6,7 @@
       "@/const/*": ["const/*"],
       "@/pages/*": ["pages/*"],
       "@/styles/*": ["styles/*"],
+      "@/data/*": ["data/*"],
     },
     "target": "es5",
     "lib": [

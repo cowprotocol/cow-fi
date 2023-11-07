@@ -1,13 +1,22 @@
 import Head from 'next/head'
 import { GetStaticProps } from 'next'
 import styled from 'styled-components'
+import { useEffect, useRef } from 'react'
+import { cowSwapWidget, CowSwapWidgetParams } from '@cowprotocol/widget-lib'
 import { CONFIG } from '@/const/meta'
 import { Media, Color, Font } from 'styles/variables'
-import { Section, SectionH1, SectionContent, SubTitle, CardWrapper, CardItem } from '@/components/Home/index.styles'
+import {
+  Section,
+  SectionH1,
+  SectionContent,
+  SubTitle,
+  CardWrapper,
+  CardItem,
+  SectionImage,
+} from '@/components/Home/index.styles'
 import Layout from '@/components/Layout'
 import { LinkWithUtm } from 'modules/utm'
-import { Button, ButtonVariant } from '@/components/Button'
-import SVG from 'react-inlinesvg'
+import { Button, ButtonVariant, ButtonWrapper } from '@/components/Button'
 
 const StickySectionTitle = styled.div`
   position: sticky;
@@ -24,21 +33,24 @@ const IMAGE_PATH = '/images/'
 const DAO_LOGOS_PATH = '/images/dao-logos/'
 
 const CONTENT = {
+  configuratorURL: 'https://widget.cow.fi/',
+  calendlyURL: 'https://calendly.com/crystal-cow/cow-swap-widget',
+  docsURL: 'https://docs.cow.fi/',
   everyBell: [
     {
-      icon: `${IMAGE_PATH}icon-milkman.svg`,
+      icon: `${IMAGE_PATH}protection.svg`,
       title: 'Full Protection from MEV',
       description:
         "CoW Swap offers the best MEV protection in the land. Thanks to a delegated trading model that relies on experts to execute swaps, traders can rest assured that they're safe from the MEV bots.",
     },
     {
-      icon: `${IMAGE_PATH}icon-twap-orders.svg`,
+      icon: `${IMAGE_PATH}surplus.svg`,
       title: 'Surplus-Capturing Orders',
       description:
         'Every order is surplus-capturing and traders usually earn a little extra in their sell token with each swap.',
     },
     {
-      icon: `${IMAGE_PATH}icon-limit-orders.svg`,
+      icon: `${IMAGE_PATH}gasless.svg`,
       title: 'Gasless Trading',
       description:
         'All gas fees are paid in the sell token for swaps and even for token approvals. Users can enjoy ETH-free trading every time, even with brand-new wallets.',
@@ -99,15 +111,15 @@ const CONTENT = {
       description: 'External wallet management - use your own wallet connection',
     },
     {
+      description: 'Internal wallet management - no wallet connection needed',
+      comingSoon: true,
+    },
+    {
       description: 'Configurable token lists',
       comingSoon: true,
     },
     {
       description: 'Custom-tailored fees',
-      comingSoon: true,
-    },
-    {
-      description: 'Internal wallet management - no wallet connection needed',
       comingSoon: true,
     },
     {
@@ -122,6 +134,11 @@ const CONTENT = {
 }
 
 const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
+
+const widgetParams: CowSwapWidgetParams = {
+  appKey: 'CoWSwap landing',
+  env: 'dev' // TODO: remove before deplying on prod
+}
 
 export default function WidgetPage({ siteConfigData }) {
   const { social } = siteConfigData
@@ -142,8 +159,17 @@ export default function WidgetPage({ siteConfigData }) {
     elem?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const widgetContainerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    cowSwapWidget(
+        widgetContainerRef.current,
+        widgetParams
+    )
+  }, [])
+
   return (
-    <Layout fullWidthGradientVariant={true}>
+    <Layout fullWidthGradientVariant>
       <Head>
         <title>
           {siteConfigData.title} - {siteConfigData.descriptionShort}
@@ -154,87 +180,83 @@ export default function WidgetPage({ siteConfigData }) {
         <SectionContent>
           <div>
             <SectionH1 fontSize={6.8} textAlign={'left'}>
-              <b>Bring reliable, MEV-protected swaps to your users</b>
+              Bring reliable, MEV-protected swaps to your users
             </SectionH1>
             <SubTitle color={Color.text1} fontSize={2} lineHeight={1.6} maxWidth={60} textAlign="left">
               Integrate the CoW Swap widget to bring seamless, MEV-protected trading to your website or dApp. Delight
               your users while adding an extra revenue stream for your project - it&apos;s a win-win.
             </SubTitle>
-            <Button href="#configure-widget" onClick={handleCTAClick} paddingLR={4.2} label="Configure widget" />
-            <Button
-              href="#docs"
-              onClick={handleCTAClick}
-              paddingLR={4.2}
-              label="Read the docs"
-              variant={ButtonVariant.TEXT}
-            />
+
+            <ButtonWrapper>
+              <LinkWithUtm
+                href={CONTENT.configuratorURL}
+                defaultUtm={{ ...CONFIG.utm, utmContent: 'widget-page-configure-widget-cta-hero' }}
+                passHref
+              >
+                <Button paddingLR={4.2} label="Configure widget" target="_blank" rel="noopener nofollow" />
+              </LinkWithUtm>
+
+              <LinkWithUtm
+                href={CONTENT.docsURL}
+                defaultUtm={{ ...CONFIG.utm, utmContent: 'widget-page-readdocs-cta-hero' }}
+                passHref
+              >
+                <Button
+                  target="_blank"
+                  rel="noopener nofollow"
+                  paddingLR={4.2}
+                  label="Read docs"
+                  variant={ButtonVariant.TEXT}
+                />
+              </LinkWithUtm>
+            </ButtonWrapper>
           </div>
         </SectionContent>
 
         <SectionContent flow="column">
-          <div id="COW-WIDGET">
-            <iframe
-              src={
-                'https://swap-dev-git-feat-widget-react-lib-cowswap.vercel.app/#/1/widget/swap/COW/WETH&sellAmount=1000?theme=light'
-              }
-              width="100%"
-              height="100%"
-              style={{ border: 'none' }}
-            />
-          </div>
+          <div id="COW-WIDGET" ref={widgetContainerRef}></div>
         </SectionContent>
       </Section>
 
-      <Section colorVariant={'white'} borderRadius={3.2} boxShadow>
-        <SectionContent flow={'row'}>
-          <img
-            style={{ borderRadius: '30rem' }}
-            src={`${IMAGE_PATH}icon-buybacks.svg`}
-            alt="Make Money with CoW Swap"
-            width="240"
-            height="240"
-          />
+      <Section fullWidth colorVariant={'dark-gradient'} flow="column" gap={14}>
+        <SectionContent flow={'row'} maxWidth={100} textAlign={'left'}>
           <div className="container">
-            <h3>Make Money with CoW Swap</h3>
-            <SubTitle color={Color.text1} lineHeight={1.4}>
-              Collect revenue when users trade with your widget. The CoW Swap widget allows you to select from a number
-              of fee-taking options. Contact our team for more details.
+            <h3>Earn revenue for your project</h3>
+            <SubTitle lineHeight={1.4} textAlign={'left'}>
+              Collect revenue when users trade with your widget. Contact our team for more details.
             </SubTitle>
           </div>
+          <SectionImage>
+            <img src={`${IMAGE_PATH}eth-circles.svg`} alt="Make Money with CoW Swap" width="340" height="214" />
+          </SectionImage>
         </SectionContent>
-      </Section>
 
-      <Section>
-        <SectionContent flow={'row'}>
+        <SectionContent flow={'row'} maxWidth={100} textAlign={'left'} reverseOrderMobile={'column-reverse'}>
+          <SectionImage>
+            <img src={`${IMAGE_PATH}eth-blocks.svg`} alt="Integrate With Ease" width="340" height="214" />
+          </SectionImage>
           <div className="container">
-            <h3>Easy to Integrate</h3>
-            <SubTitle color={Color.text1} lineHeight={1.4}>
+            <h3>Integrate With Ease</h3>
+            <SubTitle lineHeight={1.4} textAlign={'left'} textAlignMobile={'center'}>
               The CoW Swap widget is quick to install and easy to customize. Add the widget to your site in under 5
               minutes by copy-pasting a few lines of code.
             </SubTitle>
           </div>
-          <img
-            style={{ borderRadius: '30rem' }}
-            src={`${IMAGE_PATH}icon-logic.svg`}
-            alt="Easy to Integrate"
-            width="300"
-            height="300"
-          />
         </SectionContent>
       </Section>
 
-      <Section fullWidth colorVariant={'dark'}>
+      <Section fullWidth>
         <SectionContent flow={'column'}>
           <div className="container">
             <h3>Every Bell, Whistle, and Moo</h3>
-            <SubTitle lineHeight={1.4} maxWidth={85}>
-              With the CoW Swap, you can offer your users everything you know and love about CoW Swap, and more. Oh, and
-              yes… it does come with the “moo”.
+            <SubTitle lineHeight={1.4} maxWidth={85} color={Color.text1}>
+              With the CoW Swap widget, you can offer your users everything you know and love about CoW Swap, and more.
+              Oh, and yes… it does come with the “moo”.
             </SubTitle>
 
             <CardWrapper maxWidth={100} gap={3.8}>
               {CONTENT.everyBell.map(({ icon, title, description }, index) => (
-                <CardItem key={index} imageHeight={8} imageRounded>
+                <CardItem key={index} imageHeight={5} imageRounded>
                   <img src={icon} alt="image" />
                   <h4>{title}</h4>
                   <p>{description}</p>
@@ -245,13 +267,10 @@ export default function WidgetPage({ siteConfigData }) {
         </SectionContent>
       </Section>
 
-      <Section fullWidth colorVariant={'white'}>
-        <SectionContent flow="row">
+      <Section fullWidth colorVariant={'grey'}>
+        <SectionContent flow="row" variant={'grid-2'}>
           <StickySectionTitle>
             <h3>Everything You&apos;d Want in a Widget</h3>
-            <SubTitle lineHeight={1.4} maxWidth={70} color={Color.text1}>
-              With the CoW Swap, you can offer your users everything you know and love about CoW Swap, and more.
-            </SubTitle>
           </StickySectionTitle>
           <div>
             <CardWrapper gap={2.4} horizontalGrid={1}>
@@ -260,16 +279,16 @@ export default function WidgetPage({ siteConfigData }) {
                 .map(({ description, comingSoon }, index) => (
                   <CardItem
                     key={index}
-                    imageHeight={4.8}
-                    imageWidth={4.8}
+                    imageHeight={4}
+                    imageWidth={4}
                     imageRounded
                     variant="iconWithText"
-                    svgColor={Color.darkBlue}
+                    style={{ background: comingSoon && Color.grey }}
                   >
-                    <SVG
+                    <img
                       style={{ opacity: comingSoon ? 0.5 : 1 }}
-                      title={description || 'icon'}
-                      src={comingSoon ? `${IMAGE_PATH}icons/coming-soon.svg` : `${IMAGE_PATH}icons/check.svg`}
+                      alt={description || 'icon'}
+                      src={comingSoon ? `${IMAGE_PATH}icons/coming-soon.svg` : `${IMAGE_PATH}icons/check-color.svg`}
                     />
                     <p>{description}</p>
                   </CardItem>
@@ -284,9 +303,9 @@ export default function WidgetPage({ siteConfigData }) {
           <div>
             <h3>Trusted by the Best in the Field</h3>
             <SubTitle lineHeight={1.4} maxWidth={80}>
-              As a trusted name in the DeFi ecosystem, CoW Protocol has handled almost $30 billion in trading volume.
-              Whales and DAOs like Aave, ENS, and Gnosis execute their largest treasury swaps on the greener pastures of
-              CoW Swap.
+              As a trusted name in the DeFi ecosystem, CoW Swap has handled almost $30 billion in trading volume. Whales
+              and DAOs like Aave, ENS, and Gnosis execute their largest treasury swaps on the greener pastures of CoW
+              Swap.
             </SubTitle>
 
             <CardWrapper maxWidth={85} horizontalGrid={8} horizontalGridMobile={4}>
@@ -301,7 +320,11 @@ export default function WidgetPage({ siteConfigData }) {
                   contentCentered
                   className="iconOnly"
                 >
-                  <LinkWithUtm href={link} defaultUtm={{ ...CONFIG.utm, utmContent: 'daos-page' }} passHref>
+                  <LinkWithUtm
+                    href={link}
+                    defaultUtm={{ ...CONFIG.utm, utmContent: `widget-page-partner-${title}` }}
+                    passHref
+                  >
                     <a href={link} target="_blank" rel="nofollow noreferrer" title={title}>
                       <img src={icon} alt={title} />
                     </a>
@@ -315,21 +338,32 @@ export default function WidgetPage({ siteConfigData }) {
 
       <Section>
         <SectionContent flow="column">
-          <div>
+          <div className="container">
             <h3>Integrate in 5 Minutes or less</h3>
 
-            <SubTitle color={Color.text1} fontSize={2.1} lineHeight={1.4} textAlign="center">
-              Learn more about how CoW Protocol can help your [TBD].
-            </SubTitle>
+            <ButtonWrapper center>
+              <LinkWithUtm
+                href={CONTENT.calendlyURL}
+                defaultUtm={{ ...CONFIG.utm, utmContent: 'widget-page-footerCTA-talk-to-us' }}
+                passHref
+              >
+                <Button paddingLR={4.2} label="Talk to us" target="_blank" rel="noopener nofollow" />
+              </LinkWithUtm>
 
-            <Button href="#configure-widget" onClick={handleCTAClick} paddingLR={4.2} label="Configure widget" />
-            <Button
-              href="#docs"
-              onClick={handleCTAClick}
-              paddingLR={4.2}
-              label="Read the docs"
-              variant={ButtonVariant.TEXT}
-            />
+              <LinkWithUtm
+                href={CONTENT.docsURL}
+                defaultUtm={{ ...CONFIG.utm, utmContent: 'widget-page-footerCTA-read-docs' }}
+                passHref
+              >
+                <Button
+                  target="_blank"
+                  rel="noopener nofollow"
+                  paddingLR={4.2}
+                  label="Read docs"
+                  variant={ButtonVariant.TEXT}
+                />
+              </LinkWithUtm>
+            </ButtonWrapper>
           </div>
         </SectionContent>
       </Section>

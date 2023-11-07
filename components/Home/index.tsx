@@ -13,6 +13,7 @@ import {
   IntegrationList,
   StepWrapper,
   StepContainer,
+  SectionH1,
 } from './index.styles'
 import SocialList from '@/components/SocialList'
 import { Button, ButtonVariant } from '@/components/Button'
@@ -39,13 +40,15 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
   return (
     <>
       {/* Hero */}
-      <Section className="container" hero fullWidth>
-        <SectionContent margin={'12rem auto'}>
+      <Section firstSection>
+        <SectionContent>
           <div>
-            <h1>Better than the best prices</h1>
+            <SectionH1 fontSize={6.8} textAlign={'left'}>
+              Better than the best prices
+            </SectionH1>
             <SubTitle textAlign={'left'} color={Color.text1} lineHeight={1.4}>
               CoW Protocol finds the lowest price for your trade across all exchanges and aggregators, such as Uniswap
-              and 1inch – and protects you from MEV, unlike the others.
+              and 1inch - and protects you from MEV, unlike the others.
             </SubTitle>
 
             <ButtonWrapper>
@@ -67,7 +70,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         </SectionContent>
       </Section>
 
-      <Section fullWidth id="about" colorVariant="dark">
+      <Section id="about" fullWidth colorVariant="dark">
         <SectionContent flow={'column'}>
           <div className="container">
             <h3>The smartest way to trade.</h3>
@@ -77,7 +80,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
                   <b>Lower prices thanks to CoWs.</b>
                   <p>
                     CoW Protocol matches trades peer-to-peer where possible, cutting out the middleman and saving you
-                    money. (We call this a Coincidence of Wants – CoW!)
+                    money. (We call this a Coincidence of Wants - CoW!)
                   </p>
                 </span>
               </IconListItem>
@@ -150,7 +153,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         </SectionContent>
       </Section>
 
-      <Section className="container" flow={'column'} colorVariant="dark">
+      <Section className="container" flow={'column'} fullWidth colorVariant="dark">
         <SectionContent>
           <div>
             <h3>Cutting-edge technology</h3>
@@ -215,7 +218,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         </SectionContent>
       </Section>
 
-      <Section flow={'column'} colorVariant="dark">
+      <Section flow={'column'} fullWidth colorVariant="dark">
         <SectionContent>
           <div>
             <h3>Serious volume, serious savings.</h3>
@@ -243,7 +246,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         </SectionContent>
       </Section>
 
-      <Section className="container" id="developers" colorVariant="dark">
+      <Section className="container" id="developers" fullWidth colorVariant="dark">
         <SectionContent variant="banner" reverseOrderMobile={'column-reverse'}>
           <IntegrationList>
             <ol>
@@ -306,15 +309,15 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         </SectionContent>
       </Section>
 
-      <Section flow={'column'} id="community" colorVariant="dark">
+      <Section flow={'column'} id="community" fullWidth>
         <SectionContent>
           <div>
             <h3>Join the CoWmunity</h3>
-            <SubTitle maxWidth={60}>
+            <SubTitle maxWidth={60} color={Color.text1}>
               Learn more about CoW Protocol, get support, and have your say in shaping the future of decentralized
               finance.
             </SubTitle>
-            <SocialList social={social} />
+            <SocialList social={social} colorDark />
           </div>
         </SectionContent>
       </Section>
