@@ -1,8 +1,6 @@
-import { CowSwapWidgetEnv } from '@cowprotocol/widget-lib'
-
 const DEFAULT_ENVIRONMENTS_REGEX: Record<EnvironmentName, string> = {
   local: '^(:?localhost:\\d{2,5}|(?:127|192)(?:\\.[0-9]{1,3}){3})',
-  pr: '^(cowfi-git-[\\w\\d-]+|swap-\\w{9}-)cowswap\\.vercel\\.app',
+  pr: '^cowfi-git-[\\w\\d-]+cowswap\\.vercel\\.app',
   development: '^(develop.cow.fi|swap-develop.vercel.app)',
   production: '^cow.fi$',
 }
@@ -50,17 +48,6 @@ export const environmentName: EnvironmentName | undefined = (function () {
     return 'local'
   } else {
     return undefined
-  }
-})()
-
-export const widgetEnvironmentName: CowSwapWidgetEnv | undefined = (function () {
-  switch (environmentName) {
-    case 'production':
-      return 'prod'
-    case 'development':
-      return 'dev'
-    default:
-      return environmentName
   }
 })()
 

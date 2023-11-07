@@ -32,8 +32,12 @@ describe('Detect environments using host and path', () => {
   describe('Is PR', () => {
     const isPr = { ...DEFAULT_ENVIRONMENTS_CHECKS, isPr: true }
 
-    it('https://cowfi-git-<PR>-cowswap.vercel.app/', () => {
-      expect(checkEnvironment('https://cowfi-git-widget-page-1-cowswap.vercel.app', '')).toEqual(isPr)
+    it('https://cowfi-git-widget-page-1-cowswap.vercel.app', () => {
+      expect(checkEnvironment('cowfi-git-widget-page-1-cowswap.vercel.app', '')).toEqual(isPr)
+    })
+
+    it('https://cowfi-git-add-env-test-and-widget-cowswap.vercel.app', () => {
+      expect(checkEnvironment('cowfi-git-add-env-test-and-widget-cowswap.vercel.app', '')).toEqual(isPr)
     })
   })
 
