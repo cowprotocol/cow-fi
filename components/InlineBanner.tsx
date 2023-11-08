@@ -16,11 +16,7 @@ const Wrapper = styled.div<{ type?: 'alert' | 'info' }>`
 
   a {
     color: ${Color.darkBlue};
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
+    text-decoration: underline;
   }
 `
 
