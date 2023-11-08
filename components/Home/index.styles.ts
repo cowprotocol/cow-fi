@@ -1,11 +1,12 @@
 import styled from 'styled-components'
 import { Defaults, Color, Font, Media } from 'styles/variables'
 
-export const SectionH1 = styled.h1<{ fontSize?: number; textAlign?: string }>`
+export const SectionH1 = styled.h1<{ fontSize?: number; textAlign?: string; lineHeight?: number }>`
   && {
     ${({ fontSize }) => fontSize && `font-size: ${fontSize}rem;`}
     ${({ textAlign }) => textAlign && `text-align: ${textAlign};`}
     font-weight: ${Font.weightMedium};
+    line-height: ${({ lineHeight }) => (lineHeight ? lineHeight : 1.2)};
 
     ${Media.mobile} {
       // get the font size from the parent and divide by 1.5 to get the mobile size
@@ -167,6 +168,7 @@ export const SectionContent = styled.div<{
   gap?: number
   padding?: string
   textAlign?: string
+  sticky?: boolean
 }>`
   display: flex;
   position: relative;
@@ -216,11 +218,19 @@ export const SectionContent = styled.div<{
     flex-flow: ${({ flow }) => (flow === 'column' ? 'column wrap' : 'row wrap')};
     flex: ${({ flow }) => (flow === 'column' ? '1 1 auto' : '1 1 50%')};
     justify-content: ${({ flow }) => (flow === 'column' ? 'center' : 'flex-start')};
-    align-items: center;
-    align-content: center;
+    align-items: ${({ flow }) => (flow === 'column' ? 'center' : 'flex-start')};
+    align-content: ${({ flow }) => (flow === 'column' ? 'center' : 'flex-start')};
     gap: 5rem;
     z-index: 1;
     max-width: 100%;
+
+    ${({ sticky }) =>
+      sticky &&
+      `
+      position: sticky;
+      top: 14rem;
+      height: max-content;
+    `}
 
     ${Media.mobile} {
       flex: 1 1 auto;

@@ -164,9 +164,11 @@ const Menu = styled.ol<{ isLight?: boolean }>`
     font-size: inherit;
     color: inherit;
     text-decoration: none;
+    font-weight: ${Font.weightLight};
 
     &:hover {
       color: ${({ isLight }) => (isLight ? Color.darkBlue : Color.lightBlue)};
+      text-decoration: underline;
     }
 
     ${Media.mediumDown} {

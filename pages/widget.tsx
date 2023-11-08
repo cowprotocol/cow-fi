@@ -18,6 +18,8 @@ import Layout from '@/components/Layout'
 import { LinkWithUtm } from 'modules/utm'
 import { Button, ButtonVariant, ButtonWrapper } from '@/components/Button'
 
+const ArrowDrawn = '/images/arrow-drawn.svg'
+
 const StickySectionTitle = styled.div`
   position: sticky;
   top: 12rem;
@@ -30,6 +32,28 @@ const StickySectionTitle = styled.div`
 `
 
 const WidgetContainer = styled.div`
+  display: flex;
+  width: 100%;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.6rem;
+
+  &::before {
+    color: ${Color.darkBlue};
+    font-size: 2.1rem;
+    font-weight: ${Font.weightBold};
+    content: 'Try it out!';
+    background: url(${ArrowDrawn}) no-repeat center 2.5rem / 2.4rem 5rem;
+    width: 12rem;
+    height: 7.5rem;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    transform: rotateZ(-15deg);
+  }
+
   ${Media.mobile} {
     > iframe {
       width: 100%;
@@ -145,7 +169,7 @@ const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
 const widgetParams: CowSwapWidgetParams = {
   appKey: 'CoWSwap landing',
-  env: 'dev' // TODO: remove before deplying on prod
+  env: 'dev', // TODO: remove before deplying on prod
 }
 
 export default function WidgetPage({ siteConfigData }) {
@@ -159,21 +183,10 @@ export default function WidgetPage({ siteConfigData }) {
     }
   })
 
-  const handleCTAClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    e.preventDefault()
-    const href = e.currentTarget.href
-    const targetId = href.replace(/.*\#/, '')
-    const elem = document.getElementById(targetId)
-    elem?.scrollIntoView({ behavior: 'smooth' })
-  }
-
   const widgetContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    cowSwapWidget(
-        widgetContainerRef.current,
-        widgetParams
-    )
+    cowSwapWidget(widgetContainerRef.current, widgetParams)
   }, [])
 
   return (
@@ -185,9 +198,9 @@ export default function WidgetPage({ siteConfigData }) {
       </Head>
 
       <Section firstSection>
-        <SectionContent>
+        <SectionContent sticky>
           <div>
-            <SectionH1 fontSize={6.8} textAlign={'left'}>
+            <SectionH1 fontSize={6.8} lineHeight={1} textAlign={'left'}>
               Bring reliable, MEV-protected swaps to your users
             </SectionH1>
             <SubTitle color={Color.text1} fontSize={2} lineHeight={1.6} maxWidth={60} textAlign="left">
@@ -222,7 +235,9 @@ export default function WidgetPage({ siteConfigData }) {
         </SectionContent>
 
         <SectionContent flow="column">
-          <WidgetContainer id="COW-WIDGET" ref={widgetContainerRef}></WidgetContainer>
+          <div>
+            <WidgetContainer id="COW-WIDGET" ref={widgetContainerRef}></WidgetContainer>
+          </div>
         </SectionContent>
       </Section>
 
