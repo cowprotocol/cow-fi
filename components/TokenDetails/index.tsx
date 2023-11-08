@@ -20,6 +20,9 @@ import { SwapWidget } from '@/components/SwapWidget'
 import { SwapLinkCard } from '@/components/SwapLinkCard'
 import { NetworkHeaderItem } from '@/components/NetworkItem/styles'
 import { NetworkItem } from '@/components/NetworkItem'
+import { InlineBanner } from '@/components/InlineBanner'
+import { CONFIG } from '@/const/meta'
+import { LinkWithUtm } from 'modules/utm'
 
 import { ChartSection } from '@/components/ChartSection'
 import { formatUSDPrice } from 'util/formatUSDPrice'
@@ -39,6 +42,31 @@ export function TokenDetails({ token }: TokenDetailProps) {
       <MainContent>
         <Breadcrumbs crumbs={[{ text: 'Tokens', href: '/tokens' }, { text: `${name} Price` }]} />
 
+        {/* TODO: Move InlineBanner content to be retrieved from token data */}
+        {token.symbol === 'COW' && (
+          <InlineBanner
+            type="alert"
+            content={
+              <p>
+                Read the latest updates impacting the COW token&nbsp;
+                <LinkWithUtm
+                  defaultUtm={{
+                    ...CONFIG.utm,
+                    utmContent: 'COW-tokenpage-banner-link',
+                  }}
+                  href="https://forum.cow.fi/t/cip-draft-testing-fee-models-for-cow-protocol/1984/3"
+                  passHref
+                >
+                  <a target="_blank" rel="noreferrer">
+                    on the forum
+                  </a>
+                </LinkWithUtm>
+              </p>
+            }
+          />
+        )}
+        {/* ============================================================== */}
+
         <DetailHeading>
           <TokenTitle>
             <img src={image.large} alt={`${name} (${symbol})`} />
@@ -46,11 +74,9 @@ export function TokenDetails({ token }: TokenDetailProps) {
             <span>{symbol}</span>
           </TokenTitle>
         </DetailHeading>
-
         <TokenChart>
           <ChartSection platforms={platforms} />
         </TokenChart>
-
         <Section>
           <TokenTitle>{symbol} Stats</TokenTitle>
 
@@ -76,7 +102,6 @@ export function TokenDetails({ token }: TokenDetailProps) {
             </StatItem>
           </Stats>
         </Section>
-
         <Section>
           <h1>
             About {name} ({symbol}) token
@@ -106,7 +131,6 @@ export function TokenDetails({ token }: TokenDetailProps) {
             )}
           </SwapCardsWrapper>
         </Section>
-
         <Section>
           <h4>Explorers</h4>
 
