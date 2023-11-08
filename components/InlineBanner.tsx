@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Media, Color, Font } from 'styles/variables'
+import { Color } from 'styles/variables'
 import { darken, transparentize } from 'polished'
 
 const Wrapper = styled.div<{ type?: 'alert' | 'info' }>`
@@ -23,8 +23,6 @@ const Wrapper = styled.div<{ type?: 'alert' | 'info' }>`
     }
   }
 `
-
-// Have the component accept a prop called "content" that will be rendered inside the banner. also create the type for the prop.
 
 interface InlineBannerProps {
   content: React.ReactNode
