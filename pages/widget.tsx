@@ -29,6 +29,14 @@ const StickySectionTitle = styled.div`
   }
 `
 
+const WidgetContainer = styled.div`
+  ${Media.mobile} {
+    > iframe {
+      width: 100%;
+    }
+  }
+`
+
 const IMAGE_PATH = '/images/'
 const DAO_LOGOS_PATH = '/images/dao-logos/'
 
@@ -214,7 +222,7 @@ export default function WidgetPage({ siteConfigData }) {
         </SectionContent>
 
         <SectionContent flow="column">
-          <div id="COW-WIDGET" ref={widgetContainerRef}></div>
+          <WidgetContainer id="COW-WIDGET" ref={widgetContainerRef}></WidgetContainer>
         </SectionContent>
       </Section>
 
