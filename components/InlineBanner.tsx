@@ -1,5 +1,3 @@
-// write a simple component that renders a banner with the text "Inline Banner" and a background color of #f00 using styled component and react.
-
 import React from 'react'
 import styled from 'styled-components'
 import { Media, Color, Font } from 'styles/variables'
