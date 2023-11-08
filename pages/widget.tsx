@@ -17,6 +17,8 @@ import {
 import Layout from '@/components/Layout'
 import { LinkWithUtm } from 'modules/utm'
 import { Button, ButtonVariant, ButtonWrapper } from '@/components/Button'
+import { sendGAEventHandler } from 'lib/analytics/sendGAEvent'
+import { WidgetEvents } from 'lib/analytics/GAEvents'
 
 const ArrowDrawn = '/images/arrow-drawn.svg'
 
@@ -214,7 +216,12 @@ export default function WidgetPage({ siteConfigData }) {
                 defaultUtm={{ ...CONFIG.utm, utmContent: 'widget-page-configure-widget-cta-hero' }}
                 passHref
               >
-                <Button paddingLR={4.2} label="Configure widget" target="_blank" rel="noopener nofollow" />
+                <Button
+                  onClick={sendGAEventHandler(WidgetEvents.CONFIGURE_WIDGET)}
+                  paddingLR={4.2}
+                  label="Configure widget"
+                  target="_blank"
+                  rel="noopener nofollow" />
               </LinkWithUtm>
 
               <LinkWithUtm
@@ -223,6 +230,7 @@ export default function WidgetPage({ siteConfigData }) {
                 passHref
               >
                 <Button
+                  onClick={sendGAEventHandler(WidgetEvents.READ_DOCS)}
                   target="_blank"
                   rel="noopener nofollow"
                   paddingLR={4.2}
@@ -370,7 +378,12 @@ export default function WidgetPage({ siteConfigData }) {
                 defaultUtm={{ ...CONFIG.utm, utmContent: 'widget-page-footerCTA-talk-to-us' }}
                 passHref
               >
-                <Button paddingLR={4.2} label="Talk to us" target="_blank" rel="noopener nofollow" />
+                <Button
+                  onClick={sendGAEventHandler(WidgetEvents.TALK_TO_US)}
+                  paddingLR={4.2}
+                  label="Talk to us"
+                  target="_blank"
+                  rel="noopener nofollow" />
               </LinkWithUtm>
 
               <LinkWithUtm
@@ -379,6 +392,7 @@ export default function WidgetPage({ siteConfigData }) {
                 passHref
               >
                 <Button
+                  onClick={sendGAEventHandler(WidgetEvents.READ_DOCS)}
                   target="_blank"
                   rel="noopener nofollow"
                   paddingLR={4.2}
