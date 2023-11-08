@@ -21,6 +21,8 @@ import { SwapLinkCard } from '@/components/SwapLinkCard'
 import { NetworkHeaderItem } from '@/components/NetworkItem/styles'
 import { NetworkItem } from '@/components/NetworkItem'
 import { InlineBanner } from '@/components/InlineBanner'
+import { CONFIG } from '@/const/meta'
+import { LinkWithUtm } from 'modules/utm'
 
 import { ChartSection } from '@/components/ChartSection'
 import { formatUSDPrice } from 'util/formatUSDPrice'
@@ -47,13 +49,18 @@ export function TokenDetails({ token }: TokenDetailProps) {
             content={
               <p>
                 Read the latest updates impacting the COW token&nbsp;
-                <a
+                <LinkWithUtm
+                  defaultUtm={{
+                    ...CONFIG.utm,
+                    utmContent: 'COW-tokenpage-banner-link',
+                  }}
                   href="https://forum.cow.fi/t/cip-draft-testing-fee-models-for-cow-protocol/1984/3"
-                  target="_blank"
-                  rel="noreferrer"
+                  passHref
                 >
-                  on the forum
-                </a>
+                  <a target="_blank" rel="noreferrer">
+                    on the forum
+                  </a>
+                </LinkWithUtm>
               </p>
             }
           />
