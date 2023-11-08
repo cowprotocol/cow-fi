@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Color } from 'styles/variables'
+import { Color, Font } from 'styles/variables'
 import { darken, transparentize } from 'polished'
 
 const Wrapper = styled.div<{ type?: 'alert' | 'info' }>`
@@ -16,6 +16,7 @@ const Wrapper = styled.div<{ type?: 'alert' | 'info' }>`
 
   a {
     color: ${Color.darkBlue};
+    font-weight: ${Font.weightMedium};
     text-decoration: underline;
   }
 `
