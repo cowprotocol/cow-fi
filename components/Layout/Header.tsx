@@ -10,6 +10,8 @@ import { CustomLink as CustomLink } from '../CustomLink'
 import { CONFIG } from '@/const/meta'
 import { HEADER_LINKS } from '@/const/menu'
 import { LinkWithUtm } from 'modules/utm'
+import { sendGAEventHandler } from 'lib/analytics/sendGAEvent'
+import { NavigationEvents } from 'lib/analytics/GAEvents'
 
 const LogoImage = '/images/logo.svg'
 const LogoLightImage = '/images/logo-light.svg'
@@ -324,6 +326,7 @@ export default function Header({ isLight = false }: Props) {
                 passHref
               >
                 <Button
+                  onClick={sendGAEventHandler(NavigationEvents.TRADE_ON_COWSWAP)}
                   variant={!inView ? ButtonVariant.SMALL : ButtonVariant.OUTLINE}
                   minHeight={4.8}
                   fontSize={1.6}
