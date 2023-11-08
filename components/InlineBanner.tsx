@@ -1,0 +1,38 @@
+// write a simple component that renders a banner with the text "Inline Banner" and a background color of #f00 using styled component and react.
+
+import React from 'react'
+import styled from 'styled-components'
+import { Media, Color, Font } from 'styles/variables'
+import { darken, transparentize } from 'polished'
+
+const Wrapper = styled.div<{ type?: 'alert' | 'info' }>`
+  display: flex;
+  width: 100%;
+  color: ${({ type }) => (type === 'info' ? darken(0.3, Color.information) : darken(0.3, Color.alert))};
+  background: ${({ type }) =>
+    type === 'info' ? transparentize(0.75, Color.information) : transparentize(0.75, Color.alert)};
+  padding: 2.1rem 1.6rem;
+  border-radius: 1rem;
+  margin: 0 0 2rem;
+  line-height: 1.2;
+
+  a {
+    color: ${Color.darkBlue};
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`
+
+// Have the component accept a prop called "content" that will be rendered inside the banner. also create the type for the prop.
+
+interface InlineBannerProps {
+  content: React.ReactNode
+  type?: 'alert' | 'info'
+}
+
+export function InlineBanner({ content }: InlineBannerProps) {
+  return <Wrapper>{content}</Wrapper>
+}
