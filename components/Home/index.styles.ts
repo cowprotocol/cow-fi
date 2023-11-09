@@ -1,9 +1,12 @@
 import styled from 'styled-components'
 import { Defaults, Color, Font, Media } from 'styles/variables'
 
-export const SectionH1 = styled.h1<{ fontSize?: number }>`
+export const SectionH1 = styled.h1<{ fontSize?: number; textAlign?: string; lineHeight?: number }>`
   && {
     ${({ fontSize }) => fontSize && `font-size: ${fontSize}rem;`}
+    ${({ textAlign }) => textAlign && `text-align: ${textAlign};`}
+    font-weight: ${Font.weightMedium};
+    line-height: ${({ lineHeight }) => (lineHeight ? lineHeight : 1.2)};
 
     ${Media.mobile} {
       // get the font size from the parent and divide by 1.5 to get the mobile size
@@ -20,22 +23,46 @@ export const Section = styled.section<{
   fullWidth?: boolean
   mediumSwitchOrder?: boolean
   mobileSwitchOrder?: boolean
+  padding?: string
+  paddingMobile?: string
+  margin?: string
+  maxWidth?: number
+  borderRadius?: number
+  boxShadow?: boolean
+  firstSection?: boolean
+  gap?: number
 }>`
   display: flex;
   width: 100%;
+  max-width: ${({ maxWidth, fullWidth }) =>
+    fullWidth ? '100%' : maxWidth ? `${maxWidth}rem` : `${Defaults.pageMaxWidth}rem`};
   min-height: 100%;
   flex-flow: ${({ flow }) => (flow === 'column' ? 'column wrap' : 'row')};
-  gap: 8rem;
-  margin: 0 auto;
+  gap: ${({ gap }) => (gap ? `${gap}rem` : '8rem')};
+  margin: ${({ margin }) => (margin ? `${margin}` : '0 auto')};
   position: relative;
   z-index: 1;
   align-items: ${({ hero }) => (hero ? 'center' : 'normal')};
-  padding: 0;
-  background: ${({ colorVariant }) => (colorVariant === 'dark' ? Color.darkBlue : 'transparent')};
-  color: ${({ colorVariant }) => (colorVariant === 'dark' ? Color.lightBlue : 'inherit')};
+  padding: ${({ padding, colorVariant, firstSection }) =>
+    firstSection ? '0 0 14rem' : colorVariant === 'white' ? '14rem 8rem' : padding ? `${padding}` : '14rem 8rem'};
+  background: ${({ colorVariant }) =>
+    colorVariant === 'dark'
+      ? Color.darkBlue
+      : colorVariant === 'white'
+      ? Color.white
+      : colorVariant === 'grey'
+      ? Color.grey
+      : colorVariant === 'dark-gradient'
+      ? Color.gradient2
+      : 'transparent'};
+  color: ${({ colorVariant }) =>
+    colorVariant === 'dark' ? Color.lightBlue : colorVariant === 'white' ? Color.darkBlue : 'inherit'};
+  border-radius: ${({ borderRadius }) => (borderRadius ? `${borderRadius}rem` : '0')};
+  box-shadow: ${({ boxShadow }) => (boxShadow ? '0 1rem 2.4rem rgba(0,0,0,.05)' : 'none')};
 
   ${Media.desktopDown} {
-    padding: 0 3.2rem;
+    padding: ${({ paddingMobile, firstSection }) =>
+      firstSection ? '0 2.4rem 14rem' : paddingMobile ? `${paddingMobile}` : '14rem 2.4rem'};
   }
 
   ${Media.mobile} {
@@ -43,6 +70,7 @@ export const Section = styled.section<{
     max-width: 100%;
     min-height: initial;
     flex-flow: column wrap;
+    gap: ${({ gap }) => (gap ? `${gap}rem` : '8rem')};
   }
 
   .text-weight-light {
@@ -55,7 +83,6 @@ export const Section = styled.section<{
     `
     margin: 0 auto;
     min-height: 90rem;
-    // padding-top: 10rem;
     ${Color.gradientMesh};
 
     > 
@@ -113,57 +140,20 @@ export const Section = styled.section<{
     }
   `}
 
-  h1, h2, h3 {
-    color: ${({ colorVariant }) => (colorVariant === 'dark' ? Color.lightBlue : Color.darkBlue)};
-    font-size: 5rem;
-    line-height: 1.2;
-    font-weight: ${Font.weightNormal};
-    margin: 0;
-    text-align: center;
-    width: 100%;
-    z-index: 1;
-
-    ${Media.mediumDown} {
-      font-size: 4rem;
-      text-align: center;
-    }
+h1, h2, h3 {
+    color: ${({ colorVariant }) =>
+      colorVariant === 'white'
+        ? Color.darkBlue
+        : colorVariant === 'grey'
+        ? Color.darkBlue
+        : colorVariant === 'dark-gradient'
+        ? Color.lightBlue
+        : colorVariant === 'dark'
+        ? Color.lightBlue
+        : Color.darkBlue};
   }
+}
 
-  h1 {
-    // Hero specific styling
-    ${({ hero, breakMedium }) =>
-    (hero || breakMedium) &&
-    `
-      font-size: 7rem;
-      font-weight: 600;
-      text-align: left;
-
-      ${Media.mediumDown} {
-        font-size: 4rem;
-        text-align: center;
-      }
-    `}
-  }
-
-  h3 {
-    font-size: 6rem;
-    font-weight: ${Font.weightMedium};
-    color: ${({ colorVariant }) => (colorVariant === 'dark' ? `
-        font-weight: ${Font.weightMedium};
-        background: ${Color.gradient};
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    `: Color.darkBlue)};
-
-    &::selection {
-      -webkit-background-clip: initial;
-      -webkit-text-fill-color: initial;
-    }
-
-    ${Media.desktopDown} {
-      font-size: 3.8rem;
-    }
-  }
 `
 
 export const SectionContent = styled.div<{
@@ -173,14 +163,38 @@ export const SectionContent = styled.div<{
   variant?: string
   reverseOrderMobile?: string
   margin?: string
+  fullWidth?: boolean
+  maxWidth?: number
+  gap?: number
+  padding?: string
+  textAlign?: string
+  sticky?: boolean
 }>`
   display: flex;
+  position: relative;
   width: 100%;
-  max-width: ${Defaults.pageMaxWidth};
-  margin: ${({ margin }) => margin ? `${margin}` : '16rem auto'};
+  max-width: ${({ maxWidth, fullWidth }) =>
+    fullWidth ? '100%' : maxWidth ? `${maxWidth}rem` : `${Defaults.pageMaxWidth}rem`};
+  margin: ${({ margin }) => (margin ? `${margin}` : '0 auto')};
+  gap: ${({ gap }) => (gap ? `${gap}rem` : '6rem')};
+  padding: ${({ padding }) => (padding ? `${padding}` : '0')};
+
+  // variant called 'grid-2' is a 2 column grid
+  ${({ variant }) =>
+    variant === 'grid-2' &&
+    `
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    ${Media.mobile} {
+      flex-flow: row wrap;
+      grid-template-columns: 1fr;
+    }
+  `}
 
   ${Media.mobile} {
     flex-flow: row wrap;
+    justify-content: center;
   }
 
   ${({ hero }) =>
@@ -204,11 +218,19 @@ export const SectionContent = styled.div<{
     flex-flow: ${({ flow }) => (flow === 'column' ? 'column wrap' : 'row wrap')};
     flex: ${({ flow }) => (flow === 'column' ? '1 1 auto' : '1 1 50%')};
     justify-content: ${({ flow }) => (flow === 'column' ? 'center' : 'flex-start')};
-    align-items: center;
-    align-content: center;
+    align-items: ${({ flow }) => (flow === 'column' ? 'center' : 'flex-start')};
+    align-content: ${({ flow }) => (flow === 'column' ? 'center' : 'flex-start')};
     gap: 5rem;
     z-index: 1;
     max-width: 100%;
+
+    ${({ sticky }) =>
+      sticky &&
+      `
+      position: sticky;
+      top: 14rem;
+      height: max-content;
+    `}
 
     ${Media.mobile} {
       flex: 1 1 auto;
@@ -231,6 +253,50 @@ export const SectionContent = styled.div<{
         padding: 6rem;
       }
   `}
+
+  h1, h2, h3 {
+    font-size: 5rem;
+    line-height: 1.2;
+    font-weight: ${Font.weightNormal};
+    text-align: ${({ textAlign }) => (textAlign ? textAlign : 'center')};
+    width: 100%;
+    z-index: 1;
+
+    ${Media.mediumDown} {
+      font-size: 4rem;
+      text-align: center;
+    }
+  }
+
+  h1 {
+    // Hero specific styling
+    ${({ hero, breakMedium }) =>
+      (hero || breakMedium) &&
+      `
+      font-size: 7rem;
+      font-weight: 600;
+      text-align: left;
+
+      ${Media.mediumDown} {
+        font-size: 4rem;
+        text-align: center;
+      }
+    `}
+  }
+
+  h3 {
+    font-size: 6rem;
+    font-weight: ${Font.weightMedium};
+
+    &::selection {
+      background-clip: initial;
+      -webkit-text-fill-color: initial;
+    }
+
+    ${Media.desktopDown} {
+      font-size: 3.8rem;
+    }
+  }
 `
 
 export const Separator = styled.div`
@@ -308,6 +374,7 @@ export const StepContainer = styled.div<{ imageWidth?: number }>`
     display: block;
     color: ${Color.lightBlue};
     background: ${Color.gradient};
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin: 0 0 2.4rem;
@@ -316,98 +383,148 @@ export const StepContainer = styled.div<{ imageWidth?: number }>`
     line-height: 1;
 
     &::selection {
+      background-clip: initial;
       -webkit-background-clip: initial;
       -webkit-text-fill-color: initial;
     }
   }
 `
 
-export const CardWrapper = styled.div<{ maxWidth?: number; horizontalGrid?: number; horizontalGridMobile?: number; margin?: string }>`
+export const CardWrapper = styled.div<{
+  maxWidth?: number
+  horizontalGrid?: number
+  horizontalGridMobile?: number
+  margin?: string
+  gap?: number
+}>`
   width: 100%;
   max-width: 100%;
-  max-width: ${({ maxWidth }) => maxWidth ? `${maxWidth}rem` : '100%'};
+  max-width: ${({ maxWidth }) => (maxWidth ? `${maxWidth}rem` : '100%')};
   display: grid;
-  grid-template-columns: ${({ horizontalGrid }) => horizontalGrid ? `repeat(${horizontalGrid}, 1fr)` : 'repeat(3, 1fr)'};
-  gap: 1.8rem;
-  margin: ${({ margin }) => margin ? `${margin}` : '0 auto'};
+  grid-template-columns: ${({ horizontalGrid }) =>
+    horizontalGrid ? `repeat(${horizontalGrid}, 1fr)` : 'repeat(3, 1fr)'};
+  gap: ${({ gap }) => (gap ? `${gap}rem` : '1.8rem')};
+  margin: ${({ margin }) => (margin ? `${margin}` : '0 auto')};
   justify-content: center;
 
   ${Media.mediumDown} {
-    grid-template-columns: ${({ horizontalGridMobile }) => horizontalGridMobile ? `repeat(${horizontalGridMobile}, 1fr)` : 'repeat(1, 1fr)'};
+    grid-template-columns: ${({ horizontalGridMobile }) =>
+      horizontalGridMobile ? `repeat(${horizontalGridMobile}, 1fr)` : 'repeat(1, 1fr)'};
   }
 `
 
-export const CardItem = styled.div<{ contentCentered?: boolean; padding?: number; variant?: string; imageFullSize?: boolean; imageHeight?: number; textCentered?: boolean; gap?: number; imageRounded?: boolean; borderRadius?: number }>`
+export const CardItem = styled.div<{
+  contentCentered?: boolean
+  padding?: number
+  variant?: 'outlined-dark' | 'iconWithText'
+  imageFullSize?: boolean
+  imageHeight?: number
+  imageWidth?: number
+  textCentered?: boolean
+  gap?: number
+  imageRounded?: boolean
+  borderRadius?: number
+}>`
   display: flex;
   flex-flow: column wrap;
-  align-items: ${({ contentCentered }) => contentCentered && 'center'};
-  justify-content: ${({ contentCentered }) => contentCentered && 'center'};
+  align-items: ${({ contentCentered }) => (contentCentered ? 'center' : 'flex-start')};
+  justify-content: ${({ contentCentered }) => (contentCentered ? 'center' : 'flex-start')};
   background: ${({ variant }) => (variant === 'outlined-dark' ? 'transparent' : Color.white)};
-  box-shadow: ${({ variant }) => (variant === 'outlined-dark' ? 'none' : '0px 1px 50px rgba(5, 43, 101, 0.1)')};
+  box-shadow: ${({ variant }) => (variant === 'outlined-dark' ? 'none' : '0 1rem 2.4rem rgba(0,0,0,.05)')};
   border: ${({ variant }) => (variant === 'outlined-dark' ? `0.1rem solid ${Color.border}` : 'none')};
   color: ${({ variant }) => (variant === 'outlined-dark' ? Color.text2 : Color.text1)};
-  border-radius: ${({ borderRadius }) => borderRadius ? `${borderRadius}rem` : '1.6rem'};
-  padding: ${({ padding }) => padding ? `${padding}rem` : '3.4rem'};
+  border-radius: ${({ borderRadius }) => (borderRadius ? `${borderRadius}rem` : '2.4rem')};
+  padding: ${({ padding }) => (padding ? `${padding}rem` : '3.4rem')};
   gap: ${({ gap }) => (gap ? `${gap}rem` : '1.6rem')};
   font-size: 1.6rem;
   max-width: 100%;
   position: relative;
 
-    > a {
-      display: flex;
-      flex-flow: column wrap;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto;
-    }
+  > a {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
 
-    > a > img,
-    > img {
-      --width: ${({ imageFullSize }) => (imageFullSize ? '100%' : 'auto')};
-      --height: ${({ imageFullSize, imageHeight }) => (imageFullSize ? '100%' : imageHeight ? `${imageHeight}rem` : '5rem')};
-      width: var(--width);
-      height: var(--height);
-      ${({ imageRounded }) => imageRounded && 'border-radius: var(--height);'}
-      max-width: 100%;
-      background: transparent;
-      object-fit: contain;
-      margin: 0 auto 0 0;
-    }
+  > a > img,
+  > a > svg,
+  > img,
+  > svg {
+    --width: ${({ imageFullSize, imageWidth }) => (imageFullSize ? '100%' : imageWidth ? `${imageWidth}rem` : '5rem')};
+    --height: ${({ imageFullSize, imageHeight }) =>
+      imageFullSize ? '100%' : imageHeight ? `${imageHeight}rem` : '5rem'};
+    width: var(--width);
+    height: var(--height);
+    min-width: var(--width);
+    min-height: var(--height);
+    ${({ imageRounded }) => (imageRounded ? `border-radius: var(--height);` : '')}
+    max-width: 100%;
+    background: transparent;
+    object-fit: contain;
+    margin: 0 auto 0 0;
+  }
 
-    &.iconOnly > a > img,
-    &.iconOnly > img {
-      --width: ${({ imageFullSize }) => (imageFullSize ? '100%' : 'auto')};
-      --height: ${({ imageFullSize, imageHeight }) => (imageFullSize ? '100%' : imageHeight ? `${imageHeight}rem` : '3rem')};
-      width: var(--width);
-      height: var(--height);
-      margin: auto;
-    }
+  &.iconOnly > a > img,
+  &.iconOnly > img {
+    --width: ${({ imageFullSize }) => (imageFullSize ? '100%' : 'auto')};
+    --height: ${({ imageFullSize, imageHeight }) =>
+      imageFullSize ? '100%' : imageHeight ? `${imageHeight}rem` : '3rem'};
+    width: var(--width);
+    height: var(--height);
+    margin: auto;
+  }
 
-    > h4 {
-      font-size: 2.4rem;
-      line-height: 1.2;
-      font-weight: ${Font.weightBold};
-      margin: 0;
-      color: ${({ variant }) => (variant === 'outlined-dark' ? Color.lightBlue : Color.darkBlue)};
-    }
+  > h4 {
+    font-size: 2.4rem;
+    line-height: 1.2;
+    font-weight: ${Font.weightBold};
+    margin: 0;
+    color: ${({ variant }) => (variant === 'outlined-dark' ? Color.lightBlue : Color.darkBlue)};
+  }
 
-    > span {
-      display: flex;
-      flex-flow: column wrap;
-      align-items: center;
-      justify-content: center;
+  > span {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+  }
+
+  > p,
+  > span > p {
+    line-height: 1.5;
+    text-align: ${({ textCentered }) => (textCentered ? 'center' : 'left')};
+  }
+
+  > span > a {
+    color: ${Color.lightBlue};
+  }
+
+  ${({ variant }) =>
+    variant === 'iconWithText' &&
+    `
+      flex-flow: row nowrap;
+      border: none;
       gap: 1.6rem;
-    }
 
-    > p,
-    > span > p {
-      line-height: 1.3;
-      text-align: ${({ textCentered }) => (textCentered ? 'center' : 'left')};
-    }
+      > a > img,
+      > a > svg,
+      > img,
+      > svg {
+        margin: auto 0;
+      }
 
-    > span > a {
-      color: ${Color.lightBlue};
-    }
+      > p,
+      > span > p {
+        font-size: 2.2rem;
+        font-weight: ${Font.weightMedium};
+        line-height: 1.2;
+        color: ${Color.darkBlue};
+        margin: auto 0;
+      }
+    `}
 `
 
 export const TopGradient = styled.div`
@@ -423,13 +540,20 @@ export const TopGradient = styled.div`
   opacity: 0.5;
 `
 
-export const SubTitle = styled.p<{ color?: string; maxWidth?: number; align?: string; lineHeight?: number; fontSize?: number; }>`
+export const SubTitle = styled.p<{
+  color?: string
+  maxWidth?: number
+  textAlign?: string
+  textAlignMobile?: string
+  lineHeight?: number
+  fontSize?: number
+}>`
   display: inline-block;
   font-size: ${({ fontSize }) => (fontSize ? `${fontSize}rem` : '2.2rem')};
   color: ${({ color }) => (color ? color : Color.text2)};
   font-weight: ${Font.weightNormal};
   line-height: ${({ lineHeight }) => (lineHeight ? lineHeight : 1.6)};
-  text-align: ${({ align }) => (align ? align : 'center')};
+  text-align: ${({ textAlign }) => (textAlign ? textAlign : 'center')};
   max-width: ${({ maxWidth }) => maxWidth && `${maxWidth}rem`};
   margin: 0 auto;
   width: 100%;
@@ -437,7 +561,7 @@ export const SubTitle = styled.p<{ color?: string; maxWidth?: number; align?: st
 
   ${Media.mediumDown} {
     font-size: 1.8rem;
-    text-align: ${({ align }) => (align ? align : 'center')};
+    text-align: ${({ textAlignMobile }) => (textAlignMobile ? textAlignMobile : 'center')};
   }
 `
 
@@ -472,8 +596,8 @@ export const SectionImage = styled.div<{
     /* height: initial; */
 
     ${({ centerMobile }) =>
-    centerMobile &&
-    `
+      centerMobile &&
+      `
       margin-left: auto;
       margin-right: auto;
     `}
@@ -523,10 +647,12 @@ export const Metrics = styled.div`
     font-size: 6rem;
     font-weight: ${Font.weightNormal};
     background: ${Color.gradient};
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
     &::selection {
+      background-clip: initial;
       -webkit-background-clip: initial;
       -webkit-text-fill-color: initial;
     }
@@ -576,8 +702,8 @@ export const IconListItem = styled.li<{ icon?: string }>`
 
   &::before {
     ${({ icon }) =>
-    icon &&
-    `
+      icon &&
+      `
       content: "";
       height: 3.6rem;
       width: 3.6rem;
@@ -712,7 +838,6 @@ export const TrustedBy = styled.div`
     ${Media.mobile} {
       font-size: 1.8rem;
     }
-
   }
 
   > ul > li:nth-child(1) {
@@ -733,14 +858,14 @@ export const TrustedBy = styled.div`
     width: 100%;
     object-fit: contain;
 
-      ${Media.mobile} {
-        height: 70%;
-        width: auto;
-      }
+    ${Media.mobile} {
+      height: 70%;
+      width: auto;
+    }
 
-      > g {
-        fill: ${Color.darkBlue};
-      }
+    > g {
+      fill: ${Color.darkBlue};
+    }
   }
 
   > ul > li > strong {
@@ -751,129 +876,27 @@ export const TrustedBy = styled.div`
 
   @keyframes slide {
     0% {
-        transform: translateY(-100%);
-        opacity: 0;
+      transform: translateY(-100%);
+      opacity: 0;
     }
     10% {
-        transform: translateY(0%);
-        opacity: 1;
+      transform: translateY(0%);
+      opacity: 1;
     }
     30% {
-        transform: translateY(0%);
-        opacity: 1;
+      transform: translateY(0%);
+      opacity: 1;
     }
     40% {
-        transform: translateY(100%);
-        opacity: 0;
+      transform: translateY(100%);
+      opacity: 0;
     }
     100% {
-        transform: translateY(100%);
-        opacity: 0;
+      transform: translateY(100%);
+      opacity: 0;
     }
-}
-
-
-
+  }
 `
-
-// export const ApiWrapper = styled.div`
-//   overflow: hidden;
-//   max-width: 100%;
-// `
-
-// export const ApiTool = styled.div`
-//   display: flex;
-//   width: 100%;
-//   flex-flow: column wrap;
-//   background: black;
-//   border: 0.1rem solid ${Color.border};
-//   backdrop-filter: blur(6rem);
-//   border-radius: 7rem;
-//   padding: 2.4rem 4.8rem;
-//   font-size: ${Font.sizeDefault};
-
-//   ${Media.desktopOnly} {
-//     border-radius: 3rem;
-//     padding: 0 2.4rem 2.4rem;
-//   }
-
-//   ${Media.mobile} {
-//     border-radius: 2rem;
-//     padding: 0 2.4rem 2.4rem;
-//   }
-
-//   > h4 {
-//     font-weight: ${Font.weightNormal};
-//     font-size: 2.4rem;
-//     line-height: 1;
-//     color: ${Color.white}
-//   }
-
-//   > p {
-//     line-height: 1.4;
-//   }
-
-//   pre {
-//     max-width: 100%;
-//   }
-// `
-
-// export const ApiParams = styled.div`
-//   display: flex;
-//   flex-flow: row wrap;
-//   gap: 4rem;
-//   margin: 1.6rem 0 4rem;
-
-//   > span {
-//     display: flex;
-//     flex-flow: column wrap;
-//   }
-
-//   > span > b {
-//     font-size: 2.8rem;
-//     line-height: 1;
-//     margin: 0 0 1rem;
-//   }
-
-//   > span > small {
-//     font-size: 1.8rem;
-//     line-height: 1;
-//     color: ${transparentize(0.3, Color.text1)};
-//   }
-// `
-
-// export const ApiCurlCommand = styled.div`
-//   display: flex;
-//   align-items: center;
-//   justify-content: flex-start;
-//   width: 100%;
-//   border: 0.1rem solid ${Color.border};
-//   padding: 0;
-//   border-radius: 1.2rem;
-//   gap: 0;
-//   margin: 0 0 2.4rem;
-
-//   ${Media.mobile} {
-//     flex-flow: column wrap;
-//     align-items: flex-start;
-//     border: none;
-//     padding: 0;
-//     gap: 1rem;
-
-//     pre {
-//       margin: 0 !important;
-//     }
-//   }
-
-//   > p {
-//     display: inline-block;
-//     line-height: 1.2;
-//   }
-
-//   > p > span {
-//     color: ${Color.darkBlue};
-//   }
-// `
 
 export const IntegrationList = styled.span`
   display: flex;

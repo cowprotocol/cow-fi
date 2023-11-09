@@ -1,6 +1,15 @@
 import styled from 'styled-components'
 import { Defaults, Color, Font, Media } from 'styles/variables'
-import React, { forwardRef } from 'react';
+import React, { forwardRef } from 'react'
+
+export enum ButtonVariant {
+  OUTLINE = 'outline',
+  SMALL = 'small',
+  TEXT = 'text',
+  TEXT_LIGHT = 'textLight',
+  LIGHT = 'light',
+  OUTLINE_LIGHT = 'outlineLight',
+}
 
 type ButtonProps = {
   wrapText?: boolean
@@ -8,7 +17,7 @@ type ButtonProps = {
   fontSize?: number
   paddingLR?: number
   marginTB?: number
-  variant?: string
+  variant?: ButtonVariant
   href?: string
   label: string
   target?: string
@@ -23,8 +32,8 @@ const Wrapper = styled.a<Omit<ButtonProps, 'href' | 'label' | 'target' | 'rel'>>
   flex-flow: row;
   border: 0.1rem solid transparent;
   color: ${Color.lightBlue};
-  padding: ${({ paddingLR }) => paddingLR ? `0 ${paddingLR}rem` : '0 2.4rem'};
-  margin: ${({ marginTB }) => marginTB ? `${marginTB}rem 0` : '0'};
+  padding: ${({ paddingLR }) => (paddingLR ? `0 ${paddingLR}rem` : '0 2.4rem')};
+  margin: ${({ marginTB }) => (marginTB ? `${marginTB}rem 0` : '0')};
   box-sizing: border-box;
   border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : Defaults.borderRadius)};
   min-height: ${({ minHeight }) => (minHeight ? `${minHeight}rem` : '5.6rem')};
@@ -41,8 +50,13 @@ const Wrapper = styled.a<Omit<ButtonProps, 'href' | 'label' | 'target' | 'rel'>>
     min-height: 4.8rem;
   }
 
+  &:hover {
+    background: ${({ variant }) => (variant === ButtonVariant.OUTLINE ? Color.darkBlue : Color.text1)};
+    color: ${Color.lightBlue};
+  }
+
   ${({ variant }) =>
-    variant === 'outline' &&
+    variant === ButtonVariant.OUTLINE &&
     `
     background: transparent;
     border: 0.1rem solid ${Color.darkBlue};
@@ -50,42 +64,44 @@ const Wrapper = styled.a<Omit<ButtonProps, 'href' | 'label' | 'target' | 'rel'>>
   `}
 
   ${({ variant }) =>
-    variant === 'small' &&
+    variant === ButtonVariant.SMALL &&
     `
     min-height: 3.6rem;
     border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : '1.2rem')};
   `}
 
   ${({ variant }) =>
-    variant === 'text' &&
+    variant === ButtonVariant.TEXT &&
     `
     background: transparent;
     color: ${Color.darkBlue};
+
+    &:hover {
+      background: transparent;
+      color: ${Color.darkBlue};
+      text-decoration: underline;
   `}
 
   ${({ variant }) =>
-    variant === 'textLight' &&
+    variant === ButtonVariant.TEXT_LIGHT &&
     `
     background: transparent;
     color: ${Color.lightBlue};
   `}
 
   ${({ variant }) =>
-    variant === 'light' &&
+    variant === ButtonVariant.LIGHT &&
     `
     background: ${Color.lightBlue};
     color: ${Color.darkBlue};
   `}
 
-  ${({ variant }) => (variant === 'outlineLight') && `
+  ${({ variant }) =>
+    variant === ButtonVariant.OUTLINE_LIGHT &&
+    `
     background: transparent;
     border: 0.1rem solid ${Color.lightBlue};
   `}
-
-  &:hover {
-    background: ${({ variant }) => (variant === 'outline' ? Color.darkBlue : Color.text1)};
-    color: ${Color.lightBlue};
-  }
 `
 
 // General purpose multiple button wrapper
@@ -148,8 +164,8 @@ export const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
       >
         {label}
       </Wrapper>
-    );
+    )
   }
-);
+)
 
-Button.displayName = 'Button';
+Button.displayName = 'Button'

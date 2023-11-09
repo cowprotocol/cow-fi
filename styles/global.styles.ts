@@ -54,28 +54,14 @@ const GlobalStyles = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     font-feature-settings: 'ss01' on, 'ss02' on, 'cv01' on, 'cv03' on;
-    /* scrollbar-color: ${Color.text1} ${Color.white}; */
 
-    html,
-    input,
-    textarea,
-    button {
-      font-family: 'Averta', sans-serif;
-      font-display: fallback;
-  }
-
-    /* &::-webkit-scrollbar {
-      width: 4rem;
-    } */
-
-    /* &::-webkit-scrollbar-track {
-      background-color: ${Color.lightBlue};
-    } */
-
-    /* &::-webkit-scrollbar-thumb {
-      background-color: ${Color.text1};
-      border-radius: 10rem;
-    } */
+      html,
+      input,
+      textarea,
+      button {
+          font-family: 'Averta', sans-serif;
+          font-display: fallback;
+      }
   }
 
   *::selection {
@@ -94,19 +80,6 @@ const GlobalStyles = createGlobalStyle`
   *::-moz-placeholder {
     line-height: revert;
   }
-
-  /* ::-webkit-scrollbar {
-    width: 1rem !important;
-    height: 1rem !important;
-  } */
-
-  /* ::-webkit-scrollbar-thumb {
-      background-color: rgba(0,0,0,.2);
-  } */
-
-  /* ::-webkit-scrollbar-track {
-      background: hsla(0,0%,100%,.1);
-  } */
 
   *, *:before, *:after {
     box-sizing: inherit;

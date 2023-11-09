@@ -26,6 +26,7 @@ export const Color = {
   success: '#007B28',
 
   gradient: 'linear-gradient(45deg,#FFE7E0 0%,#F8DBF4 20%,#C4DDFF 60%,#CAE9FF 100%)',
+  gradient2: 'linear-gradient(0deg, #071B3B 0%, #052B65 100%)',
   gradientMesh: css`
     background-color: hsla(142, 0%, 100%, 1);
     background-image: radial-gradient(at 5% 70%, hsla(204, 100%, 89%, 1) 0px, transparent 50%),
@@ -40,7 +41,7 @@ export const Color = {
 
 export const Defaults = {
   borderRadius: '1.6rem',
-  pageMaxWidth: '126rem',
+  pageMaxWidth: 126,
   boxShadow: `0 2.4rem 2.4rem ${Color.darkBlue3}`,
 }
 
