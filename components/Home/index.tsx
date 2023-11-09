@@ -13,9 +13,10 @@ import {
   IntegrationList,
   StepWrapper,
   StepContainer,
+  SectionH1,
 } from './index.styles'
 import SocialList from '@/components/SocialList'
-import { Button } from '@/components/Button'
+import { Button, ButtonVariant } from '@/components/Button'
 
 import { MetricsData } from 'types'
 import { LinkWithUtm } from 'modules/utm'
@@ -29,30 +30,38 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
   const { social, url } = siteConfigData
 
   const handleCTAClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    e.preventDefault();
-    const href = e.currentTarget.href;
-    const targetId = href.replace(/.*\#/, "");
-    const elem = document.getElementById(targetId);
-    elem?.scrollIntoView({ behavior: "smooth" });
+    e.preventDefault()
+    const href = e.currentTarget.href
+    const targetId = href.replace(/.*\#/, '')
+    const elem = document.getElementById(targetId)
+    elem?.scrollIntoView({ behavior: 'smooth' })
   }
 
   return (
     <>
       {/* Hero */}
-      <Section className="container" hero>
-        <SectionContent margin={'12rem auto'}>
+      <Section firstSection>
+        <SectionContent>
           <div>
-            <h1>Better than the best prices</h1>
-            <SubTitle align={'left'} color={Color.text1} lineHeight={1.4}>
+            <SectionH1 fontSize={6.8} textAlign={'left'}>
+              Better than the best prices
+            </SectionH1>
+            <SubTitle textAlign={'left'} color={Color.text1} lineHeight={1.4}>
               CoW Protocol finds the lowest price for your trade across all exchanges and aggregators, such as Uniswap
-              and 1inch – and protects you from MEV, unlike the others.
+              and 1inch - and protects you from MEV, unlike the others.
             </SubTitle>
 
             <ButtonWrapper>
               <LinkWithUtm href={url.swap} defaultUtm={{ ...CONFIG.utm, utmContent: 'landing-cta-button' }} passHref>
                 <Button paddingLR={4.2} target="_blank" rel="noopener nofollow" label="Start trading" />
               </LinkWithUtm>
-              <Button paddingLR={4.2} variant="text" href="#developers" onClick={handleCTAClick} label="Start building" />
+              <Button
+                paddingLR={4.2}
+                variant={ButtonVariant.TEXT}
+                href="#developers"
+                onClick={handleCTAClick}
+                label="Start building"
+              />
             </ButtonWrapper>
           </div>
           <SectionImage hero>
@@ -61,7 +70,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         </SectionContent>
       </Section>
 
-      <Section fullWidth id="about" colorVariant="dark">
+      <Section id="about" fullWidth colorVariant="dark">
         <SectionContent flow={'column'}>
           <div className="container">
             <h3>The smartest way to trade.</h3>
@@ -71,7 +80,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
                   <b>Lower prices thanks to CoWs.</b>
                   <p>
                     CoW Protocol matches trades peer-to-peer where possible, cutting out the middleman and saving you
-                    money. (We call this a Coincidence of Wants – CoW!)
+                    money. (We call this a Coincidence of Wants - CoW!)
                   </p>
                 </span>
               </IconListItem>
@@ -144,11 +153,11 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         </SectionContent>
       </Section>
 
-      <Section className="container" flow={'column'} colorVariant="dark">
+      <Section className="container" flow={'column'} fullWidth colorVariant="dark">
         <SectionContent>
           <div>
             <h3>Cutting-edge technology</h3>
-            <SubTitle align="center">
+            <SubTitle textAlign="center">
               CoW Protocol batches orders, matches Coincidences of Wants (
               <a href="https://docs.cow.fi/overview-1/coincidence-of-wants" target="_blank" rel="noreferrer">
                 CoWs
@@ -209,11 +218,11 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         </SectionContent>
       </Section>
 
-      <Section flow={'column'} colorVariant="dark">
+      <Section flow={'column'} fullWidth colorVariant="dark">
         <SectionContent>
           <div>
             <h3>Serious volume, serious savings.</h3>
-            <SubTitle maxWidth={80} align="center">
+            <SubTitle maxWidth={80} textAlign="center">
               Whether you are a whale, a dolphin or a prawn, you can always trust CoW Protocol to find the lowest prices
               possible and protect you from MEV.
             </SubTitle>
@@ -237,7 +246,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
         </SectionContent>
       </Section>
 
-      <Section className="container" id="developers" colorVariant="dark">
+      <Section className="container" id="developers" fullWidth colorVariant="dark">
         <SectionContent variant="banner" reverseOrderMobile={'column-reverse'}>
           <IntegrationList>
             <ol>
@@ -281,28 +290,34 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
             </SubTitle>
 
             <ButtonWrapper center>
-              <Button href={url.docs} label="Explore docs" target="_blank" rel="noopener nofollow" variant="light" />
+              <Button
+                href={url.docs}
+                label="Explore docs"
+                target="_blank"
+                rel="noopener nofollow"
+                variant={ButtonVariant.LIGHT}
+              />
               <Button
                 href={'https://calendly.com/d/zxg-m2m-54p'}
                 label="Talk to us"
                 target="_blank"
                 rel="noopener nofollow"
-                variant="textLight"
+                variant={ButtonVariant.LIGHT}
               />
             </ButtonWrapper>
           </div>
         </SectionContent>
       </Section>
 
-      <Section flow={'column'} id="community" colorVariant="dark">
+      <Section flow={'column'} id="community" fullWidth>
         <SectionContent>
           <div>
             <h3>Join the CoWmunity</h3>
-            <SubTitle maxWidth={60}>
+            <SubTitle maxWidth={60} color={Color.text1}>
               Learn more about CoW Protocol, get support, and have your say in shaping the future of decentralized
               finance.
             </SubTitle>
-            <SocialList social={social} />
+            <SocialList social={social} colorDark />
           </div>
         </SectionContent>
       </Section>
