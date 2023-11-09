@@ -55,6 +55,7 @@ const Input = styled.input`
   border: 0;
   outline: 0;
   -moz-appearance: textfield;
+  appearance: textfield;
 
   &::placeholder {
     opacity: 0.5;
