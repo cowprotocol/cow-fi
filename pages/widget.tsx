@@ -221,7 +221,8 @@ export default function WidgetPage({ siteConfigData }) {
                   paddingLR={4.2}
                   label="Configure widget"
                   target="_blank"
-                  rel="noopener nofollow" />
+                  rel="noopener nofollow"
+                />
               </LinkWithUtm>
 
               <LinkWithUtm
@@ -254,7 +255,7 @@ export default function WidgetPage({ siteConfigData }) {
           <div className="container">
             <h3>Earn revenue for your project</h3>
             <SubTitle lineHeight={1.4} textAlign={'left'}>
-              Collect revenue when users trade with your widget. Contact our team for more details.
+              Collect revenue when users trade with your widget. Contact our team for implementation details.
             </SubTitle>
           </div>
           <SectionImage>
@@ -383,7 +384,8 @@ export default function WidgetPage({ siteConfigData }) {
                   paddingLR={4.2}
                   label="Talk to us"
                   target="_blank"
-                  rel="noopener nofollow" />
+                  rel="noopener nofollow"
+                />
               </LinkWithUtm>
 
               <LinkWithUtm
