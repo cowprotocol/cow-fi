@@ -171,7 +171,6 @@ const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
 const widgetParams: CowSwapWidgetParams = {
   appKey: 'CoWSwap landing',
-  env: 'dev', // TODO: remove before deplying on prod
 }
 
 export default function WidgetPage({ siteConfigData }) {
