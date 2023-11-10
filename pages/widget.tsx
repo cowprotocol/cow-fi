@@ -69,7 +69,7 @@ const DAO_LOGOS_PATH = '/images/dao-logos/'
 const CONTENT = {
   configuratorURL: 'https://widget.cow.fi/',
   calendlyURL: 'https://calendly.com/crystal-cow/cow-swap-widget',
-  docsURL: 'https://github.com/cowprotocol/cowswap/blob/main/libs/widget-lib/docs/README.md',
+  docsURL: 'https://docs.cow.fi/widget/get-started',
   everyBell: [
     {
       icon: `${IMAGE_PATH}protection.svg`,
