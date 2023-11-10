@@ -4,15 +4,15 @@ import styled from 'styled-components'
 import { useEffect, useRef } from 'react'
 import { cowSwapWidget, CowSwapWidgetParams } from '@cowprotocol/widget-lib'
 import { CONFIG } from '@/const/meta'
-import { Media, Color, Font } from 'styles/variables'
+import { Color, Font, Media } from 'styles/variables'
 import {
-  Section,
-  SectionH1,
-  SectionContent,
-  SubTitle,
-  CardWrapper,
   CardItem,
+  CardWrapper,
+  Section,
+  SectionContent,
+  SectionH1,
   SectionImage,
+  SubTitle,
 } from '@/components/Home/index.styles'
 import Layout from '@/components/Layout'
 import { LinkWithUtm } from 'modules/utm'
@@ -253,9 +253,9 @@ export default function WidgetPage({ siteConfigData }) {
       <Section fullWidth colorVariant={'dark-gradient'} flow="column" gap={14}>
         <SectionContent flow={'row'} maxWidth={100} textAlign={'left'}>
           <div className="container">
-            <h3>Earn revenue for your project</h3>
+            <h3>Earn Revenue for Your Project</h3>
             <SubTitle lineHeight={1.4} textAlign={'left'}>
-              Collect revenue when users trade with your widget. Contact our team for implementation details.
+              You may collect revenue when users trade with your widget.
             </SubTitle>
           </div>
           <SectionImage>
@@ -271,7 +271,7 @@ export default function WidgetPage({ siteConfigData }) {
             <h3>Integrate With Ease</h3>
             <SubTitle lineHeight={1.4} textAlign={'left'} textAlignMobile={'center'}>
               The CoW Swap widget is quick to install and easy to customize. Add the widget to your site in under 5
-              minutes by copy-pasting a few lines of code.
+              minutes by copy-pasting a few lines of code. Contact our team for implementation details.
             </SubTitle>
           </div>
         </SectionContent>
