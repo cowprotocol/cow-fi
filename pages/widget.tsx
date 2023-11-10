@@ -170,7 +170,7 @@ const CONTENT = {
 const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
 const widgetParams: CowSwapWidgetParams = {
-  appKey: 'CoWSwap landing',
+  appCode: 'CoWSwap landing',
 }
 
 export default function WidgetPage({ siteConfigData }) {
