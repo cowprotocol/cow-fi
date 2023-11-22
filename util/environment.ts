@@ -6,9 +6,25 @@ const DEFAULT_ENVIRONMENTS_REGEX: Record<EnvironmentName, string> = {
 }
 
 function getRegex(env: EnvironmentName) {
-  const regex = process.env[`REACT_APP_DOMAIN_REGEX_${env.toUpperCase()}`] || DEFAULT_ENVIRONMENTS_REGEX[env]
-  return new RegExp(regex, 'i')
+  let regex
+  switch (env) {
+    case 'local':
+      regex = process.env.REACT_APP_DOMAIN_REGEX_LOCAL
+      break
+    case 'development':
+      regex = process.env.REACT_APP_DOMAIN_REGEX_DEVELOPMENT
+      break
+    case 'pr':
+      regex = process.env.REACT_APP_DOMAIN_REGEX_PR
+      break
+    case 'production':
+      regex = process.env.REACT_APP_DOMAIN_REGEX_PRODUCTION
+      break
+  }
+
+  return new RegExp(regex || DEFAULT_ENVIRONMENTS_REGEX[env], 'i')
 }
+
 export interface EnvironmentChecks {
   isProd: boolean
   isPr: boolean
