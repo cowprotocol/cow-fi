@@ -85,8 +85,6 @@ export const Section = styled.section<{
     min-height: 90rem;
     ${Color.gradientMesh};
 
-    > 
-
     ${Media.mediumDown} {
       padding: 3.2rem 0;
       min-height: initial;
@@ -98,7 +96,6 @@ export const Section = styled.section<{
     }
     
   `}
-  }
 
   ${({ mobileSwitchOrder }) =>
     mobileSwitchOrder &&
@@ -140,7 +137,7 @@ export const Section = styled.section<{
     }
   `}
 
-h1, h2, h3 {
+  h1, h2, h3 {
     color: ${({ colorVariant }) =>
       colorVariant === 'white'
         ? Color.darkBlue
@@ -152,8 +149,6 @@ h1, h2, h3 {
         ? Color.lightBlue
         : Color.darkBlue};
   }
-}
-
 `
 
 export const SectionContent = styled.div<{

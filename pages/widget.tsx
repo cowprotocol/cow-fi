@@ -170,7 +170,7 @@ const CONTENT = {
 const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
 const widgetParams: CowSwapWidgetParams = {
-  appKey: 'CoW Protocol: Widget Demo',
+  appCode: 'CoW Protocol: Widget Demo',
 }
 
 export default function WidgetPage({ siteConfigData }) {
