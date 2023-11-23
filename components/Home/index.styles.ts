@@ -547,6 +547,7 @@ export const SubTitle = styled.p<{
   textAlignMobile?: string
   lineHeight?: number
   fontSize?: number
+  fontSizeMobile?: number
 }>`
   display: inline-block;
   font-size: ${({ fontSize }) => (fontSize ? `${fontSize}rem` : '2.2rem')};
@@ -560,7 +561,7 @@ export const SubTitle = styled.p<{
   z-index: 1;
 
   ${Media.mediumDown} {
-    font-size: 1.8rem;
+    font-size: ${({ fontSizeMobile }) => (fontSizeMobile ? `${fontSizeMobile}rem` : '1.8rem')};
     text-align: ${({ textAlignMobile }) => (textAlignMobile ? textAlignMobile : 'center')};
   }
 `
