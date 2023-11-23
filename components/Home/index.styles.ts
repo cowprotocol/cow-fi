@@ -85,8 +85,6 @@ export const Section = styled.section<{
     min-height: 90rem;
     ${Color.gradientMesh};
 
-    > 
-
     ${Media.mediumDown} {
       padding: 3.2rem 0;
       min-height: initial;
@@ -98,7 +96,6 @@ export const Section = styled.section<{
     }
     
   `}
-  }
 
   ${({ mobileSwitchOrder }) =>
     mobileSwitchOrder &&
@@ -140,7 +137,7 @@ export const Section = styled.section<{
     }
   `}
 
-h1, h2, h3 {
+  h1, h2, h3 {
     color: ${({ colorVariant }) =>
       colorVariant === 'white'
         ? Color.darkBlue
@@ -152,8 +149,6 @@ h1, h2, h3 {
         ? Color.lightBlue
         : Color.darkBlue};
   }
-}
-
 `
 
 export const SectionContent = styled.div<{
@@ -547,6 +542,7 @@ export const SubTitle = styled.p<{
   textAlignMobile?: string
   lineHeight?: number
   fontSize?: number
+  fontSizeMobile?: number
 }>`
   display: inline-block;
   font-size: ${({ fontSize }) => (fontSize ? `${fontSize}rem` : '2.2rem')};
@@ -560,7 +556,7 @@ export const SubTitle = styled.p<{
   z-index: 1;
 
   ${Media.mediumDown} {
-    font-size: 1.8rem;
+    font-size: ${({ fontSizeMobile }) => (fontSizeMobile ? `${fontSizeMobile}rem` : '1.8rem')};
     text-align: ${({ textAlignMobile }) => (textAlignMobile ? textAlignMobile : 'center')};
   }
 `
