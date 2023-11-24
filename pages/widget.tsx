@@ -170,7 +170,7 @@ const CONTENT = {
 const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
 const widgetParams: CowSwapWidgetParams = {
-  appCode: 'CoWSwap landing',
+  appCode: 'CoW Protocol: Widget Demo',
 }
 
 export default function WidgetPage({ siteConfigData }) {
@@ -254,7 +254,7 @@ export default function WidgetPage({ siteConfigData }) {
           <div className="container">
             <h3>Earn Revenue for Your Project</h3>
             <SubTitle lineHeight={1.4} textAlign={'left'}>
-              You may collect revenue when users trade with your widget.
+              You may collect revenue when users trade with your widget.*
             </SubTitle>
           </div>
           <SectionImage>
@@ -402,6 +402,20 @@ export default function WidgetPage({ siteConfigData }) {
                 />
               </LinkWithUtm>
             </ButtonWrapper>
+          </div>
+        </SectionContent>
+      </Section>
+
+      {/* Disclaimer */}
+      <Section padding="0" paddingMobile="0 1.6rem">
+        <SectionContent flow="column">
+          <div className="container">
+            <SubTitle lineHeight={1.4} maxWidth={80} fontSize={1.3} fontSizeMobile={1.3} color={Color.text1}>
+              <strong>* Important Disclaimer:</strong> Use of this widget is subject to the laws and regulations of your
+              jurisdiction. You are solely responsible for ensuring compliance, and the provider is not liable for any
+              legal consequences or issues arising from your failure to adhere. Using the widget indicates acceptance of
+              these terms; if you do not agree, refrain from using it.
+            </SubTitle>
           </div>
         </SectionContent>
       </Section>
