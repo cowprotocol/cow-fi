@@ -7,14 +7,14 @@ export function ReferToEarn() {
         <Title>Refer-to-Earn</Title>
         <SubTitle>
           Know someone who is not just looking for a job but for a great opportunity to grow? Refer them to us to earn{' '}
-          <b>$6.000 in USDC or USD</b>.
+          <b>$6,000 in USDC or USD</b>.
         </SubTitle>
       </Section>
 
       <Section>
         <p>
-          We will reward you with a referral bonus of <b>6.000 USDC or USD</b> per placement. Your referral is
-          successful and paid once the Candidate clears <b>their first 6 months</b> of work in their new role.
+          We will reward you with a referral bonus of <b>6,000 USDC or USD</b> per placement. Your referral is
+          successful and paid once the Candidate clears <b>their first 3 months</b> of work in their new role.
         </p>
 
         <p>
