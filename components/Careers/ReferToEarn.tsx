@@ -89,8 +89,8 @@ export function ReferToEarn() {
         <ul>
           <li>
             The Referrer becomes eligible to receive the full referral bonus of five thousand USDC or USD (6,000) after
-            six (3) months from the Candidate&apos;s start date, provided that the Candidate remains providing services
-            to CoW during this period. The Referrer can decide if they want to be paid in USDC or USD.
+            three (3) months from the Candidate&apos;s start date, provided that the Candidate remains providing
+            services to CoW during this period. The Referrer can decide if they want to be paid in USDC or USD.
           </li>
           <li>
             The referral bonus is excl. VAT (VAT can be added), but net of any other tax, such as, income tax or
