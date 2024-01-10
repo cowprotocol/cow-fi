@@ -90,11 +90,11 @@ export function Careers({ jobsData }) {
       <Section>
         <Card>
           <h3>
-            <span>💸</span> Refer a friend and earn 5000 in USDC or USD!
+            <span>💸</span> Refer a friend and earn 6000 in USDC or USD!
           </h3>
           <p>
             Know someone who is not just looking for a job but for a great opportunity to grow? Refer them to us to earn
-            $5.000 in USDC or USD.{' '}
+            $6.000 in USDC or USD.{' '}
             <Button
               variant={ButtonVariant.OUTLINE_LIGHT}
               paddingLR={4.2}
