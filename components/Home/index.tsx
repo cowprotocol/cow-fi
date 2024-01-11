@@ -159,7 +159,11 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
             <h3>Cutting-edge technology</h3>
             <SubTitle textAlign="center">
               CoW Protocol batches orders, matches Coincidences of Wants (
-              <a href="https://docs.cow.fi/overview-1/coincidence-of-wants" target="_blank" rel="noreferrer">
+              <a
+                href="https://docs.cow.fi/cow-protocol/concepts/how-it-works/coincidence-of-wants"
+                target="_blank"
+                rel="noreferrer"
+              >
                 CoWs
               </a>
               ), and sources excess volume from all DEXs and DEX aggregators. That&apos;s how the protocol makes sure
