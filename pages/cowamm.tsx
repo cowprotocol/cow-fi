@@ -32,7 +32,7 @@ const StickySectionTitle = styled.div`
   }
 `
 
-function expandFaq(event: MouseEvent<HTMLElement>) {
+function expandFaq(event: any) {
   const question = event.currentTarget.innerHTML
 }
 
