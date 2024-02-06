@@ -16,6 +16,7 @@ export const CONFIG = {
     apiDocs: API_BASE_URL + '/docs',
     daos: '/daos',
     widget: '/widget',
+    careers: '/careers',
     widgetConfigurator: 'widget.cow.fi',
     analytics: 'https://dune.com/cowprotocol/cowswap',
     explorer: 'https://explorer.cow.fi',

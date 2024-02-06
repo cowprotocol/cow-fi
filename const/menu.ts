@@ -10,10 +10,8 @@ export interface FooterLinkGroup {
 export const HEADER_LINKS: CustomLinkProps[] = [
   { label: 'DAOs', url: url.daos },
   { label: 'Widget', url: url.widget },
-  { label: 'Developers', url: '/#developers' },
-  { label: 'Tokens', url: '/tokens' },
-  { label: 'Governance', url: social.forum.url, type: 'external_untrusted' },
-  { label: 'Careers', url: '/careers' },
+  { label: 'CoWAMM', url: '/cowamm' },
+  { label: 'Careers', url: url.careers },
 ]
 
 const utmContent = 'footer-link'
@@ -37,6 +35,7 @@ export const FOOTER_LINK_GROUPS: FooterLinkGroup[] = [
       { label: 'About', url: '/#about' },
       { label: 'CoW Swap', url: 'https://swap.cow.fi/#/about', type: 'external', utmContent },
       { label: 'CoW Swap FAQ', url: 'https://swap.cow.fi/#/faq', type: 'external', utmContent },
+      { label: 'Tokens', url: '/tokens' },
       {
         label: 'Brand Kit',
         url: 'https://cownation.notion.site/CoW-DAO-Brand-Kit-fe70d51a39df4229b7912cb7af3eb320',

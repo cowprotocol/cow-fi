@@ -461,6 +461,26 @@ export const CardItem = styled.div<{
     margin: 0 auto 0 0;
   }
 
+  .numberedDot {
+    --width: ${({ imageFullSize, imageWidth }) => (imageFullSize ? '100%' : imageWidth ? `${imageWidth}rem` : '5rem')};
+    --height: ${({ imageFullSize, imageHeight }) =>
+      imageFullSize ? '100%' : imageHeight ? `${imageHeight}rem` : '5rem'};
+    width: var(--width);
+    height: var(--height);
+    min-width: var(--width);
+    min-height: var(--height);
+    ${({ imageRounded }) => (imageRounded ? `border-radius: var(--height);` : '')}
+    background: transparent;
+    object-fit: contain;
+    background: ${Color.lightBlue};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: ${Color.darkBlue};
+    font-weight: bold;
+    font-size: 2.5rem;
+  }
+
   &.iconOnly > a > img,
   &.iconOnly > img {
     --width: ${({ imageFullSize }) => (imageFullSize ? '100%' : 'auto')};
