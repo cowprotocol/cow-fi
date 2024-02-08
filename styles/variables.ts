@@ -176,41 +176,6 @@ export const textFadeIn = css`
   animation: ${fadeIn} ${transitions.duration.fast} ${transitions.timing.in};
 `
 
-export const TextItalicLightPurple = styled.span`
-  font-style: italic;
-  color: ${Color.cowammLightPurple};
-`
-
-export const TextItalicPurple = styled.span`
-  font-style: italic;
-  color: ${Color.cowammPurple};
-`
-
-export const TextItalicYellow = styled.span`
-  font-style: italic;
-  color: ${Color.cowammYellow};
-`
-
-export const TextItalicLightOrange = styled.span`
-  font-style: italic;
-  color: ${Color.cowammLightOrange};
-`
-
-export const TextItalicLightBlue = styled.span`
-  font-style: italic;
-  color: ${Color.cowammLightBlue};
-`
-
-export const TextItalicBlue = styled.span`
-  font-style: italic;
-  color: ${Color.cowammBlue};
-`
-
-export const TextItalicPink = styled.span`
-  font-style: italic;
-  color: ${Color.cowammPink};
-`
-
 type TextColorKey = keyof typeof Color
 
 export const TextItalic = styled.span<{ color: TextColorKey }>`
