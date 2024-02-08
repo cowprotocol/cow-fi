@@ -14,9 +14,13 @@ import { sendGAEventHandler } from 'lib/analytics/sendGAEvent'
 import { NavigationEvents } from 'lib/analytics/GAEvents'
 
 const LogoImage = '/images/logo.svg'
+const LogoImageThemedCoWAMM = '/images/logo-themed-cowamm.svg'
 const LogoLightImage = '/images/logo-light.svg'
+const LogoLightImageThemedCoWAMM = '/images/logo-light-themed-cowamm.svg'
 const LogoIconImage = '/images/logo-icon.svg'
+const LogoIconImageThemedCoWAMM = '/images/logo-icon-themed-cowamm.svg'
 const LogoIconLightImage = '/images/logo-icon-light.svg'
+const LogoIconLightImageThemedCoWAMM = '/images/logo-icon-light-themed-cowamm.svg'
 const MenuImage = '/images/icons/menu.svg'
 const MenuImageLight = '/images/icons/menu-light.svg'
 
@@ -81,17 +85,18 @@ const Content = styled.div`
   align-items: center;
 `
 
-const Menu = styled.ol<{ isLight?: boolean }>`
+const Menu = styled.ol<{ isLight?: boolean; isLightCoWAMM?: boolean }>`
   display: flex;
   list-style: none;
   font-size: 1.5rem;
   font-weight: ${Font.weightMedium};
-  color: ${({ isLight }) => (isLight ? Color.darkBlue : Color.lightBlue)};
+  color: ${({ isLight, isLightCoWAMM }) =>
+    isLightCoWAMM ? Color.cowammWhite : isLight ? Color.darkBlue : Color.lightBlue};
   padding: 0;
   margin: 0;
 
   .sticky & {
-    color: ${Color.darkBlue};
+    color: ${({ isLightCoWAMM }) => (isLightCoWAMM ? Color.cowammBlack : Color.darkBlue)};
   }
 
   ${Media.mediumDown} {
@@ -125,7 +130,8 @@ const Menu = styled.ol<{ isLight?: boolean }>`
   + a {
     background: transparent;
     border: 0.1rem solid ${({ isLight }) => (isLight ? Color.darkBlue : Color.lightBlue)};
-    color: ${({ isLight }) => (isLight ? Color.darkBlue : Color.lightBlue)};
+    color: ${({ isLight, isLightCoWAMM }) =>
+      isLightCoWAMM ? Color.cowammWhite : isLight ? Color.darkBlue : Color.lightBlue};
 
     .sticky & {
       background: transparent;
@@ -169,7 +175,8 @@ const Menu = styled.ol<{ isLight?: boolean }>`
     font-weight: ${Font.weightLight};
 
     &:hover {
-      color: ${({ isLight }) => (isLight ? Color.darkBlue : Color.lightBlue)};
+      color: ${({ isLight, isLightCoWAMM }) =>
+        isLightCoWAMM ? Color.cowammWhite : isLight ? Color.darkBlue : Color.lightBlue};
       text-decoration: underline;
     }
 
@@ -221,7 +228,7 @@ const SubMenu = styled.ol`
   list-style: none;
 `
 
-const MenuToggle = styled.button<{ isLight?: boolean }>`
+const MenuToggle = styled.button<{ isLight?: boolean; isLightCowAMM?: boolean }>`
   display: none;
   background: transparent;
   flex-flow: row;
@@ -252,22 +259,28 @@ const MenuToggle = styled.button<{ isLight?: boolean }>`
   }
 `
 
-const Logo = styled.div<{ isLight?: boolean; menuVisible?: boolean }>`
+const Logo = styled.div<{ isLight?: boolean; isLightCoWAMM?: boolean; menuVisible?: boolean }>`
   width: 12.2rem;
   height: 3.8rem;
-  background: url(${LogoImage}) no-repeat center/contain;
-  ${({ isLight }) => !isLight && `background: url(${LogoLightImage}) no-repeat center/contain`};
+  background: ${({ isLight, isLightCoWAMM }) =>
+      `url(${isLightCoWAMM ? LogoLightImageThemedCoWAMM : !isLight ? LogoLightImage : LogoImage})`}
+    no-repeat center/contain;
   cursor: pointer;
   z-index: 10;
 
   .sticky & {
-    ${({ isLight }) => !isLight && `background: url(${LogoImage}) no-repeat center/contain`};
+    background: ${({ isLightCoWAMM }) => `url(${isLightCoWAMM ? LogoImageThemedCoWAMM : LogoImage})`} no-repeat
+      center/contain;
   }
 
   ${Media.mediumDown} {
     background: url(${LogoIconImage}) no-repeat center/contain;
     ${({ isLight, menuVisible }) =>
       (!isLight || menuVisible) && `background: url(${LogoIconLightImage}) no-repeat center/contain`};
+
+    ${({ isLightCoWAMM, menuVisible }) =>
+      (isLightCoWAMM || menuVisible) && `background: url(${LogoIconLightImageThemedCoWAMM}) no-repeat center/contain`};
+
     width: 3.6rem;
     height: 3.2rem;
     background-size: contain;
@@ -277,15 +290,19 @@ const Logo = styled.div<{ isLight?: boolean; menuVisible?: boolean }>`
       width: 3.6rem;
       height: 3.2rem;
       background: url(${LogoIconImage}) no-repeat center/contain;
+
+      ${({ isLightCoWAMM, menuVisible }) =>
+        (isLightCoWAMM || menuVisible) && `background: url(${LogoIconImageThemedCoWAMM}) no-repeat center/contain`};
     }
   }
 `
 
 interface Props {
   isLight?: boolean
+  isLightCoWAMM?: boolean
 }
 
-export default function Header({ isLight = false }: Props) {
+export default function Header({ isLight = false, isLightCoWAMM = false }: Props) {
   const swapURL = CONFIG.url.swap
   const isTouch = useMediaQuery(`(max-width: ${Media.mediumEnd})`)
   const [menuVisible, setIsMenuVisible] = useState(false)
@@ -307,10 +324,10 @@ export default function Header({ isLight = false }: Props) {
           <Wrapper className={!inView && 'sticky'}>
             <Content>
               <Link passHref href="/">
-                <Logo isLight={isLight} menuVisible={menuVisible} />
+                <Logo isLight={isLight} isLightCoWAMM={isLightCoWAMM} menuVisible={menuVisible} />
               </Link>
 
-              <Menu className={menuVisible ? 'visible' : ''} isLight={isLight}>
+              <Menu className={menuVisible ? 'visible' : ''} isLight={isLight} isLightCoWAMM={isLightCoWAMM}>
                 {HEADER_LINKS.map((link, index) => (
                   <li key={index}>
                     <CustomLink {...link} onClick={handleClick} />

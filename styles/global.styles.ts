@@ -36,6 +36,30 @@ const GlobalStyles = createGlobalStyle`
       font-display: swap;
   }
 
+  @font-face {
+    font-family: 'Flecha S';
+    src: url('/fonts/FlechaS-MediumItalic.woff2') format('woff2');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Flecha S';
+    src: url('/fonts/FlechaS-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'CircularXXSub-Book';
+    src: url('/fonts/CircularXXSub-Book.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
   html, body {  
     width: 100%;
     min-height: 100vh;

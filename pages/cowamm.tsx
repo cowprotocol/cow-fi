@@ -1,36 +1,24 @@
 import Head from 'next/head'
 import { GetStaticProps } from 'next'
-import styled from 'styled-components'
-import { useEffect, useRef } from 'react'
 import { CONFIG } from '@/const/meta'
-import { Color, Font, Media } from 'styles/variables'
+import { Color, Font, TextItalic } from 'styles/variables'
 import {
   CardItem,
   CardWrapper,
   Section,
   SectionContent,
   SectionH1,
+  SectionH3,
   SectionImage,
   SubTitle,
+  Separator,
 } from '@/components/Home/index.styles'
 import Layout from '@/components/Layout'
-import SocialList from '@/components/SocialList'
 import { FAQList } from '@/components/FAQList'
 import { LinkWithUtm } from 'modules/utm'
 import { Button, ButtonVariant, ButtonWrapper } from '@/components/Button'
 import { sendGAEventHandler } from 'lib/analytics/sendGAEvent'
 import { WidgetEvents } from 'lib/analytics/GAEvents'
-
-const StickySectionTitle = styled.div`
-  position: sticky;
-  top: 12rem;
-  margin: 0 auto auto;
-
-  ${Media.mobile} {
-    position: relative;
-    top: initial;
-  }
-`
 
 function expandFaq(event: any) {
   const question = event.currentTarget.innerHTML
@@ -45,25 +33,20 @@ const CONTENT = {
   docsURL: 'https://docs.cow.fi/cow-protocol/tutorials/widget',
   howItWorksCards: [
     {
-      icon: `${IMAGE_PATH}protection.svg`,
-      title: '1. Deposit Funds',
-      description: 'LP’s Deposit Funds in the CoW AMM',
+      image: `${IMAGE_PATH}cowamm-howitworks-1.svg`,
+      description: 'Liquidity providers deposit tokens into protected CoW AMM liquidity pools',
     },
     {
-      icon: `${IMAGE_PATH}surplus.svg`,
-      title: '2. Provide liquidity',
-      description: 'Whenever solvers want to trade against the pools, they must provide liquidity',
+      image: `${IMAGE_PATH}cowamm-howitworks-2.svg`,
+      description: 'Solvers bid to rebalance these pools whenever there is an arbitrage opportunity',
     },
     {
-      icon: `${IMAGE_PATH}gasless.svg`,
-      title: '3. Settle Trade',
-      description: 'In each batch, the solver that provides the most liquidity gets to settle the trade',
+      image: `${IMAGE_PATH}cowamm-howitworks-3.svg`,
+      description: 'The solver that offers the most surplus to the pool wins the right to rebalance the pool',
     },
     {
-      icon: `${IMAGE_PATH}gasless.svg`,
-      title: '4. More returns for LPs',
-      description:
-        'The FM-AMM model of the CoW AMM forces liquidity takers to compete for the right to settle trades, guaranteeing more returns for LPs than traditional AMMs',
+      image: `${IMAGE_PATH}cowamm-howitworks-4.svg`,
+      description: 'CoW AMM eliminates LVR by capturing arbitrage value for LPs and shielding it from MEV bots',
     },
   ],
   feedbackPartners: [
@@ -158,8 +141,17 @@ const CONTENT = {
     },
     {
       title: 'What is an arbitrageur?',
-      content:
-        'Since liquidity pools are unique to each AMM, they all trade the same assets at slightly different prices. Arbitrageurs are agents who are economically incentivized to trade on the price differences between various liquidity sources including AMMs and traditional order book exchanges, capturing the arbitrage and profiting in the process.\n\nUnfortunately, the profits of arbitrageurs come at the expense of liquidity providers.',
+      content: (
+        <>
+          Since liquidity pools are unique to each AMM, they all trade the same assets at slightly different prices.
+          Arbitrageurs are agents who are economically incentivized to trade on the price differences between various
+          liquidity sources, including AMMs and traditional order book exchanges, capturing the arbitrage and profiting
+          in the process.
+          <br />
+          <br />
+          Unfortunately, the profits of arbitrageurs come at the expense of liquidity providers.
+        </>
+      ),
     },
     {
       title: 'What is loss-versus-rebalancing (LVR)?',
@@ -186,7 +178,7 @@ const CONTENT = {
 
 const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
-export default function WidgetPage({ siteConfigData }) {
+export default function CoWAMMPage({ siteConfigData }) {
   const { social } = siteConfigData
 
   // Filter out Discord/Forum social links
@@ -198,110 +190,86 @@ export default function WidgetPage({ siteConfigData }) {
   })
 
   return (
-    <Layout fullWidthGradientVariant>
+    <Layout fullWidthCoWAMM>
       <Head>
         <title>
           {siteConfigData.title} - {siteConfigData.descriptionShort}
         </title>
       </Head>
 
-      <Section firstSection>
-        <SectionContent sticky>
-          <div>
-            <SectionH1 fontSize={6.2} lineHeight={1} textAlign={'left'}>
-              Liquidity Pools for Liquidity Providers (Not Arbitrage Bots)
-            </SectionH1>
-            <SubTitle color={Color.text1} fontSize={2} lineHeight={1.6} maxWidth={60} textAlign="left">
-              The CoW AMM is a Function-Maximizing AMM that relies on batch auctions to minimize opportunities for
-              arbitrage and maximize LP returns.
-            </SubTitle>
-
-            <ButtonWrapper>
-              <LinkWithUtm
-                href={'#'}
-                defaultUtm={{ ...CONFIG.utm, utmContent: 'CoWAMM-page-get-started-CTA' }}
-                passHref
-              >
-                <Button
-                  onClick={sendGAEventHandler(WidgetEvents.CONFIGURE_WIDGET)}
-                  paddingLR={4.2}
-                  label="Get Started"
-                  target="_blank"
-                  rel="noopener nofollow"
-                />
-              </LinkWithUtm>
-
-              <LinkWithUtm
-                href={CONTENT.docsURL}
-                defaultUtm={{ ...CONFIG.utm, utmContent: 'widget-page-readdocs-cta-hero' }}
-                passHref
-              >
-                <Button
-                  onClick={sendGAEventHandler(WidgetEvents.READ_DOCS)}
-                  target="_blank"
-                  rel="noopener nofollow"
-                  paddingLR={4.2}
-                  label="Read docs"
-                  variant={ButtonVariant.TEXT}
-                />
-              </LinkWithUtm>
-            </ButtonWrapper>
-          </div>
-        </SectionContent>
-
+      <Section fullWidth firstSection padding={'8rem 8rem 4rem'} paddingMobile={'0 2.4rem 4rem'}>
         <SectionContent flow="column">
-          <SectionImage>
-            <img src={`${IMAGE_PATH}eth-circles.svg`} alt="Make Money with CoW Swap" width="340" height="214" />
-          </SectionImage>
+          <div>
+            <img
+              src={`${IMAGE_PATH}cow-amm-logo-light.svg`}
+              alt="CoW AMM"
+              width="430"
+              style={{ margin: '0 1.6rem 4rem', maxWidth: '100%' }}
+            />
+            <SectionH1 color={Color.cowammWhite} fontSize={6.6} fontWeight={500} maxWidth={100}>
+              The first <TextItalic color={'cowammLightPurple'}>MEV-Capturing AMM</TextItalic>, brought to you by{' '}
+              <TextItalic color={'cowammYellow'}>CoW DAO</TextItalic>
+            </SectionH1>
+            <SubTitle color={Color.cowammWhite} fontSize={2.7} lineHeight={1.4} maxWidth={60}>
+              CoW AMM uses batch auctions to maximize LP returns and solve the LVR problem for good.
+            </SubTitle>
+            <Button
+              variant={ButtonVariant.COWAMM_LIGHTBLUE}
+              href="#"
+              paddingTB={3}
+              paddingLR={4.2}
+              borderRadius={0}
+              fontSize={2.6}
+              label="Protect Your Liquidity"
+            />
+          </div>
         </SectionContent>
       </Section>
 
-      <Section fullWidth colorVariant={'dark-gradient'} flow="column" gap={14}>
-        <SectionContent flow={'row'} maxWidth={100} textAlign={'left'}>
+      <Section fullWidth colorVariant={'cowamm-light'} flow="column" gap={14}>
+        <SectionContent flow={'row'} textAlign={'left'}>
+          <SectionImage>
+            <img src={`${IMAGE_PATH}cowamm-illustration-lvr.svg`} alt="Make Money with CoW Swap" width="580" />
+          </SectionImage>
           <div className="container">
-            <h3>Arbitrage Costs LP&amp;s Over $500 Million Per Year</h3>
-            <SubTitle lineHeight={1.4} textAlign={'left'}>
-              The current “CFAMM” design of most AMMs means that arbitrageurs exploit almost all the profits liquidity
-              providers earn. In fact, most LP&amp;s would be better off just keeping their tokens in their wallets
-              rather than providing liquidity. <br />
+            <SectionH3 color={Color.cowammBlack} fontSize={6.4} fontWeight={500} font={Font.flecha}>
+              AMMs don&apos;t want you to know about <TextItalic color={'cowammBlue'}>LVR</TextItalic>
+            </SectionH3>
+            <SubTitle lineHeight={1.4} textAlign={'left'} color={Color.cowammBlack} fontSize={2.9}>
+              Liquidity providers expect their tokens to earn yield, but the dirty little secret of AMMs is that most
+              liquidity pools lose money.
               <br />
-              This asymmetry is bad for LPs, but it&amp;s even worse for DAOs and crypto projects selling tokens for the
-              first time as most of the liquidity they provide goes to arbitrageurs rather than remaining available for
-              tokenholders.
-            </SubTitle>
-          </div>
-          <SectionImage>
-            <img src={`${IMAGE_PATH}eth-circles.svg`} alt="Make Money with CoW Swap" width="340" height="214" />
-          </SectionImage>
-        </SectionContent>
-
-        <SectionContent flow={'row'} maxWidth={100} textAlign={'left'} reverseOrderMobile={'column-reverse'}>
-          <SectionImage>
-            <img src={`${IMAGE_PATH}eth-blocks.svg`} alt="Integrate With Ease" width="340" height="214" />
-          </SectionImage>
-          <div className="container">
-            <h3>The CoW AMM makes arbitrageurs race to the bottom…</h3>
-            <SubTitle lineHeight={1.4} textAlign={'left'} textAlignMobile={'center'}>
-              Trades on the CoW AMM are batched together, forcing arbitrageurs to compete with each other for the right
-              to take liquidity and ensuring a fair price each time.
+              <br />
+              In fact, billions of dollars of LP funds are stolen every year by arbitrageurs engaging in
+              loss-versus-rebalancing (LVR), a type of MEV that&apos;s responsible for more value loss than frontrunning
+              and sandwich attacks combined.
             </SubTitle>
           </div>
         </SectionContent>
       </Section>
 
-      <Section fullWidth>
+      <Section fullWidth colorVariant={'cowamm-dark'}>
         <SectionContent flow={'column'}>
           <div className="container">
-            <h3>How it works</h3>
-            <SubTitle lineHeight={1.4} maxWidth={85} color={Color.text1}>
-              - description -
+            <SectionH3 color={Color.cowammWhite} fontSize={6.6} fontWeight={500} font={Font.flecha}>
+              Finally, an AMM designed <TextItalic color={'cowammLightOrange'}>with LPs in mind</TextItalic>
+            </SectionH3>
+            <Separator bgColor={Color.cowammWhite} borderSize={0.2} margin={'2rem auto'} />
+            <SubTitle lineHeight={1.4} fontSize={4.8} textAlign={'left'} color={Color.cowammWhite}>
+              CoW AMM eliminates LVR once and for all by using batch auctions to send surplus to LPs
             </SubTitle>
 
-            <CardWrapper maxWidth={100} gap={3.8} horizontalGrid={2}>
-              {CONTENT.howItWorksCards.map(({ icon, title, description }, index) => (
-                <CardItem key={index} imageHeight={5} imageRounded>
-                  <img src={icon} alt="image" />
-                  <h4>{title}</h4>
+            <CardWrapper gap={3.2} horizontalGrid={4} margin={'2.4rem auto'}>
+              {CONTENT.howItWorksCards.map(({ image, description }, index) => (
+                <CardItem
+                  variant={'cowamm-card'}
+                  key={index}
+                  imageHeight={5}
+                  padding={0}
+                  borderRadius={0}
+                  fontSize={2.8}
+                >
+                  <img src={image} alt="image" />
                   <p>{description}</p>
                 </CardItem>
               ))}
@@ -310,43 +278,63 @@ export default function WidgetPage({ siteConfigData }) {
         </SectionContent>
       </Section>
 
-      <Section fullWidth colorVariant={'dark-gradient'} flow="column" gap={14}>
-        <SectionContent flow={'row'} maxWidth={100} textAlign={'left'}>
-          <div className="container">
-            <h3>
-              Raising the <s>Bar</s> Curve
-            </h3>
-            <SubTitle lineHeight={1.4} textAlign={'left'}>
-              According to backtesting across the most liquid non-stablecoin markets, FM-AMM models outperform CFAMM’s
-              by 5%-7% with respect to LP returns. When accounting for noise trading, this figure may be even higher.
-              <br />
-              <br />
-              Research further suggests that providing liquidity for the most popular token pairs currently incurs a net
-              loss for LPs due to arbitrage. FM-AMMs push these numbers back into the black, making LP’ing profitable
-              again for even the most liquid tokens.
-            </SubTitle>
-          </div>
-          <SectionImage>
-            <img src={`${IMAGE_PATH}eth-circles.svg`} alt="Make Money with CoW Swap" width="340" height="214" />
+      <Section fullWidth colorVariant={'cowamm-light-white'} flow="column" gap={14}>
+        <SectionContent flow={'row'} textAlign={'left'} gap={10}>
+          <SectionImage width={'55rem'}>
+            <img src={`${IMAGE_PATH}cowamm-raising-the-curve.svg`} alt="Make Money with CoW Swap" />
           </SectionImage>
+          <div className="container">
+            <SectionH3 color={Color.cowammBlack} fontSize={10} fontWeight={500} font={Font.flecha}>
+              Raising the <s>Bar</s> <TextItalic color={'cowammPurple'}>Curve</TextItalic>
+            </SectionH3>
+
+            <SubTitle lineHeight={1.4} textAlign={'left'} color={Color.cowammBlack} fontSize={2.9}>
+              According to backtesting across the most liquid non-stablecoin markets, FM-AMM models outperform CFAMM
+              making LP&apos;ing profitable again for even the most liquid tokens.
+            </SubTitle>
+          </div>
         </SectionContent>
       </Section>
 
-      <Section fullWidth colorVariant={'grey'}>
-        <SectionContent flow="row" variant={'grid-2'}>
-          <StickySectionTitle>
-            <h3>How It Works</h3>
-          </StickySectionTitle>
-          <div>
-            <CardWrapper gap={2.4} horizontalGrid={1}>
-              {CONTENT.featureItems.map(({ description }, index) => (
-                <CardItem key={index} imageHeight={4} imageWidth={4} imageRounded variant="iconWithText">
-                  <div className="numberedDot">{index + 1}</div>
-                  <p>{description}</p>
-                </CardItem>
-              ))}
-            </CardWrapper>
+      <Section fullWidth colorVariant={'cowamm-light'} flow="column" gap={8}>
+        <SectionH3 color={Color.cowammBlack} fontSize={6.4} fontWeight={500} font={Font.flecha} textAlign="center">
+          The CoW AMM Benefits LPs of <TextItalic color={'cowammPink'}>All Types </TextItalic>
+        </SectionH3>
+
+        <Separator bgColor={Color.cowammBlack} borderSize={0.2} />
+
+        <SectionContent flow={'row'} textAlign={'left'} gap={10}>
+          <SectionImage width={'55rem'}>
+            <img src={`${IMAGE_PATH}cowamm-lping.svg`} alt="Liquidity providing" />
+          </SectionImage>
+          <div className="container">
+            <SectionH3 color={Color.cowammBlack} fontSize={5.6} fontWeight={500}>
+              Liquidity providing done right — even for volatile tokens
+            </SectionH3>
+
+            <SubTitle lineHeight={1.4} textAlign={'left'} color={Color.cowammBlack} fontSize={2.9}>
+              LVR is bad for LPs, but it&apos;s even worse for DAOs and crypto projects releasing tokens as most of the
+              liquidity they provide goes to arbitrageurs rather than remaining available for token holders.
+            </SubTitle>
           </div>
+        </SectionContent>
+
+        <Separator bgColor={Color.cowammBlack} borderSize={0.2} />
+
+        <SectionContent flow={'row'} textAlign={'left'} gap={10}>
+          <div className="container">
+            <SectionH3 color={Color.cowammBlack} fontSize={5.6} fontWeight={500} font={Font.circular}>
+              Unlock the power of passive investing
+            </SectionH3>
+
+            <SubTitle lineHeight={1.4} textAlign={'left'} color={Color.cowammBlack} fontSize={2.9}>
+              With LVR in the rearview mirror, major liquidity pools earn 5%+ in APY, making liquidity providing just as
+              attractive for passive investors as staking or providing loans.
+            </SubTitle>
+          </div>
+          <SectionImage width={'55rem'}>
+            <img src={`${IMAGE_PATH}cowamm-passive-investing.svg`} alt="Unlock the power of passive investing" />
+          </SectionImage>
         </SectionContent>
       </Section>
 
@@ -354,9 +342,6 @@ export default function WidgetPage({ siteConfigData }) {
         <SectionContent flow={'column'}>
           <div>
             <h3>Feedback & Partners</h3>
-            <SubTitle lineHeight={1.4} maxWidth={80}>
-              - optional description text here -
-            </SubTitle>
 
             {/* Only with a description text */}
             <CardWrapper maxWidth={85}>
@@ -364,11 +349,6 @@ export default function WidgetPage({ siteConfigData }) {
                 .filter(({ description }) => description)
                 .map(({ description, icon, title, link }, index) => (
                   <CardItem key={index} variant="outlined-dark" gap={3.6} imageFullSize textCentered>
-                    <LinkWithUtm href={link} defaultUtm={{ ...CONFIG.utm, utmContent: 'daos-page' }} passHref>
-                      <a target="_blank" rel="nofollow noreferrer">
-                        <img src={icon} alt={title} />
-                      </a>
-                    </LinkWithUtm>
                     <span>
                       <p>{description}</p>
                       <b>- {title}</b>
@@ -405,50 +385,7 @@ export default function WidgetPage({ siteConfigData }) {
         </SectionContent>
       </Section>
 
-      <Section>
-        <SectionContent flow="column">
-          <div className="container">
-            <h3>Get Started with the CoW AMM</h3>
-
-            <SubTitle lineHeight={1.4} maxWidth={80} color={Color.text1}>
-              Start setting up (open) your CoW Pool and build on top of CoW Pools
-            </SubTitle>
-
-            <ButtonWrapper center>
-              <LinkWithUtm
-                href={CONTENT.calendlyURL}
-                defaultUtm={{ ...CONFIG.utm, utmContent: 'widget-page-footerCTA-talk-to-us' }}
-                passHref
-              >
-                <Button
-                  onClick={sendGAEventHandler(WidgetEvents.TALK_TO_US)}
-                  paddingLR={4.2}
-                  label="Read The Docs"
-                  target="_blank"
-                  rel="noopener nofollow"
-                />
-              </LinkWithUtm>
-
-              <LinkWithUtm
-                href={CONTENT.docsURL}
-                defaultUtm={{ ...CONFIG.utm, utmContent: 'widget-page-footerCTA-read-docs' }}
-                passHref
-              >
-                <Button
-                  onClick={sendGAEventHandler(WidgetEvents.READ_DOCS)}
-                  target="_blank"
-                  rel="noopener nofollow"
-                  paddingLR={4.2}
-                  label="Get In Touch"
-                  variant={ButtonVariant.TEXT}
-                />
-              </LinkWithUtm>
-            </ButtonWrapper>
-          </div>
-        </SectionContent>
-      </Section>
-
-      <Section colorVariant={'dark'} fullWidth>
+      <Section colorVariant={'white'} fullWidth>
         <SectionContent flow="column">
           <div className="container">
             <h3>FAQ</h3>
@@ -465,14 +402,47 @@ export default function WidgetPage({ siteConfigData }) {
         </SectionContent>
       </Section>
 
-      <Section fullWidth>
-        <SectionContent flow={'column'}>
-          <div>
-            <h3>Get in touch</h3>
-            <SubTitle maxWidth={60} color={Color.text1} lineHeight={1.4}>
-              Find out more about CoW Protocol on Twitter or Discord
+      <Section>
+        <SectionContent flow="column">
+          <div className="container">
+            <h3>Get Started with the CoW AMM</h3>
+
+            <SubTitle lineHeight={1.4} maxWidth={80} color={Color.text1}>
+              Start setting up (open) your CoW Pool and build on top of CoW Pools
             </SubTitle>
-            <SocialList social={socialFiltered} colorDark />
+
+            <ButtonWrapper center>
+              <b>Provide liquidity</b>
+              <LinkWithUtm
+                href={CONTENT.calendlyURL}
+                defaultUtm={{ ...CONFIG.utm, utmContent: 'widget-page-footerCTA-talk-to-us' }}
+                passHref
+              >
+                <Button
+                  onClick={sendGAEventHandler(WidgetEvents.TALK_TO_US)}
+                  paddingLR={4.2}
+                  label="Read the Docs"
+                  target="_blank"
+                  rel="noopener nofollow"
+                />
+              </LinkWithUtm>
+
+              <b>Trade against the CoW AMM</b>
+              <LinkWithUtm
+                href={CONTENT.docsURL}
+                defaultUtm={{ ...CONFIG.utm, utmContent: 'widget-page-footerCTA-read-docs' }}
+                passHref
+              >
+                <Button
+                  onClick={sendGAEventHandler(WidgetEvents.READ_DOCS)}
+                  target="_blank"
+                  rel="noopener nofollow"
+                  paddingLR={4.2}
+                  label="Get In Touch"
+                  variant={ButtonVariant.TEXT}
+                />
+              </LinkWithUtm>
+            </ButtonWrapper>
           </div>
         </SectionContent>
       </Section>

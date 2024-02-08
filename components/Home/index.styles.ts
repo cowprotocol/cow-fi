@@ -1,12 +1,47 @@
+import { margin } from 'polished'
 import styled from 'styled-components'
 import { Defaults, Color, Font, Media } from 'styles/variables'
 
-export const SectionH1 = styled.h1<{ fontSize?: number; textAlign?: string; lineHeight?: number }>`
+export const SectionH1 = styled.h1<{
+  fontSize?: number
+  textAlign?: string
+  lineHeight?: number
+  color?: string
+  fontWeight?: number
+  maxWidth?: number
+}>`
   && {
     ${({ fontSize }) => fontSize && `font-size: ${fontSize}rem;`}
     ${({ textAlign }) => textAlign && `text-align: ${textAlign};`}
-    font-weight: ${Font.weightMedium};
+    font-weight: ${({ fontWeight }) => (fontWeight ? fontWeight : Font.weightMedium)};
     line-height: ${({ lineHeight }) => (lineHeight ? lineHeight : 1.2)};
+    ${({ color }) => color && `color: ${color};`}
+    max-width: ${({ maxWidth }) => (maxWidth ? `${maxWidth}rem` : '100%')};
+
+    ${Media.mobile} {
+      // get the font size from the parent and divide by 1.5 to get the mobile size
+      font-size: calc(${({ fontSize }) => fontSize}rem / 1.5);
+    }
+  }
+`
+
+export const SectionH3 = styled.h3<{
+  fontSize?: number
+  textAlign?: string
+  lineHeight?: number
+  color?: string
+  fontWeight?: number
+  maxWidth?: number
+  font?: string
+}>`
+  && {
+    ${({ fontSize }) => fontSize && `font-size: ${fontSize}rem;`}
+    ${({ textAlign }) => textAlign && `text-align: ${textAlign};`}
+    font-weight: ${({ fontWeight }) => (fontWeight ? fontWeight : Font.weightMedium)};
+    line-height: ${({ lineHeight }) => (lineHeight ? lineHeight : 1.2)};
+    ${({ color }) => color && `color: ${color};`}
+    max-width: ${({ maxWidth }) => (maxWidth ? `${maxWidth}rem` : '100%')};
+    font-family: ${({ font }) => (font ? font : 'inherit')};
 
     ${Media.mobile} {
       // get the font size from the parent and divide by 1.5 to get the mobile size
@@ -54,9 +89,23 @@ export const Section = styled.section<{
       ? Color.grey
       : colorVariant === 'dark-gradient'
       ? Color.gradient2
+      : colorVariant === 'cowamm-light'
+      ? Color.cowammSand
+      : colorVariant === 'cowamm-light-white'
+      ? Color.cowammWhite
+      : colorVariant === 'cowamm-dark'
+      ? Color.cowammBlack
       : 'transparent'};
   color: ${({ colorVariant }) =>
-    colorVariant === 'dark' ? Color.lightBlue : colorVariant === 'white' ? Color.darkBlue : 'inherit'};
+    colorVariant === 'dark'
+      ? Color.lightBlue
+      : colorVariant === 'white'
+      ? Color.darkBlue
+      : colorVariant === 'cowamm-light' || colorVariant === 'cowamm-light-white'
+      ? Color.cowammBlack
+      : colorVariant === 'cowamm-dark'
+      ? Color.cowammWhite
+      : 'inherit'};
   border-radius: ${({ borderRadius }) => (borderRadius ? `${borderRadius}rem` : '0')};
   box-shadow: ${({ boxShadow }) => (boxShadow ? '0 1rem 2.4rem rgba(0,0,0,.05)' : 'none')};
 
@@ -147,6 +196,10 @@ export const Section = styled.section<{
         ? Color.lightBlue
         : colorVariant === 'dark'
         ? Color.lightBlue
+        : colorVariant === 'cowamm-light'
+        ? Color.cowammBlack
+        : colorVariant === 'cowamm-dark'
+        ? Color.cowammWhite // Using the cowammWhite color for cowamm-dark titles
         : Color.darkBlue};
   }
 `
@@ -294,10 +347,11 @@ export const SectionContent = styled.div<{
   }
 `
 
-export const Separator = styled.div`
+export const Separator = styled.div<{ bgColor?: string; borderSize?: number; margin?: string }>`
   width: 100%;
-  height: 0.1rem;
-  background: ${Color.gradient};
+  height: ${({ borderSize }) => (borderSize ? `${borderSize}rem` : '0.1rem')};
+  background: ${({ bgColor }) => (bgColor ? bgColor : Color.gradient)};
+  margin: ${({ margin }) => (margin ? `${margin}` : '0 auto')};
 `
 
 export const StepWrapper = styled.div`
@@ -411,7 +465,7 @@ export const CardWrapper = styled.div<{
 export const CardItem = styled.div<{
   contentCentered?: boolean
   padding?: number
-  variant?: 'outlined-dark' | 'iconWithText'
+  variant?: 'outlined-dark' | 'iconWithText' | 'cowamm-card'
   imageFullSize?: boolean
   imageHeight?: number
   imageWidth?: number
@@ -419,19 +473,28 @@ export const CardItem = styled.div<{
   gap?: number
   imageRounded?: boolean
   borderRadius?: number
+  fontSize?: number
 }>`
   display: flex;
   flex-flow: column wrap;
   align-items: ${({ contentCentered }) => (contentCentered ? 'center' : 'flex-start')};
   justify-content: ${({ contentCentered }) => (contentCentered ? 'center' : 'flex-start')};
-  background: ${({ variant }) => (variant === 'outlined-dark' ? 'transparent' : Color.white)};
-  box-shadow: ${({ variant }) => (variant === 'outlined-dark' ? 'none' : '0 1rem 2.4rem rgba(0,0,0,.05)')};
-  border: ${({ variant }) => (variant === 'outlined-dark' ? `0.1rem solid ${Color.border}` : 'none')};
-  color: ${({ variant }) => (variant === 'outlined-dark' ? Color.text2 : Color.text1)};
-  border-radius: ${({ borderRadius }) => (borderRadius ? `${borderRadius}rem` : '2.4rem')};
-  padding: ${({ padding }) => (padding ? `${padding}rem` : '3.4rem')};
-  gap: ${({ gap }) => (gap ? `${gap}rem` : '1.6rem')};
-  font-size: 1.6rem;
+  background: ${({ variant }) =>
+    variant === 'outlined-dark' ? 'transparent' : variant === 'cowamm-card' ? 'transparent' : Color.white};
+  box-shadow: ${({ variant }) =>
+    variant === 'outlined-dark' || variant === 'cowamm-card' ? 'none' : '0 1rem 2.4rem rgba(0,0,0,.05)'};
+  border: ${({ variant }) =>
+    variant === 'outlined-dark'
+      ? `0.1rem solid ${Color.border}`
+      : variant === 'cowamm-card'
+      ? 'none'
+      : 'none'}; // No border for cowamm-card except the top border defined below
+  color: ${({ variant }) =>
+    variant === 'outlined-dark' ? Color.text2 : variant === 'cowamm-card' ? Color.cowammWhite : Color.text1};
+  border-radius: ${({ borderRadius }) => (typeof borderRadius !== 'undefined' ? `${borderRadius}rem` : '2.4rem')};
+  padding: ${({ padding }) => (typeof padding !== 'undefined' ? `${padding}rem` : '3.4rem')};
+  gap: ${({ gap }) => (typeof gap !== 'undefined' ? `${gap}rem` : '1.6rem')};
+  font-size: ${({ fontSize }) => (fontSize ? `${fontSize}rem` : '1.6rem')};
   max-width: 100%;
   position: relative;
 
@@ -505,12 +568,14 @@ export const CardItem = styled.div<{
     align-items: center;
     justify-content: center;
     gap: 1.6rem;
+    font-size: inherit;
   }
 
   > p,
   > span > p {
     line-height: 1.5;
     text-align: ${({ textCentered }) => (textCentered ? 'center' : 'left')};
+    font-size: inherit;
   }
 
   > span > a {
@@ -540,6 +605,33 @@ export const CardItem = styled.div<{
         margin: auto 0;
       }
     `}
+
+  ${({ variant }) =>
+    variant === 'cowamm-card' &&
+    `
+    &:before {
+      content: '';
+      position: relative;
+      height: 0.2rem;
+      margin: 0 auto 2rem;
+      width: 100%;
+      background: ${Color.cowammWhite};
+    }
+
+    // Adjust the image style specifically for cowamm-card
+    > img,
+    > svg {
+      --size: ${({ imageHeight }) => (imageHeight ? `${imageHeight}rem` : '12rem')}; // Adjust the size as needed
+      width: var(--size);
+      height: var(--size);
+      margin-bottom: 2.4rem;
+    }
+
+    // Style the text to match the provided image
+    > h4, > p, > span {
+      color: ${Color.cowammWhite} 
+    }
+  `}
 `
 
 export const TopGradient = styled.div`
@@ -587,10 +679,12 @@ export const SectionImage = styled.div<{
   margin?: string
   height?: string
   width?: string
+  flex?: string
 }>`
   width: ${({ width }) => (width ? width : '100%')};
   height: ${({ height }) => (height ? height : '100%')};
   margin: ${({ margin }) => (margin ? margin : '0')};
+  flex: ${({ flex }) => (flex ? flex : '0 1 auto')};
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,5 +1,6 @@
 import { transparentize } from 'polished'
 import { css, keyframes } from 'styled-components'
+import styled from 'styled-components'
 
 export const Color = {
   white: '#FFFFFF',
@@ -37,7 +38,20 @@ export const Color = {
       radial-gradient(at 32% 81%, hsla(204, 100%, 89%, 1) 0px, transparent 50%),
       radial-gradient(at 19% 39%, hsla(204, 100%, 89%, 1) 0px, transparent 50%);
   `,
-}
+
+  // CoW AMM theme
+  cowammBlack: '#211715',
+  cowammLightBlue: '#57C3FF',
+  cowammBlue: '#3A86FF',
+  cowammWhite: '#f6f2e7',
+  cowammLightPurple: '#B462FA',
+  cowammPurple: '#8738EC',
+  cowammPink: '#FB50C0',
+  cowammYellow: '#F5BD24',
+  cowammLightOrange: '#FE970C',
+  cowammOrange: '#FB5607',
+  cowammSand: '#E3DED4',
+} as const
 
 export const Defaults = {
   borderRadius: '1.6rem',
@@ -48,6 +62,8 @@ export const Defaults = {
 export const Font = {
   default: "'Averta', 'Helvetica Neue', Helvetica, sans-serif",
   arial: 'Arial, Helvetica, sans-serif',
+  flecha: "'Flecha S', 'Helvetica Neue', Helvetica, sans-serif",
+  circular: "'CircularXXSub-Book', 'Helvetica Neue', Helvetica, sans-serif",
   sizeDefault: '1.6rem',
   weightLight: 300,
   weightNormal: 400,
@@ -158,4 +174,46 @@ const fadeIn = keyframes`
 
 export const textFadeIn = css`
   animation: ${fadeIn} ${transitions.duration.fast} ${transitions.timing.in};
+`
+
+export const TextItalicLightPurple = styled.span`
+  font-style: italic;
+  color: ${Color.cowammLightPurple};
+`
+
+export const TextItalicPurple = styled.span`
+  font-style: italic;
+  color: ${Color.cowammPurple};
+`
+
+export const TextItalicYellow = styled.span`
+  font-style: italic;
+  color: ${Color.cowammYellow};
+`
+
+export const TextItalicLightOrange = styled.span`
+  font-style: italic;
+  color: ${Color.cowammLightOrange};
+`
+
+export const TextItalicLightBlue = styled.span`
+  font-style: italic;
+  color: ${Color.cowammLightBlue};
+`
+
+export const TextItalicBlue = styled.span`
+  font-style: italic;
+  color: ${Color.cowammBlue};
+`
+
+export const TextItalicPink = styled.span`
+  font-style: italic;
+  color: ${Color.cowammPink};
+`
+
+type TextColorKey = keyof typeof Color
+
+export const TextItalic = styled.span<{ color: TextColorKey }>`
+  font-style: italic;
+  color: ${({ color }) => Color[color]};
 `

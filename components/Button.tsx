@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Defaults, Color, Font, Media } from 'styles/variables'
 import React, { forwardRef } from 'react'
+import { lighten } from 'polished'
 
 export enum ButtonVariant {
   OUTLINE = 'outline',
@@ -9,6 +10,7 @@ export enum ButtonVariant {
   TEXT_LIGHT = 'textLight',
   LIGHT = 'light',
   OUTLINE_LIGHT = 'outlineLight',
+  COWAMM_LIGHTBLUE = 'cowammLightBlue',
 }
 
 type ButtonProps = {
@@ -16,6 +18,7 @@ type ButtonProps = {
   borderRadius?: number
   fontSize?: number
   paddingLR?: number
+  paddingTB?: number
   marginTB?: number
   variant?: ButtonVariant
   href?: string
@@ -32,10 +35,13 @@ const Wrapper = styled.a<Omit<ButtonProps, 'href' | 'label' | 'target' | 'rel'>>
   flex-flow: row;
   border: 0.1rem solid transparent;
   color: ${Color.lightBlue};
-  padding: ${({ paddingLR }) => (paddingLR ? `0 ${paddingLR}rem` : '0 2.4rem')};
+  padding-top: ${({ paddingTB }) => (paddingTB ? `${paddingTB}rem` : '0')};
+  padding-bottom: ${({ paddingTB }) => (paddingTB ? `${paddingTB}rem` : '0')};
+  padding-left: ${({ paddingLR }) => (paddingLR ? `${paddingLR}rem` : '2.4rem')};
+  padding-right: ${({ paddingLR }) => (paddingLR ? `${paddingLR}rem` : '2.4rem')};
   margin: ${({ marginTB }) => (marginTB ? `${marginTB}rem 0` : '0')};
   box-sizing: border-box;
-  border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : Defaults.borderRadius)};
+  border-radius: ${({ borderRadius }) => `${borderRadius ?? Defaults.borderRadius}`};
   min-height: ${({ minHeight }) => (minHeight ? `${minHeight}rem` : '5.6rem')};
   align-items: center;
   font-size: ${({ fontSize }) => (fontSize ? `${fontSize}rem` : '2.2rem')};
@@ -48,6 +54,10 @@ const Wrapper = styled.a<Omit<ButtonProps, 'href' | 'label' | 'target' | 'rel'>>
   ${Media.mobile} {
     padding: 0 1.6rem;
     min-height: 4.8rem;
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.1;
+    text-align: center;
   }
 
   &:hover {
@@ -102,6 +112,17 @@ const Wrapper = styled.a<Omit<ButtonProps, 'href' | 'label' | 'target' | 'rel'>>
     background: transparent;
     border: 0.1rem solid ${Color.lightBlue};
   `}
+
+${({ variant }) =>
+    variant === ButtonVariant.COWAMM_LIGHTBLUE &&
+    `
+    background: ${Color.cowammLightBlue};
+    color: ${Color.cowammBlack};
+
+    &:hover {
+      background: ${lighten(0.1, Color.cowammBlue)};
+      color: ${Color.darkBlue};
+  `}
 `
 
 // General purpose multiple button wrapper
@@ -134,6 +155,7 @@ export const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
       borderRadius,
       fontSize,
       paddingLR,
+      paddingTB,
       marginTB,
       variant,
       href = '#',
@@ -152,6 +174,7 @@ export const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
           borderRadius,
           fontSize,
           paddingLR,
+          paddingTB,
           marginTB,
           variant,
           minHeight,
