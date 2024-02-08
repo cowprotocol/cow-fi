@@ -199,7 +199,7 @@ export const Section = styled.section<{
         : colorVariant === 'cowamm-light'
         ? Color.cowammBlack
         : colorVariant === 'cowamm-dark'
-        ? Color.cowammWhite // Using the cowammWhite color for cowamm-dark titles
+        ? Color.cowammWhite
         : Color.darkBlue};
   }
 `
@@ -484,11 +484,7 @@ export const CardItem = styled.div<{
   box-shadow: ${({ variant }) =>
     variant === 'outlined-dark' || variant === 'cowamm-card' ? 'none' : '0 1rem 2.4rem rgba(0,0,0,.05)'};
   border: ${({ variant }) =>
-    variant === 'outlined-dark'
-      ? `0.1rem solid ${Color.border}`
-      : variant === 'cowamm-card'
-      ? 'none'
-      : 'none'}; // No border for cowamm-card except the top border defined below
+    variant === 'outlined-dark' ? `0.1rem solid ${Color.border}` : variant === 'cowamm-card' ? 'none' : 'none'};
   color: ${({ variant }) =>
     variant === 'outlined-dark' ? Color.text2 : variant === 'cowamm-card' ? Color.cowammWhite : Color.text1};
   border-radius: ${({ borderRadius }) => (typeof borderRadius !== 'undefined' ? `${borderRadius}rem` : '2.4rem')};
@@ -618,16 +614,14 @@ export const CardItem = styled.div<{
       background: ${Color.cowammWhite};
     }
 
-    // Adjust the image style specifically for cowamm-card
     > img,
     > svg {
-      --size: ${({ imageHeight }) => (imageHeight ? `${imageHeight}rem` : '12rem')}; // Adjust the size as needed
+      --size: ${({ imageHeight }) => (imageHeight ? `${imageHeight}rem` : '12rem')};
       width: var(--size);
       height: var(--size);
       margin-bottom: 2.4rem;
     }
 
-    // Style the text to match the provided image
     > h4, > p, > span {
       color: ${Color.cowammWhite} 
     }
