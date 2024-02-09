@@ -17,6 +17,7 @@ type ButtonProps = {
   wrapText?: boolean
   borderRadius?: number
   fontSize?: number
+  fontWeight?: number
   paddingLR?: number
   paddingTB?: number
   marginTB?: number
@@ -45,10 +46,10 @@ const Wrapper = styled.a<Omit<ButtonProps, 'href' | 'label' | 'target' | 'rel'>>
   min-height: ${({ minHeight }) => (minHeight ? `${minHeight}rem` : '5.6rem')};
   align-items: center;
   font-size: ${({ fontSize }) => (fontSize ? `${fontSize}rem` : '2.2rem')};
+  font-weight: ${({ fontWeight }) => (fontWeight ? fontWeight : Font.weightMedium)};
   justify-content: center;
   transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
   white-space: ${({ wrapText }) => (wrapText ? 'initial' : 'nowrap')};
-  font-weight: ${Font.weightMedium};
   text-decoration: none;
 
   ${Media.mobile} {
@@ -154,6 +155,7 @@ export const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
       wrapText,
       borderRadius,
       fontSize,
+      fontWeight,
       paddingLR,
       paddingTB,
       marginTB,
@@ -173,6 +175,7 @@ export const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
           wrapText,
           borderRadius,
           fontSize,
+          fontWeight,
           paddingLR,
           paddingTB,
           marginTB,

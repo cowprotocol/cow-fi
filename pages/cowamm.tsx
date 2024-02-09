@@ -25,7 +25,6 @@ function expandFaq(event: any) {
 }
 
 const IMAGE_PATH = '/images/'
-const DAO_LOGOS_PATH = '/images/dao-logos/'
 
 const CONTENT = {
   configuratorURL: 'https://widget.cow.fi/',
@@ -38,7 +37,7 @@ const CONTENT = {
     },
     {
       image: `${IMAGE_PATH}cowamm-howitworks-2.svg`,
-      description: 'Solvers bid to rebalance these pools whenever there is an arbitrage opportunity',
+      description: 'Solvers bid to rebalance CoW AMM pools whenever there is an arbitrage opportunity',
     },
     {
       image: `${IMAGE_PATH}cowamm-howitworks-3.svg`,
@@ -51,7 +50,14 @@ const CONTENT = {
   ],
   feedbackPartners: [
     {
-      title: 'Felix Leupold, CTO at CoW Protocol',
+      title: (
+        <>
+          ﹣ Felix Leupold
+          <br />
+          <small>CTO at CoW Protocol</small>
+        </>
+      ),
+      titleColor: 'cowammOrange',
       description: (
         <>
           &quot;This is an excellent application of batch auction theory to solve one of the most important problems in
@@ -60,7 +66,12 @@ const CONTENT = {
       ),
     },
     {
-      title: 'Fernando Martinelli, CEO at Balancer Labs',
+      title: (
+        <>
+          ﹣ Fernando Martinelli <br /> <small>CEO at Balancer Labs</small>
+        </>
+      ),
+      titleColor: 'cowammPurple',
       description: (
         <>
           &quot;Balancer is super excited to explore custom AMM designs like CoW AMM. MEV/LVR is the key problem holding
@@ -69,7 +80,12 @@ const CONTENT = {
       ),
     },
     {
-      title: 'Martin Köppelman, CEO at Gnosis',
+      title: (
+        <>
+          ﹣ Martin Köppelman <br /> <small>CEO at Gnosis</small>
+        </>
+      ),
+      titleColor: 'cowammPink',
       description: (
         <>
           &quot;If I knew we wouldn&apos;t suffer impermanent loss or LVR, I&apos;d be much more supportive of using
@@ -78,7 +94,12 @@ const CONTENT = {
       ),
     },
     {
-      title: 'Hasu, Strategy Lead at Flashbots',
+      title: (
+        <>
+          ﹣ Hasu <br /> <small>Strategy Lead at Flashbots</small>
+        </>
+      ),
+      titleColor: 'cowammBlue',
       description: (
         <>
           {' '}
@@ -187,13 +208,10 @@ export default function CoWAMMPage({ siteConfigData }) {
               width="430"
               style={{ margin: '0 1.6rem 4rem', maxWidth: '100%' }}
             />
-            <SectionH1 color={Color.cowammWhite} fontSize={6.6} fontWeight={500} maxWidth={100}>
+            <SectionH1 color={Color.cowammWhite} fontSize={6.6} fontWeight={500} maxWidth={100} margin={'0 auto 4rem'}>
               The first <TextItalic color={'cowammLightPurple'}>MEV-Capturing AMM</TextItalic>, brought to you by{' '}
               <TextItalic color={'cowammYellow'}>CoW DAO</TextItalic>
             </SectionH1>
-            <SubTitle color={Color.cowammWhite} fontSize={2.7} lineHeight={1.4} maxWidth={60}>
-              CoW AMM uses batch auctions to maximize LP returns and solve the LVR problem for good.
-            </SubTitle>
             <Button
               variant={ButtonVariant.COWAMM_LIGHTBLUE}
               href="#"
@@ -201,6 +219,7 @@ export default function CoWAMMPage({ siteConfigData }) {
               paddingLR={4.2}
               borderRadius={0}
               fontSize={2.6}
+              fontWeight={500}
               label="Protect Your Liquidity"
             />
           </div>
@@ -217,13 +236,13 @@ export default function CoWAMMPage({ siteConfigData }) {
               AMMs don&apos;t want you to know about <TextItalic color={'cowammBlue'}>LVR</TextItalic>
             </SectionH3>
             <SubTitle lineHeight={1.4} textAlign={'left'} color={Color.cowammBlack} fontSize={2.9}>
-              Liquidity providers expect their tokens to earn yield, but the dirty little secret of AMMs is that most
-              liquidity pools lose money.
+              Liquidity providers expect their tokens to earn yield, but the dirty little secret of AMMs is that{' '}
+              <b>most liquidity pools lose money</b>.
               <br />
               <br />
-              In fact, billions of dollars of LP funds are stolen every year by arbitrageurs engaging in
-              loss-versus-rebalancing (LVR), a type of MEV that&apos;s responsible for more value loss than frontrunning
-              and sandwich attacks combined.
+              In fact, <b>billions of dollars of LP funds are stolen by arbitrageurs every year</b>. These losses are
+              known as loss-versus-rebalancing (LVR). LVR is a bigger source of MEV than{' '}
+              <b>frontrunning and sandwich attacks combined</b>.
             </SubTitle>
           </div>
         </SectionContent>
@@ -243,7 +262,7 @@ export default function CoWAMMPage({ siteConfigData }) {
             <CardWrapper gap={3.2} horizontalGrid={4} margin={'2.4rem auto'}>
               {CONTENT.howItWorksCards.map(({ image, description }, index) => (
                 <CardItem
-                  variant={'cowamm-card'}
+                  variant={'cowamm-card-light'}
                   key={index}
                   imageHeight={5}
                   padding={0}
@@ -260,18 +279,26 @@ export default function CoWAMMPage({ siteConfigData }) {
       </Section>
 
       <Section fullWidth colorVariant={'cowamm-light-white'} flow="column" gap={14}>
-        <SectionContent flow={'row'} textAlign={'left'} gap={10}>
-          <SectionImage width={'55rem'}>
+        <SectionContent flow={'row'} textAlign={'left'} gap={10} fullWidth>
+          <SectionImage width={'52rem'}>
             <img src={`${IMAGE_PATH}cowamm-raising-the-curve.svg`} alt="Make Money with CoW Swap" />
           </SectionImage>
           <div className="container">
-            <SectionH3 color={Color.cowammBlack} fontSize={10} fontWeight={500} font={Font.flecha}>
+            <SectionH3 color={Color.cowammBlack} fontSize={6.6} fontWeight={500} font={Font.flecha}>
               Raising the <s>bar</s> <TextItalic color={'cowammPurple'}>curve</TextItalic>
             </SectionH3>
 
-            <SubTitle lineHeight={1.4} textAlign={'left'} color={Color.cowammBlack} fontSize={2.9}>
-              According to backtesting across the most liquid non-stablecoin markets, FM-AMM models outperform CFAMM
-              making LP&apos;ing profitable again for even the most liquid tokens.
+            <SubTitle lineHeight={1.4} textAlign={'left'} color={Color.cowammBlack} fontSize={2.8}>
+              CoW AMM LPs don&apos;t have to worry about LVR, which <b>costs CFAMM LPs 5-7% of their returns</b>, on
+              average.
+              <br />
+              <br />
+              Additionally,{' '}
+              <a href="https://arxiv.org/pdf/2307.02074v3.pdf" target="_blank" rel="noreferrer nofollow">
+                backtesting research
+              </a>{' '}
+              conducted over 6 months in 2023 shows that CoW AMM returns would have outperformed CFAMM returns
+              absolutely for 10 of the 11 most-liquid, non-stablecoin pairs.
             </SubTitle>
           </div>
         </SectionContent>
@@ -320,20 +347,27 @@ export default function CoWAMMPage({ siteConfigData }) {
       </Section>
 
       <Section fullWidth colorVariant={'cowamm-light-white'} flow="column" gap={14}>
-        <SectionContent flow={'column'}>
+        <SectionContent fullWidth flow={'column'}>
           <div>
-            <SectionH3 color={Color.cowammBlack} fontSize={10} fontWeight={500} font={Font.flecha}>
+            <SectionH3 color={Color.cowammBlack} fontSize={6.6} fontWeight={500} font={Font.flecha}>
               Trust the <TextItalic color={'cowammLightOrange'}>experts</TextItalic>
             </SectionH3>
 
-            <CardWrapper horizontalGrid={4} gap={3.2}>
+            <CardWrapper horizontalGrid={4} gap={6.2}>
               {CONTENT.feedbackPartners
                 .filter(({ description }) => description)
-                .map(({ description, title }, index) => (
-                  <CardItem key={index} variant="outlined-dark" gap={3.6} imageFullSize textCentered>
+                .map(({ description, title, titleColor }, index) => (
+                  <CardItem
+                    variant={'cowamm-card-dark'}
+                    key={index}
+                    imageHeight={5}
+                    padding={0}
+                    borderRadius={0}
+                    fontSize={2.7}
+                  >
                     <span>
-                      <p>{description}</p>
-                      <b>- {title}</b>
+                      <p style={{ margin: '0 auto 2.1rem' }}>{description}</p>
+                      <TextItalic color={titleColor as keyof typeof Color}>{title}</TextItalic>
                     </span>
                   </CardItem>
                 ))}
@@ -361,44 +395,33 @@ export default function CoWAMMPage({ siteConfigData }) {
         </SectionContent>
       </Section>
 
-      <Section>
-        <SectionContent flow="column">
-          <div className="container">
-            <h3>Get Started with the CoW AMM</h3>
+      <Section fullWidth colorVariant={'cowamm-light-white'} flow="column" gap={14}>
+        <SectionContent flow={'column'}>
+          <div>
+            <SectionH3 color={Color.cowammBlack} fontSize={6.6} fontWeight={500} font={Font.flecha}>
+              Get started with the <TextItalic color={'cowammOrange'}>CoW AMM</TextItalic>
+            </SectionH3>
 
-            <SubTitle lineHeight={1.4} maxWidth={80} color={Color.text1}>
-              Start setting up (open) your CoW Pool and build on top of CoW Pools
+            <SubTitle fontSize={2.9} lineHeight={1.4} color={Color.cowammBlack} maxWidth={100}>
+              Anyone can provide liquidity to CoW AMM by creating their own protected pools. To get started, just follow
+              the instructions in the CoW DAO docs!
             </SubTitle>
 
             <ButtonWrapper center>
-              <b>Provide liquidity</b>
-              <LinkWithUtm
-                href={CONTENT.calendlyURL}
-                defaultUtm={{ ...CONFIG.utm, utmContent: 'widget-page-footerCTA-talk-to-us' }}
-                passHref
-              >
-                <Button
-                  onClick={sendGAEventHandler(WidgetEvents.TALK_TO_US)}
-                  paddingLR={4.2}
-                  label="Read the Docs"
-                  target="_blank"
-                  rel="noopener nofollow"
-                />
-              </LinkWithUtm>
-
-              <b>Trade against the CoW AMM</b>
               <LinkWithUtm
                 href={CONTENT.docsURL}
                 defaultUtm={{ ...CONFIG.utm, utmContent: 'widget-page-footerCTA-read-docs' }}
                 passHref
               >
                 <Button
-                  onClick={sendGAEventHandler(WidgetEvents.READ_DOCS)}
-                  target="_blank"
-                  rel="noopener nofollow"
+                  variant={ButtonVariant.COWAMM_LIGHTBLUE}
+                  href="#"
+                  paddingTB={3}
                   paddingLR={4.2}
-                  label="Get In Touch"
-                  variant={ButtonVariant.TEXT}
+                  borderRadius={0}
+                  fontSize={2.6}
+                  fontWeight={500}
+                  label="Read the docs"
                 />
               </LinkWithUtm>
             </ButtonWrapper>

@@ -181,4 +181,6 @@ type TextColorKey = keyof typeof Color
 export const TextItalic = styled.span<{ color: TextColorKey }>`
   font-style: italic;
   color: ${({ color }) => Color[color]};
+  width: 100%;
+  display: inline;
 `

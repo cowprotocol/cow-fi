@@ -9,6 +9,7 @@ export const SectionH1 = styled.h1<{
   color?: string
   fontWeight?: number
   maxWidth?: number
+  margin?: string
 }>`
   && {
     ${({ fontSize }) => fontSize && `font-size: ${fontSize}rem;`}
@@ -17,9 +18,9 @@ export const SectionH1 = styled.h1<{
     line-height: ${({ lineHeight }) => (lineHeight ? lineHeight : 1.2)};
     ${({ color }) => color && `color: ${color};`}
     max-width: ${({ maxWidth }) => (maxWidth ? `${maxWidth}rem` : '100%')};
+    margin: ${({ margin }) => (margin ? `${margin}` : '0 auto')};
 
     ${Media.mobile} {
-      // get the font size from the parent and divide by 1.5 to get the mobile size
       font-size: calc(${({ fontSize }) => fontSize}rem / 1.5);
     }
   }
@@ -465,7 +466,7 @@ export const CardWrapper = styled.div<{
 export const CardItem = styled.div<{
   contentCentered?: boolean
   padding?: number
-  variant?: 'outlined-dark' | 'iconWithText' | 'cowamm-card'
+  variant?: 'outlined-dark' | 'iconWithText' | 'cowamm-card-light' | 'cowamm-card-dark'
   imageFullSize?: boolean
   imageHeight?: number
   imageWidth?: number
@@ -480,19 +481,31 @@ export const CardItem = styled.div<{
   align-items: ${({ contentCentered }) => (contentCentered ? 'center' : 'flex-start')};
   justify-content: ${({ contentCentered }) => (contentCentered ? 'center' : 'flex-start')};
   background: ${({ variant }) =>
-    variant === 'outlined-dark' ? 'transparent' : variant === 'cowamm-card' ? 'transparent' : Color.white};
+    variant === 'outlined-dark'
+      ? 'transparent'
+      : variant === 'cowamm-card-light' || variant === 'cowamm-card-dark'
+      ? 'transparent'
+      : Color.white};
   box-shadow: ${({ variant }) =>
-    variant === 'outlined-dark' || variant === 'cowamm-card' ? 'none' : '0 1rem 2.4rem rgba(0,0,0,.05)'};
-  border: ${({ variant }) =>
-    variant === 'outlined-dark' ? `0.1rem solid ${Color.border}` : variant === 'cowamm-card' ? 'none' : 'none'};
+    variant === 'outlined-dark' || variant === 'cowamm-card-light' || variant === 'cowamm-card-dark'
+      ? 'none'
+      : '0 1rem 2.4rem rgba(0,0,0,.05)'};
+  border: ${({ variant }) => (variant === 'outlined-dark' ? `0.1rem solid ${Color.border}` : 'none')};
   color: ${({ variant }) =>
-    variant === 'outlined-dark' ? Color.text2 : variant === 'cowamm-card' ? Color.cowammWhite : Color.text1};
+    variant === 'outlined-dark'
+      ? Color.text2
+      : variant === 'cowamm-card-light'
+      ? Color.cowammWhite
+      : variant === 'cowamm-card-dark'
+      ? Color.cowammWhite
+      : Color.text1};
   border-radius: ${({ borderRadius }) => (typeof borderRadius !== 'undefined' ? `${borderRadius}rem` : '2.4rem')};
   padding: ${({ padding }) => (typeof padding !== 'undefined' ? `${padding}rem` : '3.4rem')};
   gap: ${({ gap }) => (typeof gap !== 'undefined' ? `${gap}rem` : '1.6rem')};
   font-size: ${({ fontSize }) => (fontSize ? `${fontSize}rem` : '1.6rem')};
   max-width: 100%;
   position: relative;
+  line-height: 1.1;
 
   > a {
     display: flex;
@@ -603,29 +616,29 @@ export const CardItem = styled.div<{
     `}
 
   ${({ variant }) =>
-    variant === 'cowamm-card' &&
+    (variant === 'cowamm-card-light' || variant === 'cowamm-card-dark') &&
     `
-    &:before {
-      content: '';
-      position: relative;
-      height: 0.2rem;
-      margin: 0 auto 2rem;
-      width: 100%;
-      background: ${Color.cowammWhite};
-    }
+  &:before {
+    content: '';
+    position: relative;
+    height: 0.2rem;
+    margin: 0 auto 2rem;
+    width: 100%;
+    background: ${variant === 'cowamm-card-dark' ? Color.cowammBlack : Color.cowammWhite};
+  }
 
-    > img,
-    > svg {
-      --size: ${({ imageHeight }) => (imageHeight ? `${imageHeight}rem` : '12rem')};
-      width: var(--size);
-      height: var(--size);
-      margin-bottom: 2.4rem;
-    }
+  > img,
+  > svg {
+    --size: ${({ imageHeight }) => (imageHeight ? `${imageHeight}rem` : '12rem')};
+    width: var(--size);
+    height: var(--size);
+    margin-bottom: 2.4rem;
+  }
 
-    > h4, > p, > span {
-      color: ${Color.cowammWhite} 
-    }
-  `}
+  > h4, > p, > span { 
+    color: ${variant === 'cowamm-card-dark' ? Color.cowammBlack : Color.cowammWhite};
+  }
+`}
 `
 
 export const TopGradient = styled.div`
