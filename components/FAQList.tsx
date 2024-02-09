@@ -2,12 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 import { Color, Font, Media } from 'styles/variables'
 
-const Wrapper = styled.div<{ maxWidth?: number }>`
+const Wrapper = styled.div<{ maxWidth?: number; titleFontSize?: number; bodyFontSize?: number; color?: string }>`
+  --titleSize: ${({ titleFontSize }) => (titleFontSize ? `${titleFontSize}rem` : '4.8rem')};
+  --color: ${({ color }) => (color ? color : Color.darkBlue)};
   display: flex;
   flex-flow: column wrap;
   align-items: flex-start;
   margin: 2.4rem 0;
   width: ${({ maxWidth }) => (maxWidth ? `${maxWidth}rem` : '100%')};
+  font-size: ${({ bodyFontSize }) => (bodyFontSize ? `${bodyFontSize}rem` : '2.4rem')};
+  font-weight: ${Font.weightNormal};
 
   ${Media.mobile} {
     width: 100%;
@@ -15,8 +19,8 @@ const Wrapper = styled.div<{ maxWidth?: number }>`
   }
 
   a {
-    color: ${Color.darkBlue};
-    font-weight: ${Font.weightMedium};
+    color: var(--color);
+    font-weight: inherit;
     text-decoration: underline;
   }
 
@@ -27,8 +31,8 @@ const Wrapper = styled.div<{ maxWidth?: number }>`
     margin: 0 auto;
     padding: 0;
     line-height: 1;
-    font-size: 2.4rem;
-    font-weight: ${Font.weightNormal};
+    font-size: inherit;
+    font-weight: inherit;
     position: relative;
 
     ${Media.mobile} {
@@ -40,14 +44,15 @@ const Wrapper = styled.div<{ maxWidth?: number }>`
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
-    font-weight: ${Font.weightMedium};
+    font-weight: inherit;
     cursor: pointer;
     margin: 0;
-    padding: 2.4rem 2.8rem 2.4rem 0;
+    padding: 3.8rem var(--titleSize) 3.8rem 0;
     list-style-type: none;
     line-height: 1.2;
-    border-bottom: 0.2rem solid ${Color.border};
+    border-bottom: 0.2rem solid var(--color);
     position: relative;
+    font-size: ${({ titleFontSize }) => (titleFontSize ? `${titleFontSize}rem` : '3.2rem')};
 
     &::marker,
     &::-webkit-details-marker {
@@ -55,13 +60,16 @@ const Wrapper = styled.div<{ maxWidth?: number }>`
     }
 
     &::after {
-      content: '+';
+      content: '';
+      background: url('/images/cowamm-plus-sign.svg') no-repeat center/contain;
       display: flex;
       align-items: center;
       text-align: center;
+      width: var(--titleSize);
+      height: var(--titleSize);
       margin: auto;
       position: absolute;
-      font-size: 2.8rem;
+      font-size: inherit;
       right: 0;
       top: 0;
       bottom: 0;
@@ -69,14 +77,18 @@ const Wrapper = styled.div<{ maxWidth?: number }>`
   }
 
   details > div {
-    font-size: 2rem;
+    font-size: ${({ bodyFontSize }) => (bodyFontSize ? `${bodyFontSize}rem` : '2.4rem')};
     line-height: 1.5;
     margin: 0;
-    padding: 0 0 2.4rem;
+    padding: 0 33% 6.2rem 0;
+
+    ${Media.mobile} {
+      padding: 0 0 6.2rem;
+    }
   }
 
   details[open] > div {
-    border-bottom: 0.2rem solid ${Color.border};
+    border-bottom: 0.2rem solid var(--color);
   }
 
   details[open] > summary {
@@ -84,15 +96,22 @@ const Wrapper = styled.div<{ maxWidth?: number }>`
   }
 
   details[open] > summary::after {
-    content: '−';
+    background: url('/images/cowamm-minus-sign.svg') no-repeat center/contain;
   }
 `
 
 interface FAQListProps {
   children: React.ReactNode
   maxWidth?: number
+  titleFontSize?: number
+  bodyFontSize?: number
+  color?: string
 }
 
-export function FAQList({ children, maxWidth }: FAQListProps) {
-  return <Wrapper maxWidth={maxWidth}>{children}</Wrapper>
+export function FAQList({ children, maxWidth, titleFontSize, bodyFontSize, color }: FAQListProps) {
+  return (
+    <Wrapper titleFontSize={titleFontSize} bodyFontSize={bodyFontSize} maxWidth={maxWidth} color={color}>
+      {children}
+    </Wrapper>
+  )
 }

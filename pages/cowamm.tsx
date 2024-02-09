@@ -51,62 +51,42 @@ const CONTENT = {
   ],
   feedbackPartners: [
     {
-      icon: `${DAO_LOGOS_PATH}aave.svg`,
-      title: 'Hasu',
-      description: '"The CoW AMM is amazing, it’s going to revolutionize liquidity pools forever"',
-      link: '#',
+      title: 'Felix Leupold, CTO at CoW Protocol',
+      description: (
+        <>
+          &quot;This is an excellent application of batch auction theory to solve one of the most important problems in
+          DeFi &quot;
+        </>
+      ),
     },
     {
-      icon: `${DAO_LOGOS_PATH}aave.svg`,
-      title: 'Hasu',
-      description: '"The CoW AMM is amazing, it’s going to revolutionize liquidity pools forever"',
-      link: '#',
+      title: 'Fernando Martinelli, CEO at Balancer Labs',
+      description: (
+        <>
+          &quot;Balancer is super excited to explore custom AMM designs like CoW AMM. MEV/LVR is the key problem holding
+          LPs back from joining AMMs &quot;
+        </>
+      ),
     },
     {
-      icon: `${DAO_LOGOS_PATH}aave.svg`,
-      title: 'Hasu',
-      description: '"The CoW AMM is amazing, it’s going to revolutionize liquidity pools forever"',
-      link: '#',
+      title: 'Martin Köppelman, CEO at Gnosis',
+      description: (
+        <>
+          &quot;If I knew we wouldn&apos;t suffer impermanent loss or LVR, I&apos;d be much more supportive of using
+          treasury funds to provide liquidity GNO &quot;
+        </>
+      ),
     },
-    { icon: `${DAO_LOGOS_PATH}karpatkey.svg`, title: 'Karpatkey', link: 'https://www.karpatkey.com/' },
-    { icon: `${DAO_LOGOS_PATH}maker.svg`, title: 'MakerDAO', link: 'https://makerdao.com/' },
-    { icon: `${DAO_LOGOS_PATH}lido.svg`, title: 'Lido', link: 'https://lido.fi/' },
-    { icon: `${DAO_LOGOS_PATH}yearn.svg`, title: 'Yearn', link: 'https://yearn.finance/' },
-    { icon: `${DAO_LOGOS_PATH}gnosis.svg`, title: 'Gnosis', link: 'https://www.gnosis.io/' },
-    { icon: `${DAO_LOGOS_PATH}synthetix.svg`, title: 'Synthetix', link: 'https://synthetix.io/' },
-    { icon: `${DAO_LOGOS_PATH}balancer.svg`, title: 'Balancer', link: 'https://balancer.fi/' },
-    { icon: `${DAO_LOGOS_PATH}aura.svg`, title: 'Aura', link: 'https://aura.finance/' },
-    { icon: `${DAO_LOGOS_PATH}vitadao.svg`, title: 'VitaDAO', link: 'https://www.vitadao.com/' },
-    { icon: `${DAO_LOGOS_PATH}polygon.svg`, title: 'Polygon', link: 'https://polygon.technology/' },
-    { icon: `${DAO_LOGOS_PATH}pleasrdao.svg`, title: 'PleasrDAO', link: 'https://pleasr.org/' },
-    { icon: `${DAO_LOGOS_PATH}olympus.svg`, title: 'Olympus', link: 'https://www.olympusdao.finance/' },
-    { icon: `${DAO_LOGOS_PATH}dxdao.svg`, title: 'DxDAO', link: 'https://dxdao.eth.limo/' },
-    { icon: `${DAO_LOGOS_PATH}mstables.svg`, title: 'mStables', link: 'https://mstable.org/' },
-    { icon: `${DAO_LOGOS_PATH}index.svg`, title: 'Index', link: 'https://indexcoop.com/' },
-    { icon: `${DAO_LOGOS_PATH}rhino.svg`, title: 'Rhino', link: 'https://rhino.fi/' },
-    { icon: `${DAO_LOGOS_PATH}jpgd.svg`, title: 'JPGD', link: 'https://jpegd.io/' },
-    { icon: `${DAO_LOGOS_PATH}benddao.svg`, title: 'BendDAO', link: 'https://www.benddao.xyz/' },
-    { icon: `${DAO_LOGOS_PATH}alchemix.svg`, title: 'Alchemix', link: 'https://alchemix.fi/' },
-    { icon: `${DAO_LOGOS_PATH}stargate.svg`, title: 'Stargate', link: 'https://stargate.io/' },
-    { icon: `${DAO_LOGOS_PATH}shapeshift.svg`, title: 'ShapeShift', link: 'https://shapeshift.com/' },
-    { icon: `${DAO_LOGOS_PATH}stakedao.svg`, title: 'StakeDAO', link: 'https://stakedao.org/' },
-    { icon: `${DAO_LOGOS_PATH}cryptex.svg`, title: 'Cryptex', link: 'https://cryptex.finance/' },
-    { icon: `${DAO_LOGOS_PATH}frax.svg`, title: 'Frax', link: 'https://frax.finance/' },
-    { icon: `${DAO_LOGOS_PATH}dfx.svg`, title: 'DFX', link: 'https://dfx.finance/' },
-    { icon: `${DAO_LOGOS_PATH}reflexer.svg`, title: 'Reflexer', link: 'https://www.reflexer.finance/' },
-    { icon: `${DAO_LOGOS_PATH}citydao.svg`, title: 'CityDAO', link: 'https://citydao.io/' },
-    { icon: `${DAO_LOGOS_PATH}threshold.svg`, title: 'Threshold', link: 'https://threshold.network/' },
-    { icon: `${DAO_LOGOS_PATH}krausehouse.svg`, title: 'KrauseHouse', link: 'https://krausehouse.ca/' },
-    { icon: `${DAO_LOGOS_PATH}tokenlon.svg`, title: 'Tokenlon', link: 'https://tokenlon.im/' },
-    { icon: `${DAO_LOGOS_PATH}idle.svg`, title: 'Idle', link: 'https://idle.finance/' },
-    { icon: `${DAO_LOGOS_PATH}teller.svg`, title: 'Teller', link: 'https://teller.finance/' },
-    { icon: `${DAO_LOGOS_PATH}sherlock.svg`, title: 'Sherlock', link: 'https://sherlock.xyz/' },
-    { icon: `${DAO_LOGOS_PATH}badgerdao.svg`, title: 'BadgerDAO', link: 'https://badger.finance/' },
-    { icon: `${DAO_LOGOS_PATH}solace.svg`, title: 'Solace', link: 'https://solace.fi/' },
-    { icon: `${DAO_LOGOS_PATH}dreamdao.png`, title: 'DreamDAO', link: 'https://dreamdao.io/' },
-    { icon: `${DAO_LOGOS_PATH}ondo.svg`, title: 'Ondo', link: 'https://ondo.finance/' },
-    { icon: `${DAO_LOGOS_PATH}abracadabra.png`, title: 'Abracadabra', link: 'https://abracadabra.money/' },
-    { icon: `${DAO_LOGOS_PATH}aragon.svg`, title: 'Aragorn', link: 'https://aragon.org/' },
+    {
+      title: 'Hasu, Strategy Lead at Flashbots',
+      description: (
+        <>
+          {' '}
+          &quot;CoW DAO has a lot of credibility building auction mechanisms that mitigate MEV. If someone is going to
+          solve the LVR problem successfully, its them &quot;
+        </>
+      ),
+    },
   ],
   featureItems: [
     {
@@ -127,12 +107,12 @@ const CONTENT = {
     {
       title: 'What is an AMM?',
       content:
-        'An Automated Market Maker (AMM) is a type of decentralized trading mechanism that relies on a mathematical formula to price assets instead of using an order book. It allows digital assets to be traded automatically by using liquidity pools rather than the bid/ask model of order books. Users provide liquidity to these pools and earn trading fees in return, facilitating a self-sustaining trading environment.',
+        'An Automated Market Maker (AMM) is a type of decentralized exchange that relies on a mathematical formula to price assets instead of using an order book. It allows traders to exchange digital assets automatically by using liquidity pools rather than bid/ask order books. Users provide liquidity to these pools and earn trading fees in return, facilitating a self-sustaining trading environment.',
     },
     {
       title: 'What is a liquidity pool?',
       content:
-        'A liquidity pool is a collection of funds that provide liquidity to a token-pair (for example ETH-USDT). Each liquidity pool has exactly two tokens and all liquidity is evenly split so that the total liquidity value of each side of the token pair is equal at any given time.',
+        'A liquidity pool is a collection of reserves, or funds, that provide liquidity to a token-pair (for example, ETH-USDT). Each liquidity pool has exactly two tokens and all liquidity is evenly split so that the total liquidity value of each side of the token pair is equal at any given time.',
     },
     {
       title: 'What is a liquidity provider (LP)?',
@@ -141,37 +121,38 @@ const CONTENT = {
     },
     {
       title: 'What is an arbitrageur?',
-      content: (
-        <>
-          Since liquidity pools are unique to each AMM, they all trade the same assets at slightly different prices.
-          Arbitrageurs are agents who are economically incentivized to trade on the price differences between various
-          liquidity sources, including AMMs and traditional order book exchanges, capturing the arbitrage and profiting
-          in the process.
-          <br />
-          <br />
-          Unfortunately, the profits of arbitrageurs come at the expense of liquidity providers.
-        </>
-      ),
-    },
-    {
-      title: 'What is loss-versus-rebalancing (LVR)?',
       content:
-        'LVR is a term for the opportunity cost that liquidity providers incur when exploited by arbitrageurs. It indicates how much liquidity providers have lost in value by providing liquidity to a liquidity pool versus taking advantage of arbitrage opportunities themselves across various exchanges (rebalancing.)\n\nLVR is a major source of price exploitation for the decentralized trading ecosystem. In fact, for the most liquid token pairs, liquidity-providing yields a net negative return after taking LVR losses into account.',
+        'Since liquidity pools are unique to each AMM, they all trade the same assets at slightly different prices. Arbitrageurs are agents who are economically incentivized to trade on the price differences between various liquidity sources, including AMMs and traditional order book exchanges, capturing the arbitrage and profiting in the process. Unfortunately, the profits of arbitrageurs come at the expense of liquidity providers.',
     },
     {
       title: 'What is a CF-AMM?',
       content:
-        'The most basic types of AMMs are examples of “Constant Function” AMMs. This refers to the way in which assets are automatically rebalanced by the AMM in order to ensure that it always has enough liquidity to complete a trade. \n\nCF-AMMs use the constant product function “x*y=k” to calculate the prices of the two assets in any given liquidity pool. As the supply of one asset is depleted, its price increases and vice versa. Thus, all trades on a CF-AMM can be mapped as trades that fit on the constant product function.',
+        'The most basic types of AMMs are examples of “Constant Function” AMMs. CF-AMMs use the constant product function “x*y=k” to calculate the prices of the two assets in any given liquidity pool. As the supply of one asset is depleted, its price increases and vice versa. Thus, all trades on a CF-AMM can be mapped as trades that fit on the constant product function.',
+    },
+    {
+      title: 'What is loss-versus-rebalancing (LVR)?',
+      content:
+        'LVR is a term for the cost that liquidity providers incur when exploited by arbitrageurs. When the price of an asset changes, arbitrageurs will rush to rebalance an AMM. The first arbitrageur reaching it will be able to trade with the AMM at an outdated price, therefore extracting profits. LVR is the main source of MEV and a major burden for the DeFi ecosystem. In fact, for the most liquid token pairs, liquidity-providing yields a net negative return after taking LVR losses into account.',
     },
     {
       title: 'What is an FM-AMM?',
       content:
-        'The “Function-Maximizing” AMM is a novel AMM mechanism that tackles the shortcomings of the CF-AMM design and minimizes LVR losses by reducing arbitrage. \n\nFM-AMMs accept trades in batches where traders have to first provide liquidity in order to make a trade against the AMM. The AMM picks the trader from the batch who can provide the most liquidity to execute the trade, creating a “race to the bottom” competition for any traders looking to extract arbitrage.',
+        'The “Function-Maximizing” AMM is a novel AMM mechanism that tackles the shortcomings of the CF-AMM design and eliminates LVR. The FM-AMM batches trades together, executing all the orders in a batch at the same uniform clearing price. This price is such that the AMM “moves up the curve” with each trade. Since anyone can submit trades to the FM-AMM while its batch is open, competition between arbitrageurs guarantees that FM-AMM always trades at the correct, equilibrium price also in case of a rebalancing.',
     },
     {
       title: 'What is the CoW AMM?',
       content:
-        'The CoW AMM is a production-ready implementation of an FM-AMM that provides liquidity for trades on CoW Protocol. Bonded third parties known as “solvers” compete with each other to tap into the pool’s liquidity, creating a beneficial environment for liquidity providers.',
+        'The CoW AMM is a production-ready implementation of an FM-AMM that supplies liquidity for trades made on CoW Protocol. Solvers compete with each other for the right to trade against the AMM. The winning solver is the one that moves the AMM curves higher.',
+    },
+    {
+      title: 'Who can create a CoW AMM pool (and how)?',
+      content:
+        'Anyone can create a CoW AMM pool permissionlessly. To get started, check out our docs or get in touch with us via Discord or X.',
+    },
+    {
+      title: 'What is a CoW AMM pool ideal for?',
+      content:
+        'CoW AMM pools are optimal for every token pair that is not stable-to-stable. Since volatility dictates the amount of LVR that takes place in any given liquidity pool, CoW AMM pools are most effective for volatile token pairs as LPs are protected from arbitrageurs.',
     },
   ],
 }
@@ -285,7 +266,7 @@ export default function CoWAMMPage({ siteConfigData }) {
           </SectionImage>
           <div className="container">
             <SectionH3 color={Color.cowammBlack} fontSize={10} fontWeight={500} font={Font.flecha}>
-              Raising the <s>Bar</s> <TextItalic color={'cowammPurple'}>Curve</TextItalic>
+              Raising the <s>bar</s> <TextItalic color={'cowammPurple'}>curve</TextItalic>
             </SectionH3>
 
             <SubTitle lineHeight={1.4} textAlign={'left'} color={Color.cowammBlack} fontSize={2.9}>
@@ -298,7 +279,7 @@ export default function CoWAMMPage({ siteConfigData }) {
 
       <Section fullWidth colorVariant={'cowamm-light'} flow="column" gap={8}>
         <SectionH3 color={Color.cowammBlack} fontSize={6.4} fontWeight={500} font={Font.flecha} textAlign="center">
-          The CoW AMM Benefits LPs of <TextItalic color={'cowammPink'}>All Types </TextItalic>
+          The CoW AMM Benefits LPs of <TextItalic color={'cowammPink'}>all types</TextItalic>
         </SectionH3>
 
         <Separator bgColor={Color.cowammBlack} borderSize={0.2} />
@@ -308,7 +289,7 @@ export default function CoWAMMPage({ siteConfigData }) {
             <img src={`${IMAGE_PATH}cowamm-lping.svg`} alt="Liquidity providing" />
           </SectionImage>
           <div className="container">
-            <SectionH3 color={Color.cowammBlack} fontSize={5.6} fontWeight={500}>
+            <SectionH3 color={Color.cowammBlack} fontSize={4.4} fontWeight={500}>
               Liquidity providing done right — even for volatile tokens
             </SectionH3>
 
@@ -323,7 +304,7 @@ export default function CoWAMMPage({ siteConfigData }) {
 
         <SectionContent flow={'row'} textAlign={'left'} gap={10}>
           <div className="container">
-            <SectionH3 color={Color.cowammBlack} fontSize={5.6} fontWeight={500} font={Font.circular}>
+            <SectionH3 color={Color.cowammBlack} fontSize={4.4} fontWeight={500} font={Font.circular}>
               Unlock the power of passive investing
             </SectionH3>
 
@@ -338,16 +319,17 @@ export default function CoWAMMPage({ siteConfigData }) {
         </SectionContent>
       </Section>
 
-      <Section fullWidth colorVariant={'dark'}>
+      <Section fullWidth colorVariant={'cowamm-light-white'} flow="column" gap={14}>
         <SectionContent flow={'column'}>
           <div>
-            <h3>Feedback & Partners</h3>
+            <SectionH3 color={Color.cowammBlack} fontSize={10} fontWeight={500} font={Font.flecha}>
+              Trust the <TextItalic color={'cowammLightOrange'}>experts</TextItalic>
+            </SectionH3>
 
-            {/* Only with a description text */}
-            <CardWrapper maxWidth={85}>
+            <CardWrapper horizontalGrid={4} gap={3.2}>
               {CONTENT.feedbackPartners
                 .filter(({ description }) => description)
-                .map(({ description, icon, title, link }, index) => (
+                .map(({ description, title }, index) => (
                   <CardItem key={index} variant="outlined-dark" gap={3.6} imageFullSize textCentered>
                     <span>
                       <p>{description}</p>
@@ -356,41 +338,18 @@ export default function CoWAMMPage({ siteConfigData }) {
                   </CardItem>
                 ))}
             </CardWrapper>
-
-            <CardWrapper maxWidth={85} horizontalGrid={8} horizontalGridMobile={4}>
-              {CONTENT.feedbackPartners.map(({ icon, title, link }, index) => (
-                <CardItem
-                  key={index}
-                  padding={1.2}
-                  imageFullSize
-                  variant="outlined-dark"
-                  gap={3.6}
-                  textCentered
-                  contentCentered
-                  className="iconOnly"
-                >
-                  <LinkWithUtm
-                    href={link}
-                    defaultUtm={{ ...CONFIG.utm, utmContent: `widget-page-partner-${title}` }}
-                    passHref
-                  >
-                    <a href={link} target="_blank" rel="nofollow noreferrer" title={title}>
-                      <img src={icon} alt={title} />
-                    </a>
-                  </LinkWithUtm>
-                </CardItem>
-              ))}
-            </CardWrapper>
           </div>
         </SectionContent>
       </Section>
 
-      <Section colorVariant={'white'} fullWidth>
-        <SectionContent flow="column">
+      <Section fullWidth colorVariant={'cowamm-dark'}>
+        <SectionContent flow={'column'}>
           <div className="container">
-            <h3>FAQ</h3>
+            <SectionH3 color={Color.cowammWhite} fontSize={6.6} fontWeight={500} font={Font.flecha}>
+              Frequently Asked <TextItalic color={'cowammBlue'}> Questions</TextItalic>
+            </SectionH3>
 
-            <FAQList maxWidth={60}>
+            <FAQList titleFontSize={4.4} bodyFontSize={2.7} color={Color.cowammWhite}>
               {CONTENT.faqContent.map(({ title, content }, index) => (
                 <details key={index}>
                   <summary onClick={expandFaq}>{title}</summary>
