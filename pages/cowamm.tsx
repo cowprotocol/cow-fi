@@ -279,7 +279,7 @@ export default function CoWAMMPage({ siteConfigData }) {
       </Section>
 
       <Section fullWidth colorVariant={'cowamm-light-white'} flow="column" gap={14}>
-        <SectionContent flow={'row'} textAlign={'left'} gap={10} fullWidth>
+        <SectionContent flow={'row'} textAlign={'left'} gap={10}>
           <SectionImage width={'52rem'}>
             <img src={`${IMAGE_PATH}cowamm-raising-the-curve.svg`} alt="Make Money with CoW Swap" />
           </SectionImage>
@@ -347,7 +347,7 @@ export default function CoWAMMPage({ siteConfigData }) {
       </Section>
 
       <Section fullWidth colorVariant={'cowamm-light-white'} flow="column" gap={14}>
-        <SectionContent fullWidth flow={'column'}>
+        <SectionContent maxWidth={180} flow={'column'}>
           <div>
             <SectionH3 color={Color.cowammBlack} fontSize={6.6} fontWeight={500} font={Font.flecha}>
               Trust the <TextItalic color={'cowammLightOrange'}>experts</TextItalic>
