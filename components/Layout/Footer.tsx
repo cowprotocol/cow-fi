@@ -8,17 +8,20 @@ import { FOOTER_LINK_GROUPS } from '@/const/menu'
 import { CONFIG } from '@/const/meta'
 
 const LogoImage = '/images/logo-light.svg'
+const LogoLightImageThemedCoWAMM = '/images/logo-light-themed-cowamm.svg'
 const CURRENT_YEAR = new Date().getFullYear()
 
-const Wrapper = styled.footer<{ noMargin?: boolean }>`
+const Wrapper = styled.footer<{ noMargin?: boolean; isCoWAMM?: boolean }>`
   display: flex;
   justify-content: space-between;
   flex-flow: row wrap;
   z-index: 1;
   width: 100%;
   padding: 5.6rem;
-  margin: ${({ noMargin }) => (noMargin ? '0 auto' : '16rem auto 0')};
+  margin: ${({ noMargin, isCoWAMM }) => (noMargin || isCoWAMM ? '0 auto' : '16rem auto 0')};
   position: relative;
+  background: ${({ isCoWAMM }) => (isCoWAMM ? Color.cowammBlack : 'inherit')};
+  color: ${({ isCoWAMM }) => (isCoWAMM ? Color.cowammWhite : Color.text2)};
 
   ${Media.mediumDown} {
     flex-flow: column wrap;
@@ -28,7 +31,7 @@ const Wrapper = styled.footer<{ noMargin?: boolean }>`
   &::before {
     content: '';
     width: 100%;
-    display: block;
+    display: ${({ isCoWAMM }) => (isCoWAMM ? 'none' : 'block')};
     height: 0.1rem;
     background: ${Color.gradient};
     position: absolute;
@@ -69,7 +72,7 @@ const LogoSection = styled.div`
 const MenuWrapper = styled.div`
   display: flex;
   flex-flow: column wrap;
-  color: ${Color.text2};
+  color: inherit;
   font-size: ${Font.sizeDefault};
 
   ${Media.mobile} {
@@ -79,7 +82,6 @@ const MenuWrapper = styled.div`
   > b {
     display: block;
     font-size: 1.6rem;
-    color: ${Color.lightBlue};
     margin: 0 0 3rem;
 
     ${Media.mobile} {
@@ -122,14 +124,16 @@ const Menu = styled.ol`
 
     &:hover {
       color: ${Color.white};
+      text-decoration: underline;
     }
   }
 `
 
-const Logo = styled.div`
+const Logo = styled.div<{ isCoWAMM?: boolean }>`
   width: 17rem;
   height: 5.7rem;
-  background: url(${LogoImage}) no-repeat center/contain;
+  background: ${({ isCoWAMM }) => (isCoWAMM ? `url(${LogoLightImageThemedCoWAMM})` : `url(${LogoImage})`)} no-repeat
+    center/contain;
   cursor: pointer;
   margin: 0 0 4rem;
 `
@@ -140,7 +144,7 @@ const CopyrightLinks = styled.ol`
   flex-flow: column wrap;
   align-items: flex-end;
   font-size: 1.4rem;
-  color: ${Color.text2};
+  color: inherit;
   line-height: 1.5;
   padding: 0;
 
@@ -184,14 +188,22 @@ function FooterMenu() {
   )
 }
 
-function Social() {
+function Social({ isCoWAMM = false }: Pick<FooterProps, 'isCoWAMM'>) {
   const { social } = CONFIG
   return (
     <LogoSection>
       <Link passHref href="/">
-        <Logo />
+        <Logo isCoWAMM={isCoWAMM} />
       </Link>
-      <SocialList social={social} labels={false} iconSize={2.8} gap={0.7} innerPadding={1} alignItems={'right'} />
+      <SocialList
+        social={social}
+        labels={false}
+        iconSize={2.8}
+        gap={0.7}
+        innerPadding={1}
+        alignItems={'right'}
+        color={isCoWAMM && Color.cowammWhite}
+      />
       <CopyrightLinks>
         <li>©CoW Protocol - {CURRENT_YEAR}</li>
       </CopyrightLinks>
@@ -201,16 +213,17 @@ function Social() {
 
 type FooterProps = {
   noMargin?: boolean
+  isCoWAMM?: boolean
 }
 
-export default function Footer({ noMargin }: FooterProps) {
+export default function Footer({ noMargin = false, isCoWAMM = false }: FooterProps) {
   const router = useRouter()
   const showDisclaimer = router.asPath.startsWith('/tokens')
 
   return (
-    <Wrapper noMargin={noMargin}>
+    <Wrapper noMargin={noMargin} isCoWAMM={isCoWAMM}>
       <FooterMenu />
-      <Social />
+      <Social isCoWAMM={isCoWAMM} />
       {showDisclaimer && (
         <FooterDisclaimer>
           <p>{CONFIG.tokenDisclaimer}</p>

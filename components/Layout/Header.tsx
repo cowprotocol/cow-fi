@@ -220,14 +220,6 @@ const CloseIcon = styled.button`
   }
 `
 
-const SubMenu = styled.ol`
-  display: flex;
-  padding: 0;
-  margin: 0;
-  position: relative;
-  list-style: none;
-`
-
 const MenuToggle = styled.button<{ isLight?: boolean; isLightCowAMM?: boolean }>`
   display: none;
   background: transparent;

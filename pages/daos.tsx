@@ -389,7 +389,7 @@ export default function ForDAOs({ siteConfigData }) {
             <SubTitle maxWidth={60} color={Color.text1} lineHeight={1.4}>
               Learn more about how CoW Protocol can help your DAO by reaching out on Twitter or Discord
             </SubTitle>
-            <SocialList social={socialFiltered} colorDark />
+            <SocialList social={socialFiltered} color={Color.darkBlue} />
           </div>
         </SectionContent>
       </Section>

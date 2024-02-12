@@ -475,9 +475,11 @@ export const CardItem = styled.div<{
   imageRounded?: boolean
   borderRadius?: number
   fontSize?: number
+  equalHeight?: boolean
 }>`
   display: flex;
   flex-flow: column wrap;
+  flex-flow: ${({ equalHeight }) => (equalHeight ? 'row' : 'column')} wrap;
   align-items: ${({ contentCentered }) => (contentCentered ? 'center' : 'flex-start')};
   justify-content: ${({ contentCentered }) => (contentCentered ? 'center' : 'flex-start')};
   background: ${({ variant }) =>
@@ -575,7 +577,8 @@ export const CardItem = styled.div<{
     display: flex;
     flex-flow: column wrap;
     align-items: center;
-    justify-content: center;
+    justify-content: ${({ equalHeight }) => (equalHeight ? 'space-between' : 'center')};
+    height: ${({ equalHeight }) => (equalHeight ? '100%' : 'auto')};
     gap: 1.6rem;
     font-size: inherit;
   }

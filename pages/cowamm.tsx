@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { GetStaticProps } from 'next'
 import { CONFIG } from '@/const/meta'
-import { Color, Font, TextItalic } from 'styles/variables'
+import { Color, Font, TextColor } from 'styles/variables'
 import {
   CardItem,
   CardWrapper,
@@ -142,13 +142,30 @@ const CONTENT = {
     },
     {
       title: 'What is an arbitrageur?',
-      content:
-        'Since liquidity pools are unique to each AMM, they all trade the same assets at slightly different prices. Arbitrageurs are agents who are economically incentivized to trade on the price differences between various liquidity sources, including AMMs and traditional order book exchanges, capturing the arbitrage and profiting in the process. Unfortunately, the profits of arbitrageurs come at the expense of liquidity providers.',
+      content: (
+        <>
+          Since liquidity pools are unique to each AMM, they all trade the same assets at slightly different prices.
+          Arbitrageurs are agents who are economically incentivized to trade on the price differences between various
+          liquidity sources, including AMMs and traditional order book exchanges, capturing the arbitrage and profiting
+          in the process. <br />
+          <br />
+          Unfortunately, the profits of arbitrageurs come at the expense of liquidity providers.
+        </>
+      ),
     },
     {
       title: 'What is a CF-AMM?',
-      content:
-        'The most basic types of AMMs are examples of “Constant Function” AMMs. CF-AMMs use the constant product function “x*y=k” to calculate the prices of the two assets in any given liquidity pool. As the supply of one asset is depleted, its price increases and vice versa. Thus, all trades on a CF-AMM can be mapped as trades that fit on the constant product function.',
+      content: (
+        <>
+          The most basic types of AMMs are examples of “Constant Function” AMMs. CF-AMMs use the constant product
+          function “x*y=k” to calculate the prices of the two assets in any given liquidity pool. As the supply of one
+          asset is depleted, its price increases and vice versa. Thus, all trades on a CF-AMM can be mapped as trades
+          that fit on the constant product function.
+          <br />
+          <br />
+          <img src="/images/cowamm-graph-xyz.svg" alt="xyz graph" width="100%" style={{ maxWidth: '52rem' }} />
+        </>
+      ),
     },
     {
       title: 'What is loss-versus-rebalancing (LVR)?',
@@ -167,8 +184,20 @@ const CONTENT = {
     },
     {
       title: 'Who can create a CoW AMM pool (and how)?',
-      content:
-        'Anyone can create a CoW AMM pool permissionlessly. To get started, check out our docs or get in touch with us via Discord or X.',
+      content: (
+        <>
+          Anyone can create a CoW AMM pool permissionlessly. To get started, check out our docs or get in touch with us
+          via{' '}
+          <a href={CONFIG.social.discord.url} target="_blank" rel="noreferrer nofollow">
+            Discord
+          </a>{' '}
+          or{' '}
+          <a href={CONFIG.social.twitter.url} target="_blank" rel="noreferrer nofollow">
+            X
+          </a>
+          .
+        </>
+      ),
     },
     {
       title: 'What is a CoW AMM pool ideal for?',
@@ -203,14 +232,20 @@ export default function CoWAMMPage({ siteConfigData }) {
         <SectionContent flow="column">
           <div>
             <img
-              src={`${IMAGE_PATH}cow-amm-logo-light.svg`}
+              src={`${IMAGE_PATH}cowamm-header-logo-animated.gif`}
               alt="CoW AMM"
-              width="430"
+              width="460"
               style={{ margin: '0 1.6rem 4rem', maxWidth: '100%' }}
             />
             <SectionH1 color={Color.cowammWhite} fontSize={6.6} fontWeight={500} maxWidth={100} margin={'0 auto 4rem'}>
-              The first <TextItalic color={'cowammLightPurple'}>MEV-Capturing AMM</TextItalic>, brought to you by{' '}
-              <TextItalic color={'cowammYellow'}>CoW DAO</TextItalic>
+              The first{' '}
+              <TextColor italic color={'cowammLightPurple'}>
+                MEV-Capturing AMM
+              </TextColor>
+              , brought to you by{' '}
+              <TextColor italic color={'cowammYellow'}>
+                CoW DAO
+              </TextColor>
             </SectionH1>
             <Button
               variant={ButtonVariant.COWAMM_LIGHTBLUE}
@@ -229,11 +264,14 @@ export default function CoWAMMPage({ siteConfigData }) {
       <Section fullWidth colorVariant={'cowamm-light'} flow="column" gap={14}>
         <SectionContent flow={'row'} textAlign={'left'}>
           <SectionImage>
-            <img src={`${IMAGE_PATH}cowamm-illustration-lvr.svg`} alt="Make Money with CoW Swap" width="580" />
+            <img src={`${IMAGE_PATH}cowamm-illustration-lvr.svg`} alt="LVR" width="580" />
           </SectionImage>
           <div className="container">
             <SectionH3 color={Color.cowammBlack} fontSize={6.4} fontWeight={500} font={Font.flecha}>
-              AMMs don&apos;t want you to know about <TextItalic color={'cowammBlue'}>LVR</TextItalic>
+              AMMs don&apos;t want you to know about{' '}
+              <TextColor italic color={'cowammBlue'}>
+                LVR
+              </TextColor>
             </SectionH3>
             <SubTitle lineHeight={1.4} textAlign={'left'} color={Color.cowammBlack} fontSize={2.9}>
               Liquidity providers expect their tokens to earn yield, but the dirty little secret of AMMs is that{' '}
@@ -252,7 +290,10 @@ export default function CoWAMMPage({ siteConfigData }) {
         <SectionContent flow={'column'}>
           <div className="container">
             <SectionH3 color={Color.cowammWhite} fontSize={6.6} fontWeight={500} font={Font.flecha}>
-              Finally, an AMM designed <TextItalic color={'cowammLightOrange'}>with LPs in mind</TextItalic>
+              Finally, an AMM designed{' '}
+              <TextColor italic color={'cowammLightOrange'}>
+                with LPs in mind
+              </TextColor>
             </SectionH3>
             <Separator bgColor={Color.cowammWhite} borderSize={0.2} margin={'2rem auto'} />
             <SubTitle lineHeight={1.4} fontSize={4.8} textAlign={'left'} color={Color.cowammWhite}>
@@ -280,12 +321,18 @@ export default function CoWAMMPage({ siteConfigData }) {
 
       <Section fullWidth colorVariant={'cowamm-light-white'} flow="column" gap={14}>
         <SectionContent flow={'row'} textAlign={'left'} gap={10}>
-          <SectionImage width={'52rem'}>
-            <img src={`${IMAGE_PATH}cowamm-raising-the-curve.svg`} alt="Make Money with CoW Swap" />
-          </SectionImage>
+          <video width="520" src="/video/cowamm-raise-the-curve.mp4" loop autoPlay muted>
+            Your browser does not support the video tag.
+          </video>
+
+          {/* <img src="/video/cowamm-raise-the-curve.gif" alt="video" width="520" /> */}
+
           <div className="container">
             <SectionH3 color={Color.cowammBlack} fontSize={6.6} fontWeight={500} font={Font.flecha}>
-              Raising the <s>bar</s> <TextItalic color={'cowammPurple'}>curve</TextItalic>
+              Raising the <s>bar</s>{' '}
+              <TextColor italic color={'cowammPurple'}>
+                curve
+              </TextColor>
             </SectionH3>
 
             <SubTitle lineHeight={1.4} textAlign={'left'} color={Color.cowammBlack} fontSize={2.8}>
@@ -306,7 +353,10 @@ export default function CoWAMMPage({ siteConfigData }) {
 
       <Section fullWidth colorVariant={'cowamm-light'} flow="column" gap={8}>
         <SectionH3 color={Color.cowammBlack} fontSize={6.4} fontWeight={500} font={Font.flecha} textAlign="center">
-          The CoW AMM Benefits LPs of <TextItalic color={'cowammPink'}>all types</TextItalic>
+          The CoW AMM Benefits LPs of{' '}
+          <TextColor italic color={'cowammPink'}>
+            all types
+          </TextColor>
         </SectionH3>
 
         <Separator bgColor={Color.cowammBlack} borderSize={0.2} />
@@ -350,7 +400,10 @@ export default function CoWAMMPage({ siteConfigData }) {
         <SectionContent maxWidth={180} flow={'column'}>
           <div>
             <SectionH3 color={Color.cowammBlack} fontSize={6.6} fontWeight={500} font={Font.flecha}>
-              Trust the <TextItalic color={'cowammLightOrange'}>experts</TextItalic>
+              Trust the{' '}
+              <TextColor italic color={'cowammLightOrange'}>
+                experts
+              </TextColor>
             </SectionH3>
 
             <CardWrapper horizontalGrid={4} gap={6.2}>
@@ -364,10 +417,11 @@ export default function CoWAMMPage({ siteConfigData }) {
                     padding={0}
                     borderRadius={0}
                     fontSize={2.7}
+                    equalHeight
                   >
                     <span>
                       <p style={{ margin: '0 auto 2.1rem' }}>{description}</p>
-                      <TextItalic color={titleColor as keyof typeof Color}>{title}</TextItalic>
+                      <TextColor color={titleColor as keyof typeof Color}>{title}</TextColor>
                     </span>
                   </CardItem>
                 ))}
@@ -380,7 +434,11 @@ export default function CoWAMMPage({ siteConfigData }) {
         <SectionContent flow={'column'}>
           <div className="container">
             <SectionH3 color={Color.cowammWhite} fontSize={6.6} fontWeight={500} font={Font.flecha}>
-              Frequently Asked <TextItalic color={'cowammBlue'}> Questions</TextItalic>
+              Frequently Asked{' '}
+              <TextColor italic color={'cowammBlue'}>
+                {' '}
+                Questions
+              </TextColor>
             </SectionH3>
 
             <FAQList titleFontSize={4.4} bodyFontSize={2.7} color={Color.cowammWhite}>
@@ -399,7 +457,10 @@ export default function CoWAMMPage({ siteConfigData }) {
         <SectionContent flow={'column'}>
           <div>
             <SectionH3 color={Color.cowammBlack} fontSize={6.6} fontWeight={500} font={Font.flecha}>
-              Get started with the <TextItalic color={'cowammOrange'}>CoW AMM</TextItalic>
+              Get started with the{' '}
+              <TextColor italic color={'cowammOrange'}>
+                CoW AMM
+              </TextColor>
             </SectionH3>
 
             <SubTitle fontSize={2.9} lineHeight={1.4} color={Color.cowammBlack} maxWidth={100}>

@@ -178,8 +178,8 @@ export const textFadeIn = css`
 
 type TextColorKey = keyof typeof Color
 
-export const TextItalic = styled.span<{ color: TextColorKey }>`
-  font-style: italic;
+export const TextColor = styled.span<{ color: TextColorKey; italic?: boolean }>`
+  font-style: ${({ italic }) => (italic ? 'italic' : 'normal')};
   color: ${({ color }) => Color[color]};
   width: 100%;
   display: inline;

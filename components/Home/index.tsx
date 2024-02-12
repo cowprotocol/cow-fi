@@ -321,7 +321,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
               Learn more about CoW Protocol, get support, and have your say in shaping the future of decentralized
               finance.
             </SubTitle>
-            <SocialList social={social} colorDark />
+            <SocialList social={social} color={Color.darkBlue} />
           </div>
         </SectionContent>
       </Section>

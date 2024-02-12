@@ -79,7 +79,7 @@ export default function Layout({ children, fullWidth, fullWidthGradientVariant, 
     <Wrapper>
       <Header isLight={isLightHeader} isLightCoWAMM={fullWidthCoWAMM} />
       <ContentComponent>{children || 'No content found'}</ContentComponent>
-      <Footer noMargin={footerNoMargin} />
+      <Footer noMargin={footerNoMargin} isCoWAMM={fullWidthCoWAMM} />
     </Wrapper>
   )
 }
