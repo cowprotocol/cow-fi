@@ -472,9 +472,11 @@ export const CardItem = styled.div<{
   imageWidth?: number
   textCentered?: boolean
   gap?: number
+  gapContentMobile?: number
   imageRounded?: boolean
   borderRadius?: number
   fontSize?: number
+  fontSizeMobile?: number
   equalHeight?: boolean
 }>`
   display: flex;
@@ -508,6 +510,10 @@ export const CardItem = styled.div<{
   max-width: 100%;
   position: relative;
   line-height: 1.1;
+
+  ${Media.mobile} {
+    font-size: ${({ fontSizeMobile }) => (fontSizeMobile ? `${fontSizeMobile}rem` : 'inherit')};
+  }
 
   > a {
     display: flex;
@@ -581,6 +587,10 @@ export const CardItem = styled.div<{
     height: ${({ equalHeight }) => (equalHeight ? '100%' : 'auto')};
     gap: 1.6rem;
     font-size: inherit;
+
+    ${Media.mobile} {
+      height: auto;
+    }
   }
 
   > p,
@@ -726,7 +736,7 @@ export const SectionImage = styled.div<{
   > a > img,
   > img {
     object-fit: contain;
-    width: 100%;
+    max-width: 100%;
     width: inherit;
     height: inherit;
   }

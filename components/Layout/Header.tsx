@@ -23,6 +23,8 @@ const LogoIconLightImage = '/images/logo-icon-light.svg'
 const LogoIconLightImageThemedCoWAMM = '/images/logo-icon-light-themed-cowamm.svg'
 const MenuImage = '/images/icons/menu.svg'
 const MenuImageLight = '/images/icons/menu-light.svg'
+const MenuImageThemedCoWAMM = '/images/icons/menu-cowamm.svg'
+const MenuImageLightThemedCoWAMM = '/images/icons/menu-cowamm-light.svg'
 
 interface PixelProps {
   children?: React.ReactNode
@@ -164,7 +166,8 @@ const Menu = styled.ol<{ isLight?: boolean; isLightCoWAMM?: boolean }>`
   }
 
   > li {
-    color: inherit;
+    color: ${({ isLight, isLightCoWAMM }) =>
+      isLightCoWAMM ? Color.cowammWhite : isLight ? Color.darkBlue : Color.lightBlue};
 
     ${Media.mediumDown} {
       margin: 0 0 3.6rem;
@@ -186,10 +189,10 @@ const Menu = styled.ol<{ isLight?: boolean; isLightCoWAMM?: boolean }>`
     }
 
     ${Media.mediumDown} {
-      color: ${Color.lightBlue};
+      color: ${({ isLightCoWAMM }) => (isLightCoWAMM ? Color.cowammWhite : Color.lightBlue)};
 
       &:hover {
-        color: ${lighten(0.1, Color.lightBlue)};
+        color: ${({ isLightCoWAMM }) => (isLightCoWAMM ? Color.cowammWhite : Color.lightBlue)};
       }
     }
   }
@@ -200,9 +203,15 @@ const CloseIcon = styled.button`
   position: fixed;
   right: 1.6rem;
   top: 1.6rem;
-  color: ${Color.lightBlue};
+  color: inherit;
   background: transparent;
   border: 0;
+  opacity: 0.7;
+  transition: opacity 0.2s ease-in-out;
+
+  &:hover {
+    opacity: 1;
+  }
 
   &::before {
     content: '✕';
@@ -212,11 +221,7 @@ const CloseIcon = styled.button`
 
     ${Media.mobile} {
       font-size: 3.2rem;
-      color: ${Color.lightBlue};
-
-      &:hover {
-        color: ${lighten(0.1, Color.lightBlue)};
-      }
+      color: inherit;
     }
   }
 
@@ -225,7 +230,7 @@ const CloseIcon = styled.button`
   }
 `
 
-const MenuToggle = styled.button<{ isLight?: boolean; isLightCowAMM?: boolean }>`
+const MenuToggle = styled.button<{ isLight?: boolean; isLightCoWAMM?: boolean }>`
   display: none;
   background: transparent;
   flex-flow: row;
@@ -243,11 +248,14 @@ const MenuToggle = styled.button<{ isLight?: boolean; isLightCowAMM?: boolean }>
     content: '';
     background: url(${MenuImage}) no-repeat center/contain;
     ${({ isLight }) => !isLight && `background: url(${MenuImageLight}) no-repeat center/contain`};
+    ${({ isLightCoWAMM }) =>
+      isLightCoWAMM && `background: url(${MenuImageLightThemedCoWAMM}) no-repeat center/contain`};
     width: 62%;
     height: 100%;
 
     .sticky & {
       background: url(${MenuImage}) no-repeat center/contain;
+      ${({ isLightCoWAMM }) => isLightCoWAMM && `background: url(${MenuImageThemedCoWAMM}) no-repeat center/contain`};
     }
   }
 
@@ -360,7 +368,7 @@ export default function Header({ isLight = false, isLightCoWAMM = false }: Props
                   rel="noopener nofollow"
                 />
               </LinkWithUtm>
-              <MenuToggle isLight={isLight} onClick={handleClick} />
+              <MenuToggle isLight={isLight} isLightCoWAMM={isLightCoWAMM} onClick={handleClick} />
             </Content>
           </Wrapper>
         </>

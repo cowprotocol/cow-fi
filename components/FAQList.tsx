@@ -2,7 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import { Color, Font, Media } from 'styles/variables'
 
-const Wrapper = styled.div<{ maxWidth?: number; titleFontSize?: number; bodyFontSize?: number; color?: string }>`
+const Wrapper = styled.div<{
+  maxWidth?: number
+  titleFontSize?: number
+  titleFontSizeMobile?: number
+  bodyFontSize?: number
+  bodyFontSizeMobile?: number
+  color?: string
+}>`
   --titleSize: ${({ titleFontSize }) => (titleFontSize ? `${titleFontSize}rem` : '4.8rem')};
   --color: ${({ color }) => (color ? color : Color.darkBlue)};
   display: flex;
@@ -14,8 +21,8 @@ const Wrapper = styled.div<{ maxWidth?: number; titleFontSize?: number; bodyFont
   font-weight: ${Font.weightNormal};
 
   ${Media.mobile} {
+    --titleSize: ${({ titleFontSizeMobile }) => (titleFontSizeMobile ? `${titleFontSizeMobile}rem` : '2.8rem')};
     width: 100%;
-    gap: 2.4rem;
   }
 
   a {
@@ -52,7 +59,11 @@ const Wrapper = styled.div<{ maxWidth?: number; titleFontSize?: number; bodyFont
     line-height: 1.2;
     border-bottom: 0.2rem solid var(--color);
     position: relative;
-    font-size: ${({ titleFontSize }) => (titleFontSize ? `${titleFontSize}rem` : '3.2rem')};
+    font-size: var(--titleSize);
+
+    ${Media.mobile} {
+      padding: 3.8rem 0;
+    }
 
     &::marker,
     &::-webkit-details-marker {
@@ -78,12 +89,13 @@ const Wrapper = styled.div<{ maxWidth?: number; titleFontSize?: number; bodyFont
 
   details > div {
     font-size: ${({ bodyFontSize }) => (bodyFontSize ? `${bodyFontSize}rem` : '2.4rem')};
-    line-height: 1.5;
+    line-height: 1.8;
     margin: 0;
     padding: 0 33% 6.2rem 0;
 
     ${Media.mobile} {
       padding: 0 0 6.2rem;
+      font-size: ${({ bodyFontSizeMobile }) => (bodyFontSizeMobile ? `${bodyFontSizeMobile}rem` : '2rem')};
     }
   }
 
@@ -104,13 +116,30 @@ interface FAQListProps {
   children: React.ReactNode
   maxWidth?: number
   titleFontSize?: number
+  titleFontSizeMobile?: number
   bodyFontSize?: number
+  bodyFontSizeMobile?: number
   color?: string
 }
 
-export function FAQList({ children, maxWidth, titleFontSize, bodyFontSize, color }: FAQListProps) {
+export function FAQList({
+  children,
+  maxWidth,
+  titleFontSize,
+  titleFontSizeMobile,
+  bodyFontSize,
+  bodyFontSizeMobile,
+  color,
+}: FAQListProps) {
   return (
-    <Wrapper titleFontSize={titleFontSize} bodyFontSize={bodyFontSize} maxWidth={maxWidth} color={color}>
+    <Wrapper
+      titleFontSize={titleFontSize}
+      titleFontSizeMobile={titleFontSizeMobile}
+      bodyFontSize={bodyFontSize}
+      bodyFontSizeMobile={bodyFontSizeMobile}
+      maxWidth={maxWidth}
+      color={color}
+    >
       {children}
     </Wrapper>
   )

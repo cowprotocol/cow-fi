@@ -296,7 +296,7 @@ export default function CoWAMMPage({ siteConfigData }) {
               </TextColor>
             </SectionH3>
             <Separator bgColor={Color.cowammWhite} borderSize={0.2} margin={'2rem auto'} />
-            <SubTitle lineHeight={1.4} fontSize={4.8} textAlign={'left'} color={Color.cowammWhite}>
+            <SubTitle lineHeight={1.4} fontSize={4.8} fontSizeMobile={2.4} textAlign={'left'} color={Color.cowammWhite}>
               CoW AMM eliminates LVR once and for all by using batch auctions to send surplus to LPs
             </SubTitle>
 
@@ -419,6 +419,7 @@ export default function CoWAMMPage({ siteConfigData }) {
                     padding={0}
                     borderRadius={0}
                     fontSize={2.7}
+                    fontSizeMobile={2.1}
                     equalHeight
                   >
                     <span>
@@ -443,7 +444,13 @@ export default function CoWAMMPage({ siteConfigData }) {
               </TextColor>
             </SectionH3>
 
-            <FAQList titleFontSize={4.4} bodyFontSize={2.7} color={Color.cowammWhite}>
+            <FAQList
+              titleFontSize={4.4}
+              titleFontSizeMobile={2.4}
+              bodyFontSize={2.7}
+              bodyFontSizeMobile={1.7}
+              color={Color.cowammWhite}
+            >
               {CONTENT.faqContent.map(({ title, content }, index) => (
                 <details key={index}>
                   <summary onClick={expandFaq}>{title}</summary>
