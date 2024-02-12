@@ -321,7 +321,7 @@ export default function CoWAMMPage({ siteConfigData }) {
 
       <Section fullWidth colorVariant={'cowamm-light-white'} flow="column" gap={14}>
         <SectionContent flow={'row'} textAlign={'left'} gap={10}>
-          <SectionImage width={'55rem'}>
+          <SectionImage>
             <video width="100%" src="/video/cowamm-raise-the-curve.mp4" loop autoPlay muted>
               Your browser does not support the video tag.
             </video>
@@ -361,8 +361,8 @@ export default function CoWAMMPage({ siteConfigData }) {
 
         <Separator bgColor={Color.cowammBlack} borderSize={0.2} />
 
-        <SectionContent flow={'row'} textAlign={'left'} gap={10} maxWidth={180}>
-          <SectionImage width={'55rem'}>
+        <SectionContent flow={'row'} textAlign={'left'} gap={10}>
+          <SectionImage>
             <img src={`${IMAGE_PATH}cowamm-lping.svg`} alt="Liquidity providing" />
           </SectionImage>
           <div className="container">
@@ -392,7 +392,7 @@ export default function CoWAMMPage({ siteConfigData }) {
               passive investors as staking or lending.
             </SubTitle>
           </div>
-          <SectionImage width={'55rem'}>
+          <SectionImage>
             <img src={`${IMAGE_PATH}cowamm-passive-investing.svg`} alt="Unlock the power of passive investing" />
           </SectionImage>
         </SectionContent>

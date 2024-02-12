@@ -166,8 +166,7 @@ const Menu = styled.ol<{ isLight?: boolean; isLightCoWAMM?: boolean }>`
   }
 
   > li {
-    color: ${({ isLight, isLightCoWAMM }) =>
-      isLightCoWAMM ? Color.cowammWhite : isLight ? Color.darkBlue : Color.lightBlue};
+    color: inherit;
 
     ${Media.mediumDown} {
       margin: 0 0 3.6rem;
