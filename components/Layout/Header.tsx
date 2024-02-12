@@ -105,8 +105,8 @@ const Menu = styled.ol<{ isLight?: boolean; isLightCoWAMM?: boolean }>`
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: ${Color.darkBlue};
-    color: ${Color.text2};
+    background: ${({ isLightCoWAMM }) => (isLightCoWAMM ? Color.cowammBlack : Color.darkBlue)};
+    color: ${({ isLightCoWAMM }) => (isLightCoWAMM ? Color.cowammWhite : Color.text2)};
     justify-content: flex-start;
     align-items: flex-start;
     align-content: flex-start;
@@ -136,7 +136,11 @@ const Menu = styled.ol<{ isLight?: boolean; isLightCoWAMM?: boolean }>`
     .sticky & {
       background: transparent;
       border: 0.1rem solid ${Color.darkBlue};
-      color: ${Color.darkBlue};
+      color: ${({ isLightCoWAMM }) => (isLightCoWAMM ? Color.cowammBlack : Color.darkBlue)};
+
+      &:hover {
+        color: ${({ isLightCoWAMM }) => (isLightCoWAMM ? Color.cowammBlack : Color.darkBlue)};
+      }
     }
 
     ${Media.mediumDown} {
@@ -160,6 +164,8 @@ const Menu = styled.ol<{ isLight?: boolean; isLightCoWAMM?: boolean }>`
   }
 
   > li {
+    color: inherit;
+
     ${Media.mediumDown} {
       margin: 0 0 3.6rem;
       line-height: 1;
@@ -175,8 +181,7 @@ const Menu = styled.ol<{ isLight?: boolean; isLightCoWAMM?: boolean }>`
     font-weight: ${Font.weightLight};
 
     &:hover {
-      color: ${({ isLight, isLightCoWAMM }) =>
-        isLightCoWAMM ? Color.cowammWhite : isLight ? Color.darkBlue : Color.lightBlue};
+      color: inherit;
       text-decoration: underline;
     }
 
@@ -338,7 +343,16 @@ export default function Header({ isLight = false, isLightCoWAMM = false }: Props
               >
                 <Button
                   onClick={sendGAEventHandler(NavigationEvents.TRADE_ON_COWSWAP)}
-                  variant={!inView ? ButtonVariant.SMALL : ButtonVariant.OUTLINE}
+                  variant={
+                    !inView && isLightCoWAMM
+                      ? ButtonVariant.COWAMM_OUTLINE_SMALL
+                      : !inView
+                      ? ButtonVariant.SMALL
+                      : isLightCoWAMM
+                      ? ButtonVariant.COWAMM_OUTLINE_LIGHT
+                      : ButtonVariant.OUTLINE
+                  }
+                  borderRadius={isLightCoWAMM && 0}
                   minHeight={4.8}
                   fontSize={1.6}
                   label={'Trade on CoW Swap'}

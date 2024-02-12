@@ -11,6 +11,8 @@ export enum ButtonVariant {
   LIGHT = 'light',
   OUTLINE_LIGHT = 'outlineLight',
   COWAMM_LIGHTBLUE = 'cowammLightBlue',
+  COWAMM_OUTLINE_LIGHT = 'cowammOutlineLight',
+  COWAMM_OUTLINE_SMALL = 'cowammOutlineSmall',
 }
 
 type ButtonProps = {
@@ -121,8 +123,33 @@ ${({ variant }) =>
     color: ${Color.cowammBlack};
 
     &:hover {
-      background: ${lighten(0.1, Color.cowammBlue)};
-      color: ${Color.darkBlue};
+      background: ${lighten(0.2, Color.cowammLightBlue)};
+      color: ${Color.cowammBlack};
+  `}
+
+${({ variant }) =>
+    variant === ButtonVariant.COWAMM_OUTLINE_LIGHT &&
+    `
+    background: transparent;
+    color: ${Color.cowammWhite};
+    border: 0.1rem solid ${Color.cowammWhite};
+
+    &:hover {
+      background: ${Color.cowammWhite};
+      color: ${Color.cowammBlack};
+  `}
+
+${({ variant }) =>
+    variant === ButtonVariant.COWAMM_OUTLINE_SMALL &&
+    `
+    min-height: 3.6rem;
+    background: transparent;
+    color: ${Color.cowammWhite};
+    border: 0.1rem solid ${Color.cowammWhite};
+
+    &:hover {
+      background: ${Color.cowammWhite};
+      color: ${Color.cowammBlack};
   `}
 `
 

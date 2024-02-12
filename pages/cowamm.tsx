@@ -321,11 +321,11 @@ export default function CoWAMMPage({ siteConfigData }) {
 
       <Section fullWidth colorVariant={'cowamm-light-white'} flow="column" gap={14}>
         <SectionContent flow={'row'} textAlign={'left'} gap={10}>
-          <video width="520" src="/video/cowamm-raise-the-curve.mp4" loop autoPlay muted>
-            Your browser does not support the video tag.
-          </video>
-
-          {/* <img src="/video/cowamm-raise-the-curve.gif" alt="video" width="520" /> */}
+          <SectionImage width={'55rem'}>
+            <video width="100%" src="/video/cowamm-raise-the-curve.mp4" loop autoPlay muted>
+              Your browser does not support the video tag.
+            </video>
+          </SectionImage>
 
           <div className="container">
             <SectionH3 color={Color.cowammBlack} fontSize={6.6} fontWeight={500} font={Font.flecha}>
