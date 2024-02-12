@@ -727,6 +727,7 @@ export const SectionImage = styled.div<{
   > img {
     object-fit: contain;
     width: 100%;
+    width: inherit;
     height: inherit;
   }
 `

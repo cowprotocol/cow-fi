@@ -262,7 +262,7 @@ export default function CoWAMMPage({ siteConfigData }) {
       </Section>
 
       <Section fullWidth colorVariant={'cowamm-light'} flow="column" gap={14}>
-        <SectionContent flow={'row'} textAlign={'left'}>
+        <SectionContent flow={'row'} textAlign={'left'} gap={8}>
           <SectionImage>
             <img src={`${IMAGE_PATH}cowamm-illustration-lvr.svg`} alt="LVR" width="580" />
           </SectionImage>
@@ -287,7 +287,7 @@ export default function CoWAMMPage({ siteConfigData }) {
       </Section>
 
       <Section fullWidth colorVariant={'cowamm-dark'}>
-        <SectionContent flow={'column'}>
+        <SectionContent flow={'column'} maxWidth={180}>
           <div className="container">
             <SectionH3 color={Color.cowammWhite} fontSize={6.6} fontWeight={500} font={Font.flecha}>
               Finally, an AMM designed{' '}
@@ -353,7 +353,7 @@ export default function CoWAMMPage({ siteConfigData }) {
 
       <Section fullWidth colorVariant={'cowamm-light'} flow="column" gap={8}>
         <SectionH3 color={Color.cowammBlack} fontSize={6.4} fontWeight={500} font={Font.flecha} textAlign="center">
-          The CoW AMM Benefits LPs of{' '}
+          CoW AMM benefits LPs of{' '}
           <TextColor italic color={'cowammPink'}>
             all types
           </TextColor>
@@ -361,18 +361,19 @@ export default function CoWAMMPage({ siteConfigData }) {
 
         <Separator bgColor={Color.cowammBlack} borderSize={0.2} />
 
-        <SectionContent flow={'row'} textAlign={'left'} gap={10}>
+        <SectionContent flow={'row'} textAlign={'left'} gap={10} maxWidth={180}>
           <SectionImage width={'55rem'}>
             <img src={`${IMAGE_PATH}cowamm-lping.svg`} alt="Liquidity providing" />
           </SectionImage>
           <div className="container">
             <SectionH3 color={Color.cowammBlack} fontSize={4.4} fontWeight={500}>
-              Liquidity providing done right — even for volatile tokens
+              Support DAO token liquidity without the stick-up
             </SectionH3>
 
             <SubTitle lineHeight={1.4} textAlign={'left'} color={Color.cowammBlack} fontSize={2.9}>
-              LVR is bad for LPs, but it&apos;s even worse for DAOs and crypto projects releasing tokens as most of the
-              liquidity they provide goes to arbitrageurs rather than remaining available for token holders.
+              Healthy liquidity for DAO tokens reduces price impact, encourages investment and discourages volatility.
+              But DAOs can be reluctant to provide liquidity with treasury funds when their pools can be exploited by
+              arbitrageurs. CoW AMM makes providing liquidity more attractive to DAOs of all sizes.
             </SubTitle>
           </div>
         </SectionContent>
@@ -386,8 +387,9 @@ export default function CoWAMMPage({ siteConfigData }) {
             </SectionH3>
 
             <SubTitle lineHeight={1.4} textAlign={'left'} color={Color.cowammBlack} fontSize={2.9}>
-              With LVR in the rearview mirror, major liquidity pools earn 5%+ in APY, making liquidity providing just as
-              attractive for passive investors as staking or providing loans.
+              Passive investment strategies keep portfolios balanced and reduce risk, but pursuing these strategies with
+              AMMs is much less attractive when rebalancing causes LVR. CoW AMM makes LP&apos;ing just as attractive for
+              passive investors as staking or lending.
             </SubTitle>
           </div>
           <SectionImage width={'55rem'}>
