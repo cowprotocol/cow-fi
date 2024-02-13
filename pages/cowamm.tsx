@@ -269,6 +269,7 @@ export default function CoWAMMPage({ siteConfigData }) {
               paddingMobileTB={1}
               borderRadius={0}
               fontSize={2.6}
+              fontSizeMobile={2.1}
               fontWeight={500}
               label="Protect Your Liquidity"
             />
@@ -277,7 +278,13 @@ export default function CoWAMMPage({ siteConfigData }) {
       </Section>
 
       <Section fullWidth colorVariant={'cowamm-light'} flow="column" gap={14} paddingMobile={'7rem 2.4rem'}>
-        <SectionContent flow={'row'} textAlign={'left'} gap={8} maxWidth={MAX_WIDTH_CONTENT}>
+        <SectionContent
+          flow={'row'}
+          textAlign={'left'}
+          gap={8}
+          maxWidth={MAX_WIDTH_CONTENT}
+          reverseOrderMobile={'column-reverse'}
+        >
           <SectionImage>
             <img src={`${IMAGE_PATH}cowamm-illustration-lvr.svg`} alt="LVR" width="580" />
           </SectionImage>
@@ -336,9 +343,15 @@ export default function CoWAMMPage({ siteConfigData }) {
       </Section>
 
       <Section fullWidth colorVariant={'cowamm-light-white'} flow="column" gap={14} paddingMobile={'7rem 2.4rem'}>
-        <SectionContent flow={'row'} textAlign={'left'} gap={10} maxWidth={MAX_WIDTH_CONTENT}>
+        <SectionContent
+          flow={'row'}
+          textAlign={'left'}
+          gap={10}
+          maxWidth={MAX_WIDTH_CONTENT}
+          reverseOrderMobile={'column-reverse'}
+        >
           <SectionImage>
-            <video width="100%" src="/video/cowamm-raise-the-curve.mp4" loop autoPlay muted>
+            <video width="100%" src="/video/cowamm-raise-the-curve.mp4" autoPlay loop muted playsInline>
               Your browser does not support the video tag.
             </video>
           </SectionImage>
@@ -377,7 +390,13 @@ export default function CoWAMMPage({ siteConfigData }) {
 
         <Separator bgColor={Color.cowammBlack} borderSize={0.2} maxWidth={MAX_WIDTH_CONTENT} />
 
-        <SectionContent flow={'row'} textAlign={'left'} gap={10} maxWidth={MAX_WIDTH_CONTENT}>
+        <SectionContent
+          flow={'row'}
+          textAlign={'left'}
+          gap={10}
+          maxWidth={MAX_WIDTH_CONTENT}
+          reverseOrderMobile={'column-reverse'}
+        >
           <SectionImage>
             <img src={`${IMAGE_PATH}cowamm-lping.svg`} alt="Liquidity providing" />
           </SectionImage>
@@ -506,6 +525,7 @@ export default function CoWAMMPage({ siteConfigData }) {
                   paddingLR={4.2}
                   borderRadius={0}
                   fontSize={2.6}
+                  fontSizeMobile={2.1}
                   fontWeight={500}
                   label="Get in touch"
                 />

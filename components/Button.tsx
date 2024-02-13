@@ -19,6 +19,7 @@ type ButtonProps = {
   wrapText?: boolean
   borderRadius?: number
   fontSize?: number
+  fontSizeMobile?: number
   fontWeight?: number
   paddingLR?: number
   paddingTB?: number
@@ -66,6 +67,7 @@ const Wrapper = styled.a<Omit<ButtonProps, 'href' | 'label' | 'target' | 'rel'>>
     padding-top: ${({ paddingMobileTB }) => (paddingMobileTB ? `${paddingMobileTB}rem` : '0')};
     padding-bottom: ${({ paddingMobileTB }) => (paddingMobileTB ? `${paddingMobileTB}rem` : '0')};
     min-height: 4.8rem;
+    font-size: ${({ fontSizeMobile }) => (fontSizeMobile ? `${fontSizeMobile}rem` : '1.6rem')};
   }
 
   &:hover {
@@ -190,6 +192,7 @@ export const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
       wrapText,
       borderRadius,
       fontSize,
+      fontSizeMobile,
       fontWeight,
       paddingLR,
       paddingTB,
@@ -212,6 +215,7 @@ export const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
           wrapText,
           borderRadius,
           fontSize,
+          fontSizeMobile,
           fontWeight,
           paddingLR,
           paddingTB,

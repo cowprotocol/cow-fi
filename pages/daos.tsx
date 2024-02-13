@@ -226,7 +226,7 @@ export default function ForDAOs({ siteConfigData }) {
             <SubTitle color={Color.text1} fontSize={3} lineHeight={1.4} maxWidth={60}>
               The smartest DAOs trust CoW Swap with their most-important trades
             </SubTitle>
-            <Button href="#benefits" onClick={handleCTAClick} paddingLR={4.2} label="Learn why" />
+            <Button href="#benefits" onClick={handleCTAClick} paddingLR={4.2} fontSizeMobile={2.1} label="Learn why" />
           </div>
         </SectionContent>
       </Section>

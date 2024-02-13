@@ -218,6 +218,7 @@ export default function WidgetPage({ siteConfigData }) {
                 <Button
                   onClick={sendGAEventHandler(WidgetEvents.CONFIGURE_WIDGET)}
                   paddingLR={4.2}
+                  fontSizeMobile={2.1}
                   label="Configure widget"
                   target="_blank"
                   rel="noopener nofollow"
@@ -234,6 +235,7 @@ export default function WidgetPage({ siteConfigData }) {
                   target="_blank"
                   rel="noopener nofollow"
                   paddingLR={4.2}
+                  fontSizeMobile={2.1}
                   label="Read docs"
                   variant={ButtonVariant.TEXT}
                 />
@@ -382,6 +384,7 @@ export default function WidgetPage({ siteConfigData }) {
                   onClick={sendGAEventHandler(WidgetEvents.TALK_TO_US)}
                   paddingLR={4.2}
                   label="Talk to us"
+                  fontSizeMobile={2.1}
                   target="_blank"
                   rel="noopener nofollow"
                 />
@@ -397,6 +400,7 @@ export default function WidgetPage({ siteConfigData }) {
                   target="_blank"
                   rel="noopener nofollow"
                   paddingLR={4.2}
+                  fontSizeMobile={2.1}
                   label="Read docs"
                   variant={ButtonVariant.TEXT}
                 />

@@ -53,10 +53,17 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
 
             <ButtonWrapper>
               <LinkWithUtm href={url.swap} defaultUtm={{ ...CONFIG.utm, utmContent: 'landing-cta-button' }} passHref>
-                <Button paddingLR={4.2} target="_blank" rel="noopener nofollow" label="Start trading" />
+                <Button
+                  paddingLR={4.2}
+                  fontSizeMobile={2.1}
+                  target="_blank"
+                  rel="noopener nofollow"
+                  label="Start trading"
+                />
               </LinkWithUtm>
               <Button
                 paddingLR={4.2}
+                fontSizeMobile={2.1}
                 variant={ButtonVariant.TEXT}
                 href="#developers"
                 onClick={handleCTAClick}
@@ -297,6 +304,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
               <Button
                 href={url.docs}
                 label="Explore docs"
+                fontSizeMobile={2.1}
                 target="_blank"
                 rel="noopener nofollow"
                 variant={ButtonVariant.LIGHT}
@@ -304,6 +312,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
               <Button
                 href={'https://calendly.com/d/zxg-m2m-54p'}
                 label="Talk to us"
+                fontSizeMobile={2.1}
                 target="_blank"
                 rel="noopener nofollow"
                 variant={ButtonVariant.LIGHT}
