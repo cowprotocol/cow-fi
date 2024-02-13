@@ -10,8 +10,8 @@ export interface FooterLinkGroup {
 export const HEADER_LINKS: CustomLinkProps[] = [
   { label: 'DAOs', url: url.daos },
   { label: 'Widget', url: url.widget },
-  { label: 'CoWAMM', url: '/cowamm' },
-  { label: 'Careers', url: url.careers },
+  { label: 'CoW AMM', url: url.cowamm },
+  { label: 'MEV Blocker', url: url.mevBlocker, type: 'external' },
 ]
 
 const utmContent = 'footer-link'
@@ -22,7 +22,8 @@ export const FOOTER_LINK_GROUPS: FooterLinkGroup[] = [
     links: [
       { label: 'For DAOs', url: url.daos },
       { label: 'Widget', url: url.widget },
-      { label: 'Analytics', url: url.analytics, type: 'external' },
+      { label: 'CoW AMM', url: url.cowamm },
+      { label: 'MEV Blocker', url: url.mevBlocker, type: 'external' },
       { label: 'Careers', url: '/careers' },
       { label: 'Refer-to-Earn', url: '/careers/refer-to-earn' },
       { label: 'Grants', url: url.grants, type: 'external' },
@@ -34,6 +35,7 @@ export const FOOTER_LINK_GROUPS: FooterLinkGroup[] = [
     links: [
       { label: 'About', url: '/#about' },
       { label: 'CoW Swap', url: 'https://swap.cow.fi/#/about', type: 'external', utmContent },
+      { label: 'Analytics', url: url.analytics, type: 'external' },
       { label: 'CoW Swap FAQ', url: 'https://swap.cow.fi/#/faq', type: 'external', utmContent },
       { label: 'Tokens', url: '/tokens' },
       {

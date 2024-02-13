@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Defaults, Color, Font, Media } from 'styles/variables'
 import React, { forwardRef } from 'react'
 import { lighten } from 'polished'
@@ -22,6 +22,8 @@ type ButtonProps = {
   fontWeight?: number
   paddingLR?: number
   paddingTB?: number
+  paddingMobileLR?: number
+  paddingMobileTB?: number
   marginTB?: number
   variant?: ButtonVariant
   href?: string
@@ -55,12 +57,15 @@ const Wrapper = styled.a<Omit<ButtonProps, 'href' | 'label' | 'target' | 'rel'>>
   text-decoration: none;
 
   ${Media.mobile} {
-    padding: 0 1.6rem;
-    min-height: 4.8rem;
     max-width: 100%;
     white-space: pre-wrap;
     line-height: 1.1;
     text-align: center;
+    padding-left: ${({ paddingMobileLR }) => (paddingMobileLR ? `${paddingMobileLR}rem` : '1.6rem')};
+    padding-right: ${({ paddingMobileLR }) => (paddingMobileLR ? `${paddingMobileLR}rem` : '1.6rem')};
+    padding-top: ${({ paddingMobileTB }) => (paddingMobileTB ? `${paddingMobileTB}rem` : '0')};
+    padding-bottom: ${({ paddingMobileTB }) => (paddingMobileTB ? `${paddingMobileTB}rem` : '0')};
+    min-height: 4.8rem;
   }
 
   &:hover {
@@ -70,22 +75,22 @@ const Wrapper = styled.a<Omit<ButtonProps, 'href' | 'label' | 'target' | 'rel'>>
 
   ${({ variant }) =>
     variant === ButtonVariant.OUTLINE &&
-    `
-    background: transparent;
-    border: 0.1rem solid ${Color.darkBlue};
-    color: ${Color.darkBlue};
-  `}
+    css`
+      background: transparent;
+      border: 0.1rem solid ${Color.darkBlue};
+      color: ${Color.darkBlue};
+    `}
 
-  ${({ variant }) =>
+  ${({ variant, borderRadius }) =>
     variant === ButtonVariant.SMALL &&
-    `
-    min-height: 3.6rem;
-    border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : '1.2rem')};
-  `}
+    css`
+      min-height: 3.6rem;
+      border-radius: ${borderRadius ? borderRadius : '1.2rem'};
+    `}
 
   ${({ variant }) =>
     variant === ButtonVariant.TEXT &&
-    `
+    css`
     background: transparent;
     color: ${Color.darkBlue};
 
@@ -97,60 +102,63 @@ const Wrapper = styled.a<Omit<ButtonProps, 'href' | 'label' | 'target' | 'rel'>>
 
   ${({ variant }) =>
     variant === ButtonVariant.TEXT_LIGHT &&
-    `
-    background: transparent;
-    color: ${Color.lightBlue};
-  `}
+    css`
+      background: transparent;
+      color: ${Color.lightBlue};
+    `}
 
   ${({ variant }) =>
     variant === ButtonVariant.LIGHT &&
-    `
-    background: ${Color.lightBlue};
-    color: ${Color.darkBlue};
-  `}
+    css`
+      background: ${Color.lightBlue};
+      color: ${Color.darkBlue};
+    `}
 
   ${({ variant }) =>
     variant === ButtonVariant.OUTLINE_LIGHT &&
-    `
-    background: transparent;
-    border: 0.1rem solid ${Color.lightBlue};
-  `}
+    css`
+      background: transparent;
+      border: 0.1rem solid ${Color.lightBlue};
+    `}
 
 ${({ variant }) =>
     variant === ButtonVariant.COWAMM_LIGHTBLUE &&
-    `
-    background: ${Color.cowammLightBlue};
-    color: ${Color.cowammBlack};
-
-    &:hover {
-      background: ${lighten(0.2, Color.cowammLightBlue)};
+    css`
+      background: ${Color.cowammLightBlue};
       color: ${Color.cowammBlack};
-  `}
+
+      &:hover {
+        background: ${lighten(0.2, Color.cowammLightBlue)};
+        color: ${Color.cowammBlack};
+      }
+    `}
 
 ${({ variant }) =>
     variant === ButtonVariant.COWAMM_OUTLINE_LIGHT &&
-    `
-    background: transparent;
-    color: ${Color.cowammWhite};
-    border: 0.1rem solid ${Color.cowammWhite};
+    css`
+      background: transparent;
+      color: ${Color.cowammWhite};
+      border: 0.1rem solid ${Color.cowammWhite};
 
-    &:hover {
-      background: ${Color.cowammWhite};
-      color: ${Color.cowammBlack};
-  `}
+      &:hover {
+        background: ${Color.cowammWhite};
+        color: ${Color.cowammBlack};
+      }
+    `}
 
 ${({ variant }) =>
     variant === ButtonVariant.COWAMM_OUTLINE_SMALL &&
-    `
-    min-height: 3.6rem;
-    background: transparent;
-    color: ${Color.cowammWhite};
-    border: 0.1rem solid ${Color.cowammWhite};
+    css`
+      min-height: 3.6rem;
+      background: transparent;
+      color: ${Color.cowammWhite};
+      border: 0.1rem solid ${Color.cowammWhite};
 
-    &:hover {
-      background: ${Color.cowammWhite};
-      color: ${Color.cowammBlack};
-  `}
+      &:hover {
+        background: ${Color.cowammWhite};
+        color: ${Color.cowammBlack};
+      }
+    `}
 `
 
 // General purpose multiple button wrapper
@@ -185,6 +193,8 @@ export const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
       fontWeight,
       paddingLR,
       paddingTB,
+      paddingMobileLR,
+      paddingMobileTB,
       marginTB,
       variant,
       href = '#',
@@ -205,6 +215,8 @@ export const Button = forwardRef<HTMLAnchorElement, ButtonProps>(
           fontWeight,
           paddingLR,
           paddingTB,
+          paddingMobileLR,
+          paddingMobileTB,
           marginTB,
           variant,
           minHeight,

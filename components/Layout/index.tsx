@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react'
 import Header from 'components/Layout/Header'
 import Footer from 'components/Layout/Footer'
 import { Content } from './index.styles'
-import { Color, Font } from 'styles/variables'
+import { Color, Font, Media } from 'styles/variables'
 
 const GlobalStyle = createGlobalStyle<{ fullWidthCoWAMM?: boolean }>`
   html, body {
@@ -50,6 +50,11 @@ const FullWidthCoWAMM = styled(BaseLayout)`
   background: ${Color.cowammBlack};
   color: ${Color.cowammWhite};
   font-family: ${Font.circular};
+
+  // mobile
+  ${Media.mobile} {
+    padding: 12rem 0 5.6rem;
+  }
 
   h1,
   h2,

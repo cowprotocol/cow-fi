@@ -10,11 +10,12 @@ export const CONFIG = {
   descriptionShort: 'The smartest way to trade',
   url: {
     root: 'https://cow.fi',
-    swap: 'https://swap.cow.fi/#/1/swap/WETH/DAI?sellAmount=1',
+    swap: 'https://swap.cow.fi/#/1/swap/DAI/COW?sellAmount=500',
     docs: 'https://docs.cow.fi',
     api: API_BASE_URL + '/mainnet',
     apiDocs: API_BASE_URL + '/docs',
     daos: '/daos',
+    cowamm: '/cowamm',
     widget: '/widget',
     careers: '/careers',
     widgetConfigurator: 'widget.cow.fi',
@@ -22,6 +23,7 @@ export const CONFIG = {
     explorer: 'https://explorer.cow.fi',
     securityPortal: 'https://app.chainpatrol.io/cow',
     grants: 'https://grants.cow.fi',
+    mevBlocker: 'https://mevblocker.io/',
   },
   greenhouse: {
     api: 'https://boards-api.greenhouse.io/v1/boards/cowswap/jobs?content=true',

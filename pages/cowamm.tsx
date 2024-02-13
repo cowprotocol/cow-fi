@@ -89,7 +89,7 @@ const CONTENT = {
       description: (
         <>
           &quot;If I knew we wouldn&apos;t suffer impermanent loss or LVR, I&apos;d be much more supportive of using
-          treasury funds to provide liquidity GNO &quot;
+          treasury funds to provide liquidity for GNO &quot;
         </>
       ),
     },
@@ -111,7 +111,7 @@ const CONTENT = {
   ],
   featureItems: [
     {
-      description: 'LP’s Deposit Funds in the CoW AMM',
+      description: 'LP’s Deposit Funds in CoW AMM',
     },
     {
       description: 'Whenever solvers want to trade against the pools, they must provide liquidity',
@@ -121,7 +121,7 @@ const CONTENT = {
     },
     {
       description:
-        'The FM-AMM model of the CoW AMM forces liquidity takers to compete for the right to settle trades, guaranteeing more returns for LPs than traditional AMMs',
+        'The FM-AMM model of CoW AMM forces liquidity takers to compete for the right to settle trades, guaranteeing more returns for LPs than traditional AMMs',
     },
   ],
   faqContent: [
@@ -178,9 +178,9 @@ const CONTENT = {
         'The “Function-Maximizing” AMM is a novel AMM mechanism that tackles the shortcomings of the CF-AMM design and eliminates LVR. The FM-AMM batches trades together, executing all the orders in a batch at the same uniform clearing price. This price is such that the AMM “moves up the curve” with each trade. Since anyone can submit trades to the FM-AMM while its batch is open, competition between arbitrageurs guarantees that FM-AMM always trades at the correct, equilibrium price also in case of a rebalancing.',
     },
     {
-      title: 'What is the CoW AMM?',
+      title: 'What is CoW AMM?',
       content:
-        'The CoW AMM is a production-ready implementation of an FM-AMM that supplies liquidity for trades made on CoW Protocol. Solvers compete with each other for the right to trade against the AMM. The winning solver is the one that moves the AMM curves higher.',
+        'CoW AMM is a production-ready implementation of an FM-AMM that supplies liquidity for trades made on CoW Protocol. Solvers compete with each other for the right to trade against the AMM. The winning solver is the one that moves the AMM curves higher.',
     },
     {
       title: 'Who can create a CoW AMM pool (and how)?',
@@ -207,6 +207,8 @@ const CONTENT = {
   ],
 }
 
+const MAX_WIDTH_CONTENT = 126
+
 const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
 export default function CoWAMMPage({ siteConfigData }) {
@@ -228,16 +230,27 @@ export default function CoWAMMPage({ siteConfigData }) {
         </title>
       </Head>
 
-      <Section fullWidth firstSection padding={'8rem 8rem 4rem'} paddingMobile={'0 2.4rem 4rem'}>
-        <SectionContent flow="column">
+      <Section
+        gapMobile={4}
+        fullWidth
+        firstSection
+        padding={'8rem 8rem 4rem'}
+        paddingMobile={'0 2.4rem 4rem'}
+        flow="column"
+      >
+        <SectionImage width={'460px'} widthMobile="90%" margin="0 auto">
+          <img src={`${IMAGE_PATH}cowamm-header-logo-animated.gif`} alt="CoW AMM" width="100%" />
+        </SectionImage>
+        <SectionContent flow="column" maxWidth={MAX_WIDTH_CONTENT}>
           <div>
-            <img
-              src={`${IMAGE_PATH}cowamm-header-logo-animated.gif`}
-              alt="CoW AMM"
-              width="460"
-              style={{ margin: '0 1.6rem 4rem', maxWidth: '100%' }}
-            />
-            <SectionH1 color={Color.cowammWhite} fontSize={6.6} fontWeight={500} maxWidth={100} margin={'0 auto 4rem'}>
+            <SectionH1
+              color={Color.cowammWhite}
+              fontSize={6.6}
+              fontSizeMobile={3.6}
+              fontWeight={500}
+              maxWidth={100}
+              margin={'0 auto 4rem'}
+            >
               The first{' '}
               <TextColor italic color={'cowammLightPurple'}>
                 MEV-Capturing AMM
@@ -252,6 +265,8 @@ export default function CoWAMMPage({ siteConfigData }) {
               href="#"
               paddingTB={3}
               paddingLR={4.2}
+              paddingMobileLR={2}
+              paddingMobileTB={1}
               borderRadius={0}
               fontSize={2.6}
               fontWeight={500}
@@ -261,8 +276,8 @@ export default function CoWAMMPage({ siteConfigData }) {
         </SectionContent>
       </Section>
 
-      <Section fullWidth colorVariant={'cowamm-light'} flow="column" gap={14}>
-        <SectionContent flow={'row'} textAlign={'left'} gap={8}>
+      <Section fullWidth colorVariant={'cowamm-light'} flow="column" gap={14} paddingMobile={'7rem 2.4rem'}>
+        <SectionContent flow={'row'} textAlign={'left'} gap={8} maxWidth={MAX_WIDTH_CONTENT}>
           <SectionImage>
             <img src={`${IMAGE_PATH}cowamm-illustration-lvr.svg`} alt="LVR" width="580" />
           </SectionImage>
@@ -286,8 +301,8 @@ export default function CoWAMMPage({ siteConfigData }) {
         </SectionContent>
       </Section>
 
-      <Section fullWidth colorVariant={'cowamm-dark'}>
-        <SectionContent flow={'column'} maxWidth={180}>
+      <Section fullWidth colorVariant={'cowamm-dark'} paddingMobile={'7rem 2.4rem'}>
+        <SectionContent flow={'column'} maxWidth={MAX_WIDTH_CONTENT}>
           <div className="container">
             <SectionH3 color={Color.cowammWhite} fontSize={6.6} fontWeight={500} font={Font.flecha}>
               Finally, an AMM designed{' '}
@@ -295,8 +310,8 @@ export default function CoWAMMPage({ siteConfigData }) {
                 with LPs in mind
               </TextColor>
             </SectionH3>
-            <Separator bgColor={Color.cowammWhite} borderSize={0.2} margin={'2rem auto'} />
-            <SubTitle lineHeight={1.4} fontSize={4.8} fontSizeMobile={2.4} textAlign={'left'} color={Color.cowammWhite}>
+            <Separator bgColor={Color.cowammWhite} borderSize={0.2} margin={'2rem auto'} maxWidth={MAX_WIDTH_CONTENT} />
+            <SubTitle lineHeight={1.4} fontSize={4} fontSizeMobile={2.4} textAlign={'left'} color={Color.cowammWhite}>
               CoW AMM eliminates LVR once and for all by using batch auctions to send surplus to LPs
             </SubTitle>
 
@@ -308,7 +323,8 @@ export default function CoWAMMPage({ siteConfigData }) {
                   imageFullSize
                   padding={0}
                   borderRadius={0}
-                  fontSize={2.8}
+                  fontSize={2.6}
+                  fontSizeMobile={2.1}
                 >
                   <img src={image} alt="image" />
                   <p>{description}</p>
@@ -319,8 +335,8 @@ export default function CoWAMMPage({ siteConfigData }) {
         </SectionContent>
       </Section>
 
-      <Section fullWidth colorVariant={'cowamm-light-white'} flow="column" gap={14}>
-        <SectionContent flow={'row'} textAlign={'left'} gap={10}>
+      <Section fullWidth colorVariant={'cowamm-light-white'} flow="column" gap={14} paddingMobile={'7rem 2.4rem'}>
+        <SectionContent flow={'row'} textAlign={'left'} gap={10} maxWidth={MAX_WIDTH_CONTENT}>
           <SectionImage>
             <video width="100%" src="/video/cowamm-raise-the-curve.mp4" loop autoPlay muted>
               Your browser does not support the video tag.
@@ -351,7 +367,7 @@ export default function CoWAMMPage({ siteConfigData }) {
         </SectionContent>
       </Section>
 
-      <Section fullWidth colorVariant={'cowamm-light'} flow="column" gap={8}>
+      <Section fullWidth colorVariant={'cowamm-light'} flow="column" gap={8} paddingMobile={'7rem 2.4rem'}>
         <SectionH3 color={Color.cowammBlack} fontSize={6.4} fontWeight={500} font={Font.flecha} textAlign="center">
           CoW AMM benefits LPs of{' '}
           <TextColor italic color={'cowammPink'}>
@@ -359,9 +375,9 @@ export default function CoWAMMPage({ siteConfigData }) {
           </TextColor>
         </SectionH3>
 
-        <Separator bgColor={Color.cowammBlack} borderSize={0.2} />
+        <Separator bgColor={Color.cowammBlack} borderSize={0.2} maxWidth={MAX_WIDTH_CONTENT} />
 
-        <SectionContent flow={'row'} textAlign={'left'} gap={10}>
+        <SectionContent flow={'row'} textAlign={'left'} gap={10} maxWidth={MAX_WIDTH_CONTENT}>
           <SectionImage>
             <img src={`${IMAGE_PATH}cowamm-lping.svg`} alt="Liquidity providing" />
           </SectionImage>
@@ -378,9 +394,9 @@ export default function CoWAMMPage({ siteConfigData }) {
           </div>
         </SectionContent>
 
-        <Separator bgColor={Color.cowammBlack} borderSize={0.2} />
+        <Separator bgColor={Color.cowammBlack} borderSize={0.2} maxWidth={MAX_WIDTH_CONTENT} />
 
-        <SectionContent flow={'row'} textAlign={'left'} gap={10}>
+        <SectionContent flow={'row'} textAlign={'left'} gap={10} maxWidth={MAX_WIDTH_CONTENT}>
           <div className="container">
             <SectionH3 color={Color.cowammBlack} fontSize={4.4} fontWeight={500} font={Font.circular}>
               Unlock the power of passive investing
@@ -398,8 +414,8 @@ export default function CoWAMMPage({ siteConfigData }) {
         </SectionContent>
       </Section>
 
-      <Section fullWidth colorVariant={'cowamm-light-white'} flow="column" gap={14}>
-        <SectionContent maxWidth={180} flow={'column'}>
+      <Section fullWidth colorVariant={'cowamm-light-white'} flow="column" gap={14} paddingMobile={'7rem 2.4rem'}>
+        <SectionContent maxWidth={MAX_WIDTH_CONTENT} flow={'column'}>
           <div>
             <SectionH3 color={Color.cowammBlack} fontSize={6.6} fontWeight={500} font={Font.flecha}>
               Trust the{' '}
@@ -418,7 +434,7 @@ export default function CoWAMMPage({ siteConfigData }) {
                     imageHeight={5}
                     padding={0}
                     borderRadius={0}
-                    fontSize={2.7}
+                    fontSize={2.2}
                     fontSizeMobile={2.1}
                     equalHeight
                   >
@@ -433,19 +449,19 @@ export default function CoWAMMPage({ siteConfigData }) {
         </SectionContent>
       </Section>
 
-      <Section fullWidth colorVariant={'cowamm-dark'}>
+      <Section fullWidth colorVariant={'cowamm-dark'} paddingMobile={'7rem 2.4rem'}>
         <SectionContent flow={'column'}>
           <div className="container">
             <SectionH3 color={Color.cowammWhite} fontSize={6.6} fontWeight={500} font={Font.flecha}>
-              Frequently Asked{' '}
+              Frequently asked{' '}
               <TextColor italic color={'cowammBlue'}>
                 {' '}
-                Questions
+                questions
               </TextColor>
             </SectionH3>
 
             <FAQList
-              titleFontSize={4.4}
+              titleFontSize={4}
               titleFontSizeMobile={2.4}
               bodyFontSize={2.7}
               bodyFontSizeMobile={1.7}
@@ -462,19 +478,19 @@ export default function CoWAMMPage({ siteConfigData }) {
         </SectionContent>
       </Section>
 
-      <Section fullWidth colorVariant={'cowamm-light-white'} flow="column" gap={14}>
+      <Section fullWidth colorVariant={'cowamm-light-white'} flow="column" gap={14} paddingMobile={'7rem 2.4rem'}>
         <SectionContent flow={'column'}>
           <div>
             <SectionH3 color={Color.cowammBlack} fontSize={6.6} fontWeight={500} font={Font.flecha}>
-              Get started with the{' '}
+              Get started with{' '}
               <TextColor italic color={'cowammOrange'}>
                 CoW AMM
               </TextColor>
             </SectionH3>
 
             <SubTitle fontSize={2.9} lineHeight={1.4} color={Color.cowammBlack} maxWidth={100}>
-              Anyone can provide liquidity to CoW AMM by creating their own protected pools. To get started, just follow
-              the instructions in the CoW DAO docs!
+              Anyone can provide liquidity to CoW AMM by creating their own protected pools. Get in touch with the CoW
+              DAO team if you&apos;d like to create a liquidity pool for any token pair.
             </SubTitle>
 
             <ButtonWrapper center>
@@ -491,7 +507,7 @@ export default function CoWAMMPage({ siteConfigData }) {
                   borderRadius={0}
                   fontSize={2.6}
                   fontWeight={500}
-                  label="Read the docs"
+                  label="Get in touch"
                 />
               </LinkWithUtm>
             </ButtonWrapper>

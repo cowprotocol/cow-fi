@@ -214,7 +214,7 @@ export default function ForDAOs({ siteConfigData }) {
       <Section fullWidth padding={'8rem 8rem 4rem'} paddingMobile={'0 2.4rem 4rem'}>
         <SectionContent flow="column">
           <div>
-            <SectionH1 fontSize={7}>
+            <SectionH1 fontSize={7} fontSizeMobile={4}>
               <b>
                 <i>Savvy DAOs</i>
               </b>{' '}

@@ -201,7 +201,7 @@ export default function WidgetPage({ siteConfigData }) {
       <Section firstSection>
         <SectionContent sticky>
           <div>
-            <SectionH1 fontSize={6.8} lineHeight={1} textAlign={'left'}>
+            <SectionH1 fontSize={6.8} fontSizeMobile={4} lineHeight={1} textAlign={'left'}>
               Bring reliable, MEV-protected swaps to your users
             </SectionH1>
             <SubTitle color={Color.text1} fontSize={2} lineHeight={1.6} maxWidth={60} textAlign="left">

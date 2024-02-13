@@ -43,7 +43,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
       <Section firstSection>
         <SectionContent>
           <div>
-            <SectionH1 fontSize={6.8} textAlign={'left'}>
+            <SectionH1 fontSize={6.8} fontSizeMobile={4} textAlign={'left'}>
               Better than the best prices
             </SectionH1>
             <SubTitle textAlign={'left'} color={Color.text1} lineHeight={1.4}>
