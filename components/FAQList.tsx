@@ -55,15 +55,13 @@ const Wrapper = styled.div<{
     cursor: pointer;
     margin: 0;
     padding: 3.8rem var(--titleSize) 3.8rem 0;
+    // same padding but do the var titleSize + 10px
+    padding: 3.8rem calc((var(--titleSize) + 1rem)) 3.8rem 0;
     list-style-type: none;
     line-height: 1.2;
     border-bottom: 0.2rem solid var(--color);
     position: relative;
     font-size: var(--titleSize);
-
-    ${Media.mobile} {
-      padding: 3.8rem 0;
-    }
 
     &::marker,
     &::-webkit-details-marker {

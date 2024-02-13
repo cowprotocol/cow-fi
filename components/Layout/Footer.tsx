@@ -96,7 +96,7 @@ const Menu = styled.ol`
   list-style: none;
   font-size: inherit;
   flex-flow: column wrap;
-  gap: 2.4rem;
+  gap: 1.4rem;
   color: inherit;
   padding: 0;
   margin: 0;
