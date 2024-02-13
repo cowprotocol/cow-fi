@@ -90,7 +90,7 @@ const Content = styled.div`
   align-items: center;
 `
 
-const Menu = styled.ol<{ isLight?: boolean; isLightCoWAMM?: boolean; isSticky?: boolean }>`
+const Menu = styled.ol<{ isLight?: boolean; isLightCoWAMM?: boolean; isSticky?: boolean; menuVisible?: boolean }>`
   display: flex;
   list-style: none;
   font-size: 1.5rem;
@@ -121,16 +121,18 @@ const Menu = styled.ol<{ isLight?: boolean; isLightCoWAMM?: boolean; isSticky?: 
     gap: 3rem;
     overflow-y: auto;
 
-    &.visible {
-      position: fixed;
-      display: flex;
-      padding: 12rem 6rem 6rem;
-      font-size: 3.2rem;
+    ${({ menuVisible }) =>
+      menuVisible &&
+      css`
+        position: fixed;
+        display: flex;
+        padding: 12rem 6rem 6rem;
+        font-size: 3.2rem;
 
-      ${Media.mobile} {
-        font-size: 2rem;
-      }
-    }
+        ${Media.mobile} {
+          font-size: 2rem;
+        }
+      `}
   }
 
   // any buttons or links right after menu
@@ -341,12 +343,7 @@ export default function Header({ isLight = false, isLightCoWAMM = false }: Props
                 <Logo isLight={isLight} isLightCoWAMM={isLightCoWAMM} menuVisible={menuVisible} isSticky={!inView} />
               </Link>
 
-              <Menu
-                className={menuVisible ? 'visible' : ''}
-                isLight={isLight}
-                isLightCoWAMM={isLightCoWAMM}
-                isSticky={!inView}
-              >
+              <Menu menuVisible={menuVisible} isLight={isLight} isLightCoWAMM={isLightCoWAMM} isSticky={!inView}>
                 {HEADER_LINKS.map((link, index) => (
                   <li key={index}>
                     <CustomLink {...link} onClick={handleClick} />
