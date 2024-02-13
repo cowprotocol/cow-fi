@@ -191,11 +191,31 @@ const CONTENT = {
         <>
           Anyone can create a CoW AMM pool permissionlessly. To get started, check out our docs or get in touch with us
           via{' '}
-          <a href={CONFIG.social.discord.url} target="_blank" rel="noreferrer nofollow">
+          <a
+            href={CONFIG.social.discord.url}
+            target="_blank"
+            rel="noreferrer nofollow"
+            onClick={() =>
+              sendGAEventHandler({
+                category: GAEventCategories.COWAMM,
+                action: 'Content link click - Discord',
+              })
+            }
+          >
             Discord
           </a>{' '}
           or{' '}
-          <a href={CONFIG.social.twitter.url} target="_blank" rel="noreferrer nofollow">
+          <a
+            href={CONFIG.social.twitter.url}
+            target="_blank"
+            rel="noreferrer nofollow"
+            onClick={() =>
+              sendGAEventHandler({
+                category: GAEventCategories.COWAMM,
+                action: 'Content link click - Twitter/X',
+              })
+            }
+          >
             X
           </a>
           .
