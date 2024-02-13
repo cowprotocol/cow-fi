@@ -22,9 +22,11 @@ import { sendGAEventHandler } from 'lib/analytics/sendGAEvent'
 import { GAEventCategories } from 'lib/analytics/GAEvents'
 
 const IMAGE_PATH = '/images/'
+const MAX_WIDTH_CONTENT = 126
+const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
 const CONTENT = {
-  contactURL: '#',
+  contactURL: 'https://cowprotocol.typeform.com/cow-amm-lpers',
   howItWorksCards: [
     {
       image: `${IMAGE_PATH}cowamm-howitworks-1.svg`,
@@ -208,10 +210,6 @@ const CONTENT = {
   ],
 }
 
-const MAX_WIDTH_CONTENT = 126
-
-const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
-
 export default function CoWAMMPage({ siteConfigData }) {
   const { social } = siteConfigData
 
@@ -228,16 +226,22 @@ export default function CoWAMMPage({ siteConfigData }) {
     setOpenFaqIndex(openFaqIndex === index ? null : index)
   }
 
+  const pageTitle = `CoW AMM - ${siteConfigData.title}`
+  const pageDescription =
+    'The first MEV-Capturing AMM, brought to you by CoW DAO. CoW AMM eliminates LVR once and for all by using batch auctions to send surplus to LPs.'
+  const pageImage = `${CONFIG.url.root}${IMAGE_PATH}og-social-image-cowamm.png`
+
   return (
     <Layout fullWidthCoWAMM>
       <Head>
-        <title>CoW AMM - {siteConfigData.title}</title>
-        <meta
-          name="description"
-          content={
-            'The first MEV-Capturing AMM, brought to you by CoW DAO. CoW AMM eliminates LVR once and for all by using batch auctions to send surplus to LPs.'
-          }
-        />
+        <title>{pageTitle}</title>
+        <meta key="description" name="description" content={pageDescription} />
+        <meta key="ogTitle" property="og:title" content={pageTitle} />
+        <meta key="ogDescription" property="og:description" content={pageDescription} />
+        <meta key="ogImage" property="og:image" content={pageImage} />
+        <meta key="twitterTitle" name="twitter:title" content={pageTitle} />
+        <meta key="twitterDescription" name="twitter:description" content={pageDescription} />
+        <meta key="twitterImage" name="twitter:image" content={pageImage} />
       </Head>
 
       <Section
@@ -279,6 +283,8 @@ export default function CoWAMMPage({ siteConfigData }) {
               }
               variant={ButtonVariant.COWAMM_LIGHTBLUE}
               href={CONTENT.contactURL}
+              target="_blank"
+              rel="noreferrer nofollow"
               paddingTB={3}
               paddingLR={4.2}
               paddingMobileLR={2}
@@ -564,6 +570,8 @@ export default function CoWAMMPage({ siteConfigData }) {
                   fontSizeMobile={2.1}
                   fontWeight={500}
                   label="Get in touch"
+                  target="_blank"
+                  rel="noreferrer nofollow"
                 />
               </LinkWithUtm>
             </ButtonWrapper>
