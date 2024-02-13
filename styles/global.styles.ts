@@ -188,6 +188,30 @@ const GlobalStyles = createGlobalStyle`
   .container {
     margin: 0 auto;
   }
+
+  @keyframes zoomSlideIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3) translate3d(0, -10px, 0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale3d(1.05, 1.05, 1.05) translate3d(0, -5px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1) translate3d(0, 0px, 0);
+  }
+}
+
+.zoomSlideIn {
+  animation-name: zoomSlideIn;
+  animation-duration: 1.2s; 
+  animation-fill-mode: forwards; 
+}
+
 `
 
 export const ExternalLink = styled.a`

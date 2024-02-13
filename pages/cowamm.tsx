@@ -49,16 +49,48 @@ const CONTENT = {
     {
       title: (
         <>
-          ﹣ Felix Leupold
+          ﹣ Hasu <br /> <small>Strategy Lead at Flashbots</small>
+        </>
+      ),
+      titleColor: 'cowammBlue',
+      description: (
+        <>
+          {' '}
+          &quot;When LPs bleed money to LVR, users pay for it with bigger spreads. If we want DeFi to rival the CEX
+          experience, solving LVR will be the key. &quot;
+        </>
+      ),
+    },
+    {
+      title: (
+        <>
+          ﹣ Marcelo
           <br />
-          <small>CTO at CoW Protocol</small>
+          <small>CEO at Karpatkey</small>
         </>
       ),
       titleColor: 'cowammOrange',
       description: (
         <>
-          &quot;This is an excellent application of batch auction theory to solve one of the most important problems in
-          DeFi &quot;
+          &quot;Impermanent loss is a big worry for many of our clients. If LPs could deposit liquidity into
+          surplus-rebalancing pools and not worry about LVR, we’d deposit more funds into passive investment
+          strategies.&quot;
+        </>
+      ),
+    },
+    {
+      title: (
+        <>
+          ﹣ Josojo
+          <br />
+          <small>Ethereum Researcher</small>
+        </>
+      ),
+      titleColor: 'cowammPurple',
+      description: (
+        <>
+          &quot;LVR is the main reason for the current concentration in the block builder market. CoW AMM is not only
+          great for LPs, it’s important for Ethereum overall.&quot;
         </>
       ),
     },
@@ -68,40 +100,11 @@ const CONTENT = {
           ﹣ Fernando Martinelli <br /> <small>CEO at Balancer Labs</small>
         </>
       ),
-      titleColor: 'cowammPurple',
+      titleColor: 'cowammPink',
       description: (
         <>
           &quot;Balancer is super excited to explore custom AMM designs like CoW AMM. MEV/LVR is the key problem holding
           LPs back from joining AMMs &quot;
-        </>
-      ),
-    },
-    {
-      title: (
-        <>
-          ﹣ Martin Köppelman <br /> <small>CEO at Gnosis</small>
-        </>
-      ),
-      titleColor: 'cowammPink',
-      description: (
-        <>
-          &quot;If I knew we wouldn&apos;t suffer impermanent loss or LVR, I&apos;d be much more supportive of using
-          treasury funds to provide liquidity for GNO &quot;
-        </>
-      ),
-    },
-    {
-      title: (
-        <>
-          ﹣ Hasu <br /> <small>Strategy Lead at Flashbots</small>
-        </>
-      ),
-      titleColor: 'cowammBlue',
-      description: (
-        <>
-          {' '}
-          &quot;CoW DAO has a lot of credibility building auction mechanisms that mitigate MEV. If someone is going to
-          solve the LVR problem successfully, its them &quot;
         </>
       ),
     },
@@ -272,7 +275,7 @@ export default function CoWAMMPage({ siteConfigData }) {
         paddingMobile={'0 2.4rem 4rem'}
         flow="column"
       >
-        <SectionImage width={'460px'} widthMobile="90%" margin="0 auto">
+        <SectionImage width={'460px'} widthMobile="90%" margin="0 auto" className="zoomSlideIn">
           <img src={`${IMAGE_PATH}cowamm-header-logo-animated.gif`} alt="CoW AMM" width="100%" />
         </SectionImage>
         <SectionContent flow="column" maxWidth={MAX_WIDTH_CONTENT}>
