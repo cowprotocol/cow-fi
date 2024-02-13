@@ -24,9 +24,7 @@ import { GAEventCategories } from 'lib/analytics/GAEvents'
 const IMAGE_PATH = '/images/'
 
 const CONTENT = {
-  configuratorURL: 'https://widget.cow.fi/',
-  calendlyURL: 'https://calendly.com/crystal-cow/cow-swap-widget',
-  docsURL: 'https://docs.cow.fi/cow-protocol/tutorials/widget',
+  contactURL: '#',
   howItWorksCards: [
     {
       image: `${IMAGE_PATH}cowamm-howitworks-1.svg`,
@@ -273,12 +271,14 @@ export default function CoWAMMPage({ siteConfigData }) {
               </TextColor>
             </SectionH1>
             <Button
-              onClick={sendGAEventHandler({
-                category: GAEventCategories.COWAMM,
-                action: 'Button click - Protect Your Liquidity',
-              })}
+              onClick={() =>
+                sendGAEventHandler({
+                  category: GAEventCategories.COWAMM,
+                  action: 'Button click - Protect Your Liquidity',
+                })
+              }
               variant={ButtonVariant.COWAMM_LIGHTBLUE}
-              href="#"
+              href={CONTENT.contactURL}
               paddingTB={3}
               paddingLR={4.2}
               paddingMobileLR={2}
@@ -387,10 +387,12 @@ export default function CoWAMMPage({ siteConfigData }) {
               <br />
               Additionally,{' '}
               <a
-                onClick={sendGAEventHandler({
-                  category: GAEventCategories.COWAMM,
-                  action: 'Content link click - Backtesting research',
-                })}
+                onClick={() =>
+                  sendGAEventHandler({
+                    category: GAEventCategories.COWAMM,
+                    action: 'Content link click - Backtesting research',
+                  })
+                }
                 href="https://arxiv.org/pdf/2307.02074v3.pdf"
                 target="_blank"
                 rel="noreferrer nofollow"
@@ -542,15 +544,17 @@ export default function CoWAMMPage({ siteConfigData }) {
 
             <ButtonWrapper center>
               <LinkWithUtm
-                href={CONTENT.docsURL}
+                href={CONTENT.contactURL}
                 defaultUtm={{ ...CONFIG.utm, utmContent: 'widget-page-footerCTA-read-docs' }}
                 passHref
               >
                 <Button
-                  onClick={sendGAEventHandler({
-                    category: GAEventCategories.COWAMM,
-                    action: 'Button click - Get in touch',
-                  })}
+                  onClick={() =>
+                    sendGAEventHandler({
+                      category: GAEventCategories.COWAMM,
+                      action: 'Button click - Get in touch',
+                    })
+                  }
                   variant={ButtonVariant.COWAMM_LIGHTBLUE}
                   href="#"
                   paddingTB={3}

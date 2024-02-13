@@ -11,7 +11,7 @@ import { CONFIG } from '@/const/meta'
 import { HEADER_LINKS } from '@/const/menu'
 import { LinkWithUtm } from 'modules/utm'
 import { sendGAEventHandler } from 'lib/analytics/sendGAEvent'
-import { NavigationEvents } from 'lib/analytics/GAEvents'
+import { NavigationEvents, GAEventCategories } from 'lib/analytics/GAEvents'
 import { is } from 'make-plural'
 
 const LogoImage = '/images/logo.svg'
@@ -325,7 +325,10 @@ export default function Header({ isLight = false, isLightCoWAMM = false }: Props
   const toggleBodyScroll = () => {
     !menuVisible ? document.body.classList.add('noScroll') : document.body.classList.remove('noScroll')
   }
-  const handleClick = () => {
+  const handleClick = ({ label }) => {
+    // log GA event
+    sendGAEventHandler({ category: GAEventCategories.NAVIGATION, action: `Header menu clicked: ${label}` })
+
     if (isTouch) {
       setIsMenuVisible(!menuVisible)
       toggleBodyScroll()
@@ -346,10 +349,10 @@ export default function Header({ isLight = false, isLightCoWAMM = false }: Props
               <Menu menuVisible={menuVisible} isLight={isLight} isLightCoWAMM={isLightCoWAMM} isSticky={!inView}>
                 {HEADER_LINKS.map((link, index) => (
                   <li key={index}>
-                    <CustomLink {...link} onClick={handleClick} />
+                    <CustomLink {...link} onClick={() => handleClick({ label: link.label })} />
                   </li>
                 ))}
-                <CloseIcon onClick={handleClick} />
+                <CloseIcon onClick={() => handleClick({ label: 'Close menu on touch/mobile' })} />
               </Menu>
 
               <LinkWithUtm
@@ -361,7 +364,7 @@ export default function Header({ isLight = false, isLightCoWAMM = false }: Props
                 passHref
               >
                 <Button
-                  onClick={sendGAEventHandler(NavigationEvents.TRADE_ON_COWSWAP)}
+                  onClick={() => sendGAEventHandler(NavigationEvents.TRADE_ON_COWSWAP)}
                   variant={
                     !inView && isLightCoWAMM
                       ? ButtonVariant.COWAMM_OUTLINE_SMALL
@@ -378,7 +381,12 @@ export default function Header({ isLight = false, isLightCoWAMM = false }: Props
                   rel="noopener nofollow"
                 />
               </LinkWithUtm>
-              <MenuToggle isLight={isLight} isLightCoWAMM={isLightCoWAMM} onClick={handleClick} isSticky={!inView} />
+              <MenuToggle
+                isLight={isLight}
+                isLightCoWAMM={isLightCoWAMM}
+                onClick={() => handleClick({ label: 'Open menu on touch/mobile' })}
+                isSticky={!inView}
+              />
             </Content>
           </Wrapper>
         </>

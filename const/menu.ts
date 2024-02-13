@@ -11,7 +11,7 @@ export const HEADER_LINKS: CustomLinkProps[] = [
   { label: 'DAOs', url: url.daos },
   { label: 'Widget', url: url.widget },
   { label: 'CoW AMM', url: url.cowamm },
-  { label: 'MEV Blocker', url: url.mevBlocker, type: 'external' },
+  { label: 'MEV Blocker', url: url.mevBlocker, type: 'external', utmContent: 'header-link-mevblocker' },
 ]
 
 const utmContent = 'footer-link'

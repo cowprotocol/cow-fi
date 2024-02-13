@@ -214,7 +214,7 @@ export default function WidgetPage({ siteConfigData }) {
                 passHref
               >
                 <Button
-                  onClick={sendGAEventHandler(WidgetEvents.CONFIGURE_WIDGET)}
+                  onClick={() => sendGAEventHandler(WidgetEvents.CONFIGURE_WIDGET)}
                   paddingLR={4.2}
                   fontSizeMobile={2.1}
                   label="Configure widget"
@@ -229,7 +229,7 @@ export default function WidgetPage({ siteConfigData }) {
                 passHref
               >
                 <Button
-                  onClick={sendGAEventHandler(WidgetEvents.READ_DOCS)}
+                  onClick={() => sendGAEventHandler(WidgetEvents.READ_DOCS)}
                   target="_blank"
                   rel="noopener nofollow"
                   paddingLR={4.2}
@@ -379,7 +379,7 @@ export default function WidgetPage({ siteConfigData }) {
                 passHref
               >
                 <Button
-                  onClick={sendGAEventHandler(WidgetEvents.TALK_TO_US)}
+                  onClick={() => sendGAEventHandler(WidgetEvents.TALK_TO_US)}
                   paddingLR={4.2}
                   label="Talk to us"
                   fontSizeMobile={2.1}
@@ -394,7 +394,7 @@ export default function WidgetPage({ siteConfigData }) {
                 passHref
               >
                 <Button
-                  onClick={sendGAEventHandler(WidgetEvents.READ_DOCS)}
+                  onClick={() => sendGAEventHandler(WidgetEvents.READ_DOCS)}
                   target="_blank"
                   rel="noopener nofollow"
                   paddingLR={4.2}
