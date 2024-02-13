@@ -1,3 +1,4 @@
+import React, { useState } from 'react'
 import Head from 'next/head'
 import { GetStaticProps } from 'next'
 import { CONFIG } from '@/const/meta'
@@ -18,11 +19,7 @@ import { FAQList } from '@/components/FAQList'
 import { LinkWithUtm } from 'modules/utm'
 import { Button, ButtonVariant, ButtonWrapper } from '@/components/Button'
 import { sendGAEventHandler } from 'lib/analytics/sendGAEvent'
-import { WidgetEvents } from 'lib/analytics/GAEvents'
-
-function expandFaq(event: any) {
-  const question = event.currentTarget.innerHTML
-}
+import { GAEventCategories } from 'lib/analytics/GAEvents'
 
 const IMAGE_PATH = '/images/'
 
@@ -163,7 +160,13 @@ const CONTENT = {
           that fit on the constant product function.
           <br />
           <br />
-          <img src="/images/cowamm-graph-xyz.svg" alt="xyz graph" width="100%" style={{ maxWidth: '52rem' }} />
+          <img
+            src="/images/cowamm-graph-xyz.svg"
+            alt="xyz graph"
+            width="100%"
+            style={{ maxWidth: '52rem' }}
+            loading="lazy"
+          />
         </>
       ),
     },
@@ -222,12 +225,21 @@ export default function CoWAMMPage({ siteConfigData }) {
     }
   })
 
+  const [openFaqIndex, setOpenFaqIndex] = useState(null)
+  const handleFaqClick = (index) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index)
+  }
+
   return (
     <Layout fullWidthCoWAMM>
       <Head>
-        <title>
-          {siteConfigData.title} - {siteConfigData.descriptionShort}
-        </title>
+        <title>CoW AMM - {siteConfigData.title}</title>
+        <meta
+          name="description"
+          content={
+            'The first MEV-Capturing AMM, brought to you by CoW DAO. CoW AMM eliminates LVR once and for all by using batch auctions to send surplus to LPs.'
+          }
+        />
       </Head>
 
       <Section
@@ -261,6 +273,10 @@ export default function CoWAMMPage({ siteConfigData }) {
               </TextColor>
             </SectionH1>
             <Button
+              onClick={sendGAEventHandler({
+                category: GAEventCategories.COWAMM,
+                action: 'Button click - Protect Your Liquidity',
+              })}
               variant={ButtonVariant.COWAMM_LIGHTBLUE}
               href="#"
               paddingTB={3}
@@ -286,7 +302,7 @@ export default function CoWAMMPage({ siteConfigData }) {
           reverseOrderMobile={'column-reverse'}
         >
           <SectionImage>
-            <img src={`${IMAGE_PATH}cowamm-illustration-lvr.svg`} alt="LVR" width="580" />
+            <img src={`${IMAGE_PATH}cowamm-illustration-lvr.svg`} alt="LVR" width="580" loading="lazy" />
           </SectionImage>
           <div className="container">
             <SectionH3 color={Color.cowammBlack} fontSize={6.4} fontWeight={500} font={Font.flecha}>
@@ -333,7 +349,7 @@ export default function CoWAMMPage({ siteConfigData }) {
                   fontSize={2.6}
                   fontSizeMobile={2.1}
                 >
-                  <img src={image} alt="image" />
+                  <img src={image} alt={description} loading="lazy" />
                   <p>{description}</p>
                 </CardItem>
               ))}
@@ -370,7 +386,15 @@ export default function CoWAMMPage({ siteConfigData }) {
               <br />
               <br />
               Additionally,{' '}
-              <a href="https://arxiv.org/pdf/2307.02074v3.pdf" target="_blank" rel="noreferrer nofollow">
+              <a
+                onClick={sendGAEventHandler({
+                  category: GAEventCategories.COWAMM,
+                  action: 'Content link click - Backtesting research',
+                })}
+                href="https://arxiv.org/pdf/2307.02074v3.pdf"
+                target="_blank"
+                rel="noreferrer nofollow"
+              >
                 backtesting research
               </a>{' '}
               conducted over 6 months in 2023 shows that CoW AMM returns would have outperformed CFAMM returns
@@ -398,7 +422,7 @@ export default function CoWAMMPage({ siteConfigData }) {
           reverseOrderMobile={'column-reverse'}
         >
           <SectionImage>
-            <img src={`${IMAGE_PATH}cowamm-lping.svg`} alt="Liquidity providing" />
+            <img src={`${IMAGE_PATH}cowamm-lping.svg`} alt="Liquidity providing" loading="lazy" />
           </SectionImage>
           <div className="container">
             <SectionH3 color={Color.cowammBlack} fontSize={4.4} fontWeight={500}>
@@ -428,7 +452,11 @@ export default function CoWAMMPage({ siteConfigData }) {
             </SubTitle>
           </div>
           <SectionImage>
-            <img src={`${IMAGE_PATH}cowamm-passive-investing.svg`} alt="Unlock the power of passive investing" />
+            <img
+              src={`${IMAGE_PATH}cowamm-passive-investing.svg`}
+              alt="Unlock the power of passive investing"
+              loading="lazy"
+            />
           </SectionImage>
         </SectionContent>
       </Section>
@@ -488,7 +516,7 @@ export default function CoWAMMPage({ siteConfigData }) {
             >
               {CONTENT.faqContent.map(({ title, content }, index) => (
                 <details key={index}>
-                  <summary onClick={expandFaq}>{title}</summary>
+                  <summary onClick={handleFaqClick}>{title}</summary>
                   <div>{content}</div>
                 </details>
               ))}
@@ -519,6 +547,10 @@ export default function CoWAMMPage({ siteConfigData }) {
                 passHref
               >
                 <Button
+                  onClick={sendGAEventHandler({
+                    category: GAEventCategories.COWAMM,
+                    action: 'Button click - Get in touch',
+                  })}
                   variant={ButtonVariant.COWAMM_LIGHTBLUE}
                   href="#"
                   paddingTB={3}

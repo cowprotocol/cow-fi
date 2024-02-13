@@ -206,9 +206,7 @@ export default function ForDAOs({ siteConfigData }) {
   return (
     <Layout fullWidthGradientVariant={true}>
       <Head>
-        <title>
-          {siteConfigData.title} - {siteConfigData.descriptionShort}
-        </title>
+        <title>For DAOs - {siteConfigData.title}</title>
       </Head>
 
       <Section fullWidth padding={'8rem 8rem 4rem'} paddingMobile={'0 2.4rem 4rem'}>

@@ -193,9 +193,7 @@ export default function WidgetPage({ siteConfigData }) {
   return (
     <Layout fullWidthGradientVariant>
       <Head>
-        <title>
-          {siteConfigData.title} - {siteConfigData.descriptionShort}
-        </title>
+        <title>Widget - {siteConfigData.title}</title>
       </Head>
 
       <Section firstSection>
