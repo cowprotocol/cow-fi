@@ -533,7 +533,6 @@ export const CardItem = styled.div<{
     width: var(--width);
     height: var(--height);
     min-width: var(--width);
-    min-height: var(--height);
     ${({ imageRounded }) => (imageRounded ? `border-radius: var(--height);` : '')}
     max-width: 100%;
     background: transparent;

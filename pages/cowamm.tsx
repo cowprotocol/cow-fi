@@ -305,7 +305,7 @@ export default function CoWAMMPage({ siteConfigData }) {
                 <CardItem
                   variant={'cowamm-card-light'}
                   key={index}
-                  imageHeight={5}
+                  imageFullSize
                   padding={0}
                   borderRadius={0}
                   fontSize={2.8}

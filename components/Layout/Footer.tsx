@@ -20,7 +20,7 @@ const Wrapper = styled.footer<{ noMargin?: boolean; isCoWAMM?: boolean }>`
   padding: 5.6rem;
   margin: ${({ noMargin, isCoWAMM }) => (noMargin || isCoWAMM ? '0 auto' : '16rem auto 0')};
   position: relative;
-  background: ${({ isCoWAMM }) => (isCoWAMM ? Color.cowammBlack : 'inherit')};
+  background: ${({ isCoWAMM }) => (isCoWAMM ? Color.cowammBlack : Color.darkBlue)};
   color: ${({ isCoWAMM }) => (isCoWAMM ? Color.cowammWhite : Color.text2)};
 
   ${Media.mediumDown} {

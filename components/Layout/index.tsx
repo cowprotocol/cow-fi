@@ -1,9 +1,15 @@
-import styled from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 import { PropsWithChildren } from 'react'
 import Header from 'components/Layout/Header'
 import Footer from 'components/Layout/Footer'
 import { Content } from './index.styles'
 import { Color, Font } from 'styles/variables'
+
+const GlobalStyle = createGlobalStyle<{ fullWidthCoWAMM?: boolean }>`
+  html, body {
+    background-color: ${({ fullWidthCoWAMM }) => (fullWidthCoWAMM ? Color.cowammBlack : Color.darkBlue)};
+  }
+`
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -76,10 +82,13 @@ export default function Layout({ children, fullWidth, fullWidthGradientVariant, 
   const footerNoMargin = fullWidthGradientVariant
 
   return (
-    <Wrapper>
-      <Header isLight={isLightHeader} isLightCoWAMM={fullWidthCoWAMM} />
-      <ContentComponent>{children || 'No content found'}</ContentComponent>
-      <Footer noMargin={footerNoMargin} isCoWAMM={fullWidthCoWAMM} />
-    </Wrapper>
+    <>
+      <GlobalStyle fullWidthCoWAMM={fullWidthCoWAMM} />
+      <Wrapper>
+        <Header isLight={isLightHeader} isLightCoWAMM={fullWidthCoWAMM} />
+        <ContentComponent>{children || 'No content found'}</ContentComponent>
+        <Footer noMargin={footerNoMargin} isCoWAMM={fullWidthCoWAMM} />
+      </Wrapper>
+    </>
   )
 }

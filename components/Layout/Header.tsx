@@ -1,5 +1,5 @@
 import { useState, forwardRef, Ref } from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import Link from 'next/link'
 import { transparentize, lighten } from 'polished'
 import { Button, ButtonVariant } from 'components/Button'
@@ -12,6 +12,7 @@ import { HEADER_LINKS } from '@/const/menu'
 import { LinkWithUtm } from 'modules/utm'
 import { sendGAEventHandler } from 'lib/analytics/sendGAEvent'
 import { NavigationEvents } from 'lib/analytics/GAEvents'
+import { is } from 'make-plural'
 
 const LogoImage = '/images/logo.svg'
 const LogoImageThemedCoWAMM = '/images/logo-themed-cowamm.svg'
@@ -46,7 +47,7 @@ const Pixel = forwardRef<HTMLDivElement, PixelProps>((props, ref) => (
 
 Pixel.displayName = 'Pixel'
 
-const Wrapper = styled.header`
+const Wrapper = styled.header<{ isSticky?: boolean }>`
   z-index: 10;
   width: 100%;
   height: 7.2rem;
@@ -69,13 +70,15 @@ const Wrapper = styled.header`
     height: 6rem;
   }
 
-  &.sticky {
-    background: ${transparentize(0.2, Color.white)};
-    backdrop-filter: blur(1rem);
-    box-shadow: 0 0.4rem 0.6rem 0 rgba(51, 57, 75, 0.1);
-    position: fixed;
-    top: 0;
-  }
+  ${({ isSticky }) =>
+    isSticky &&
+    css`
+      background: ${transparentize(0.2, Color.white)};
+      backdrop-filter: blur(1rem);
+      box-shadow: 0 0.4rem 0.6rem 0 rgba(51, 57, 75, 0.1);
+      position: fixed;
+      top: 0;
+    `}
 `
 
 const Content = styled.div`
@@ -87,7 +90,7 @@ const Content = styled.div`
   align-items: center;
 `
 
-const Menu = styled.ol<{ isLight?: boolean; isLightCoWAMM?: boolean }>`
+const Menu = styled.ol<{ isLight?: boolean; isLightCoWAMM?: boolean; isSticky?: boolean }>`
   display: flex;
   list-style: none;
   font-size: 1.5rem;
@@ -97,9 +100,11 @@ const Menu = styled.ol<{ isLight?: boolean; isLightCoWAMM?: boolean }>`
   padding: 0;
   margin: 0;
 
-  .sticky & {
-    color: ${({ isLightCoWAMM }) => (isLightCoWAMM ? Color.cowammBlack : Color.darkBlue)};
-  }
+  ${({ isSticky, isLightCoWAMM }) =>
+    isSticky &&
+    css`
+      color: ${isLightCoWAMM ? Color.cowammBlack : Color.darkBlue};
+    `}
 
   ${Media.mediumDown} {
     display: none;
@@ -135,15 +140,17 @@ const Menu = styled.ol<{ isLight?: boolean; isLightCoWAMM?: boolean }>`
     color: ${({ isLight, isLightCoWAMM }) =>
       isLightCoWAMM ? Color.cowammWhite : isLight ? Color.darkBlue : Color.lightBlue};
 
-    .sticky & {
-      background: transparent;
-      border: 0.1rem solid ${Color.darkBlue};
-      color: ${({ isLightCoWAMM }) => (isLightCoWAMM ? Color.cowammBlack : Color.darkBlue)};
+    ${({ isSticky, isLightCoWAMM }) =>
+      isSticky &&
+      css`
+        background: transparent;
+        border: 0.1rem solid ${Color.darkBlue};
+        color: ${isLightCoWAMM ? Color.cowammBlack : Color.darkBlue};
 
-      &:hover {
-        color: ${({ isLightCoWAMM }) => (isLightCoWAMM ? Color.cowammBlack : Color.darkBlue)};
-      }
-    }
+        &:hover {
+          color: ${isLightCoWAMM ? Color.cowammBlack : Color.darkBlue};
+        }
+      `}
 
     ${Media.mediumDown} {
       margin: 0 2.4rem 0 auto;
@@ -229,7 +236,7 @@ const CloseIcon = styled.button`
   }
 `
 
-const MenuToggle = styled.button<{ isLight?: boolean; isLightCoWAMM?: boolean }>`
+const MenuToggle = styled.button<{ isLight?: boolean; isLightCoWAMM?: boolean; isSticky?: boolean }>`
   display: none;
   background: transparent;
   flex-flow: row;
@@ -252,10 +259,12 @@ const MenuToggle = styled.button<{ isLight?: boolean; isLightCoWAMM?: boolean }>
     width: 62%;
     height: 100%;
 
-    .sticky & {
-      background: url(${MenuImage}) no-repeat center/contain;
-      ${({ isLightCoWAMM }) => isLightCoWAMM && `background: url(${MenuImageThemedCoWAMM}) no-repeat center/contain`};
-    }
+    ${({ isSticky, isLightCoWAMM }) =>
+      isSticky &&
+      css`
+        background: url(${MenuImage}) no-repeat center/contain;
+        ${isLightCoWAMM && `background: url(${MenuImageThemedCoWAMM}) no-repeat center/contain`};
+      `}
   }
 
   ${Media.mediumDown} {
@@ -263,7 +272,7 @@ const MenuToggle = styled.button<{ isLight?: boolean; isLightCoWAMM?: boolean }>
   }
 `
 
-const Logo = styled.div<{ isLight?: boolean; isLightCoWAMM?: boolean; menuVisible?: boolean }>`
+const Logo = styled.div<{ isLight?: boolean; isLightCoWAMM?: boolean; menuVisible?: boolean; isSticky?: boolean }>`
   width: 12.2rem;
   height: 3.8rem;
   background: ${({ isLight, isLightCoWAMM }) =>
@@ -272,10 +281,11 @@ const Logo = styled.div<{ isLight?: boolean; isLightCoWAMM?: boolean; menuVisibl
   cursor: pointer;
   z-index: 10;
 
-  .sticky & {
-    background: ${({ isLightCoWAMM }) => `url(${isLightCoWAMM ? LogoImageThemedCoWAMM : LogoImage})`} no-repeat
-      center/contain;
-  }
+  ${({ isSticky, isLightCoWAMM }) =>
+    isSticky &&
+    css`
+      background: ${`url(${isLightCoWAMM ? LogoImageThemedCoWAMM : LogoImage})`} no-repeat center/contain;
+    `}
 
   ${Media.mediumDown} {
     background: url(${LogoIconImage}) no-repeat center/contain;
@@ -290,14 +300,14 @@ const Logo = styled.div<{ isLight?: boolean; isLightCoWAMM?: boolean; menuVisibl
     background-size: contain;
     background-position: left;
 
-    .sticky & {
-      width: 3.6rem;
-      height: 3.2rem;
-      background: url(${LogoIconImage}) no-repeat center/contain;
-
-      ${({ isLightCoWAMM, menuVisible }) =>
-        (isLightCoWAMM || menuVisible) && `background: url(${LogoIconImageThemedCoWAMM}) no-repeat center/contain`};
-    }
+    ${({ isSticky, isLightCoWAMM, menuVisible }) =>
+      isSticky &&
+      css`
+        width: 3.6rem;
+        height: 3.2rem;
+        background: url(${LogoIconImage}) no-repeat center/contain;
+        ${(isLightCoWAMM || menuVisible) && `background: url(${LogoIconImageThemedCoWAMM}) no-repeat center/contain`};
+      `}
   }
 `
 
@@ -321,17 +331,22 @@ export default function Header({ isLight = false, isLightCoWAMM = false }: Props
   }
 
   return (
-    <InView threshold={1} delay={500}>
+    <InView threshold={1} delay={500} initialInView={true}>
       {({ inView, ref }) => (
         <>
           <Pixel ref={ref} />
-          <Wrapper className={!inView && 'sticky'}>
+          <Wrapper isSticky={!inView}>
             <Content>
               <Link passHref href="/">
-                <Logo isLight={isLight} isLightCoWAMM={isLightCoWAMM} menuVisible={menuVisible} />
+                <Logo isLight={isLight} isLightCoWAMM={isLightCoWAMM} menuVisible={menuVisible} isSticky={!inView} />
               </Link>
 
-              <Menu className={menuVisible ? 'visible' : ''} isLight={isLight} isLightCoWAMM={isLightCoWAMM}>
+              <Menu
+                className={menuVisible ? 'visible' : ''}
+                isLight={isLight}
+                isLightCoWAMM={isLightCoWAMM}
+                isSticky={!inView}
+              >
                 {HEADER_LINKS.map((link, index) => (
                   <li key={index}>
                     <CustomLink {...link} onClick={handleClick} />
@@ -359,7 +374,6 @@ export default function Header({ isLight = false, isLightCoWAMM = false }: Props
                       ? ButtonVariant.COWAMM_OUTLINE_LIGHT
                       : ButtonVariant.OUTLINE
                   }
-                  borderRadius={isLightCoWAMM && 0}
                   minHeight={4.8}
                   fontSize={1.6}
                   label={'Trade on CoW Swap'}
@@ -367,7 +381,7 @@ export default function Header({ isLight = false, isLightCoWAMM = false }: Props
                   rel="noopener nofollow"
                 />
               </LinkWithUtm>
-              <MenuToggle isLight={isLight} isLightCoWAMM={isLightCoWAMM} onClick={handleClick} />
+              <MenuToggle isLight={isLight} isLightCoWAMM={isLightCoWAMM} onClick={handleClick} isSticky={!inView} />
             </Content>
           </Wrapper>
         </>
