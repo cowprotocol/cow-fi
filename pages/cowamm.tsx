@@ -57,7 +57,7 @@ const CONTENT = {
         <>
           {' '}
           &quot;When LPs bleed money to LVR, users pay for it with bigger spreads. If we want DeFi to rival the CEX
-          experience, solving LVR will be the key. &quot;
+          experience, solving LVR will be the key.&quot;
         </>
       ),
     },
@@ -104,7 +104,7 @@ const CONTENT = {
       description: (
         <>
           &quot;Balancer is super excited to explore custom AMM designs like CoW AMM. MEV/LVR is the key problem holding
-          LPs back from joining AMMs &quot;
+          LPs back from joining AMMs&quot;
         </>
       ),
     },
