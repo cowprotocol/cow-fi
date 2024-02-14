@@ -190,10 +190,19 @@ export default function WidgetPage({ siteConfigData }) {
     cowSwapWidget(widgetContainerRef.current, widgetParams)
   }, [])
 
+  const pageTitle = `Widget - ${siteConfigData.title}`
+  const pageDescription =
+    'Integrate the CoW Swap widget to bring seamless, MEV-protected trading to your website or dApp.'
+
   return (
     <Layout fullWidthGradientVariant>
       <Head>
-        <title>Widget - {siteConfigData.title}</title>
+        <title>{pageTitle}</title>
+        <meta key="description" name="description" content={pageDescription} />
+        <meta key="ogTitle" property="og:title" content={pageTitle} />
+        <meta key="ogDescription" property="og:description" content={pageDescription} />
+        <meta key="twitterTitle" name="twitter:title" content={pageTitle} />
+        <meta key="twitterDescription" name="twitter:description" content={pageDescription} />
       </Head>
 
       <Section firstSection>
