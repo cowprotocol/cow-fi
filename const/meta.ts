@@ -15,7 +15,7 @@ export const CONFIG = {
     api: API_BASE_URL + '/mainnet',
     apiDocs: API_BASE_URL + '/docs',
     daos: '/daos',
-    cowamm: '/cowamm',
+    cowamm: '/cow-amm',
     widget: '/widget',
     careers: '/careers',
     widgetConfigurator: 'widget.cow.fi',
