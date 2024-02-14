@@ -24,9 +24,9 @@ import { GAEventCategories } from 'lib/analytics/GAEvents'
 const IMAGE_PATH = '/images/'
 const MAX_WIDTH_CONTENT = 126
 const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
+const CONTACT_URL = 'https://cowprotocol.typeform.com/cow-amm-lpers'
 
 const CONTENT = {
-  contactURL: 'https://cowprotocol.typeform.com/cow-amm-lpers',
   howItWorksCards: [
     {
       image: `${IMAGE_PATH}cowamm-howitworks-1.svg`,
@@ -247,36 +247,21 @@ const CONTENT = {
       title: 'Who can create a CoW AMM pool (and how)?',
       content: (
         <>
-          Anyone can create a CoW AMM pool permissionlessly. To get started, check out our docs or get in touch with us
-          via{' '}
+          Anyone can create a CoW AMM pool permissionlessly. Docs are coming soon. In the meantime, you can{' '}
           <a
-            href={CONFIG.social.discord.url}
+            href={CONTACT_URL}
             target="_blank"
             rel="noreferrer nofollow"
             onClick={() =>
               sendGAEventHandler({
                 category: GAEventCategories.COWAMM,
-                action: 'Content link click - Discord',
+                action: 'Content link click - FAQ:Contact us',
               })
             }
           >
-            Discord
+            contact us
           </a>{' '}
-          or{' '}
-          <a
-            href={CONFIG.social.twitter.url}
-            target="_blank"
-            rel="noreferrer nofollow"
-            onClick={() =>
-              sendGAEventHandler({
-                category: GAEventCategories.COWAMM,
-                action: 'Content link click - Twitter/X',
-              })
-            }
-          >
-            X
-          </a>
-          .
+          for instructions.
         </>
       ),
     },
@@ -359,7 +344,7 @@ export default function CoWAMMPage({ siteConfigData }) {
                 })
               }
               variant={ButtonVariant.COWAMM_LIGHTBLUE}
-              href={CONTENT.contactURL}
+              href={CONTACT_URL}
               target="_blank"
               rel="noreferrer nofollow"
               paddingTB={3}
@@ -401,7 +386,7 @@ export default function CoWAMMPage({ siteConfigData }) {
               <br />
               In fact,{' '}
               <b>
-                billions of dollars of LP funds are stolen by arbitrageurs every year<sup> 1</sup>.
+                hundreds of millions of dollars of LP funds are stolen by arbitrageurs every year<sup> 1</sup>.
               </b>{' '}
               These losses are known as loss-versus-rebalancing (LVR). LVR is a bigger source of MEV than{' '}
               <b>frontrunning and sandwich attacks combined</b>.
@@ -486,7 +471,7 @@ export default function CoWAMMPage({ siteConfigData }) {
             </SectionH3>
 
             <SubTitle lineHeight={1.4} textAlign={'left'} color={Color.cowammBlack} fontSize={2.8}>
-              CoW AMM LPs don&apos;t have to worry about LVR, which <b>costs CF-AMM LPs 5-7% of their returns</b>, on
+              CoW AMM LPs don&apos;t have to worry about LVR, which <b>costs CF-AMM LPs 5-7% of their liquidity</b>, on
               average.
               <br />
               <br />
@@ -648,7 +633,7 @@ export default function CoWAMMPage({ siteConfigData }) {
 
             <ButtonWrapper center>
               <LinkWithUtm
-                href={CONTENT.contactURL}
+                href={CONTACT_URL}
                 defaultUtm={{ ...CONFIG.utm, utmContent: 'widget-page-footerCTA-read-docs' }}
                 passHref
               >
