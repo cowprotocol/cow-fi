@@ -10,10 +10,8 @@ export interface FooterLinkGroup {
 export const HEADER_LINKS: CustomLinkProps[] = [
   { label: 'DAOs', url: url.daos },
   { label: 'Widget', url: url.widget },
-  { label: 'Developers', url: '/#developers' },
-  { label: 'Tokens', url: '/tokens' },
-  { label: 'Governance', url: social.forum.url, type: 'external_untrusted' },
-  { label: 'Careers', url: '/careers' },
+  { label: 'CoW AMM', url: url.cowamm },
+  { label: 'MEV Blocker', url: url.mevBlocker, type: 'external', utmContent: 'header-link-mevblocker' },
 ]
 
 const utmContent = 'footer-link'
@@ -24,7 +22,8 @@ export const FOOTER_LINK_GROUPS: FooterLinkGroup[] = [
     links: [
       { label: 'For DAOs', url: url.daos },
       { label: 'Widget', url: url.widget },
-      { label: 'Analytics', url: url.analytics, type: 'external' },
+      { label: 'CoW AMM', url: url.cowamm },
+      { label: 'MEV Blocker', url: url.mevBlocker, type: 'external' },
       { label: 'Careers', url: '/careers' },
       { label: 'Refer-to-Earn', url: '/careers/refer-to-earn' },
       { label: 'Grants', url: url.grants, type: 'external' },
@@ -36,7 +35,9 @@ export const FOOTER_LINK_GROUPS: FooterLinkGroup[] = [
     links: [
       { label: 'About', url: '/#about' },
       { label: 'CoW Swap', url: 'https://swap.cow.fi/#/about', type: 'external', utmContent },
+      { label: 'Analytics', url: url.analytics, type: 'external' },
       { label: 'CoW Swap FAQ', url: 'https://swap.cow.fi/#/faq', type: 'external', utmContent },
+      { label: 'Tokens', url: '/tokens' },
       {
         label: 'Brand Kit',
         url: 'https://cownation.notion.site/CoW-DAO-Brand-Kit-fe70d51a39df4229b7912cb7af3eb320',

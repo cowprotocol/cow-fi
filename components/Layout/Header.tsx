@@ -1,7 +1,7 @@
-import { useState, forwardRef, Ref } from 'react'
-import styled from 'styled-components'
+import { useState, forwardRef } from 'react'
+import styled, { css } from 'styled-components'
 import Link from 'next/link'
-import { transparentize, lighten } from 'polished'
+import { transparentize } from 'polished'
 import { Button, ButtonVariant } from 'components/Button'
 import { Defaults, Color, Font, Media } from 'styles/variables'
 import { InView } from 'react-intersection-observer'
@@ -11,14 +11,20 @@ import { CONFIG } from '@/const/meta'
 import { HEADER_LINKS } from '@/const/menu'
 import { LinkWithUtm } from 'modules/utm'
 import { sendGAEventHandler } from 'lib/analytics/sendGAEvent'
-import { NavigationEvents } from 'lib/analytics/GAEvents'
+import { NavigationEvents, GAEventCategories } from 'lib/analytics/GAEvents'
 
 const LogoImage = '/images/logo.svg'
+const LogoImageThemedCoWAMM = '/images/logo-themed-cowamm.svg'
 const LogoLightImage = '/images/logo-light.svg'
+const LogoLightImageThemedCoWAMM = '/images/logo-light-themed-cowamm.svg'
 const LogoIconImage = '/images/logo-icon.svg'
+const LogoIconImageThemedCoWAMM = '/images/logo-icon-themed-cowamm.svg'
 const LogoIconLightImage = '/images/logo-icon-light.svg'
+const LogoIconLightImageThemedCoWAMM = '/images/logo-icon-light-themed-cowamm.svg'
 const MenuImage = '/images/icons/menu.svg'
 const MenuImageLight = '/images/icons/menu-light.svg'
+const MenuImageThemedCoWAMM = '/images/icons/menu-cowamm.svg'
+const MenuImageLightThemedCoWAMM = '/images/icons/menu-cowamm-light.svg'
 
 interface PixelProps {
   children?: React.ReactNode
@@ -40,7 +46,7 @@ const Pixel = forwardRef<HTMLDivElement, PixelProps>((props, ref) => (
 
 Pixel.displayName = 'Pixel'
 
-const Wrapper = styled.header`
+const Wrapper = styled.header<{ isSticky?: boolean }>`
   z-index: 10;
   width: 100%;
   height: 7.2rem;
@@ -63,13 +69,15 @@ const Wrapper = styled.header`
     height: 6rem;
   }
 
-  &.sticky {
-    background: ${transparentize(0.2, Color.white)};
-    backdrop-filter: blur(1rem);
-    box-shadow: 0 0.4rem 0.6rem 0 rgba(51, 57, 75, 0.1);
-    position: fixed;
-    top: 0;
-  }
+  ${({ isSticky }) =>
+    isSticky &&
+    css`
+      background: ${transparentize(0.2, Color.white)};
+      backdrop-filter: blur(1rem);
+      box-shadow: 0 0.4rem 0.6rem 0 rgba(51, 57, 75, 0.1);
+      position: fixed;
+      top: 0;
+    `}
 `
 
 const Content = styled.div`
@@ -81,18 +89,21 @@ const Content = styled.div`
   align-items: center;
 `
 
-const Menu = styled.ol<{ isLight?: boolean }>`
+const Menu = styled.ol<{ isLight?: boolean; isLightCoWAMM?: boolean; isSticky?: boolean; menuVisible?: boolean }>`
   display: flex;
   list-style: none;
   font-size: 1.5rem;
   font-weight: ${Font.weightMedium};
-  color: ${({ isLight }) => (isLight ? Color.darkBlue : Color.lightBlue)};
+  color: ${({ isLight, isLightCoWAMM }) =>
+    isLightCoWAMM ? Color.cowammWhite : isLight ? Color.darkBlue : Color.lightBlue};
   padding: 0;
   margin: 0;
 
-  .sticky & {
-    color: ${Color.darkBlue};
-  }
+  ${({ isSticky, isLightCoWAMM }) =>
+    isSticky &&
+    css`
+      color: ${isLightCoWAMM ? Color.cowammBlack : Color.darkBlue};
+    `}
 
   ${Media.mediumDown} {
     display: none;
@@ -100,8 +111,8 @@ const Menu = styled.ol<{ isLight?: boolean }>`
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: ${Color.darkBlue};
-    color: ${Color.text2};
+    background: ${({ isLightCoWAMM }) => (isLightCoWAMM ? Color.cowammBlack : Color.darkBlue)};
+    color: ${({ isLightCoWAMM }) => (isLightCoWAMM ? Color.cowammWhite : Color.text2)};
     justify-content: flex-start;
     align-items: flex-start;
     align-content: flex-start;
@@ -109,29 +120,40 @@ const Menu = styled.ol<{ isLight?: boolean }>`
     gap: 3rem;
     overflow-y: auto;
 
-    &.visible {
-      position: fixed;
-      display: flex;
-      padding: 12rem 6rem 6rem;
-      font-size: 3.2rem;
+    ${({ menuVisible }) =>
+      menuVisible &&
+      css`
+        position: fixed;
+        display: flex;
+        padding: 12rem 6rem 6rem;
+        font-size: 3.2rem;
 
-      ${Media.mobile} {
-        font-size: 2rem;
-      }
-    }
+        ${Media.mobile} {
+          font-size: 2rem;
+        }
+      `}
   }
 
   // any buttons or links right after menu
   + a {
     background: transparent;
-    border: 0.1rem solid ${({ isLight }) => (isLight ? Color.darkBlue : Color.lightBlue)};
-    color: ${({ isLight }) => (isLight ? Color.darkBlue : Color.lightBlue)};
+    border: 0.1rem solid
+      ${({ isLightCoWAMM, isLight }) =>
+        isLightCoWAMM ? Color.cowammWhite : isLight ? Color.darkBlue : Color.lightBlue};
+    color: ${({ isLight, isLightCoWAMM }) =>
+      isLightCoWAMM ? Color.cowammWhite : isLight ? Color.darkBlue : Color.lightBlue};
 
-    .sticky & {
-      background: transparent;
-      border: 0.1rem solid ${Color.darkBlue};
-      color: ${Color.darkBlue};
-    }
+    ${({ isSticky, isLightCoWAMM, isLight }) =>
+      isSticky &&
+      css`
+        background: transparent;
+        border: 0.1rem solid ${isLightCoWAMM ? Color.cowammBlack : Color.darkBlue};
+        color: ${isLightCoWAMM ? Color.cowammBlack : Color.darkBlue};};
+
+        &:hover {
+          color: ${isLightCoWAMM ? Color.cowammBlack : Color.darkBlue};};
+        }
+      `}
 
     ${Media.mediumDown} {
       margin: 0 2.4rem 0 auto;
@@ -154,6 +176,8 @@ const Menu = styled.ol<{ isLight?: boolean }>`
   }
 
   > li {
+    color: inherit;
+
     ${Media.mediumDown} {
       margin: 0 0 3.6rem;
       line-height: 1;
@@ -169,15 +193,15 @@ const Menu = styled.ol<{ isLight?: boolean }>`
     font-weight: ${Font.weightLight};
 
     &:hover {
-      color: ${({ isLight }) => (isLight ? Color.darkBlue : Color.lightBlue)};
+      color: inherit;
       text-decoration: underline;
     }
 
     ${Media.mediumDown} {
-      color: ${Color.lightBlue};
+      color: ${({ isLightCoWAMM }) => (isLightCoWAMM ? Color.cowammWhite : Color.lightBlue)};
 
       &:hover {
-        color: ${lighten(0.1, Color.lightBlue)};
+        color: ${({ isLightCoWAMM }) => (isLightCoWAMM ? Color.cowammWhite : Color.lightBlue)};
       }
     }
   }
@@ -188,9 +212,15 @@ const CloseIcon = styled.button`
   position: fixed;
   right: 1.6rem;
   top: 1.6rem;
-  color: ${Color.lightBlue};
+  color: inherit;
   background: transparent;
   border: 0;
+  opacity: 0.7;
+  transition: opacity 0.2s ease-in-out;
+
+  &:hover {
+    opacity: 1;
+  }
 
   &::before {
     content: '✕';
@@ -200,11 +230,7 @@ const CloseIcon = styled.button`
 
     ${Media.mobile} {
       font-size: 3.2rem;
-      color: ${Color.lightBlue};
-
-      &:hover {
-        color: ${lighten(0.1, Color.lightBlue)};
-      }
+      color: inherit;
     }
   }
 
@@ -213,15 +239,7 @@ const CloseIcon = styled.button`
   }
 `
 
-const SubMenu = styled.ol`
-  display: flex;
-  padding: 0;
-  margin: 0;
-  position: relative;
-  list-style: none;
-`
-
-const MenuToggle = styled.button<{ isLight?: boolean }>`
+const MenuToggle = styled.button<{ isLight?: boolean; isLightCoWAMM?: boolean; isSticky?: boolean }>`
   display: none;
   background: transparent;
   flex-flow: row;
@@ -239,12 +257,17 @@ const MenuToggle = styled.button<{ isLight?: boolean }>`
     content: '';
     background: url(${MenuImage}) no-repeat center/contain;
     ${({ isLight }) => !isLight && `background: url(${MenuImageLight}) no-repeat center/contain`};
+    ${({ isLightCoWAMM }) =>
+      isLightCoWAMM && `background: url(${MenuImageLightThemedCoWAMM}) no-repeat center/contain`};
     width: 62%;
     height: 100%;
 
-    .sticky & {
-      background: url(${MenuImage}) no-repeat center/contain;
-    }
+    ${({ isSticky, isLightCoWAMM }) =>
+      isSticky &&
+      css`
+        background: url(${MenuImage}) no-repeat center/contain;
+        ${isLightCoWAMM && `background: url(${MenuImageThemedCoWAMM}) no-repeat center/contain`};
+      `}
   }
 
   ${Media.mediumDown} {
@@ -252,47 +275,61 @@ const MenuToggle = styled.button<{ isLight?: boolean }>`
   }
 `
 
-const Logo = styled.div<{ isLight?: boolean; menuVisible?: boolean }>`
+const Logo = styled.div<{ isLight?: boolean; isLightCoWAMM?: boolean; menuVisible?: boolean; isSticky?: boolean }>`
   width: 12.2rem;
   height: 3.8rem;
-  background: url(${LogoImage}) no-repeat center/contain;
-  ${({ isLight }) => !isLight && `background: url(${LogoLightImage}) no-repeat center/contain`};
+  background: ${({ isLight, isLightCoWAMM }) =>
+      `url(${isLightCoWAMM ? LogoLightImageThemedCoWAMM : !isLight ? LogoLightImage : LogoImage})`}
+    no-repeat center/contain;
   cursor: pointer;
   z-index: 10;
 
-  .sticky & {
-    ${({ isLight }) => !isLight && `background: url(${LogoImage}) no-repeat center/contain`};
-  }
+  ${({ isSticky, isLightCoWAMM }) =>
+    isSticky &&
+    css`
+      background: ${`url(${isLightCoWAMM ? LogoImageThemedCoWAMM : LogoImage})`} no-repeat center/contain;
+    `}
 
   ${Media.mediumDown} {
     background: url(${LogoIconImage}) no-repeat center/contain;
     ${({ isLight, menuVisible }) =>
       (!isLight || menuVisible) && `background: url(${LogoIconLightImage}) no-repeat center/contain`};
+
+    ${({ isLightCoWAMM, menuVisible }) =>
+      (isLightCoWAMM || menuVisible) && `background: url(${LogoIconLightImageThemedCoWAMM}) no-repeat center/contain`};
+
     width: 3.6rem;
     height: 3.2rem;
     background-size: contain;
     background-position: left;
 
-    .sticky & {
-      width: 3.6rem;
-      height: 3.2rem;
-      background: url(${LogoIconImage}) no-repeat center/contain;
-    }
+    ${({ isSticky, isLightCoWAMM, menuVisible }) =>
+      isSticky &&
+      css`
+        width: 3.6rem;
+        height: 3.2rem;
+        background: url(${LogoIconImage}) no-repeat center/contain;
+        ${(isLightCoWAMM || menuVisible) && `background: url(${LogoIconImageThemedCoWAMM}) no-repeat center/contain`};
+      `}
   }
 `
 
 interface Props {
   isLight?: boolean
+  isLightCoWAMM?: boolean
 }
 
-export default function Header({ isLight = false }: Props) {
+export default function Header({ isLight = false, isLightCoWAMM = false }: Props) {
   const swapURL = CONFIG.url.swap
   const isTouch = useMediaQuery(`(max-width: ${Media.mediumEnd})`)
   const [menuVisible, setIsMenuVisible] = useState(false)
   const toggleBodyScroll = () => {
     !menuVisible ? document.body.classList.add('noScroll') : document.body.classList.remove('noScroll')
   }
-  const handleClick = () => {
+  const handleClick = ({ label }) => {
+    // log GA event
+    sendGAEventHandler({ category: GAEventCategories.NAVIGATION, action: `Header menu clicked: ${label}` })
+
     if (isTouch) {
       setIsMenuVisible(!menuVisible)
       toggleBodyScroll()
@@ -300,23 +337,23 @@ export default function Header({ isLight = false }: Props) {
   }
 
   return (
-    <InView threshold={1} delay={500}>
+    <InView threshold={1} delay={500} initialInView>
       {({ inView, ref }) => (
         <>
           <Pixel ref={ref} />
-          <Wrapper className={!inView && 'sticky'}>
+          <Wrapper isSticky={!inView}>
             <Content>
               <Link passHref href="/">
-                <Logo isLight={isLight} menuVisible={menuVisible} />
+                <Logo isLight={isLight} isLightCoWAMM={isLightCoWAMM} menuVisible={menuVisible} isSticky={!inView} />
               </Link>
 
-              <Menu className={menuVisible ? 'visible' : ''} isLight={isLight}>
+              <Menu menuVisible={menuVisible} isLight={isLight} isLightCoWAMM={isLightCoWAMM} isSticky={!inView}>
                 {HEADER_LINKS.map((link, index) => (
                   <li key={index}>
-                    <CustomLink {...link} onClick={handleClick} />
+                    <CustomLink {...link} onClick={() => handleClick({ label: link.label })} />
                   </li>
                 ))}
-                <CloseIcon onClick={handleClick} />
+                <CloseIcon onClick={() => handleClick({ label: 'Close menu on touch/mobile' })} />
               </Menu>
 
               <LinkWithUtm
@@ -328,8 +365,16 @@ export default function Header({ isLight = false }: Props) {
                 passHref
               >
                 <Button
-                  onClick={sendGAEventHandler(NavigationEvents.TRADE_ON_COWSWAP)}
-                  variant={!inView ? ButtonVariant.SMALL : ButtonVariant.OUTLINE}
+                  onClick={() => sendGAEventHandler(NavigationEvents.TRADE_ON_COWSWAP)}
+                  variant={
+                    !inView && isLightCoWAMM
+                      ? ButtonVariant.COWAMM_OUTLINE_SMALL
+                      : !inView
+                      ? ButtonVariant.SMALL
+                      : isLightCoWAMM
+                      ? ButtonVariant.COWAMM_OUTLINE_LIGHT
+                      : ButtonVariant.OUTLINE
+                  }
                   minHeight={4.8}
                   fontSize={1.6}
                   label={'Trade on CoW Swap'}
@@ -337,7 +382,12 @@ export default function Header({ isLight = false }: Props) {
                   rel="noopener nofollow"
                 />
               </LinkWithUtm>
-              <MenuToggle isLight={isLight} onClick={handleClick} />
+              <MenuToggle
+                isLight={isLight}
+                isLightCoWAMM={isLightCoWAMM}
+                onClick={() => handleClick({ label: 'Open menu on touch/mobile' })}
+                isSticky={!inView}
+              />
             </Content>
           </Wrapper>
         </>
