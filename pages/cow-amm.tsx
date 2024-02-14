@@ -50,7 +50,21 @@ const CONTENT = {
     {
       title: (
         <>
-          ﹣ Hasu <br /> <small>Strategy Lead at Flashbots</small>
+          ﹣{' '}
+          <a
+            href={'https://twitter.com/hasufl'}
+            target="_blank"
+            rel="noreferrer nofollow"
+            onClick={() =>
+              sendGAEventHandler({
+                category: GAEventCategories.COWAMM,
+                action: 'Content link click - Hasu',
+              })
+            }
+          >
+            Hasu
+          </a>{' '}
+          <br /> <small>Strategy Lead at Flashbots</small>
         </>
       ),
       titleColor: 'cowammBlue',
@@ -65,7 +79,20 @@ const CONTENT = {
     {
       title: (
         <>
-          ﹣ Marcelo
+          ﹣{' '}
+          <a
+            href={'#'}
+            target="_blank"
+            rel="noreferrer nofollow"
+            onClick={() =>
+              sendGAEventHandler({
+                category: GAEventCategories.COWAMM,
+                action: 'Content link click - Marcelo',
+              })
+            }
+          >
+            Marcelo
+          </a>{' '}
           <br />
           <small>CEO at Karpatkey</small>
         </>
@@ -82,23 +109,50 @@ const CONTENT = {
     {
       title: (
         <>
-          ﹣ Josojo
+          ﹣{' '}
+          <a
+            href={'https://ethresear.ch/u/josojo/summary'}
+            target="_blank"
+            rel="noreferrer nofollow"
+            onClick={() =>
+              sendGAEventHandler({
+                category: GAEventCategories.COWAMM,
+                action: 'Content link click - Josojo',
+              })
+            }
+          >
+            Josojo
+          </a>
           <br />
-          <small>Ethereum Researcher</small>
+          <small>Crypto Researcher</small>
         </>
       ),
       titleColor: 'cowammPurple',
       description: (
         <>
           &quot;LVR is the main reason for the current concentration in the block builder market. CoW AMM is not only
-          great for LPs, it’s important for Ethereum overall.&quot;
+          great for LPs, it&apos;s important for Ethereum overall.&quot;
         </>
       ),
     },
     {
       title: (
         <>
-          ﹣ Fernando Martinelli <br /> <small>CEO at Balancer Labs</small>
+          ﹣{' '}
+          <a
+            href={'https://twitter.com/fcmartinelli'}
+            target="_blank"
+            rel="noreferrer nofollow"
+            onClick={() =>
+              sendGAEventHandler({
+                category: GAEventCategories.COWAMM,
+                action: 'Content link click - Fernando Martinelli',
+              })
+            }
+          >
+            Fernando Martinelli
+          </a>{' '}
+          <br /> <small>CEO at Balancer Labs</small>
         </>
       ),
       titleColor: 'cowammPink',

@@ -606,6 +606,15 @@ export const CardItem = styled.div<{
     color: ${Color.lightBlue};
   }
 
+  > span > span > a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   ${({ variant }) =>
     variant === 'iconWithText' &&
     `
