@@ -1,7 +1,7 @@
-import { useState, forwardRef, Ref } from 'react'
+import { useState, forwardRef } from 'react'
 import styled, { css } from 'styled-components'
 import Link from 'next/link'
-import { transparentize, lighten } from 'polished'
+import { transparentize } from 'polished'
 import { Button, ButtonVariant } from 'components/Button'
 import { Defaults, Color, Font, Media } from 'styles/variables'
 import { InView } from 'react-intersection-observer'
@@ -12,7 +12,6 @@ import { HEADER_LINKS } from '@/const/menu'
 import { LinkWithUtm } from 'modules/utm'
 import { sendGAEventHandler } from 'lib/analytics/sendGAEvent'
 import { NavigationEvents, GAEventCategories } from 'lib/analytics/GAEvents'
-import { is } from 'make-plural'
 
 const LogoImage = '/images/logo.svg'
 const LogoImageThemedCoWAMM = '/images/logo-themed-cowamm.svg'
@@ -138,19 +137,21 @@ const Menu = styled.ol<{ isLight?: boolean; isLightCoWAMM?: boolean; isSticky?: 
   // any buttons or links right after menu
   + a {
     background: transparent;
-    border: 0.1rem solid ${({ isLight }) => (isLight ? Color.darkBlue : Color.lightBlue)};
+    border: 0.1rem solid
+      ${({ isLightCoWAMM, isLight }) =>
+        isLightCoWAMM ? Color.cowammWhite : isLight ? Color.darkBlue : Color.lightBlue};
     color: ${({ isLight, isLightCoWAMM }) =>
       isLightCoWAMM ? Color.cowammWhite : isLight ? Color.darkBlue : Color.lightBlue};
 
-    ${({ isSticky, isLightCoWAMM }) =>
+    ${({ isSticky, isLightCoWAMM, isLight }) =>
       isSticky &&
       css`
         background: transparent;
-        border: 0.1rem solid ${Color.darkBlue};
-        color: ${isLightCoWAMM ? Color.cowammBlack : Color.darkBlue};
+        border: 0.1rem solid ${isLightCoWAMM ? Color.cowammBlack : Color.darkBlue};
+        color: ${isLightCoWAMM ? Color.cowammBlack : Color.darkBlue};};
 
         &:hover {
-          color: ${isLightCoWAMM ? Color.cowammBlack : Color.darkBlue};
+          color: ${isLightCoWAMM ? Color.cowammBlack : Color.darkBlue};};
         }
       `}
 
