@@ -69,7 +69,7 @@ const DAO_LOGOS_PATH = '/images/dao-logos/'
 const CONTENT = {
   configuratorURL: 'https://widget.cow.fi/',
   calendlyURL: 'https://calendly.com/crystal-cow/cow-swap-widget',
-  docsURL: 'https://docs.cow.fi/widget/get-started',
+  docsURL: 'https://docs.cow.fi/cow-protocol/tutorials/widget',
   everyBell: [
     {
       icon: `${IMAGE_PATH}protection.svg`,
@@ -190,18 +190,25 @@ export default function WidgetPage({ siteConfigData }) {
     cowSwapWidget(widgetContainerRef.current, widgetParams)
   }, [])
 
+  const pageTitle = `Widget - ${siteConfigData.title}`
+  const pageDescription =
+    'Integrate the CoW Swap widget to bring seamless, MEV-protected trading to your website or dApp.'
+
   return (
     <Layout fullWidthGradientVariant>
       <Head>
-        <title>
-          {siteConfigData.title} - {siteConfigData.descriptionShort}
-        </title>
+        <title>{pageTitle}</title>
+        <meta key="description" name="description" content={pageDescription} />
+        <meta key="ogTitle" property="og:title" content={pageTitle} />
+        <meta key="ogDescription" property="og:description" content={pageDescription} />
+        <meta key="twitterTitle" name="twitter:title" content={pageTitle} />
+        <meta key="twitterDescription" name="twitter:description" content={pageDescription} />
       </Head>
 
       <Section firstSection>
         <SectionContent sticky>
           <div>
-            <SectionH1 fontSize={6.8} lineHeight={1} textAlign={'left'}>
+            <SectionH1 fontSize={6.8} fontSizeMobile={4} lineHeight={1} textAlign={'left'}>
               Bring reliable, MEV-protected swaps to your users
             </SectionH1>
             <SubTitle color={Color.text1} fontSize={2} lineHeight={1.6} maxWidth={60} textAlign="left">
@@ -216,8 +223,9 @@ export default function WidgetPage({ siteConfigData }) {
                 passHref
               >
                 <Button
-                  onClick={sendGAEventHandler(WidgetEvents.CONFIGURE_WIDGET)}
+                  onClick={() => sendGAEventHandler(WidgetEvents.CONFIGURE_WIDGET)}
                   paddingLR={4.2}
+                  fontSizeMobile={2.1}
                   label="Configure widget"
                   target="_blank"
                   rel="noopener nofollow"
@@ -230,10 +238,11 @@ export default function WidgetPage({ siteConfigData }) {
                 passHref
               >
                 <Button
-                  onClick={sendGAEventHandler(WidgetEvents.READ_DOCS)}
+                  onClick={() => sendGAEventHandler(WidgetEvents.READ_DOCS)}
                   target="_blank"
                   rel="noopener nofollow"
                   paddingLR={4.2}
+                  fontSizeMobile={2.1}
                   label="Read docs"
                   variant={ButtonVariant.TEXT}
                 />
@@ -379,9 +388,10 @@ export default function WidgetPage({ siteConfigData }) {
                 passHref
               >
                 <Button
-                  onClick={sendGAEventHandler(WidgetEvents.TALK_TO_US)}
+                  onClick={() => sendGAEventHandler(WidgetEvents.TALK_TO_US)}
                   paddingLR={4.2}
                   label="Talk to us"
+                  fontSizeMobile={2.1}
                   target="_blank"
                   rel="noopener nofollow"
                 />
@@ -393,10 +403,11 @@ export default function WidgetPage({ siteConfigData }) {
                 passHref
               >
                 <Button
-                  onClick={sendGAEventHandler(WidgetEvents.READ_DOCS)}
+                  onClick={() => sendGAEventHandler(WidgetEvents.READ_DOCS)}
                   target="_blank"
                   rel="noopener nofollow"
                   paddingLR={4.2}
+                  fontSizeMobile={2.1}
                   label="Read docs"
                   variant={ButtonVariant.TEXT}
                 />

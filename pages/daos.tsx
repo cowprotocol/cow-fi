@@ -203,18 +203,25 @@ export default function ForDAOs({ siteConfigData }) {
     elem?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const pageTitle = `CoW Swap for DAOs`
+  const pageDescription =
+    'CoW Swap protects DAOs from MEV and ensures they get the best prices for their treasury trades.'
+
   return (
     <Layout fullWidthGradientVariant={true}>
       <Head>
-        <title>
-          {siteConfigData.title} - {siteConfigData.descriptionShort}
-        </title>
+        <title>{pageTitle}</title>
+        <meta key="description" name="description" content={pageDescription} />
+        <meta key="ogTitle" property="og:title" content={pageTitle} />
+        <meta key="ogDescription" property="og:description" content={pageDescription} />
+        <meta key="twitterTitle" name="twitter:title" content={pageTitle} />
+        <meta key="twitterDescription" name="twitter:description" content={pageDescription} />
       </Head>
 
       <Section fullWidth padding={'8rem 8rem 4rem'} paddingMobile={'0 2.4rem 4rem'}>
         <SectionContent flow="column">
           <div>
-            <SectionH1 fontSize={7}>
+            <SectionH1 fontSize={7} fontSizeMobile={4}>
               <b>
                 <i>Savvy DAOs</i>
               </b>{' '}
@@ -226,7 +233,7 @@ export default function ForDAOs({ siteConfigData }) {
             <SubTitle color={Color.text1} fontSize={3} lineHeight={1.4} maxWidth={60}>
               The smartest DAOs trust CoW Swap with their most-important trades
             </SubTitle>
-            <Button href="#benefits" onClick={handleCTAClick} paddingLR={4.2} label="Learn why" />
+            <Button href="#benefits" onClick={handleCTAClick} paddingLR={4.2} fontSizeMobile={2.1} label="Learn why" />
           </div>
         </SectionContent>
       </Section>
@@ -389,7 +396,7 @@ export default function ForDAOs({ siteConfigData }) {
             <SubTitle maxWidth={60} color={Color.text1} lineHeight={1.4}>
               Learn more about how CoW Protocol can help your DAO by reaching out on Twitter or Discord
             </SubTitle>
-            <SocialList social={socialFiltered} colorDark />
+            <SocialList social={socialFiltered} color={Color.darkBlue} />
           </div>
         </SectionContent>
       </Section>

@@ -2,7 +2,9 @@ import styled from 'styled-components'
 import { Color, Font, Media } from 'styles/variables'
 import SVG from 'react-inlinesvg'
 
-const Wrapper = styled.ol<Pick<SocialListProps, 'colorDark' | 'iconSize' | 'gap' | 'innerPadding' | 'alignItems' | 'labels'>>`
+const Wrapper = styled.ol<
+  Pick<SocialListProps, 'color' | 'iconSize' | 'gap' | 'innerPadding' | 'alignItems' | 'labels'>
+>`
   display: flex;
   justify-content: ${({ alignItems }) =>
     alignItems === 'left' ? 'flex-start' : alignItems === 'right' ? 'flex-end' : 'center'};
@@ -13,7 +15,7 @@ const Wrapper = styled.ol<Pick<SocialListProps, 'colorDark' | 'iconSize' | 'gap'
   padding: 0;
   gap: ${({ gap }) => (gap ? `${gap}rem` : '7rem')};
   list-style-type: none;
-  color: ${({ colorDark }) => (colorDark ? Color.text1 : Color.text2)};
+  color: ${({ color }) => (color ? color : Color.text2)};
   font-weight: ${Font.weightNormal};
 
   ${Media.mobile} {
@@ -35,14 +37,15 @@ const Wrapper = styled.ol<Pick<SocialListProps, 'colorDark' | 'iconSize' | 'gap'
     padding: ${({ gap }) => (gap ? `${gap}rem` : '2rem')};
     border-radius: ${({ gap }) => (gap ? `${gap}rem` : '2rem')};
     border: 0.1rem solid transparent;
-    transition: color 0.2s ease-in-out, background 0.2s ease-in-out, border-color 0.2s ease-in-out, fill 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out, background 0.2s ease-in-out, border-color 0.2s ease-in-out,
+      fill 0.2s ease-in-out;
 
     ${Media.mobile} {
       padding: 1rem;
     }
 
     &:hover {
-      border: ${({ colorDark }) => (colorDark ? `0.1rem solid ${Color.darkBlue}` : `0.1rem solid ${Color.lightBlue}`)};
+      border: ${({ color }) => `0.1rem solid ${color ? color : Color.lightBlue}`};
     }
   }
 
@@ -51,9 +54,9 @@ const Wrapper = styled.ol<Pick<SocialListProps, 'colorDark' | 'iconSize' | 'gap'
     height: ${({ iconSize }) => (iconSize ? `${iconSize}rem` : '5.8rem')};
     object-fit: contain;
     margin: ${({ labels }) => (labels ? `0 0 1.2rem` : `0`)};
-    
+
     path {
-      ${({ colorDark }) => (colorDark ? `fill: ${Color.darkBlue}` : '')};
+      fill: ${({ color }) => (color ? color : Color.lightBlue)};
     }
   }
 
@@ -70,7 +73,7 @@ interface SocialListProps {
   gap?: number // 'rem' size
   innerPadding?: number // 'rem' size
   alignItems?: string // left | center (default) | right
-  colorDark?: boolean
+  color?: string // color value
 }
 
 export default function SocialList({
@@ -80,10 +83,17 @@ export default function SocialList({
   gap,
   innerPadding,
   alignItems,
-  colorDark,
+  color,
 }: SocialListProps) {
   return (
-    <Wrapper iconSize={iconSize} gap={gap} innerPadding={innerPadding} alignItems={alignItems} labels={labels} colorDark={colorDark}>
+    <Wrapper
+      iconSize={iconSize}
+      gap={gap}
+      innerPadding={innerPadding}
+      alignItems={alignItems}
+      labels={labels}
+      color={color}
+    >
       {Object.keys(social).map((item, i) => (
         <li key={i}>
           <a href={social[item].url} target="_blank" rel="noopener nofollow noreferrer">

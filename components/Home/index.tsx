@@ -43,7 +43,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
       <Section firstSection>
         <SectionContent>
           <div>
-            <SectionH1 fontSize={6.8} textAlign={'left'}>
+            <SectionH1 fontSize={6.8} fontSizeMobile={4} textAlign={'left'}>
               Better than the best prices
             </SectionH1>
             <SubTitle textAlign={'left'} color={Color.text1} lineHeight={1.4}>
@@ -53,10 +53,17 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
 
             <ButtonWrapper>
               <LinkWithUtm href={url.swap} defaultUtm={{ ...CONFIG.utm, utmContent: 'landing-cta-button' }} passHref>
-                <Button paddingLR={4.2} target="_blank" rel="noopener nofollow" label="Start trading" />
+                <Button
+                  paddingLR={4.2}
+                  fontSizeMobile={2.1}
+                  target="_blank"
+                  rel="noopener nofollow"
+                  label="Start trading"
+                />
               </LinkWithUtm>
               <Button
                 paddingLR={4.2}
+                fontSizeMobile={2.1}
                 variant={ButtonVariant.TEXT}
                 href="#developers"
                 onClick={handleCTAClick}
@@ -159,7 +166,11 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
             <h3>Cutting-edge technology</h3>
             <SubTitle textAlign="center">
               CoW Protocol batches orders, matches Coincidences of Wants (
-              <a href="https://docs.cow.fi/overview-1/coincidence-of-wants" target="_blank" rel="noreferrer">
+              <a
+                href="https://docs.cow.fi/cow-protocol/concepts/how-it-works/coincidence-of-wants"
+                target="_blank"
+                rel="noreferrer"
+              >
                 CoWs
               </a>
               ), and sources excess volume from all DEXs and DEX aggregators. That&apos;s how the protocol makes sure
@@ -293,6 +304,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
               <Button
                 href={url.docs}
                 label="Explore docs"
+                fontSizeMobile={2.1}
                 target="_blank"
                 rel="noopener nofollow"
                 variant={ButtonVariant.LIGHT}
@@ -300,6 +312,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
               <Button
                 href={'https://calendly.com/d/zxg-m2m-54p'}
                 label="Talk to us"
+                fontSizeMobile={2.1}
                 target="_blank"
                 rel="noopener nofollow"
                 variant={ButtonVariant.LIGHT}
@@ -317,7 +330,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
               Learn more about CoW Protocol, get support, and have your say in shaping the future of decentralized
               finance.
             </SubTitle>
-            <SocialList social={social} colorDark />
+            <SocialList social={social} color={Color.darkBlue} />
           </div>
         </SectionContent>
       </Section>

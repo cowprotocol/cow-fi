@@ -36,6 +36,30 @@ const GlobalStyles = createGlobalStyle`
       font-display: swap;
   }
 
+  @font-face {
+    font-family: 'Flecha S';
+    src: url('/fonts/FlechaS-MediumItalic.woff2') format('woff2');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Flecha S';
+    src: url('/fonts/FlechaS-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'CircularXXSub-Book';
+    src: url('/fonts/CircularXXSub-Book.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
   html, body {  
     width: 100%;
     min-height: 100vh;
@@ -164,6 +188,30 @@ const GlobalStyles = createGlobalStyle`
   .container {
     margin: 0 auto;
   }
+
+  @keyframes zoomSlideIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3) translate3d(0, -10px, 0);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale3d(1.05, 1.05, 1.05) translate3d(0, -5px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1) translate3d(0, 0px, 0);
+  }
+}
+
+.zoomSlideIn {
+  animation-name: zoomSlideIn;
+  animation-duration: 1.2s; 
+  animation-fill-mode: forwards; 
+}
+
 `
 
 export const ExternalLink = styled.a`
