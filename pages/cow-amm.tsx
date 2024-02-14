@@ -81,7 +81,7 @@ const CONTENT = {
         <>
           ﹣{' '}
           <a
-            href={'#'}
+            href={'https://twitter.com/claberus'}
             target="_blank"
             rel="noreferrer nofollow"
             onClick={() =>
