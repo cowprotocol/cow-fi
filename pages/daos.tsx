@@ -203,10 +203,19 @@ export default function ForDAOs({ siteConfigData }) {
     elem?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const pageTitle = `CoW Swap for DAOs`
+  const pageDescription =
+    'CoW Swap protects DAOs from MEV and ensures they get the best prices for their treasury trades.'
+
   return (
     <Layout fullWidthGradientVariant={true}>
       <Head>
-        <title>For DAOs - {siteConfigData.title}</title>
+        <title>{pageTitle}</title>
+        <meta key="description" name="description" content={pageDescription} />
+        <meta key="ogTitle" property="og:title" content={pageTitle} />
+        <meta key="ogDescription" property="og:description" content={pageDescription} />
+        <meta key="twitterTitle" name="twitter:title" content={pageTitle} />
+        <meta key="twitterDescription" name="twitter:description" content={pageDescription} />
       </Head>
 
       <Section fullWidth padding={'8rem 8rem 4rem'} paddingMobile={'0 2.4rem 4rem'}>

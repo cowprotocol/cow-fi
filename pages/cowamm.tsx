@@ -30,7 +30,8 @@ const CONTENT = {
   howItWorksCards: [
     {
       image: `${IMAGE_PATH}cowamm-howitworks-1.svg`,
-      description: 'Liquidity providers deposit tokens into protected CoW AMM liquidity pools',
+      description:
+        'Liquidity providers deposit tokens into protected CoW AMM liquidity pools, where traders can access the liquidity',
     },
     {
       image: `${IMAGE_PATH}cowamm-howitworks-2.svg`,
@@ -249,9 +250,8 @@ export default function CoWAMMPage({ siteConfigData }) {
     setOpenFaqIndex(openFaqIndex === index ? null : index)
   }
 
-  const pageTitle = `CoW AMM - ${siteConfigData.title}`
-  const pageDescription =
-    'The first MEV-Capturing AMM, brought to you by CoW DAO. CoW AMM eliminates LVR once and for all by using batch auctions to send surplus to LPs.'
+  const pageTitle = `CoW AMM - The First MEV-Capturing AMM`
+  const pageDescription = 'CoW AMM eliminates LVR once and for all by using batch auctions to send surplus to LPs.'
   const pageImage = `${CONFIG.url.root}${IMAGE_PATH}og-social-image-cowamm.png`
 
   return (
@@ -410,11 +410,10 @@ export default function CoWAMMPage({ siteConfigData }) {
             </SectionH3>
 
             <SubTitle lineHeight={1.4} textAlign={'left'} color={Color.cowammBlack} fontSize={2.8}>
-              CoW AMM LPs don&apos;t have to worry about LVR, which <b>costs CFAMM LPs 5-7% of their returns</b>, on
+              CoW AMM LPs don&apos;t have to worry about LVR, which <b>costs CF-AMM LPs 5-7% of their returns</b>, on
               average.
               <br />
               <br />
-              Additionally,{' '}
               <a
                 onClick={() =>
                   sendGAEventHandler({
@@ -426,10 +425,10 @@ export default function CoWAMMPage({ siteConfigData }) {
                 target="_blank"
                 rel="noreferrer nofollow"
               >
-                backtesting research
+                Backtesting research
               </a>{' '}
-              conducted over 6 months in 2023 shows that CoW AMM returns would have outperformed CFAMM returns
-              absolutely for 10 of the 11 most-liquid, non-stablecoin pairs.
+              conducted over 6 months in 2023 shows that CoW AMM returns would have equalled or outperformed CFAMM
+              returns for 10 of the 11 most liquid, non-stablecoin pairs.
             </SubTitle>
           </div>
         </SectionContent>
@@ -477,9 +476,9 @@ export default function CoWAMMPage({ siteConfigData }) {
             </SectionH3>
 
             <SubTitle lineHeight={1.4} textAlign={'left'} color={Color.cowammBlack} fontSize={2.9}>
-              Passive investment strategies keep portfolios balanced and reduce risk, but pursuing these strategies with
-              AMMs is much less attractive when rebalancing causes LVR. CoW AMM makes LP&apos;ing just as attractive for
-              passive investors as staking or lending.
+              With LVR in the rear view mirror, providing liquidity becomes identical to running a passive investment
+              strategy: solvers rebalance the pool at the correct market price to keep the value of its reserves equal –
+              thereby keeping portfolios balanced and reducing risk.
             </SubTitle>
           </div>
           <SectionImage>
@@ -560,15 +559,15 @@ export default function CoWAMMPage({ siteConfigData }) {
         <SectionContent flow={'column'}>
           <div>
             <SectionH3 color={Color.cowammBlack} fontSize={6.6} fontWeight={500} font={Font.flecha}>
-              Get started with{' '}
+              Get Started with{' '}
               <TextColor italic color={'cowammOrange'}>
                 CoW AMM
               </TextColor>
             </SectionH3>
 
             <SubTitle fontSize={2.9} lineHeight={1.4} color={Color.cowammBlack} maxWidth={100}>
-              Anyone can provide liquidity to CoW AMM by creating their own protected pools. Get in touch with the CoW
-              DAO team if you&apos;d like to create a liquidity pool for any token pair.
+              Anyone can provide liquidity to CoW AMM by creating their own protected pools. To get started, just follow
+              the instructions in the CoW DAO docs!
             </SubTitle>
 
             <ButtonWrapper center>
@@ -592,7 +591,7 @@ export default function CoWAMMPage({ siteConfigData }) {
                   fontSize={2.6}
                   fontSizeMobile={2.1}
                   fontWeight={500}
-                  label="Get in touch"
+                  label="Get In Touch"
                   target="_blank"
                   rel="noreferrer nofollow"
                 />
