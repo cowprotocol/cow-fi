@@ -337,7 +337,7 @@ export default function Header({ isLight = false, isLightCoWAMM = false }: Props
   }
 
   return (
-    <InView threshold={1} delay={500} initialInView={true}>
+    <InView threshold={1} delay={500} initialInView>
       {({ inView, ref }) => (
         <>
           <Pixel ref={ref} />
