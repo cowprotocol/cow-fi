@@ -340,14 +340,36 @@ export default function CoWAMMPage({ siteConfigData }) {
                 LVR
               </TextColor>
             </SectionH3>
-            <SubTitle lineHeight={1.4} textAlign={'left'} color={Color.cowammBlack} fontSize={2.9}>
+            <SubTitle lineHeight={1.4} textAlign={'left'} color={Color.cowammBlack} fontSize={2.8}>
               Liquidity providers expect their tokens to earn yield, but the dirty little secret of AMMs is that{' '}
               <b>most liquidity pools lose money</b>.
               <br />
               <br />
-              In fact, <b>billions of dollars of LP funds are stolen by arbitrageurs every year</b>. These losses are
-              known as loss-versus-rebalancing (LVR). LVR is a bigger source of MEV than{' '}
+              In fact,{' '}
+              <b>
+                billions of dollars of LP funds are stolen by arbitrageurs every year<sup> 1</sup>.
+              </b>{' '}
+              These losses are known as loss-versus-rebalancing (LVR). LVR is a bigger source of MEV than{' '}
               <b>frontrunning and sandwich attacks combined</b>.
+            </SubTitle>
+
+            <SubTitle lineHeight={1.2} textAlign={'left'} color={Color.cowammBlack} fontSize={1.3} fontSizeMobile={1.3}>
+              <sup>1</sup> Andrea Canidio and Robin Fritsch, Arbitrageurs&apos; profits, LVR, and sandwich attacks:
+              batch trading as an AMM design response{' '}
+              <a
+                onClick={() =>
+                  sendGAEventHandler({
+                    category: GAEventCategories.COWAMM,
+                    action: 'Content link click - November 2023',
+                  })
+                }
+                href="https://arxiv.org/pdf/2307.02074v3.pdf"
+                target="_blank"
+                rel="noreferrer nofollow"
+              >
+                (November 2023)
+              </a>
+              .
             </SubTitle>
           </div>
         </SectionContent>
