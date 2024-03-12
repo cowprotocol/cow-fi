@@ -14,8 +14,7 @@ const TYPEFORM_ID = 'U8gDXwrd' // Replace with your Typeform embed URL
 export default function CoWSwag() {
   const pageTitle = `CoW Swag`
   const pageDescription = 'The official CoW Swap Swag store.'
-  // TODO: cow swag img
-  const pageImage = `${CONFIG.url.root}${IMAGE_PATH}og-social-image-cowamm.png`
+  const pageImage = `${CONFIG.url.root}${IMAGE_PATH}cowswag-dark.png`
 
   return (
     <Layout>
@@ -40,29 +39,9 @@ export default function CoWSwag() {
       >
         {/*TODO: cowswag animated logo*/}
         <SectionImage width={'460px'} widthMobile="90%" margin="0 auto" className="zoomSlideIn">
-          <img src={`${IMAGE_PATH}cowamm-header-logo-animated.gif`} alt="CoW Swag" width="100%" />
+          <img src={`${IMAGE_PATH}cowswag-light.png`} alt="CoW Swag" width="100%" />
         </SectionImage>
         <SectionContent flow="column" maxWidth={MAX_WIDTH_CONTENT}>
-          <div>
-            <SectionH1
-              color={Color.cowammWhite}
-              fontSize={6.6}
-              fontSizeMobile={3.6}
-              fontWeight={500}
-              maxWidth={100}
-              margin={'0 auto 4rem'}
-            >
-              CoW Swag, the official CoW Swap Swag store. By
-              <TextColor italic color={'cowammYellow'}>
-                CoW DAO
-              </TextColor>
-            </SectionH1>
-          </div>
-        </SectionContent>
-      </Section>
-
-      <Section fullWidth padding={'0'}>
-        <SectionContent maxWidth={MAX_WIDTH_CONTENT}>
           <div>
             <SectionH1
               color={Color.cowammWhite}
