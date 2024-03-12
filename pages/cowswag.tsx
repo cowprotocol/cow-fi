@@ -39,7 +39,7 @@ export default function CoWSwag() {
       >
         {/*TODO: cowswag animated logo*/}
         <SectionImage width={'460px'} widthMobile="90%" margin="0 auto" className="zoomSlideIn">
-          <img src={`${IMAGE_PATH}cowswag-light.png`} alt="CoW Swag" width="100%" />
+          <img src={`${IMAGE_PATH}cowswag-animation.gif`} alt="CoW Swag" width="100%" />
         </SectionImage>
         <SectionContent flow="column" maxWidth={MAX_WIDTH_CONTENT}>
           <div>
