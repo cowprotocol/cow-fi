@@ -17,6 +17,7 @@ export const CONFIG = {
     daos: '/daos',
     cowamm: '/cow-amm',
     widget: '/widget',
+    cowswag: '/cowswag',
     careers: '/careers',
     widgetConfigurator: 'widget.cow.fi',
     analytics: 'https://dune.com/cowprotocol/cowswap',
