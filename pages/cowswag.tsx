@@ -50,6 +50,7 @@ export default function CoWSwag() {
               fontWeight={500}
               maxWidth={100}
               margin={'0 auto 4rem'}
+              style={{ fontFamily: 'Averta' }}
             >
               Order your Swag now!
             </SectionH1>
