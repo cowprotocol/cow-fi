@@ -22,6 +22,7 @@ export const FOOTER_LINK_GROUPS: FooterLinkGroup[] = [
     links: [
       { label: 'For DAOs', url: url.daos },
       { label: 'Widget', url: url.widget },
+      { label: 'Widget terms and conditions', url: url.widgetTnC },
       { label: 'CoW AMM', url: url.cowamm },
       { label: 'MEV Blocker', url: url.mevBlocker, type: 'external' },
       { label: 'Careers', url: '/careers' },

@@ -19,6 +19,7 @@ import { LinkWithUtm } from 'modules/utm'
 import { Button, ButtonVariant, ButtonWrapper } from '@/components/Button'
 import { sendGAEventHandler } from 'lib/analytics/sendGAEvent'
 import { WidgetEvents } from 'lib/analytics/GAEvents'
+import { CustomLink } from '@/components/CustomLink'
 
 const ArrowDrawn = '/images/arrow-drawn.svg'
 
@@ -425,7 +426,7 @@ export default function WidgetPage({ siteConfigData }) {
               <strong>* Important Disclaimer:</strong> Use of this widget is subject to the laws and regulations of your
               jurisdiction. You are solely responsible for ensuring compliance, and the provider is not liable for any
               legal consequences or issues arising from your failure to adhere. Using the widget indicates acceptance of
-              these terms; if you do not agree, refrain from using it.
+              the <CustomLink url="/widget/terms-and-conditions" label="Terms and Conditions" />; if you do not agree, refrain from using it.
             </SubTitle>
           </div>
         </SectionContent>
