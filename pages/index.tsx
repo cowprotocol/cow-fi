@@ -28,7 +28,17 @@ export default function HomePage({ metricsData, siteConfigData }: HomeProps) {
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const siteConfigData = CONFIG
-  const { volumeUsd, volumeEth } = await cowSdk.cowSubgraphApi.getTotals()
+  let volumeUsd = 0
+  let volumeEth = 0
+
+  // Don't fail when couldn't get Subgraph data
+  try {
+    const data = await cowSdk.cowSubgraphApi.getTotals()
+    volumeUsd = data.volumeUsd
+    volumeEth = data.volumeEth
+  } catch (e) {
+    console.error(e)
+  }
   const { surplus, totalTrades, lastModified } = await getCowStats()
 
   const totalSurplus = surplus.reasonable + surplus.unusual
