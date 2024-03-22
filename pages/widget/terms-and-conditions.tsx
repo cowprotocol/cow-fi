@@ -56,7 +56,8 @@ export default function TermsAndConditionsPage({siteConfigData}) {
         <h2>Acceptance of these Terms</h2>
         <p>By integrating and using the Widget, you confirm that you accept these Terms and agree to comply with them.
           If you do not agree, you must not integrate the Widget. If you think that there is an error in these Terms,
-          please contact us at legal@cow.fi.</p>
+          please contact us at <a href="mailto:legal@cow.fi" target="_blank" rel="noreferrer">legal@cow.fi</a>.
+        </p>
         <p>You are also responsible for ensuring that all persons who access the Widget through your website are aware
           of the <a target="_blank" rel="noreferrer" href="https://swap.cow.fi/#/terms-and-conditions">Terms &amp; Conditions</a> of <a target="_blank" rel="noreferrer" href="https://cow.fi/">https://cow.fi/</a> and that they comply with them.</p>
         <p>We may terminate or suspend your access to the Widget immediately, without prior notice or liability, if
@@ -117,7 +118,7 @@ export default function TermsAndConditionsPage({siteConfigData}) {
         <ul>
           <li>the Widget, the Interface, the Protocol or its infrastructure;</li>
           <li>Server(s) hosting the the Widget, the Interface, the Protocol or its infrastructure;</li>
-          <li>Any computer or database connected to the the Widget, the Interface, the Protocol or its infrastructure;
+          <li>Any computer or database connected to the the Widget, the Interface, the Protocol or its infrastructure.
           </li>
         </ul>
         <p>You are prohibited from attacking the the Widget, the Interface, the Protocol or its infrastructure
@@ -187,7 +188,7 @@ export default function TermsAndConditionsPage({siteConfigData}) {
         <p>If an alleged breach, controversy, claim, dispute or difference arises out of or in connection with the
           present Terms about or in connection to the Widget between you and us (a “Dispute”), you agree to seek to
           resolve the matter with us amicably by referring the matter to legal@cow.fi.</p>
-        <p>For any claim not relating to or connected to theWidget please contact CoW DAO via CoW Forum at <a
+        <p>For any claim not relating to or connected to the Widget please contact CoW DAO via CoW Forum at <a
           target="_blank" rel="noreferrer" href="https://forum.cow.fi/">https://forum.cow.fi/</a> with a detailed
           description, the date and time the issue arose, your handle to contact you on and the
           outcome
