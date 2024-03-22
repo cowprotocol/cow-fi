@@ -628,7 +628,7 @@ export default function CoWAMMPage({ siteConfigData }) {
 
             <SubTitle fontSize={2.9} lineHeight={1.4} color={Color.cowammBlack} maxWidth={100}>
               Anyone can provide liquidity to CoW AMM by creating their own protected pools. To get started, just follow
-              the 
+              the&nbsp;
               <a
                 onClick={() =>
                   sendGAEventHandler({
@@ -640,7 +640,7 @@ export default function CoWAMMPage({ siteConfigData }) {
                 target="_blank"
                 rel="noreferrer nofollow"
               >
-                 instructions
+                instructions
               </a>{' '}
               in the CoW DAO docs!
             </SubTitle>
