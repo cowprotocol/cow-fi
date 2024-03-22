@@ -20,6 +20,7 @@ import { Button, ButtonVariant, ButtonWrapper } from '@/components/Button'
 import { sendGAEventHandler } from 'lib/analytics/sendGAEvent'
 import { WidgetEvents } from 'lib/analytics/GAEvents'
 import { CustomLink } from '@/components/CustomLink'
+import Link from 'next/link'
 
 const ArrowDrawn = '/images/arrow-drawn.svg'
 
@@ -413,6 +414,19 @@ export default function WidgetPage({ siteConfigData }) {
                   variant={ButtonVariant.TEXT}
                 />
               </LinkWithUtm>
+
+              <Link
+                href={CONFIG.url.widgetTnC}
+                passHref
+              >
+                <Button
+                  onClick={() => sendGAEventHandler(WidgetEvents.READ_TERMS)}
+                  paddingLR={1}
+                  fontSizeMobile={2.1}
+                  label="Terms & Conditions"
+                  variant={ButtonVariant.TEXT}
+                />
+              </Link>
             </ButtonWrapper>
           </div>
         </SectionContent>

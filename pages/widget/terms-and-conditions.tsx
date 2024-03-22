@@ -187,7 +187,8 @@ export default function TermsAndConditionsPage({siteConfigData}) {
         <h3>Amicable Dispute Resolution</h3>
         <p>If an alleged breach, controversy, claim, dispute or difference arises out of or in connection with the
           present Terms about or in connection to the Widget between you and us (a “Dispute”), you agree to seek to
-          resolve the matter with us amicably by referring the matter to legal@cow.fi.</p>
+          resolve the matter with us amicably by referring the matter to <a href="mailto:legal@cow.fi" target="_blank" rel="noreferrer">legal@cow.fi</a>.
+        </p>
         <p>For any claim not relating to or connected to the Widget please contact CoW DAO via CoW Forum at <a
           target="_blank" rel="noreferrer" href="https://forum.cow.fi/">https://forum.cow.fi/</a> with a detailed
           description, the date and time the issue arose, your handle to contact you on and the
