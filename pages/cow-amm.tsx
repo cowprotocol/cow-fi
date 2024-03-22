@@ -640,7 +640,7 @@ export default function CoWAMMPage({ siteConfigData }) {
                 target="_blank"
                 rel="noreferrer nofollow"
               >
-                instructions
+                 instructions
               </a>{' '}
               in the CoW DAO docs!
             </SubTitle>
