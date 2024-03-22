@@ -25,6 +25,7 @@ const IMAGE_PATH = '/images/'
 const MAX_WIDTH_CONTENT = 126
 const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 const CONTACT_URL = 'https://cowprotocol.typeform.com/cow-amm-lpers'
+const DEPLOY_AMM = 'https://deploy-cow-amm.bleu.fi/'
 
 const CONTENT = {
   howItWorksCards: [
@@ -344,7 +345,7 @@ export default function CoWAMMPage({ siteConfigData }) {
                 })
               }
               variant={ButtonVariant.COWAMM_LIGHTBLUE}
-              href={CONTACT_URL}
+              href={DEPLOY_AMM}
               target="_blank"
               rel="noreferrer nofollow"
               paddingTB={3}
