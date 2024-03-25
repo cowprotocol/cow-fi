@@ -148,8 +148,7 @@ export default function TermsAndConditionsPage({siteConfigData}) {
           </a> as it appears on the site.</p>
         <h3>Service Fee</h3>
         <p>The Provider will retain a service fee ("Service Fee") from the total fees earned by the Partner. Specific 
-          terms and conditions regarding the Service Fee are outlined in the 
-            <a target="_blank" rel="noreferrer" href="https://docs.cow.fi/cow-protocol/tutorials/widget#partner-fee">Widget's dedicated documentation page under the "Partner Fee" section</a>.
+          terms and conditions regarding the Service Fee are outlined in the <a target="_blank" rel="noreferrer" href="https://docs.cow.fi/cow-protocol/tutorials/widget#partner-fee">Widget's dedicated documentation page under the "Partner Fee" section</a>.
         </p>
         <p>The Provider reserves the right to adjust the Service Fee charged to the Partner with prior notice.</p>
 
