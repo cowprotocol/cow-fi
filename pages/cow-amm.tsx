@@ -25,6 +25,7 @@ const IMAGE_PATH = '/images/'
 const MAX_WIDTH_CONTENT = 126
 const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 const CONTACT_URL = 'https://cowprotocol.typeform.com/cow-amm-lpers'
+const DEPLOY_AMM = 'https://deploy-cow-amm.bleu.fi/'
 
 const CONTENT = {
   howItWorksCards: [
@@ -344,7 +345,7 @@ export default function CoWAMMPage({ siteConfigData }) {
                 })
               }
               variant={ButtonVariant.COWAMM_LIGHTBLUE}
-              href={CONTACT_URL}
+              href={DEPLOY_AMM}
               target="_blank"
               rel="noreferrer nofollow"
               paddingTB={3}
@@ -628,7 +629,21 @@ export default function CoWAMMPage({ siteConfigData }) {
 
             <SubTitle fontSize={2.9} lineHeight={1.4} color={Color.cowammBlack} maxWidth={100}>
               Anyone can provide liquidity to CoW AMM by creating their own protected pools. To get started, just follow
-              the instructions in the CoW DAO docs!
+              the&nbsp;
+              <a
+                onClick={() =>
+                  sendGAEventHandler({
+                    category: GAEventCategories.COWAMM,
+                    action: 'Content link click - instructions',
+                  })
+                }
+                href="https://docs.cow.fi/cow-protocol/tutorials/cow-amm-deployer"
+                target="_blank"
+                rel="noreferrer nofollow"
+              >
+                instructions
+              </a>{' '}
+              in the CoW DAO docs!
             </SubTitle>
 
             <ButtonWrapper center>
