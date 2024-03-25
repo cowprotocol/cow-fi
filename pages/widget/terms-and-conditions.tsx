@@ -21,6 +21,10 @@ const Content = styled.div`
   h1, h2, h3, p, div, a {
     line-height: normal !important;
   }
+
+  p {
+    padding-top: 10px;
+  }
 `
 
 export default function TermsAndConditionsPage({siteConfigData}) {
