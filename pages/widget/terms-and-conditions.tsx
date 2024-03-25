@@ -54,8 +54,8 @@ export default function TermsAndConditionsPage({ siteConfigData }) {
         <div>
           <h1>Terms and Conditions for the CoW Swap Widget &amp; Partner Fee Program</h1>
           <p>
-            These Terms and Conditions (the "Terms") govern the integration of the CoW Swap Widgetr (the “Widget”). The
-            Widget is provided to you (“you”, the “Partner”) by CoW DAO (the “Provider”, "we", "our", or "us").
+            These Terms and Conditions (the "Terms") govern the integration of the CoW Swap Widgetr (the "Widget"). The
+            Widget is provided to you ("you", the "Partner") by CoW DAO (the "Provider", "we", "our", or "us").
           </p>
           <p>
             CoW DAO is an Ethereum and Gnosis Chain based collective managed by community members in accordance with the
@@ -114,7 +114,7 @@ export default function TermsAndConditionsPage({ siteConfigData }) {
             provide any order matching, guaranteed prices, or similar exchange or trading platform services.
           </p>
           <p>
-            Cow Protocol (the “Protocol”) is a decentralised protocol operated by CoW DAO on the Ethereum, Gnosis Chain
+            Cow Protocol (the "Protocol") is a decentralised protocol operated by CoW DAO on the Ethereum, Gnosis Chain
             as well as other EVM compatible chains that allows users to trade certain digital assets. The Protocol is a
             set of smart contracts owned by CoW DAO.
           </p>
@@ -127,7 +127,7 @@ export default function TermsAndConditionsPage({ siteConfigData }) {
           </p>
           <h2>The Widget</h2>
           <p>
-            The Widget is an iframe solution mirroring the web-hosted user interface (the “Interface”) published at{' '}
+            The Widget is an iframe solution mirroring the web-hosted user interface (the "Interface") published at{' '}
             <a target="_blank" rel="noreferrer" href="https://swap.cow.fi/">
               https://swap.cow.fi/
             </a>{' '}
@@ -269,7 +269,7 @@ export default function TermsAndConditionsPage({ siteConfigData }) {
           <h3>Amicable Dispute Resolution</h3>
           <p>
             If an alleged breach, controversy, claim, dispute or difference arises out of or in connection with the
-            present Terms about or in connection to the Widget between you and us (a “Dispute”), you agree to seek to
+            present Terms about or in connection to the Widget between you and us (a "Dispute"), you agree to seek to
             resolve the matter with us amicably by referring the matter to{' '}
             <a href="mailto:legal@cow.fi" target="_blank" rel="noreferrer">
               legal@cow.fi
@@ -287,7 +287,7 @@ export default function TermsAndConditionsPage({ siteConfigData }) {
           <h3>Mediation and Arbitration</h3>
           <p>
             In the event a Dispute cannot be resolved amicably, you must first refer the Dispute to proceedings under
-            the International Chamber of Commerce (“ICC”) Mediation Rules, which Rules are deemed to be incorporated by
+            the International Chamber of Commerce ("ICC") Mediation Rules, which Rules are deemed to be incorporated by
             reference into this clause. The place of mediation shall be London, United Kingdom. The language of the
             mediation proceedings shall be English.
           </p>
