@@ -108,15 +108,15 @@ export default function TermsAndConditionsPage({ siteConfigData }) {
           </p>
           <h2>CoW Protocol</h2>
           <p>
+            Cow Protocol (the "Protocol") is a decentralised protocol operated by CoW DAO on the Ethereum, Gnosis Chain
+            as well as other EVM compatible chains that allows users to trade certain digital assets. The Protocol is a
+            set of smart contracts owned by CoW DAO.
+          </p>
+          <p>
             CoW Protocol applies batch auction mechanisms to allow peer-to-peer trades on Ethereum Mainnet, and Ethereum
             Virtual Machine compatible validation mechanisms. CoW DAO is not custodians or counterparties to any
             transactions executed by you on the Protocol. We do not support any other service, particularly we do not
             provide any order matching, guaranteed prices, or similar exchange or trading platform services.
-          </p>
-          <p>
-            Cow Protocol (the "Protocol") is a decentralised protocol operated by CoW DAO on the Ethereum, Gnosis Chain
-            as well as other EVM compatible chains that allows users to trade certain digital assets. The Protocol is a
-            set of smart contracts owned by CoW DAO.
           </p>
           <p>
             Please consult our{' '}
