@@ -49,7 +49,7 @@ export default function TermsAndConditionsPage({siteConfigData}) {
           Widget is provided to you (“you”, the “Partner”) by CoW DAO (the “Provider”, "we", "our", or "us").</p>
         <p>CoW DAO is an Ethereum and Gnosis Chain based collective managed by community members in accordance with
           the
-          CoW DAO’s <a target="_blank" rel="noreferrer" href="https://snapshot.org/#/cow.eth/about">
+          CoW DAO's <a target="_blank" rel="noreferrer" href="https://snapshot.org/#/cow.eth/about">
             participation agreement
           </a>. To contact CoW DAO please use the forum at <a target="_blank" rel="noreferrer"
                                                               href="https://forum.cow.fi/">
