@@ -70,14 +70,14 @@ export default function TermsAndConditionsPage({siteConfigData}) {
           time.
         </p>
         <h2>CoW Protocol</h2>
-        <p>Cow Protocol (the “Protocol”) is a decentralised protocol operated by CoW DAO on the Ethereum and Gnosis
-          Chain blockchains (and potentially any EVM compatible chains) that allows users to trade certain digital
-          assets. The Protocol is a set of smart contracts owned by CoW DAO.</p>
         <p>CoW Protocol applies batch auction mechanisms to allow peer-to-peer trades on Ethereum Mainnet, and
           Ethereum
           Virtual Machine compatible validation mechanisms. CoW DAO is not custodians or counterparties to any
           transactions executed by you on the Protocol. We do not support any other service, particularly we do not
           provide any order matching, guaranteed prices, or similar exchange or trading platform services.</p>
+        <p>Cow Protocol (the “Protocol”) is a decentralised protocol operated by CoW DAO on the Ethereum, Gnosis Chain 
+          as well as other EVM compatible chains that allows users to trade certain digital assets. The Protocol is a 
+          set of smart contracts owned by CoW DAO.</p>
         <p>Please consult our <a target="_blank" rel="noreferrer" href="https://docs.cow.fi/cow-protocol">
           documentation
         </a> for more information on CoW Protocol.</p>
@@ -134,36 +134,26 @@ export default function TermsAndConditionsPage({siteConfigData}) {
         <p>The Widget and all intellectual property rights therein are and shall remain the exclusive property of the
           Provider.</p>
         <h2>Partner Fee Program</h2>
-        <h3>Partner Fee Program</h3>
-        <p>The Partner may participate in the Provider's partner fee program (the "Program"). This Program allows the
-          Partner to collect a fee on trades executed by the Partner's users through the Widget.</p>
         <h3>Partner Fee</h3>
-        <p>The Partner may charge its users a fee of up to 1% on each transaction completed through their integrated
-          Widget.</p>
-        <h3>Condition for Program Participation</h3>
-        <p>To list a token on the Widget and collect fees on transactions involving that token, the token must be
-          listed on <a target="_blank" rel="noreferrer" href="https://www.coingecko.com/">
+        <p>Partners may participate in the Provider's Partner Fee Program ("Program"). The Program enables Partners to 
+          earn fees on trades their users execute through the Widget. For comprehensive details and conditions of the 
+          Partner Fee Program, please refer to the dedicated <a target="_blank" rel="noreferrer" href="https://docs.cow.fi/cow-protocol/tutorials/widget#partner-fee">Widget documentation page under the "Partner Fee" section</a>.
+        </p>
+        <p>To list a token on the Widget and earn fees on associated transactions, the token must have a listing on <a target="_blank" rel="noreferrer" href="https://www.coingecko.com/">
             https://www.coingecko.com/
-          </a> as it appears <a target="_blank" rel="noreferrer"
-                                href="https://files.cow.fi/tokens/CoinGecko.json">here</a>.</p>
+          </a> as it appears on the site.</p>
         <h3>Service Fee</h3>
-        <p>The Provider shall retain a service fee (the “Service Fee”) from the total fees collected by the
-          Partner.&nbsp;</p>
-        <p>The amount of the service fee collected by the Provider is set in the documentation page of the Widget
-          under <a target="_blank" rel="noreferrer"
-                   href="https://docs.cow.fi/cow-protocol/tutorials/widget#partner-fee">Partner Fee</a>.</p>
-        <p>The Provider reserves the right, upon prior notice, to change the amount of service fee charged to the
-          Partner.</p>
-        <h3>Fee Calculation</h3>
-        <p>The fee collected by the Partner is calculated in ETH at the time of the transaction. The fee is based on
-          the
-          resulting surplus token obtained from each transaction.</p>
-        <h3>Fee Payment</h3>
-        <p>The fee will be paid to the Partner in ETH on a weekly basis. Payments will be made only if the accrued fee
-          value equals or exceeds 0.001 ETH.</p>
+        <p>The Provider will retain a service fee ("Service Fee") from the total fees earned by the Partner. Specific 
+          terms and conditions regarding the Service Fee are outlined in the 
+            <a target="_blank" rel="noreferrer" href="https://docs.cow.fi/cow-protocol/tutorials/widget#partner-fee">Widget's dedicated documentation page under the "Partner Fee" section</a>.
+        </p>
+        <p>The Provider reserves the right to adjust the Service Fee charged to the Partner with prior notice.</p>
+
         <h3>Program Changes and Termination</h3>
-        <p>The Provider may amend the Program at any time. The Provider also reserves the right to modify or terminate
-          the Program at any time, with or without notice.</p>
+
+        <p>The Provider may make amendments to the Program at any time. Additionally, the Provider reserves the right 
+          to modify or terminate the Program at any time, with or without notice.</p>
+
         <h2>Warranties and Limitations</h2>
         <p>The Widget is provided "as is" without warranty of any kind, express or implied.</p>
         <p>Provider shall not be liable for any damages or losses arising from the use or inability to use the Widget,
