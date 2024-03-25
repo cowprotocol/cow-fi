@@ -95,7 +95,7 @@ const CONTENT = {
             Marcelo
           </a>{' '}
           <br />
-          <small>CEO at Karpatkey</small>
+          <small>Co-founder at Karpatkey</small>
         </>
       ),
       titleColor: 'cowammOrange',
