@@ -17,6 +17,8 @@
     "@cowprotocol/widget-lib": "^0.2.0",
     "@lingui/macro": "^3.12.1",
     "@lingui/react": "^3.12.1",
+    "@typeform/embed": "^4.9.0",
+    "@typeform/embed-react": "^3.16.0",
     "@visx/axis": "^2.12.2",
     "@visx/event": "^2.6.0",
     "@visx/glyph": "^2.10.0",

@@ -114,7 +114,7 @@ export const Section = styled.section<{
 
   ${Media.desktopDown} {
     padding: ${({ paddingMobile, firstSection }) =>
-      firstSection ? '0 2.4rem 14rem' : paddingMobile ? `${paddingMobile}` : '14rem 2.4rem'};
+      firstSection ? '0 2.4rem 14rem' : paddingMobile ? `${paddingMobile}` : 'inherit'};
   }
 
   ${Media.mobile} {
@@ -123,6 +123,7 @@ export const Section = styled.section<{
     min-height: initial;
     flex-flow: column wrap;
     gap: ${({ gapMobile }) => (gapMobile ? `${gapMobile}rem` : '8rem')};
+    padding: ${({ paddingMobile }) => (paddingMobile ? `${paddingMobile}` : '14rem 2.4rem')};
   }
 
   .text-weight-light {
