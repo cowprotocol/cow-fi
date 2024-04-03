@@ -14,7 +14,7 @@
   "dependencies": {
     "@apollo/client": "^3.7.2",
     "@cowprotocol/cow-sdk": "^0.0.15-RC.1",
-    "@cowprotocol/widget-lib": "^0.2.0",
+    "@cowprotocol/widget-react": "^0.5.0",
     "@lingui/macro": "^3.12.1",
     "@lingui/react": "^3.12.1",
     "@visx/axis": "^2.12.2",
