@@ -69,7 +69,7 @@ const DAO_LOGOS_PATH = '/images/dao-logos/'
 
 const CONTENT = {
   configuratorURL: 'https://widget.cow.fi/',
-  calendlyURL: 'https://calendly.com/crystal-cow/cow-swap-widget',
+  calendlyURL: 'https://cowprotocol.typeform.com/to/rONXaxHV',
   docsURL: 'https://docs.cow.fi/cow-protocol/tutorials/widget',
   everyBell: [
     {
