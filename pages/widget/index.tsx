@@ -1,8 +1,7 @@
 import Head from 'next/head'
 import { GetStaticProps } from 'next'
 import styled from 'styled-components'
-import { useEffect, useRef } from 'react'
-import { cowSwapWidget, CowSwapWidgetParams } from '@cowprotocol/widget-lib'
+import { CowSwapWidget, CowSwapWidgetParams } from '@cowprotocol/widget-react'
 import { CONFIG } from '@/const/meta'
 import { Color, Font, Media } from 'styles/variables'
 import {
@@ -70,7 +69,7 @@ const DAO_LOGOS_PATH = '/images/dao-logos/'
 
 const CONTENT = {
   configuratorURL: 'https://widget.cow.fi/',
-  calendlyURL: 'https://calendly.com/crystal-cow/cow-swap-widget',
+  calendlyURL: 'https://cowprotocol.typeform.com/to/rONXaxHV',
   docsURL: 'https://docs.cow.fi/cow-protocol/tutorials/widget',
   everyBell: [
     {
@@ -173,6 +172,7 @@ const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
 const widgetParams: CowSwapWidgetParams = {
   appCode: 'CoW Protocol: Widget Demo',
+  theme: 'light'
 }
 
 export default function WidgetPage({ siteConfigData }) {
@@ -185,12 +185,6 @@ export default function WidgetPage({ siteConfigData }) {
       socialFiltered[key] = value
     }
   })
-
-  const widgetContainerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    cowSwapWidget(widgetContainerRef.current, widgetParams)
-  }, [])
 
   const pageTitle = `Widget - ${siteConfigData.title}`
   const pageDescription =
@@ -255,7 +249,9 @@ export default function WidgetPage({ siteConfigData }) {
 
         <SectionContent flow="column">
           <div>
-            <WidgetContainer id="COW-WIDGET" ref={widgetContainerRef}></WidgetContainer>
+            <WidgetContainer id="COW-WIDGET">
+              <CowSwapWidget params={widgetParams}/>
+            </WidgetContainer>
           </div>
         </SectionContent>
       </Section>
