@@ -1,25 +1,24 @@
 import { CONFIG } from '@/const/meta'
 import { Color } from 'styles/variables'
 
-import { ButtonWrapper } from '@/components/Button'
+import { Button, ButtonVariant, ButtonWrapper } from '@/components/Button'
+import SocialList from '@/components/SocialList'
 import {
-  Section,
-  SectionContent,
-  SubTitle,
-  SectionImage,
   IconList,
   IconListItem,
-  Metrics,
   IntegrationList,
-  StepWrapper,
-  StepContainer,
+  Metrics,
+  Section,
+  SectionContent,
   SectionH1,
+  SectionImage,
+  StepContainer,
+  StepWrapper,
+  SubTitle,
 } from './index.styles'
-import SocialList from '@/components/SocialList'
-import { Button, ButtonVariant } from '@/components/Button'
 
-import { MetricsData } from 'types'
 import { LinkWithUtm } from 'modules/utm'
+import { MetricsData } from 'types'
 
 export interface HomeProps {
   metricsData: MetricsData
@@ -310,7 +309,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
                 variant={ButtonVariant.LIGHT}
               />
               <Button
-                href={'https://calendly.com/d/zxg-m2m-54p'}
+                href={'mailto:bd@cow.fi'}
                 label="Talk to us"
                 fontSizeMobile={2.1}
                 target="_blank"
