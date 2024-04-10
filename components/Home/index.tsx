@@ -116,8 +116,7 @@ export default function Home({ metricsData, siteConfigData }: HomeProps) {
                 <span>
                   <b>Keep your surplus.</b>
                   <p>
-                    If a price moves in your favor after you&apos;ve placed an order, CoW Protocol gives you the price
-                    at the time of execution.
+                    CoW Protocol gives you extra tokens if the price moves in your favor after you’ve placed an order.
                   </p>
                 </span>
               </IconListItem>
