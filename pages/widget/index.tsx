@@ -1,9 +1,5 @@
-import Head from 'next/head'
-import { GetStaticProps } from 'next'
-import styled from 'styled-components'
-import { CowSwapWidget, CowSwapWidgetParams } from '@cowprotocol/widget-react'
-import { CONFIG } from '@/const/meta'
-import { Color, Font, Media } from 'styles/variables'
+import { Button, ButtonVariant, ButtonWrapper } from '@/components/Button'
+import { CustomLink } from '@/components/CustomLink'
 import {
   CardItem,
   CardWrapper,
@@ -14,54 +10,58 @@ import {
   SubTitle,
 } from '@/components/Home/index.styles'
 import Layout from '@/components/Layout'
-import { LinkWithUtm } from 'modules/utm'
-import { Button, ButtonVariant, ButtonWrapper } from '@/components/Button'
-import { sendGAEventHandler } from 'lib/analytics/sendGAEvent'
+import { CONFIG } from '@/const/meta'
+import { CowSwapWidget, CowSwapWidgetParams } from '@cowprotocol/widget-react'
 import { WidgetEvents } from 'lib/analytics/GAEvents'
-import { CustomLink } from '@/components/CustomLink'
+import { sendGAEventHandler } from 'lib/analytics/sendGAEvent'
+import { LinkWithUtm } from 'modules/utm'
+import { GetStaticProps } from 'next'
+import Head from 'next/head'
 import Link from 'next/link'
+import styled from 'styled-components'
+import { Color, Font, Media } from 'styles/variables'
 
 const ArrowDrawn = '/images/arrow-drawn.svg'
 
 const StickySectionTitle = styled.div`
-  position: sticky;
-  top: 12rem;
-  margin: 0 auto auto;
+position: sticky;
+top: 12rem;
+margin: 0 auto auto;
 
-  ${Media.mobile} {
-    position: relative;
-    top: initial;
-  }
+${Media.mobile} {
+  position: relative;
+  top: initial;
+}
 `
 
 const WidgetContainer = styled.div`
+display: flex;
+width: 100%;
+flex-flow: column wrap;
+justify-content: flex-start;
+align-items: center;
+gap: 1.6rem;
+
+&::before {
+  color: ${Color.darkBlue};
+  font-size: 2.1rem;
+  font-weight: ${Font.weightBold};
+  content: 'Try it out!';
+  background: url(${ArrowDrawn}) no-repeat center 2.5rem / 2.4rem 5rem;
+  width: 12rem;
+  height: 7.5rem;
+  margin: 0 auto;
   display: flex;
-  width: 100%;
-  flex-flow: column wrap;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 1.6rem;
+  align-items: flex-start;
+  justify-content: center;
+  transform: rotateZ(-15deg);
+}
 
-  &::before {
-    color: ${Color.darkBlue};
-    font-size: 2.1rem;
-    font-weight: ${Font.weightBold};
-    content: 'Try it out!';
-    background: url(${ArrowDrawn}) no-repeat center 2.5rem / 2.4rem 5rem;
-    width: 12rem;
-    height: 7.5rem;
-    margin: 0 auto;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    transform: rotateZ(-15deg);
+${Media.mobile} {
+  > iframe {
+    width: 100%;
   }
-
-  ${Media.mobile} {
-    > iframe {
-      width: 100%;
-    }
-  }
+}
 `
 
 const IMAGE_PATH = '/images/'
@@ -147,19 +147,15 @@ const CONTENT = {
     },
     {
       description: 'Internal wallet management - no wallet connection needed',
-      comingSoon: true,
     },
     {
       description: 'Configurable token lists',
-      comingSoon: true,
     },
     {
       description: 'Custom-tailored fees',
-      comingSoon: true,
     },
     {
-      description: 'Fully responsive, from 340px and up',
-      comingSoon: true,
+      description: 'Fully responsive, from 320px and up',
     },
     {
       description: 'Feature-adaptive display',
@@ -251,7 +247,7 @@ export default function WidgetPage({ siteConfigData }) {
         <SectionContent flow="column">
           <div>
             <WidgetContainer id="COW-WIDGET">
-              <CowSwapWidget params={widgetParams}/>
+              <CowSwapWidget params={widgetParams} />
             </WidgetContainer>
           </div>
         </SectionContent>
