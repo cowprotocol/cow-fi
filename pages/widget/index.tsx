@@ -172,7 +172,8 @@ const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
 const widgetParams: CowSwapWidgetParams = {
   appCode: 'CoW Protocol: Widget Demo',
-  theme: 'light'
+  theme: 'light',
+  standaloneMode: true
 }
 
 export default function WidgetPage({ siteConfigData }) {
