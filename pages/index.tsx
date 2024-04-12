@@ -14,7 +14,7 @@ const numberFormatter = Intl.NumberFormat('en', { notation: 'compact' })
 const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 
 // Defaults are only meant to be used when the API fails
-const DEFAULT_USD_VOLUME = '2548024217' // https://dune.com/cowprotocol/cowswap-high-level-metrics-dashboard?Aggregate+by_e759c2=Week
+const DEFAULT_USD_VOLUME = '40400000000' // https://dune.com/cowprotocol/cowswap-high-level-metrics-dashboard?Aggregate+by_e759c2=Week
 
 export default function HomePage({ metricsData, siteConfigData }: HomeProps) {
   return (
