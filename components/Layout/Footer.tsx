@@ -202,7 +202,7 @@ function Social({ isCoWAMM = false }: Pick<FooterProps, 'isCoWAMM'>) {
         gap={0.7}
         innerPadding={1}
         alignItems={'right'}
-        color={isCoWAMM && Color.cowammWhite}
+        color={isCoWAMM ? Color.cowammWhite : undefined}
       />
       <CopyrightLinks>
         <li>©CoW Protocol - {CURRENT_YEAR}</li>
