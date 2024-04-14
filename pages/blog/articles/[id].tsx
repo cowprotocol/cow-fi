@@ -3,9 +3,9 @@ import Head from 'next/head'
 import Layout from '@/components/Layout'
 
 import { GetStaticProps } from 'next'
-import { Article, getArticleBySlug, getArticleSlugs } from 'services/blog'
 import Link from 'next/link'
 import styled from 'styled-components'
+import { Article, getArticleBySlug, getArticleSlugs } from 'services/cms'
 
 const DATA_CACHE_TIME_SECONDS = 10 * 60 // 10 minutes
 
@@ -22,7 +22,8 @@ export interface BlogPostProps {
 }
 
 export default function BlogPostPage({ article }: BlogPostProps) {
-  const { title, description, slug } = article
+  const { id } = article
+  const { title, description, slug } = article.attributes
 
   return (
     <>
@@ -35,7 +36,7 @@ export default function BlogPostPage({ article }: BlogPostProps) {
       </Head>
 
       <Layout fullWidthGradientVariant={false}>
-        <Wrapper data-slug={slug}>
+        <Wrapper data-slug={slug} data-id={id}>
           <h1>{title}</h1>
           <p>{description}</p>
           <Link href="/blog">Go back</Link>
@@ -46,6 +47,7 @@ export default function BlogPostPage({ article }: BlogPostProps) {
 }
 
 export async function getStaticPaths() {
+
   const slugs = await getArticleSlugs()
 
   return {
@@ -55,7 +57,8 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps: GetStaticProps<BlogPostProps> = async ({ params }) => {
-  const article = await getArticleBySlug(params.slug as string)
+  console.log('params', params)
+  const article = await getArticleBySlug(params.id as string)
 
   if (!article) {
     return {
