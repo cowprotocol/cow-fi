@@ -3,8 +3,41 @@ import { PaginationParam } from "types";
 
 const PAGE_SIZE = 50
 
+type Schemas = components["schemas"]
+export type Article = Schemas["ArticleListResponseDataItem"]
+export type SharedMediaComponent = Schemas["SharedMediaComponent"]
+export type SharedQuoteComponent = Schemas["SharedQuoteComponent"]
+export type SharedRichTextComponent = Schemas["SharedRichTextComponent"]
+export type SharedSliderComponent = Schemas["SharedSliderComponent"]
+export type SharedVideoEmbedComponent = Schemas["SharedVideoEmbedComponent"]
 
-export type Article = components["schemas"]["ArticleListResponseDataItem"]
+
+export type ArticleBlock = 
+  SharedMediaComponent | 
+  SharedQuoteComponent | 
+  SharedRichTextComponent | 
+  SharedSliderComponent | 
+  SharedVideoEmbedComponent
+
+  export function isSharedMediaComponent(component: ArticleBlock): component is SharedMediaComponent {
+    return component.__component === 'SharedMediaComponent'
+  }
+
+  export function isSharedQuoteComponent(component: ArticleBlock): component is SharedQuoteComponent {
+    return component.__component === 'SharedQuoteComponent'
+  }
+
+  export function isSharedRichTextComponent(component: ArticleBlock): component is SharedRichTextComponent {
+    return component.__component === 'SharedRichTextComponent'
+  }
+
+  export function isSharedSliderComponent(component: ArticleBlock): component is SharedMediaComponent {
+    return component.__component === 'SharedSliderComponent'
+  }
+
+  export function isSharedVideoEmbedComponent(component: ArticleBlock): component is SharedVideoEmbedComponent {
+    return component.__component === 'SharedVideoEmbedComponent'
+  }
 
 /**
  * Open API Fetch client. See docs for usage https://openapi-ts.pages.dev/openapi-fetch/

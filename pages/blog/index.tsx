@@ -1,14 +1,12 @@
 import Layout from '@/components/Layout'
-import { getTokensInfo } from 'services/tokens'
-import { TokenInfo } from 'types'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
-import { TokenList, TokenListProps } from '@/components/TokensList'
+
 import { CONFIG } from '@/const/meta'
-import Link from 'next/link'
 import styled from 'styled-components'
 import { Color } from '@/styles/variables'
 import { Article, getArticles } from 'services/cms'
+import { ArticleList } from '@/components/Article'
 
 const DATA_CACHE_TIME_SECONDS = 10 * 60 // 10 minutes
 
@@ -23,22 +21,6 @@ const Wrapper = styled.div`
   }
 `
 
-const ArticleItem = styled.article`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 126rem;
-  margin: 0 auto;
-  padding: 0 1.6rem;
-
-  a {
-    font-size: 1.6rem;
-    text-decoration: none;
-    color: ${Color.white};
-    margin: 1rem 0 0.5rem 0;
-  }
-`
-
 export default function BlogPage({ articles }: BlogProps) {
   return (
     <>
@@ -48,15 +30,7 @@ export default function BlogPage({ articles }: BlogProps) {
       <Layout fullWidthGradientVariant={false}>
         <Wrapper>
           <h1>Blog</h1>
-          {articles.map((article) => {
-            const { slug,title, description } = article.attributes
-            return (
-              <ArticleItem key={slug} data-slug={slug} data-id={article.id}>
-                <Link href={`/blog/articles/${slug}`}>{title}</Link>
-                <p>{description}</p>
-              </ArticleItem>
-            )
-          })}
+          <ArticleList articles={articles} />          
         </Wrapper>
       </Layout>
     </>
