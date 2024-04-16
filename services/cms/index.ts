@@ -128,10 +128,26 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
   console.log('[getArticleBySlug] get article for slug', slug)
   const { data, error } = await client.GET("/articles", {
     params: {
+
+      // Use the query https://docs.strapi.io/dev-docs/api/rest/interactive-query-builder
       query: {
+        // Filter by slug
         "filters[slug][$eq]": slug,
+
+        // Populate
+        'populate[0]': 'cover', 
+        'populate[1]': 'blocks', 
+        'populate[2]': 'seo', 
+        'populate[3]': 'authorsBio',
+        'populate[authorsBio][fields][0]': 'firstName',
+        'populate[authorsBio][fields][1]': 'lastName',
+
+        // Pagination
         "pagination[page]": 1,
-        "pagination[pageSize]": 2
+        "pagination[pageSize]": 2, // Get 2 items to check for duplicates
+
+        // Sort
+        "sort": "publishedAt:desc"
       }
     }
   })
