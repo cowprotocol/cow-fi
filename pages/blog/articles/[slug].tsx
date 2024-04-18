@@ -2,7 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import Layout from '@/components/Layout'
 
-import { GetStaticProps } from 'next'
+import { GetStaticPaths, GetStaticPathsResult, GetStaticProps } from 'next'
 import Link from 'next/link'
 import styled from 'styled-components'
 import { Article, getArticleBySlug, getAllArticleSlugs } from 'services/cms'
@@ -16,6 +16,7 @@ const Wrapper = styled.div`
     margin: 1rem 0 0.5rem 0;
   }
 `
+
 
 export interface BlogPostProps {
   article: Article
@@ -46,17 +47,21 @@ export default function BlogPostPage({ article }: BlogPostProps) {
   )
 }
 
-export async function getStaticPaths() {
-  const slugs = await getAllArticleSlugs()
+type ArticleQuery = { slug: string}
+
+export const getStaticPaths: GetStaticPaths<ArticleQuery> = async () => {
+  const allSlugs = await getAllArticleSlugs()
 
   return {
     fallback: false,
-    paths: slugs.map((id) => ({ params: { id } })),
+    paths: allSlugs.map((slug) => ({
+      params: { slug }
+    })),
   }
 }
 
-export const getStaticProps: GetStaticProps<BlogPostProps> = async ({ params }) => {
-  const article = await getArticleBySlug(params.id as string)
+export const getStaticProps: GetStaticProps<BlogPostProps, ArticleQuery> = async ({ params }) => {
+  const article = await getArticleBySlug(params.slug)
 
   if (!article) {
     return {
