@@ -12,8 +12,11 @@ import { formatDate } from 'util/formatDate'
 const ArticleListWrapper = styled.ul`
   display: flex;
   flex-flow: column wrap;
-`
+  list-style-type: none;
+  padding: 0
 
+  
+`
 const ArticleContentWrapper = styled.article`
 a {
   font-size: 1.2rem;
@@ -22,26 +25,56 @@ a {
 }
 `
 
-
 const ArticleItemWrapper = styled.li`
   display: flex;
   flex-direction: column;
   width: 100%;
   max-width: 126rem;
-  margin: 0 auto;
-  padding: 0 1.6rem;
+  
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 1.5rem 0;
+  padding: 2.5rem;
+  color: ${Color.text1};
 
   a {
-    font-size: 1.6rem;
+    font-size: 2rem;
     text-decoration: none;
-    color: ${Color.white};
-    margin: 1rem 0 0.5rem 0;
+    color: ${Color.darkBlue};
+
+    margin-bottom: 1.5rem;
   }
 `
 
 const ArticleBlocksWrapper = styled.ul`
   display: flex;
   flex-flow: column wrap;
+  list-style-type: none;
+  padding: 0
+`
+
+const ArticleDescription = styled.p`
+  font-size: 1.5rem;
+  color: ${Color.text1};
+  margin: 1rem 0;
+  line-height: 1.5;
+
+`
+
+const ArticleSubtitleWrapper = styled.div`
+  color: ${Color.grey3};
+  font-weight: bold;
+  font-size: 1.2rem;
+  display: flex;
+
+  > div:not(:first-child) {
+    margin-left: 1rem;
+
+  }
+  > div span {
+    font-weight: normal;  
+  }
 `
 
 
@@ -73,10 +106,10 @@ export function ArticleItem ({article}: ArticleItemProps) {
   return (
     <ArticleItemWrapper key={slug} data-slug={slug} data-id={article.id}>
       <Link href={`/blog/articles/${slug}`}>{title}</Link>
-      <ArticleDate dateIso={publishedAt} />
-      <ArticleCreatedBy createdBy={createdBy} />
+      <ArticleSubtitle dateIso={publishedAt} createdBy={createdBy} />
+      <ArticleDescription>{description}</ArticleDescription>
+      
       <span>{ createdBy}</span>
-      <p>{description}</p>
     </ArticleItemWrapper>
   )
 }
@@ -118,11 +151,10 @@ export function ArticleContent ({article}: ArticleProps) {
           </code>
 
           <h1>{title}</h1>
-          <ArticleDate dateIso={publishedAt} />
+          <ArticleSubtitle dateIso={publishedAt} />
           <ArticleAuthor authorsBio={authorsBio} />
           <div>CATEGORIES: {JSON.stringify(categories)}</div>
           <div>COVER: {JSON.stringify(cover)}</div>
-          <ArticleCreatedBy createdBy={createdBy} />
           <p>{description}</p>
 
           {blocks && (
@@ -141,11 +173,22 @@ export function ArticleContent ({article}: ArticleProps) {
 
 export interface ArticleDateProps {
   dateIso: string
+  createdBy: ArticleAttributes['createdBy']
 }
-export function ArticleDate({dateIso}: ArticleDateProps){
+export function ArticleSubtitle({ dateIso, createdBy }: ArticleDateProps){
   const date = new Date(dateIso)
 
-  return <>{formatDate(date)}</>
+  return <ArticleSubtitleWrapper>
+    <div>
+      Published on: <span>{formatDate(date)}</span>
+    </div>
+
+    {createdBy  && (
+      <div>
+        Author: <span>{createdBy}</span>
+      </div>
+    )}
+    </ArticleSubtitleWrapper>
 }
 
 export interface ArticleAuthorProps {
@@ -158,20 +201,6 @@ export function ArticleAuthor({authorsBio}: ArticleAuthorProps){
   }
 
   return <>{JSON.stringify(authorsBio)}</>
-}
-
-
-
-export interface ArticleCreatedByProps {
-  createdBy: ArticleAttributes['createdBy']
-}
-export function ArticleCreatedBy({createdBy}: ArticleCreatedByProps){
-  const a = createdBy?.data?.attributes
-  if (!a) {
-    return null
-  }
-
-  return <>TODO: {JSON.stringify(a)}</>
 }
 
 export interface ArticleBlockProps {

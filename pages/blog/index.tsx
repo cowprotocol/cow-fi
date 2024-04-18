@@ -109,7 +109,8 @@ export default function BlogPage({ articles }: BlogProps) {
               If you are developer who likes to learn by doing, here is great place to start!
             </SubTitle>
 
-            <Button href="#benefits" onClick={() => alert('')} paddingLR={4.2} fontSizeMobile={2.1} label="Interactive tutorials" />
+            <Button href="https://learn.cow.fi" target='_blank' rel="noopener nofollow" paddingLR={4.2} fontSizeMobile={2.1} label="Interactive tutorials" />
+            
           </div>
           <SectionImage>
           <img src={`${IMAGE_PATH}/eth-blocks.svg`} alt="Integrate With Ease" width="340" height="214" />
