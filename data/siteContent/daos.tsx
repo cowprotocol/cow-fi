@@ -1,43 +1,43 @@
 import { LinkWithUtm } from 'modules/utm'
 import { CONFIG } from '@/const/meta'
+import { IMAGE_PATH } from '@/const/paths'
 
-const IMAGE_PATH = '/images/'
-const DAO_LOGOS_PATH = '/images/dao-logos/'
+const DAO_LOGOS_PATH = IMAGE_PATH + '/dao-logos/'
 
 export const DAO_CONTENT = {
   slides: [
     {
-      image: `${IMAGE_PATH}dao-enjoy-surplus.svg`,
+      image: `${IMAGE_PATH}/dao-enjoy-surplus.svg`,
       title: 'Enjoy more price surplus than anywhere else',
       description:
         'Every DEX aggregator will tell you they have the best prices, but at the end of the day, CoW Swap does everything they do and then some. With peer-to-peer order matching, gas optimization, and MEV protection, CoW Swap improves your quoted price and forwards the surplus back to you.',
     },
     {
-      image: `${IMAGE_PATH}dao-custom-tailor-orders.svg`,
+      image: `${IMAGE_PATH}/dao-custom-tailor-orders.svg`,
       title: 'Stop scrambling for signatures',
       description:
         "Tired of rushing to sign the multi-sig? Eyes glazed over from staring at candlesticks? CoW Swap automatically adjusts your trade's execution path to fill your order at the best possible price, every time.",
     },
     {
-      image: `${IMAGE_PATH}dao-vote-once.svg`,
+      image: `${IMAGE_PATH}/dao-vote-once.svg`,
       title: 'Forget about voting twice ',
       description:
         "Milkman orders from CoW Swap let your DAO approve trades based on dynamic price feeds rather than fixed prices, so you don't have to re-vote if the market moves significantly.",
     },
     {
-      image: `${IMAGE_PATH}dao-outsmart-bots.svg`,
+      image: `${IMAGE_PATH}/dao-outsmart-bots.svg`,
       title: 'Outsmart the bots',
       description:
         "CoW Swap offers MEV protection that is one order of magnitude better than any other exchange. Solvers execute trades on your behalf so you're never exposed to on-chain attacks – and even when trade details are announced weeks in advance, CoW Swap stands between you and the MEV bots.",
     },
     {
-      image: `${IMAGE_PATH}dao-manage-price-impact.svg`,
+      image: `${IMAGE_PATH}/dao-manage-price-impact.svg`,
       title: 'Manage price impact',
       description:
         "Your trades move markets… but being the biggest isn't always the best. CoW Swap spreads your order across multiple liquidity pools so you make as little of a splash as possible.",
     },
     {
-      image: `${IMAGE_PATH}dao-do-more.svg`,
+      image: `${IMAGE_PATH}/dao-do-more.svg`,
       title: 'Do anything you can imagine',
       description:
         'With CoW Swap you can customize rules for your orders above and beyond traditional settings. Want to trigger a trade only when a wallet has n funds in it? Want to schedule recurring trades? CoW Swap lets you do all that and more in just a few clicks.',
@@ -46,7 +46,7 @@ export const DAO_CONTENT = {
 
   orderTypes: [
     {
-      icon: `${IMAGE_PATH}icon-milkman.svg`,
+      icon: `${IMAGE_PATH}/icon-milkman.svg`,
       title: 'Milkman Orders',
       description: (
         <>
@@ -65,25 +65,25 @@ export const DAO_CONTENT = {
       ),
     },
     {
-      icon: `${IMAGE_PATH}icon-twap-orders.svg`,
+      icon: `${IMAGE_PATH}/icon-twap-orders.svg`,
       title: 'TWAP Orders',
       description:
         'Time-weighted average price orders allow you to spread your trade out over time, averaging out your trading price, minimizing price impact, and allowing for lower slippage.',
     },
     {
-      icon: `${IMAGE_PATH}icon-limit-orders.svg`,
+      icon: `${IMAGE_PATH}/icon-limit-orders.svg`,
       title: 'Limit Orders',
       description:
         "CoW Swap's surplus-capturing limit orders allow you to set a price and sit back while your order gets filled over time - perfect for token buybacks and other large trades.",
     },
     {
-      icon: `${IMAGE_PATH}icon-price-walls.svg`,
+      icon: `${IMAGE_PATH}/icon-price-walls.svg`,
       title: 'Price Walls',
       description:
         'Pick an asset, define a threshold price, and CoW Swap will automatically sell above the threshold, and buy below it.',
     },
     {
-      icon: `${IMAGE_PATH}icon-basket-sells.svg`,
+      icon: `${IMAGE_PATH}/icon-basket-sells.svg`,
       title: 'Basket Sells',
       description: (
         <>
@@ -98,7 +98,7 @@ export const DAO_CONTENT = {
       ),
     },
     {
-      icon: `${IMAGE_PATH}icon-logic.svg`,
+      icon: `${IMAGE_PATH}/icon-logic.svg`,
       title: 'Place Your Logic Here',
       description:
         'ERC-1271 Smart Orders and CoW Hooks allow you to define your own complex trading logic; if you can think it, you can trade it.',
