@@ -2,7 +2,7 @@ import Layout from '@/components/Layout'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 
-import { Button } from '@/components/Button'
+import { Button, ButtonVariant, ButtonWrapper } from '@/components/Button'
 import {
   Section,
   SectionContent,
@@ -19,6 +19,7 @@ import { ArticleList } from '@/components/Article'
 
 import { IMAGE_PATH } from '@/const/paths'
 import SocialList from '@/components/SocialList'
+import { LinkWithUtm } from 'modules/utm'
 
 const DATA_CACHE_TIME_SECONDS = 10 * 60 // 10 minutes
 
@@ -77,7 +78,7 @@ export default function LearnPage({ articles }: LearnProps) {
   return (    
     <Layout fullWidthGradientVariant={true}>
       <Head>
-        <title>Blog - {CONFIG.title}</title>
+        <title>Learn - {CONFIG.title}</title>
       </Head>
       <Section fullWidth padding="0 8rem 14rem 8rem">
         <SectionContent flow="column">
@@ -107,8 +108,25 @@ export default function LearnPage({ articles }: LearnProps) {
             <SubTitle lineHeight={1.4} textAlign={'left'}>
               If you are developer who likes to learn by doing, here is great place to start!
             </SubTitle>
+            
+            <ButtonWrapper>
+              <Button href="https://learn.cow.fi" target='_blank' rel="noopener nofollow" paddingLR={4.2} fontSizeMobile={2.1} label="Interactive tutorials" />
 
-            <Button href="https://learn.cow.fi" target='_blank' rel="noopener nofollow" paddingLR={4.2} fontSizeMobile={2.1} label="Interactive tutorials" />
+              <LinkWithUtm
+                href={CONFIG.url.docs}
+                defaultUtm={{ ...CONFIG.utm, utmContent: 'learn-page-readdocs-cta-hero' }}
+                passHref
+              >
+                <Button
+                  target="_blank"
+                  rel="noopener nofollow"
+                  paddingLR={4.2}
+                  fontSizeMobile={2.1}
+                  label="Read docs"
+                  variant={ButtonVariant.TEXT_LIGHT}
+                />
+              </LinkWithUtm>
+            </ButtonWrapper>
             
           </div>
           <SectionImage>
