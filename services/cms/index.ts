@@ -1,19 +1,18 @@
-import createClient from "openapi-fetch";
-import type { paths, components } from "./gen-types"; 
+import { CmsClient, components } from "@cowprotocol/cms"; 
 
 const PAGE_SIZE = 50
 
 // export type { components } from "./gen-types"; 
 
+
+export type Article = components["schemas"]["ArticleListResponseDataItem"]
+
 /**
  * Open API Fetch client. See docs for usage https://openapi-ts.pages.dev/openapi-fetch/
  */
-export const client = createClient<paths>({ 
-  baseUrl: "https://cms.cow.fi/api" 
+export const client = CmsClient({ 
+  url: "https://cms.cow.fi/api" 
 });
-
-
-export type Article = components["schemas"]["ArticleListResponseDataItem"]
 
 
 /**

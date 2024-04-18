@@ -47,7 +47,6 @@ export default function BlogPostPage({ article }: BlogPostProps) {
 }
 
 export async function getStaticPaths() {
-
   const slugs = await getArticleSlugs()
 
   return {
@@ -57,7 +56,6 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps: GetStaticProps<BlogPostProps> = async ({ params }) => {
-  console.log('params', params)
   const article = await getArticleBySlug(params.id as string)
 
   if (!article) {
