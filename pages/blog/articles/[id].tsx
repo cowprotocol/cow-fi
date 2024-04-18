@@ -5,7 +5,7 @@ import Layout from '@/components/Layout'
 import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import styled from 'styled-components'
-import { Article, getArticleBySlug, getArticleSlugs } from 'services/cms'
+import { Article, getArticleBySlug, getAllArticleSlugs } from 'services/cms'
 
 const DATA_CACHE_TIME_SECONDS = 10 * 60 // 10 minutes
 
@@ -47,7 +47,7 @@ export default function BlogPostPage({ article }: BlogPostProps) {
 }
 
 export async function getStaticPaths() {
-  const slugs = await getArticleSlugs()
+  const slugs = await getAllArticleSlugs()
 
   return {
     fallback: false,

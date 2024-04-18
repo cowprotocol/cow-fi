@@ -1,8 +1,7 @@
 import { CmsClient, components } from "@cowprotocol/cms"; 
+import { PaginationParam } from "types";
 
 const PAGE_SIZE = 50
-
-// export type { components } from "./gen-types"; 
 
 
 export type Article = components["schemas"]["ArticleListResponseDataItem"]
@@ -16,42 +15,36 @@ export const client = CmsClient({
 
 
 /**
- *
- * @returns Return all article slugs
+ * Returns the article slugs for the given page.
+ * 
+ * @param params pagination params
+ * @returns Slugs
  */
-export async function getArticleSlugs(): Promise<string[]> {
-  // Fetch a single page
-  const fetchPage = async (pageNumber: number) => {
-    console.log('[getArticleSlugs] fetching page', pageNumber)
-    const { data, error } = await client.GET("/articles", {
-      params: {
-        query: {
-          "pagination[page]": pageNumber,
-          "pagination[pageSize]": PAGE_SIZE
-        }
-      }
-    })
-  
-    if (error)  {
-      throw error
-    }
+async function getArticlesSlugs(params: PaginationParam = {}): Promise<string[]> {
+  const articles = await getArticles(params)  
+  return articles.map((article) => article.attributes.slug)
+}
 
-    const slugs = data.data.map((article) => article.attributes.slug)
-    const { page, pageCount } = data.meta.pagination
 
-    return { slugs, hasMorePages: page < pageCount }
-  }
-
+/**
+ * Returns all article slugs.
+ * 
+ * @returns Slugs
+ */
+export async function getAllArticleSlugs(): Promise<string[]> {
   // Fetch all pages
   const allSlugs = []
   let page = 0
   while(true) {
-    const {slugs, hasMorePages} = await fetchPage(page)
-    allSlugs.push(slugs)
+    const slugs = await getArticlesSlugs({ page, pageSize: PAGE_SIZE + 1 }) // Get one extra to check if there's more pages
+    const hasMorePages = slugs.length > PAGE_SIZE
+    allSlugs.push(hasMorePages ? slugs.slice(0, -1) : slugs)
+
     if (!hasMorePages) {
       break
     }
 
+    // Keep fetching while there's more pages
     page++
   }
 
@@ -60,18 +53,18 @@ export async function getArticleSlugs(): Promise<string[]> {
 }
 
 /**
- *
- * @returns All articles
+ * Get articles sorted by descending published date.
+ * 
+ * @returns Articles for the given page
  */
-export async function getArticles(params: { page?: number, pageSize?: number } = {}): Promise<Article[]> {
-  const { page=0, pageSize=50 } = params
-
+export async function getArticles({ page=0, pageSize=PAGE_SIZE }: PaginationParam = {}): Promise<Article[]> {
   console.log('[getArticles] fetching page', page)
   const { data, error, response } = await client.GET("/articles", {
     params: {
       query: {
         "pagination[page]": page,
-        "pagination[pageSize]": pageSize
+        "pagination[pageSize]": pageSize,
+        'sort': 'publishedAt:desc'
       }
     }
   })
@@ -85,8 +78,14 @@ export async function getArticles(params: { page?: number, pageSize?: number } =
 }
 
 /**
- *
- * @returns Single article
+ * Get article by slug.
+ * 
+ * @param slug Slug of the article
+ * 
+ * @throws Error if slug is not found
+ * @throws Error if multiple articles are found with the same slug
+ * 
+ * @returns Article with the given slug
  */
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
   if (!slug) {

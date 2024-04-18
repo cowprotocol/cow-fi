@@ -37,3 +37,8 @@ export interface MetricsData {
   totalSurplus: string
   totalSurplusLastModified: string
 }
+
+export interface PaginationParam { 
+  page?: number, 
+  pageSize?: number
+}
