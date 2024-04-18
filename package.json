@@ -4,15 +4,16 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "next-sitemap",
     "start": "next start",
+    "test": "jest",
     "i18n:extract": "NODE_ENV=test npx lingui extract",
     "i18n:compile": "npx lingui compile",
     "lint": "next lint",
-    "test": "jest"
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@apollo/client": "^3.7.2",
+    "@cowprotocol/cms": "^0.1.0-rc.21",
     "@cowprotocol/cow-sdk": "^0.0.15-RC.1",
     "@cowprotocol/widget-react": "^0.5.0",
     "@lingui/macro": "^3.12.1",

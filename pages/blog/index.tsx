@@ -5,10 +5,10 @@ import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { TokenList, TokenListProps } from '@/components/TokensList'
 import { CONFIG } from '@/const/meta'
-import { Article, getArticles } from 'services/blog'
 import Link from 'next/link'
 import styled from 'styled-components'
 import { Color } from '@/styles/variables'
+import { Article, getArticles } from 'services/cms'
 
 const DATA_CACHE_TIME_SECONDS = 10 * 60 // 10 minutes
 
@@ -49,10 +49,11 @@ export default function BlogPage({ articles }: BlogProps) {
         <Wrapper>
           <h1>Blog</h1>
           {articles.map((article) => {
+            const { slug,title, description } = article.attributes
             return (
-              <ArticleItem key={article.slug}>
-                <Link href={`/blog/posts/${article.slug}`}>{article.title}</Link>
-                <p>{article.description}</p>
+              <ArticleItem key={slug} data-slug={slug} data-id={article.id}>
+                <Link href={`/blog/articles/${slug}`}>{title}</Link>
+                <p>{description}</p>
               </ArticleItem>
             )
           })}
