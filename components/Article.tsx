@@ -101,15 +101,13 @@ export interface ArticleItemProps {
 }
 
 export function ArticleItem ({article}: ArticleItemProps) {
-  const { slug,title, description, publishedAt, categories, cover, createdBy } = article?.attributes
+  const { slug,title, description, publishedAt, categories, cover, authorsBio } = article?.attributes
   // TODO: For details: seo, §
   return (
     <ArticleItemWrapper key={slug} data-slug={slug} data-id={article.id}>
       <Link href={`/learn/articles/${slug}`}>{title}</Link>
-      <ArticleSubtitle dateIso={publishedAt} createdBy={createdBy} />
+      <ArticleSubtitle dateIso={publishedAt} authorsBio={authorsBio} />
       <ArticleDescription>{description}</ArticleDescription>
-      
-      <span>{ createdBy}</span>
     </ArticleItemWrapper>
   )
 }
@@ -151,10 +149,7 @@ export function ArticleContent ({article}: ArticleProps) {
           </code>
 
           <h1>{title}</h1>
-          <ArticleSubtitle dateIso={publishedAt} createdBy={createdBy} />
-          <ArticleAuthor authorsBio={authorsBio} />
-          <div>CATEGORIES: {JSON.stringify(categories)}</div>
-          <div>COVER: {JSON.stringify(cover)}</div>
+          <ArticleSubtitle dateIso={publishedAt} authorsBio={authorsBio} />
           <p>{description}</p>
 
           {blocks && (
@@ -173,34 +168,23 @@ export function ArticleContent ({article}: ArticleProps) {
 
 export interface ArticleDateProps {
   dateIso: string
-  createdBy: ArticleAttributes['createdBy']
+  authorsBio: ArticleAttributes['authorsBio']
 }
-export function ArticleSubtitle({ dateIso, createdBy }: ArticleDateProps){
+export function ArticleSubtitle({ dateIso, authorsBio }: ArticleDateProps){
   const date = new Date(dateIso)
+  const author = authorsBio?.data?.attributes?.name
 
   return <ArticleSubtitleWrapper>
     <div>
       Published on: <span>{formatDate(date)}</span>
     </div>
 
-    {createdBy  && (
+    {author  && (
       <div>
-        Author: <span>{createdBy}</span>
+        Author: <span>{author}</span>
       </div>
     )}
     </ArticleSubtitleWrapper>
-}
-
-export interface ArticleAuthorProps {
-  authorsBio: ArticleAttributes['authorsBio']
-}
-export function ArticleAuthor({authorsBio}: ArticleAuthorProps){
-  const author = authorsBio?.data?.attributes
-  if (!author) {
-    return null
-  }
-
-  return <>{JSON.stringify(authorsBio)}</>
 }
 
 export interface ArticleBlockProps {

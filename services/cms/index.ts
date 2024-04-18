@@ -95,13 +95,21 @@ export async function getArticles({ page=0, pageSize=PAGE_SIZE }: PaginationPara
   const { data, error, response } = await client.GET("/articles", {
     params: {
       query: {
+        // Populate
+        'populate[0]': 'cover', 
+        'populate[1]': 'blocks', 
+        'populate[2]': 'seo', 
+        'populate[3]': 'authorsBio',
+
+        // Pagination
         "pagination[page]": page,
         "pagination[pageSize]": pageSize,
-        'sort': 'publishedAt:desc'
+        'sort': 'publishedAt:desc',        
       }
     }
   })
 
+  console.log('response', response.url)
   if (error) {
     console.error(`Error ${response.status} getting articles: ${response.url}. Page${page}`, error)
     throw error
@@ -135,19 +143,11 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
         "filters[slug][$eq]": slug,
 
         // Populate
-        'populate[0]': 'cover', 
-        'populate[1]': 'blocks', 
-        'populate[2]': 'seo', 
-        'populate[3]': 'authorsBio',
-        'populate[authorsBio][fields][0]': 'firstName',
-        'populate[authorsBio][fields][1]': 'lastName',
+        'populate': 'authorsBio',
 
         // Pagination
         "pagination[page]": 1,
         "pagination[pageSize]": 2, // Get 2 items to check for duplicates
-
-        // Sort
-        "sort": "publishedAt:desc"
       }
     }
   })
