@@ -17,17 +17,16 @@ import { Color } from '@/styles/variables'
 import { Article, getArticles } from 'services/cms'
 import { ArticleList } from '@/components/Article'
 
-import { LinkWithUtm } from 'modules/utm'
 import { IMAGE_PATH } from '@/const/paths'
 import SocialList from '@/components/SocialList'
 
 const DATA_CACHE_TIME_SECONDS = 10 * 60 // 10 minutes
 
-export interface BlogProps {
+export interface LearnProps {
   articles: Article[]
 }
 
-const CATEGORIES = [
+const CATEGORIES = [ // TODO: Will load this dynamically from CMS in future PRs
   {
     icon: `${IMAGE_PATH}/icon-milkman.svg`,
     title: 'Category 1',
@@ -74,7 +73,7 @@ const CATEGORIES = [
 
 
 
-export default function BlogPage({ articles }: BlogProps) {
+export default function LearnPage({ articles }: LearnProps) {
   return (    
     <Layout fullWidthGradientVariant={true}>
       <Head>
@@ -146,7 +145,7 @@ export default function BlogPage({ articles }: BlogProps) {
   )
 }
 
-export const getStaticProps: GetStaticProps<BlogProps> = async () => {
+export const getStaticProps: GetStaticProps<LearnProps> = async () => {
   const articles = await getArticles()
 
   return {

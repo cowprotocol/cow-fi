@@ -105,7 +105,7 @@ export function ArticleItem ({article}: ArticleItemProps) {
   // TODO: For details: seo, §
   return (
     <ArticleItemWrapper key={slug} data-slug={slug} data-id={article.id}>
-      <Link href={`/blog/articles/${slug}`}>{title}</Link>
+      <Link href={`/learn/articles/${slug}`}>{title}</Link>
       <ArticleSubtitle dateIso={publishedAt} createdBy={createdBy} />
       <ArticleDescription>{description}</ArticleDescription>
       
@@ -151,7 +151,7 @@ export function ArticleContent ({article}: ArticleProps) {
           </code>
 
           <h1>{title}</h1>
-          <ArticleSubtitle dateIso={publishedAt} />
+          <ArticleSubtitle dateIso={publishedAt} createdBy={createdBy} />
           <ArticleAuthor authorsBio={authorsBio} />
           <div>CATEGORIES: {JSON.stringify(categories)}</div>
           <div>COVER: {JSON.stringify(cover)}</div>
@@ -163,7 +163,7 @@ export function ArticleContent ({article}: ArticleProps) {
           </ArticleBlocksWrapper>
           )}
 
-          <Link href="/blog">Go back</Link>
+          <Link href="/learn">Go back</Link>
         </ArticleContentWrapper>
       </Layout>
     </>
