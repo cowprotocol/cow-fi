@@ -140,7 +140,7 @@ export default function LearnPage({ articles }: LearnProps) {
         <div className="container">
             <h3>Latest articles</h3>
             <SubTitle lineHeight={1.4} textAlign={'left'}>
-              Every week we publish new articles about CoW Dao ecosystem. Stay tuned!
+              Every week we publish new articles about CoW DAO ecosystem. Stay tuned!
             </SubTitle>
 
             <ArticleList articles={articles} />
