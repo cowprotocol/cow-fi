@@ -4,7 +4,7 @@ import React from 'react'
 import Head from 'next/head'
 import Layout from '@/components/Layout'
 
-import { Color } from '@/styles/variables'
+import { Color, Media } from '@/styles/variables'
 import { Article, ArticleBlock, SharedMediaComponent, SharedQuoteComponent, SharedRichTextComponent, SharedSliderComponent, SharedVideoEmbedComponent, isSharedMediaComponent, isSharedQuoteComponent, isSharedRichTextComponent, isSharedSliderComponent, isSharedVideoEmbedComponent } from "services/cms"
 import styled from 'styled-components'
 import { formatDate } from 'util/formatDate'
@@ -42,7 +42,7 @@ const ArticleItemWrapper = styled.li`
     font-size: 2rem;
     text-decoration: none;
     color: ${Color.darkBlue};
-
+    line-height: 1.5;
     margin-bottom: 1.5rem;
   }
 `
@@ -57,9 +57,8 @@ const ArticleBlocksWrapper = styled.ul`
 const ArticleDescription = styled.p`
   font-size: 1.5rem;
   color: ${Color.text1};
-  margin: 1rem 0;
   line-height: 1.5;
-
+  padding: 2rem 0 0 0;
 `
 
 const ArticleSubtitleWrapper = styled.div`
@@ -67,11 +66,9 @@ const ArticleSubtitleWrapper = styled.div`
   font-weight: bold;
   font-size: 1.2rem;
   display: flex;
+  flex-flow: row wrap;
+  gap: 10px;  
 
-  > div:not(:first-child) {
-    margin-left: 1rem;
-
-  }
   > div span {
     font-weight: normal;  
   }
