@@ -684,10 +684,10 @@
   resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-4.0.43.tgz#9bd42559ebb41cc5a7fb7cfeea5f231c20977dca"
   integrity sha512-N8uEMrMPL0cu/bdboEWpQYb/0i2K5Qn8eCsxzOmxSggJbbQte7ljMRoXm917AbntqTGOzdTu+vP3KOOzoC70HQ==
 
-"@cowprotocol/cms@^0.1.0-rc.21":
-  version "0.1.0-rc.21"
-  resolved "https://registry.yarnpkg.com/@cowprotocol/cms/-/cms-0.1.0-rc.21.tgz#4e2343773b3b61e2a20c885cca8cf18063b313ab"
-  integrity sha512-JnVyupomgdsv2gefebkOdh7reX1CULsJpZneyygThZ42OIQniqNPViWTx9O/MIp4lQuMxljJec9qbC2Nb2Xeew==
+"@cowprotocol/cms@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@cowprotocol/cms/-/cms-0.1.0.tgz#dea62492a2454e203a08bc84c9b3673a388f6007"
+  integrity sha512-dhRNoqZ9bZG+JYLZbLBa5eMq++Hs7aEDr+uKziI1gP0bQiFzoMLtLWVpAecEolgzr1fA6StFr445ddGYrfmNuA==
   dependencies:
     openapi-fetch "^0.9.3"
 
