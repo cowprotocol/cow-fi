@@ -11,8 +11,8 @@ import { useState, useEffect } from 'react'
 
 import { Section, SectionContent, SectionH1, SectionImage } from '@/components/Home/index.styles'
 import { Color, Media } from '@/styles/variables'
+import { IMAGE_PATH } from '@/const/paths'
 
-const IMAGE_PATH = '/images/'
 const MAX_WIDTH_CONTENT = 126
 const TYPEFORM_ID = 'U8gDXwrd'
 
@@ -26,7 +26,7 @@ const WidgetWrapper = styled.div`
 export default function CoWSwag() {
   const pageTitle = `CoW Swag`
   const pageDescription = 'The official CoW Swap Swag store.'
-  const pageImage = `${CONFIG.url.root}${IMAGE_PATH}og-social-image-cowswag.png`
+  const pageImage = `${CONFIG.url.root}${IMAGE_PATH}/og-social-image-cowswag.png`
 
   const [isMobile, setIsMobile] = useState(false)
 
@@ -73,7 +73,7 @@ export default function CoWSwag() {
           flow="column"
         >
           <SectionImage width={'460px'} widthMobile="100%" margin="0 auto" className="zoomSlideIn">
-            <img src={`${IMAGE_PATH}cowswag-animation.gif`} alt="CoW Swag logo" width="100%" />
+            <img src={`${IMAGE_PATH}/cowswag-animation.gif`} alt="CoW Swag logo" width="100%" />
           </SectionImage>
           <SectionContent flow="column" maxWidth={MAX_WIDTH_CONTENT}>
             <div>

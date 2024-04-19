@@ -11,6 +11,7 @@ import {
 } from '@/components/Home/index.styles'
 import Layout from '@/components/Layout'
 import { CONFIG } from '@/const/meta'
+import { IMAGE_PATH } from '@/const/paths'
 import { CowSwapWidget, CowSwapWidgetParams } from '@cowprotocol/widget-react'
 import { WidgetEvents } from 'lib/analytics/GAEvents'
 import { sendGAEventHandler } from 'lib/analytics/sendGAEvent'
@@ -64,7 +65,6 @@ ${Media.mobile} {
 }
 `
 
-const IMAGE_PATH = '/images/'
 const DAO_LOGOS_PATH = '/images/dao-logos/'
 
 const CONTENT = {
@@ -73,19 +73,19 @@ const CONTENT = {
   docsURL: 'https://docs.cow.fi/cow-protocol/tutorials/widget',
   everyBell: [
     {
-      icon: `${IMAGE_PATH}protection.svg`,
+      icon: `${IMAGE_PATH}/protection.svg`,
       title: 'Full Protection from MEV',
       description:
         "CoW Swap offers the best MEV protection in the land. Thanks to a delegated trading model that relies on experts to execute swaps, traders can rest assured that they're safe from the MEV bots.",
     },
     {
-      icon: `${IMAGE_PATH}surplus.svg`,
+      icon: `${IMAGE_PATH}/surplus.svg`,
       title: 'Surplus-Capturing Orders',
       description:
         'Every order is surplus-capturing and traders usually earn a little extra in their sell token with each swap.',
     },
     {
-      icon: `${IMAGE_PATH}gasless.svg`,
+      icon: `${IMAGE_PATH}/gasless.svg`,
       title: 'Gasless Trading',
       description:
         'All gas fees are paid in the sell token for swaps and even for token approvals. Users can enjoy ETH-free trading every time, even with brand-new wallets.',
@@ -262,13 +262,13 @@ export default function WidgetPage({ siteConfigData }) {
             </SubTitle>
           </div>
           <SectionImage>
-            <img src={`${IMAGE_PATH}eth-circles.svg`} alt="Make Money with CoW Swap" width="340" height="214" />
+            <img src={`${IMAGE_PATH}/eth-circles.svg`} alt="Make Money with CoW Swap" width="340" height="214" />
           </SectionImage>
         </SectionContent>
 
         <SectionContent flow={'row'} maxWidth={100} textAlign={'left'} reverseOrderMobile={'column-reverse'}>
           <SectionImage>
-            <img src={`${IMAGE_PATH}eth-blocks.svg`} alt="Integrate With Ease" width="340" height="214" />
+            <img src={`${IMAGE_PATH}/eth-blocks.svg`} alt="Integrate With Ease" width="340" height="214" />
           </SectionImage>
           <div className="container">
             <h3>Integrate With Ease</h3>
@@ -323,7 +323,7 @@ export default function WidgetPage({ siteConfigData }) {
                     <img
                       style={{ opacity: comingSoon ? 0.5 : 1 }}
                       alt={description || 'icon'}
-                      src={comingSoon ? `${IMAGE_PATH}icons/coming-soon.svg` : `${IMAGE_PATH}icons/check-color.svg`}
+                      src={comingSoon ? `${IMAGE_PATH}/icons/coming-soon.svg` : `${IMAGE_PATH}/icons/check-color.svg`}
                     />
                     <p>{description}</p>
                   </CardItem>

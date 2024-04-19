@@ -3,8 +3,41 @@ import { PaginationParam } from "types";
 
 const PAGE_SIZE = 50
 
+type Schemas = components["schemas"]
+export type Article = Schemas["ArticleListResponseDataItem"]
+export type SharedMediaComponent = Schemas["SharedMediaComponent"]
+export type SharedQuoteComponent = Schemas["SharedQuoteComponent"]
+export type SharedRichTextComponent = Schemas["SharedRichTextComponent"]
+export type SharedSliderComponent = Schemas["SharedSliderComponent"]
+export type SharedVideoEmbedComponent = Schemas["SharedVideoEmbedComponent"]
 
-export type Article = components["schemas"]["ArticleListResponseDataItem"]
+
+export type ArticleBlock = 
+  SharedMediaComponent | 
+  SharedQuoteComponent | 
+  SharedRichTextComponent | 
+  SharedSliderComponent | 
+  SharedVideoEmbedComponent
+
+  export function isSharedMediaComponent(component: ArticleBlock): component is SharedMediaComponent {
+    return component.__component === 'SharedMediaComponent'
+  }
+
+  export function isSharedQuoteComponent(component: ArticleBlock): component is SharedQuoteComponent {
+    return component.__component === 'SharedQuoteComponent'
+  }
+
+  export function isSharedRichTextComponent(component: ArticleBlock): component is SharedRichTextComponent {
+    return component.__component === 'SharedRichTextComponent'
+  }
+
+  export function isSharedSliderComponent(component: ArticleBlock): component is SharedMediaComponent {
+    return component.__component === 'SharedSliderComponent'
+  }
+
+  export function isSharedVideoEmbedComponent(component: ArticleBlock): component is SharedVideoEmbedComponent {
+    return component.__component === 'SharedVideoEmbedComponent'
+  }
 
 /**
  * Open API Fetch client. See docs for usage https://openapi-ts.pages.dev/openapi-fetch/
@@ -62,13 +95,21 @@ export async function getArticles({ page=0, pageSize=PAGE_SIZE }: PaginationPara
   const { data, error, response } = await client.GET("/articles", {
     params: {
       query: {
+        // Populate
+        'populate[0]': 'cover', 
+        'populate[1]': 'blocks', 
+        'populate[2]': 'seo', 
+        'populate[3]': 'authorsBio',
+
+        // Pagination
         "pagination[page]": page,
         "pagination[pageSize]": pageSize,
-        'sort': 'publishedAt:desc'
+        'sort': 'publishedAt:desc',        
       }
     }
   })
 
+  console.log('response', response.url)
   if (error) {
     console.error(`Error ${response.status} getting articles: ${response.url}. Page${page}`, error)
     throw error
@@ -95,10 +136,18 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
   console.log('[getArticleBySlug] get article for slug', slug)
   const { data, error } = await client.GET("/articles", {
     params: {
+
+      // Use the query https://docs.strapi.io/dev-docs/api/rest/interactive-query-builder
       query: {
+        // Filter by slug
         "filters[slug][$eq]": slug,
+
+        // Populate
+        'populate': 'authorsBio',
+
+        // Pagination
         "pagination[page]": 1,
-        "pagination[pageSize]": 2
+        "pagination[pageSize]": 2, // Get 2 items to check for duplicates
       }
     }
   })

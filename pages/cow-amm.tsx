@@ -20,8 +20,8 @@ import { LinkWithUtm } from 'modules/utm'
 import { Button, ButtonVariant, ButtonWrapper } from '@/components/Button'
 import { sendGAEventHandler } from 'lib/analytics/sendGAEvent'
 import { GAEventCategories } from 'lib/analytics/GAEvents'
+import { IMAGE_PATH } from '@/const/paths'
 
-const IMAGE_PATH = '/images/'
 const MAX_WIDTH_CONTENT = 126
 const DATA_CACHE_TIME_SECONDS = 5 * 60 // Cache 5min
 const CONTACT_URL = 'https://cowprotocol.typeform.com/cow-amm-lpers'
@@ -30,20 +30,20 @@ const DEPLOY_AMM = 'https://deploy-cow-amm.bleu.fi/'
 const CONTENT = {
   howItWorksCards: [
     {
-      image: `${IMAGE_PATH}cowamm-howitworks-1.svg`,
+      image: `${IMAGE_PATH}/cowamm-howitworks-1.svg`,
       description:
         'Liquidity providers deposit tokens into protected CoW AMM liquidity pools, where traders can access the liquidity',
     },
     {
-      image: `${IMAGE_PATH}cowamm-howitworks-2.svg`,
+      image: `${IMAGE_PATH}/cowamm-howitworks-2.svg`,
       description: 'Solvers bid to rebalance CoW AMM pools whenever there is an arbitrage opportunity',
     },
     {
-      image: `${IMAGE_PATH}cowamm-howitworks-3.svg`,
+      image: `${IMAGE_PATH}/cowamm-howitworks-3.svg`,
       description: 'The solver that offers the most surplus to the pool wins the right to rebalance the pool',
     },
     {
-      image: `${IMAGE_PATH}cowamm-howitworks-4.svg`,
+      image: `${IMAGE_PATH}/cowamm-howitworks-4.svg`,
       description: 'CoW AMM eliminates LVR by capturing arbitrage value for LPs and shielding it from MEV bots',
     },
   ],
@@ -292,7 +292,7 @@ export default function CoWAMMPage({ siteConfigData }) {
 
   const pageTitle = `CoW AMM - The First MEV-Capturing AMM`
   const pageDescription = 'CoW AMM eliminates LVR once and for all by using batch auctions to send surplus to LPs.'
-  const pageImage = `${CONFIG.url.root}${IMAGE_PATH}og-social-image-cowamm.png`
+  const pageImage = `${CONFIG.url.root}${IMAGE_PATH}/og-social-image-cowamm.png`
 
   return (
     <Layout fullWidthCoWAMM>
@@ -316,7 +316,7 @@ export default function CoWAMMPage({ siteConfigData }) {
         flow="column"
       >
         <SectionImage width={'460px'} widthMobile="90%" margin="0 auto" className="zoomSlideIn">
-          <img src={`${IMAGE_PATH}cowamm-header-logo-animated.gif`} alt="CoW AMM" width="100%" />
+          <img src={`${IMAGE_PATH}/cowamm-header-logo-animated.gif`} alt="CoW AMM" width="100%" />
         </SectionImage>
         <SectionContent flow="column" maxWidth={MAX_WIDTH_CONTENT}>
           <div>
@@ -371,7 +371,7 @@ export default function CoWAMMPage({ siteConfigData }) {
           reverseOrderMobile={'column-reverse'}
         >
           <SectionImage>
-            <img src={`${IMAGE_PATH}cowamm-illustration-lvr.svg`} alt="LVR" width="580" loading="lazy" />
+            <img src={`${IMAGE_PATH}/cowamm-illustration-lvr.svg`} alt="LVR" width="580" loading="lazy" />
           </SectionImage>
           <div className="container">
             <SectionH3 color={Color.cowammBlack} fontSize={6.4} fontWeight={500} font={Font.flecha}>
@@ -514,7 +514,7 @@ export default function CoWAMMPage({ siteConfigData }) {
           reverseOrderMobile={'column-reverse'}
         >
           <SectionImage>
-            <img src={`${IMAGE_PATH}cowamm-lping.svg`} alt="Liquidity providing" loading="lazy" />
+            <img src={`${IMAGE_PATH}/cowamm-lping.svg`} alt="Liquidity providing" loading="lazy" />
           </SectionImage>
           <div className="container">
             <SectionH3 color={Color.cowammBlack} fontSize={4.4} fontWeight={500}>
@@ -545,7 +545,7 @@ export default function CoWAMMPage({ siteConfigData }) {
           </div>
           <SectionImage>
             <img
-              src={`${IMAGE_PATH}cowamm-passive-investing.svg`}
+              src={`${IMAGE_PATH}/cowamm-passive-investing.svg`}
               alt="Unlock the power of passive investing"
               loading="lazy"
             />
