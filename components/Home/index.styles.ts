@@ -472,6 +472,7 @@ export const CardItem = styled.div<{
   padding?: number
   variant?: 'outlined-dark' | 'iconWithText' | 'cowamm-card-light' | 'cowamm-card-dark'
   background?: string
+  color?: string
   imageFullSize?: boolean
   imageHeight?: number
   imageWidth?: number
@@ -483,7 +484,7 @@ export const CardItem = styled.div<{
   fontSize?: number
   fontSizeMobile?: number
   equalHeight?: boolean
-  color: string;
+  
 }>`
   display: flex;
   flex-flow: column wrap;
