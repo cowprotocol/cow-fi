@@ -580,7 +580,7 @@ export const CardItem = styled.div<{
     line-height: 1.2;
     font-weight: ${Font.weightBold};
     margin: 0;
-    a {
+    &, a {
       color: ${({ color, variant }) => {
         if (color) return color
         return variant === 'outlined-dark' ? Color.lightBlue : Color.darkBlue
