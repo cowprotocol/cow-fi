@@ -471,6 +471,7 @@ export const CardItem = styled.div<{
   contentCentered?: boolean
   padding?: number
   variant?: 'outlined-dark' | 'iconWithText' | 'cowamm-card-light' | 'cowamm-card-dark'
+  background?: string
   imageFullSize?: boolean
   imageHeight?: number
   imageWidth?: number
@@ -482,31 +483,31 @@ export const CardItem = styled.div<{
   fontSize?: number
   fontSizeMobile?: number
   equalHeight?: boolean
+  color: string;
 }>`
   display: flex;
   flex-flow: column wrap;
   flex-flow: ${({ equalHeight }) => (equalHeight ? 'row' : 'column')} wrap;
   align-items: ${({ contentCentered }) => (contentCentered ? 'center' : 'flex-start')};
   justify-content: ${({ contentCentered }) => (contentCentered ? 'center' : 'flex-start')};
-  background: ${({ variant }) =>
-    variant === 'outlined-dark'
-      ? 'transparent'
-      : variant === 'cowamm-card-light' || variant === 'cowamm-card-dark'
-      ? 'transparent'
-      : Color.white};
+  background: ${({ background, variant }) => {
+    if (background) return background
+    else if (variant === 'outlined-dark' || variant === 'cowamm-card-light' || variant === 'cowamm-card-dark') return 'transparent'
+    else return Color.white
+  }};
   box-shadow: ${({ variant }) =>
     variant === 'outlined-dark' || variant === 'cowamm-card-light' || variant === 'cowamm-card-dark'
       ? 'none'
       : '0 1rem 2.4rem rgba(0,0,0,.05)'};
   border: ${({ variant }) => (variant === 'outlined-dark' ? `0.1rem solid ${Color.border}` : 'none')};
-  color: ${({ variant }) =>
-    variant === 'outlined-dark'
-      ? Color.text2
-      : variant === 'cowamm-card-light'
-      ? Color.cowammWhite
-      : variant === 'cowamm-card-dark'
-      ? Color.cowammWhite
-      : Color.text1};
+  color ${({color, variant}) => {
+    if (color) return color
+    else if (variant === 'outlined-dark') return Color.text2
+    else if (variant === 'cowamm-card-light') return Color.cowammWhite
+    else if (variant === 'cowamm-card-dark') return Color.cowammWhite
+    else return Color.text1
+    
+  }};
   border-radius: ${({ borderRadius }) => (typeof borderRadius !== 'undefined' ? `${borderRadius}rem` : '2.4rem')};
   padding: ${({ padding }) => (typeof padding !== 'undefined' ? `${padding}rem` : '3.4rem')};
   gap: ${({ gap }) => (typeof gap !== 'undefined' ? `${gap}rem` : '1.6rem')};
@@ -579,7 +580,10 @@ export const CardItem = styled.div<{
     line-height: 1.2;
     font-weight: ${Font.weightBold};
     margin: 0;
-    color: ${({ variant }) => (variant === 'outlined-dark' ? Color.lightBlue : Color.darkBlue)};
+    color: ${({ color, variant }) => {
+      if (color) return color
+      return variant === 'outlined-dark' ? Color.lightBlue : Color.darkBlue
+    }};
   }
 
   > span {
