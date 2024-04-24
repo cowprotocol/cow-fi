@@ -2,7 +2,6 @@ export enum GAEventCategories {
   NAVIGATION = 'Navigation',
   WIDGET = 'Widget',
   COWAMM = 'CoW AMM',
-  COWSWAG = 'CoW Swag',
 }
 
 export const NavigationEvents = {
