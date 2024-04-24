@@ -11,7 +11,6 @@ export const HEADER_LINKS: CustomLinkProps[] = [
   { label: 'DAOs', url: url.daos },
   { label: 'Widget', url: url.widget },
   { label: 'CoW AMM', url: url.cowamm },
-  { label: 'Swag', url: url.swag },
   { label: 'MEV Blocker', url: url.mevBlocker, type: 'external', utmContent: 'header-link-mevblocker' },
 ]
 
@@ -25,7 +24,6 @@ export const FOOTER_LINK_GROUPS: FooterLinkGroup[] = [
       { label: 'Widget', url: url.widget },
       { label: 'Widget Terms and Conditions', url: url.widgetTnC },
       { label: 'CoW AMM', url: url.cowamm },
-      { label: 'Swag', url: url.swag },
       { label: 'MEV Blocker', url: url.mevBlocker, type: 'external' },
       { label: 'Careers', url: '/careers' },
       { label: 'Refer-to-Earn', url: '/careers/refer-to-earn' },
