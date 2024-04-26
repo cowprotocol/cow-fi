@@ -17,21 +17,21 @@ export default function CategoryPage({ category }: CategoryPageProps) {
   return <CategoryContent category={category} />
 }
 
-type CategoryQuery = { slug: string}
+type CategoryQuery = { categorySlug: string}
 
 export const getStaticPaths: GetStaticPaths<CategoryQuery> = async () => {
   const allSlugs = await getAllCategorySlugs()
 
   return {
     fallback: false,
-    paths: allSlugs.map((slug) => ({
-      params: { slug }
+    paths: allSlugs.map((categorySlug) => ({
+      params: { categorySlug }
     })),
   }
 }
 
 export const getStaticProps: GetStaticProps<CategoryPageProps, CategoryQuery> = async ({ params }) => {
-  const category = await getCategoryBySlug(params.slug)
+  const category = await getCategoryBySlug(params.categorySlug)
 
   if (!category) {
     return {

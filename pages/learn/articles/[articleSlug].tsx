@@ -17,21 +17,21 @@ export default function BlogPostPage({ article }: BlogPostProps) {
   return <ArticleContent article={article} />
 }
 
-type ArticleQuery = { slug: string}
+type ArticleQuery = { articleSlug: string}
 
 export const getStaticPaths: GetStaticPaths<ArticleQuery> = async () => {
   const allSlugs = await getAllArticleSlugs()
 
   return {
     fallback: false,
-    paths: allSlugs.map((slug) => ({
-      params: { slug }
+    paths: allSlugs.map((articleSlug) => ({
+      params: { articleSlug }
     })),
   }
 }
 
 export const getStaticProps: GetStaticProps<BlogPostProps, ArticleQuery> = async ({ params }) => {
-  const article = await getArticleBySlug(params.slug)
+  const article = await getArticleBySlug(params.articleSlug)
 
   if (!article) {
     return {
