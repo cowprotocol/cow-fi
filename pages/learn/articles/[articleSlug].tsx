@@ -1,18 +1,49 @@
 import React from 'react'
 
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { getArticleBySlug, getAllArticleSlugs, Article } from 'services/cms'
+import { getArticleBySlug, getAllArticleSlugs, Article, getCategories, Category } from 'services/cms'
 
-import { ArticleContent } from '@/components/Article'
+import Layout from '@/components/Layout'
+import Head from 'next/head'
+import { SocialLearnSection } from '@/components/learn/SocialLearnSection'
+import { OtherCategoriesSection } from '@/components/learn/OtherCategoriesSection'
+import { ArticleSection } from '@/components/learn/ArticleSection'
 
 const DATA_CACHE_TIME_SECONDS = 10 * 60 // 10 minutes
 
 export interface BlogPostProps {
   article: Article
+  categories: Category[]
 }
 
-export default function BlogPostPage({ article }: BlogPostProps) {
-  return <ArticleContent article={article} />
+export default function ArticlePage({ article, categories }: BlogPostProps) {
+  const { id } = article
+  const { title, description, publishedAt, slug, seo, authorsBio, blocks, categories: categoriesArticle, cover, createdBy } = article?.attributes || {}
+  const { metaTitle, shareImage, metaDescription } = seo || {}
+  const shareImageUrl = shareImage?.data?.attributes?.url
+
+  return (
+    <Layout fullWidthGradientVariant={true} data-article-id={id} data-slug={slug}>
+      <Head>
+        <title>{title}</title>
+        
+        <meta name="description" content={metaDescription || description} key="description" />
+        <meta property="og:description" content={metaDescription || description} key="og-description" />
+        <meta property="og:title" content={metaTitle || title} key="og-title" />
+        <meta name="twitter:title" content={title} key="twitter-title" />
+        {shareImageUrl && (
+          <>
+            <meta key="ogImage" property="og:image" content={shareImageUrl} />
+            <meta key="twitterImage" name="twitter:image" content={shareImageUrl} />
+          </>
+        )}
+      </Head>
+      
+      <ArticleSection article={article} />
+      <OtherCategoriesSection categories={categories} />
+      <SocialLearnSection />
+    </Layout>
+  )
 }
 
 type ArticleQuery = { articleSlug: string}
@@ -30,6 +61,7 @@ export const getStaticPaths: GetStaticPaths<ArticleQuery> = async () => {
 
 export const getStaticProps: GetStaticProps<BlogPostProps, ArticleQuery> = async ({ params }) => {
   const article = await getArticleBySlug(params.articleSlug)
+  const categories = await getCategories()  
 
   if (!article) {
     return {
@@ -40,6 +72,7 @@ export const getStaticProps: GetStaticProps<BlogPostProps, ArticleQuery> = async
   return {
     props: {
       article,
+      categories
     },
     revalidate: DATA_CACHE_TIME_SECONDS,
   }

@@ -3,23 +3,15 @@ import React from 'react'
 import Layout from '@/components/Layout'
 import Head from 'next/head'
 
-import {
-  Section,
-  SectionContent,
-  SubTitle,
-} from '@/components/Home/index.styles'
-
-
-import { Color } from '@/styles/variables'
 import { Category, getAllCategorySlugs, getCategories, getCategoryBySlug } from 'services/cms'
 
 import { GetStaticPaths, GetStaticProps } from 'next'
 
 
-import { CategoryContent, CategoryList } from '@/components/Category'
 import { CONFIG } from '@/const/meta'
-import SocialList from '@/components/SocialList'
-import Link from 'next/link'
+import { OtherCategoriesSection } from '@/components/learn/OtherCategoriesSection'
+import { CategorySection } from '@/components/learn/CategorySection'
+import { SocialLearnSection } from '@/components/learn/SocialLearnSection'
 
 const DATA_CACHE_TIME_SECONDS = 10 * 60 // 10 minutes
 
@@ -34,7 +26,7 @@ export default function CategoryPage({ category, categories }: CategoryPageProps
   const shareImageUrl = image?.data?.attributes?.url
 
   return (
-    <Layout fullWidthGradientVariant={true} data-article-id={id} data-slug={slug}>
+    <Layout fullWidthGradientVariant={true} data-category-id={id} data-slug={slug}>
       <Head>
         <title>{name} - {CONFIG.title}</title>
         <title>{name} CoW</title>
@@ -51,36 +43,9 @@ export default function CategoryPage({ category, categories }: CategoryPageProps
         )}
       </Head>
 
-      <CategoryContent category={category}  />
-      
-      <Section fullWidth colorVariant={'dark-gradient'}  padding="8rem 8rem 14rem 8rem">
-        <SectionContent flow="column">
-          <div className="container">
-
-            <h3>Other Categories</h3>
-            <SubTitle color={Color.text1} lineHeight={1.4} maxWidth={70}>
-              Keep exploring the vibrant ecosystem.
-            </SubTitle>
-
-            <CategoryList categories={categories} />
-
-            <Link href="/learn">Go back</Link>
-          </div>
-        </SectionContent>
-      </Section>
-
-      <Section fullWidth>
-        <SectionContent flow={'column'}>
-          <div>
-            <h3>Get in touch</h3>
-            <SubTitle maxWidth={60} color={Color.text1} lineHeight={1.4}>
-              You would like to suggest or even make your own article, reach out on Twitter or Discord!
-            </SubTitle>
-            <SocialList social={CONFIG.social} color={Color.darkBlue} />
-          </div>
-        </SectionContent>
-      </Section>
-      
+      <CategorySection category={category}  />      
+      <OtherCategoriesSection categories={categories} />
+      <SocialLearnSection />      
     </Layout>
   )
 }

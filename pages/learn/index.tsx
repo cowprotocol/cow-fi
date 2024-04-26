@@ -13,12 +13,12 @@ import {
 import { CONFIG } from '@/const/meta'
 import { Color } from '@/styles/variables'
 import { Article, Category, getArticles, getCategories } from 'services/cms'
-import { ArticleList } from '@/components/Article'
 
 import { IMAGE_PATH } from '@/const/paths'
-import SocialList from '@/components/SocialList'
 import { LinkWithUtm } from 'modules/utm'
-import { CategoryList } from '@/components/Category'
+import { SocialLearnSection } from '@/components/learn/SocialLearnSection'
+import { CategoryList } from '@/components/learn/CategoryList'
+import { ArticleList } from '@/components/learn/ArticleList'
 
 const DATA_CACHE_TIME_SECONDS = 10 * 60 // 10 minutes
 
@@ -93,17 +93,7 @@ export default function LearnPage({ categories, articles }: LearnProps) {
         </SectionContent>
       </Section>
 
-      <Section fullWidth>
-        <SectionContent flow={'column'}>
-          <div>
-            <h3>Get in touch</h3>
-            <SubTitle maxWidth={60} color={Color.text1} lineHeight={1.4}>
-              You would like to suggest or even make your own article, reach out on Twitter or Discord!
-            </SubTitle>
-            <SocialList social={CONFIG.social} color={Color.darkBlue} />
-          </div>
-        </SectionContent>
-      </Section>
+      <SocialLearnSection />
     </Layout>
   )
 }

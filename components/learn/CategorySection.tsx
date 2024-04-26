@@ -4,11 +4,6 @@ import React from 'react'
 import styled from 'styled-components'
 
 import {
-  CardWrapper,
-  CardItem,
-} from '@/components/Home/index.styles'
-
-import {
   Section,
   SectionContent,
   SubTitle,
@@ -17,7 +12,7 @@ import {
 import { Color } from '@/styles/variables'
 
 import { Article, Category } from 'services/cms'
-import { ArticleList } from './Article'
+import { ArticleList } from './ArticleList'
 
 const CategoryContentWrapper = styled.article`
 a {
@@ -27,41 +22,12 @@ a {
 }
 `
 
-export interface CategoryListProps {
-    categories: Category[];
-}
-
-export function CategoryList({ categories }: CategoryListProps) {
-  return (
-    <CardWrapper maxWidth={100}>
-      {categories.map((category) => {
-        const { name, description, slug, image, textColor, backgroundColor } = category.attributes
-        const imageUrl = image?.data?.attributes?.url
-        return (
-          <CardItem 
-            key={slug} 
-            data-category={slug} 
-            imageHeight={8} 
-            imageRounded 
-            background={backgroundColor} 
-            color={textColor}>
-              {imageUrl && <img src={imageUrl} alt="image" />}                    
-              <h4><Link href={`/learn/categories/${slug}`}>{name}</Link></h4>
-              <p>{description}</p>
-          </CardItem>
-        )
-      })}
-    </CardWrapper>
-  )
-}
-
-
-interface CategoryContentProps {
+interface CategorySectionProps {
     category: Category;
 }
 
 
-export function CategoryContent({ category }: CategoryContentProps) {
+export function CategorySection({ category }: CategorySectionProps) {
   const { id } = category
   const { name, slug, description, image, articles } = category?.attributes || {}
 
@@ -74,7 +40,6 @@ export function CategoryContent({ category }: CategoryContentProps) {
             <SubTitle color={Color.text1} lineHeight={1.4} maxWidth={70}>
               {description}
             </SubTitle>
-
           </div>
         </SectionContent>
       </Section>
@@ -100,5 +65,3 @@ export function CategoryContent({ category }: CategoryContentProps) {
     </>
   )
 }
-
-
