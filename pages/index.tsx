@@ -34,13 +34,14 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const siteConfigData = CONFIG
   let volumeUsd = DEFAULT_USD_VOLUME
 
-  // Don't fail when couldn't get Subgraph data
-  try {
-    const data = await cowSdk.cowSubgraphApi.getTotals()
-    volumeUsd = data.volumeUsd
-  } catch (e) {
-    console.error('Error getting totals from Dune', e)
-  }
+  // TODO: Fix this
+  // // Don't fail when couldn't get Subgraph data
+  // try {
+  //   const data = await cowSdk.cowSubgraphApi.getTotals()
+  //   volumeUsd = data.volumeUsd
+  // } catch (e) {
+  //   console.error('Error getting totals from Dune', e)
+  // }
   const { surplus, totalTrades, lastModified } = await getCowStats()
 
   const totalSurplus = surplus.reasonable + surplus.unusual
