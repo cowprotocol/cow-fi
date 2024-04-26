@@ -7,8 +7,6 @@ import {
   Section,
   SectionContent,
   SubTitle,
-  CardWrapper,
-  CardItem,
   SectionImage,
 } from '@/components/Home/index.styles'
 
@@ -20,6 +18,7 @@ import { ArticleList } from '@/components/Article'
 import { IMAGE_PATH } from '@/const/paths'
 import SocialList from '@/components/SocialList'
 import { LinkWithUtm } from 'modules/utm'
+import { CategoryList } from '@/components/Category'
 
 const DATA_CACHE_TIME_SECONDS = 10 * 60 // 10 minutes
 
@@ -42,25 +41,7 @@ export default function LearnPage({ categories, articles }: LearnProps) {
               Read the latest articles about this vibrant ecosystem.
             </SubTitle>
 
-            <CardWrapper maxWidth={100}>
-              {categories.map((category) => {
-                const { name, description, slug, image, textColor, backgroundColor } = category.attributes
-                const imageUrl = image?.data?.attributes?.url
-                return (
-                  <CardItem 
-                    key={slug} 
-                    data-category={slug} 
-                    imageHeight={8} 
-                    imageRounded 
-                    background={backgroundColor} 
-                    color={textColor}>
-                      {imageUrl && <img src={imageUrl} alt="image" />}                    
-                      <h4>{name}</h4>
-                      <p>{description}</p>
-                  </CardItem>
-                )
-              })}
-            </CardWrapper>
+            <CategoryList categories={categories} />
           </div>
         </SectionContent>
       </Section>

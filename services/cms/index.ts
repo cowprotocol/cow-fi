@@ -118,6 +118,17 @@ export async function getCategories(): Promise<Category[]> {
   return data.data
 }
 
+/**
+ * Returns all category slugs.
+ * 
+ * @returns Slugs
+ */
+export async function getAllCategorySlugs(): Promise<string[]> {
+  const categories = await getCategories()
+
+  return categories.map((category) => category.attributes.slug)
+}
+
 
 /**
  * Get articles sorted by descending published date.
@@ -164,12 +175,37 @@ export async function getArticles({ page=0, pageSize=PAGE_SIZE }: PaginationPara
  * @returns Article with the given slug
  */
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
+  return getBySlugAux(slug, '/articles')
+}
+
+
+/**
+ * Get category by slug.
+ * 
+ * @param slug Slug of the category
+ * 
+ * @throws Error if slug is not found
+ * @throws Error if multiple categorys are found with the same slug
+ * 
+ * @returns Article with the given slug
+ */
+export async function getCategoryBySlug(slug: string): Promise<Category | null> {
+  return getBySlugAux(slug, '/categories')
+}
+
+
+
+async function getBySlugAux(slug: string, endpoint: '/articles'): Promise<Article | null>;
+async function getBySlugAux(slug: string, endpoint: '/categories'): Promise<Category | null>;
+
+async function getBySlugAux(slug: string, endpoint: '/categories' | '/articles'): Promise<unknown | null> {
   if (!slug) {
     throw new Error('Slug is required')
   }
+  const entity = endpoint.slice(1, -1)
   
-  console.log('[getArticleBySlug] get article for slug', slug)
-  const { data, error } = await client.GET("/articles", {
+  console.log(`[getArticleBySlug] get ${entity} for slug ${slug}`)
+  const { data, error } = await client.GET(endpoint, {
     params: {
 
       // Use the query https://docs.strapi.io/dev-docs/api/rest/interactive-query-builder
@@ -188,7 +224,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
   })
 
   if (error)  {
-    console.error('Error getting slug: ' + slug, error)
+    console.error(`Error getting slug ${slug} for ${entity}`, error)
     throw error
   }
 
@@ -199,7 +235,7 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
   }
 
   if (total > 1) {
-    throw new Error(`Multiple articles found with slug ${slug}`)
+    throw new Error(`Multiple ${entity} found with slug ${slug}`)
   }
 
   return data.data[0]
