@@ -7,7 +7,6 @@ import {
   Section,
   SectionContent,
   SubTitle,
-  SectionImage,
 } from '@/components/Home/index.styles'
 
 
@@ -19,9 +18,6 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 
 import { CategoryContent, CategoryList } from '@/components/Category'
 import { CONFIG } from '@/const/meta'
-import { Button, ButtonVariant, ButtonWrapper } from '@/components/Button'
-import { LinkWithUtm } from 'modules/utm'
-import { IMAGE_PATH } from '@/const/paths'
 import SocialList from '@/components/SocialList'
 import Link from 'next/link'
 
@@ -61,7 +57,7 @@ export default function CategoryPage({ category, categories }: CategoryPageProps
         <SectionContent flow="column">
           <div className="container">
 
-            <h3>Categories</h3>
+            <h3>Other Categories</h3>
             <SubTitle color={Color.text1} lineHeight={1.4} maxWidth={70}>
               Keep exploring the vibrant ecosystem.
             </SubTitle>

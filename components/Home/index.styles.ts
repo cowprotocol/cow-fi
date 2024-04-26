@@ -1,3 +1,4 @@
+import { pa } from 'make-plural'
 import { margin } from 'polished'
 import styled from 'styled-components'
 import { Defaults, Color, Font, Media } from 'styles/variables'
@@ -81,8 +82,12 @@ export const Section = styled.section<{
   position: relative;
   z-index: 1;
   align-items: ${({ hero }) => (hero ? 'center' : 'normal')};
-  padding: ${({ padding, colorVariant, firstSection }) =>
-    firstSection ? '0 0 14rem' : colorVariant === 'white' ? '14rem 8rem' : padding ? `${padding}` : '14rem 8rem'};
+  padding: ${({ padding, colorVariant, firstSection }) => {
+    if (firstSection) return '0 0 14rem'
+    if (padding) return padding
+
+    return '14rem 8rem'
+  }};
   background: ${({ colorVariant }) =>
     colorVariant === 'dark'
       ? Color.darkBlue

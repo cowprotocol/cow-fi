@@ -67,7 +67,7 @@ export function CategoryContent({ category }: CategoryContentProps) {
 
   return (
     <>
-      <Section fullWidth padding="0 8rem 14rem 8rem">
+      <Section fullWidth padding="0 8rem 4rem 8rem">
         <SectionContent flow="column">
           <div className="container">
             <h3>{name}</h3>
@@ -79,15 +79,20 @@ export function CategoryContent({ category }: CategoryContentProps) {
         </SectionContent>
       </Section>
 
-      <Section fullWidth colorVariant={'white'} flow="column" gap={14}>
+      <Section fullWidth colorVariant={'white'} flow="column" gap={14} padding="4rem 8rem 12rem 8rem">
         <SectionContent flow={'row'} maxWidth={100} textAlign={'left'}>
         <div className="container">
+          <h3>Articles</h3>
+
             <CategoryContentWrapper data-slug={slug} data-id={id}>              
             <ArticleList articles={articles?.data as Article[]} />
 
+            {/* 
+            // TODO: Useful for debugging. Please let me have it here for now until first release :) 
             <pre style={{ lineHeight: '1.5em' }}>
               {JSON.stringify(category, null, 2)}
-            </pre>
+            </pre> 
+            */}
           </CategoryContentWrapper>
           </div>
         </SectionContent>
