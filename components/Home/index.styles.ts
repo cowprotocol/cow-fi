@@ -504,8 +504,7 @@ export const CardItem = styled.div<{
   color ${({color, variant}) => {
     if (color) return color
     else if (variant === 'outlined-dark') return Color.text2
-    else if (variant === 'cowamm-card-light') return Color.cowammWhite
-    else if (variant === 'cowamm-card-dark') return Color.cowammWhite
+    else if (variant === 'cowamm-card-light' || variant === 'cowamm-card-dark') return Color.cowammWhite
     else return Color.text1
     
   }};
