@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Layout from '@/components/Layout'
 import { getTokensIds as getTokensIds, getTokenDetails as getTokenDetails } from 'services/tokens'
 import { TokenDetails as TokenDetailsPure, TokenDetailProps } from '@/components/TokenDetails'
-import { GetStaticProps } from 'next'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import { CONFIG } from '@/const/meta'
 
 const DATA_CACHE_TIME_SECONDS = 10 * 60 // 10 minutes
@@ -36,17 +36,19 @@ export default function TokenDetailsPage({ token }: TokenDetailPageProps) {
   )
 }
 
-export async function getStaticPaths() {
+type TokenQuery = { tokenId: string}
+
+export const getStaticPaths: GetStaticPaths<TokenQuery> = async () => {
   const tokenIds = await getTokensIds()
 
   return {
     fallback: false,
-    paths: tokenIds.map((id) => ({ params: { id } })),
+    paths: tokenIds.map((tokenId) => ({ params: { tokenId } })),
   }
 }
 
-export const getStaticProps: GetStaticProps<TokenDetailProps> = async ({ params }) => {
-  const token = await getTokenDetails(params.id as string)
+export const getStaticProps: GetStaticProps<TokenDetailProps, TokenQuery> = async ({ params }) => {
+  const token = await getTokenDetails(params.tokenId)
 
   if (!token) {
     return {
