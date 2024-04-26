@@ -214,7 +214,8 @@ async function getBySlugAux(slug: string, endpoint: '/categories' | '/articles')
         "filters[slug][$eq]": slug,
 
         // Populate
-        'populate': 'authorsBio',
+        'populate[0]': 'articles',
+
 
         // Pagination
         "pagination[page]": 1,

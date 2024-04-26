@@ -99,18 +99,21 @@ export const Section = styled.section<{
       : colorVariant === 'cowamm-dark'
       ? Color.cowammBlack
       : 'transparent'};
-  color: ${({ colorVariant }) =>
-    colorVariant === 'dark'
-      ? Color.lightBlue
-      : colorVariant === 'white'
-      ? Color.darkBlue
-      : colorVariant === 'cowamm-light' || colorVariant === 'cowamm-light-white'
-      ? Color.cowammBlack
-      : colorVariant === 'cowamm-dark'
-      ? Color.cowammWhite
-      : 'inherit'};
   border-radius: ${({ borderRadius }) => (borderRadius ? `${borderRadius}rem` : '0')};
   box-shadow: ${({ boxShadow }) => (boxShadow ? '0 1rem 2.4rem rgba(0,0,0,.05)' : 'none')};
+
+  &, a {
+    color: ${({ colorVariant }) =>
+      colorVariant === 'dark'
+        ? Color.lightBlue
+        : colorVariant === 'white'
+        ? Color.darkBlue
+        : colorVariant === 'cowamm-light' || colorVariant === 'cowamm-light-white'
+        ? Color.cowammBlack
+        : colorVariant === 'cowamm-dark'
+        ? Color.cowammWhite
+        : 'inherit'};
+  }
 
   ${Media.desktopDown} {
     padding: ${({ paddingMobile, firstSection }) =>
