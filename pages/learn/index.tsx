@@ -14,7 +14,7 @@ import {
 
 import { CONFIG } from '@/const/meta'
 import { Color } from '@/styles/variables'
-import { Article, getArticles } from 'services/cms'
+import { Article, Category, getArticles, getCategories } from 'services/cms'
 import { ArticleList } from '@/components/Article'
 
 import { IMAGE_PATH } from '@/const/paths'
@@ -24,57 +24,11 @@ import { LinkWithUtm } from 'modules/utm'
 const DATA_CACHE_TIME_SECONDS = 10 * 60 // 10 minutes
 
 export interface LearnProps {
+  categories: Category[]
   articles: Article[]
 }
 
-const CATEGORIES = [ // TODO: Will load this dynamically from CMS in future PRs
-  {
-    icon: `${IMAGE_PATH}/icon-milkman.svg`,
-    title: 'Category 1',
-    description: (
-      <>
-        Category 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis purus quam. In eu magna in felis dictum maximus.
-      </>
-    ),
-  },
-  {
-    icon: `${IMAGE_PATH}/icon-twap-orders.svg`,
-    title: 'Category 2',
-    description:
-      'Category 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis purus quam. In eu magna in felis dictum maximus.',
-  },
-  {
-    icon: `${IMAGE_PATH}/icon-limit-orders.svg`,
-    title: 'Category 3',
-    description:
-      "Category 3. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis purus quam. In eu magna in felis dictum maximus.",
-  },
-  {
-    icon: `${IMAGE_PATH}/icon-price-walls.svg`,
-    title: 'Category 4',
-    description:
-      'Category 4. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis purus quam. In eu magna in felis dictum maximus.',
-  },
-  {
-    icon: `${IMAGE_PATH}/icon-basket-sells.svg`,
-    title: 'Category 5',
-    description: (
-      <>
-        Category 5. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis purus quam. In eu magna in felis dictum maximus.
-      </>
-    ),
-  },
-  {
-    icon: `${IMAGE_PATH}/icon-logic.svg`,
-    title: 'Category 6',
-    description:
-      'Category 6. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quis purus quam. In eu magna in felis dictum maximus.',
-  },
-]
-
-
-
-export default function LearnPage({ articles }: LearnProps) {
+export default function LearnPage({ categories, articles }: LearnProps) {
   return (    
     <Layout fullWidthGradientVariant={true}>
       <Head>
@@ -89,13 +43,23 @@ export default function LearnPage({ articles }: LearnProps) {
             </SubTitle>
 
             <CardWrapper maxWidth={100}>
-              {CATEGORIES.map((orderType, index) => (
-                <CardItem key={index} imageHeight={8} imageRounded>
-                  <img src={orderType.icon} alt="image" />
-                  <h4>{orderType.title}</h4>
-                  <p>{orderType.description}</p>
-                </CardItem>
-              ))}
+              {categories.map((category) => {
+                const { name, description, slug, image, textColor, backgroundColor } = category.attributes
+                const imageUrl = image?.data?.attributes?.url
+                return (
+                  <CardItem 
+                    key={slug} 
+                    data-category={slug} 
+                    imageHeight={8} 
+                    imageRounded 
+                    background={backgroundColor} 
+                    color={textColor}>
+                      {imageUrl && <img src={imageUrl} alt="image" />}                    
+                      <h4>{name}</h4>
+                      <p>{description}</p>
+                  </CardItem>
+                )
+              })}
             </CardWrapper>
           </div>
         </SectionContent>
@@ -165,10 +129,12 @@ export default function LearnPage({ articles }: LearnProps) {
 
 export const getStaticProps: GetStaticProps<LearnProps> = async () => {
   const articles = await getArticles()
+  const categories = await getCategories()
 
   return {
     props: {
       articles,
+      categories,
     },
     revalidate: DATA_CACHE_TIME_SECONDS,
   }

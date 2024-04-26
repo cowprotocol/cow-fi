@@ -10,6 +10,7 @@ export type SharedQuoteComponent = Schemas["SharedQuoteComponent"]
 export type SharedRichTextComponent = Schemas["SharedRichTextComponent"]
 export type SharedSliderComponent = Schemas["SharedSliderComponent"]
 export type SharedVideoEmbedComponent = Schemas["SharedVideoEmbedComponent"]
+export type Category = Schemas["CategoryListResponseDataItem"]
 
 
 export type ArticleBlock = 
@@ -88,10 +89,44 @@ export async function getAllArticleSlugs(): Promise<string[]> {
 /**
  * Get articles sorted by descending published date.
  * 
+ * @returns All categories 
+ */
+export async function getCategories(): Promise<Category[]> {
+  console.log('[getCategories] get all categories')
+  const { data, error, response } = await client.GET("/categories", {
+    params: {
+      query: {
+        // Populate
+        "populate": 'image',
+
+        // Pagination
+        "pagination[page]": 0,
+        "pagination[pageSize]": 50, // For simplicity, we assume there's less than 50 categories (expected ~8 categories)
+
+        // Sort
+        'sort': 'name:asc',
+      }
+    }
+  })
+
+  
+  if (error) {
+    console.error(`Error ${response.status} getting categories: ${response.url}`, error)
+    throw error
+  }
+
+  return data.data
+}
+
+
+/**
+ * Get articles sorted by descending published date.
+ * 
  * @returns Articles for the given page
  */
 export async function getArticles({ page=0, pageSize=PAGE_SIZE }: PaginationParam = {}): Promise<Article[]> {
   console.log('[getArticles] fetching page', page)
+  
   const { data, error, response } = await client.GET("/articles", {
     params: {
       query: {
@@ -109,7 +144,7 @@ export async function getArticles({ page=0, pageSize=PAGE_SIZE }: PaginationPara
     }
   })
 
-  console.log('response', response.url)
+
   if (error) {
     console.error(`Error ${response.status} getting articles: ${response.url}. Page${page}`, error)
     throw error
