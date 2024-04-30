@@ -7,8 +7,6 @@ import { ArticleContent } from '@/components/Article'
 
 const DATA_CACHE_TIME_SECONDS = 10 * 60 // 10 minutes
 
-
-
 export interface BlogPostProps {
   article: Article
 }
